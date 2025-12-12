@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .layout-bg {
+    @apply bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[#202040] via-[#202060] to-[#602080];
+  }
+
+  .base-btn-bg {
+    @apply bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-[#002e94] via-[#083aa9] to-[#e1ceb5];
+  }
+
+  .base-btn-bg:hover {
+    @apply from-[#083aa9] via-[#0c46c4] to-[#f0dec5];
+  }
+
+  .employee-details-bg {
+    @apply bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[#4338ca] via-[#6366f1] to-[#a5b4fc];
+  }
+
+  .table-header-bg {
+    @apply bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-[#351f39] via-[#726a95] to-[#719fb0]; /* good */
+  }
+}
