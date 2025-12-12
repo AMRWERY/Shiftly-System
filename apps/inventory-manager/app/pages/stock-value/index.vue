@@ -1,0 +1,11 @@
+<template>
+  <div>
+    <p>stock-value</p>
+  </div>
+</template>
+
+<script lang="ts" setup>
+definePageMeta({
+  layout: 'dashboard'
+})
+</script>

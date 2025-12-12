@@ -6,15 +6,12 @@
     <div :class="{ rtl: localeStore.isRTL }">
       <div class="flex h-screen bg-gray-100">
         <!-- Overlay for small screens -->
-        <div
-          v-if="isSidebarOpen"
-          @click="isSidebarOpen = false"
-          class="fixed inset-0 bg-gray-900 bg-opacity-50 z-30 lg:hidden"
-        ></div>
+        <div v-if="isSidebarOpen" @click="isSidebarOpen = false"
+          class="fixed inset-0 bg-gray-900 bg-opacity-50 z-30 lg:hidden"></div>
 
         <!-- Sidebar -->
         <aside
-          class="fixed inset-y-0 w-[265px] text-white flex-shrink-0 z-40 transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 flex flex-col layout-bg"
+          class="fixed inset-y-0 w-[280px] text-white flex-shrink-0 z-40 transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 flex flex-col layout-bg"
           :class="{
             'left-0': !localeStore.isRTL,
             'right-0': localeStore.isRTL,
@@ -22,14 +19,11 @@
             'translate-x-full': localeStore.isRTL && !isSidebarOpen,
             'translate-x-0': isSidebarOpen,
             'hidden lg:flex': !isSidebarOpen,
-          }"
-        >
+          }">
           <div class="p-4 text-2xl font-semibold border-b border-gray-700">
             Shiftly
           </div>
-          <nav
-            class="mt-4 flex-1 mb-4 mx-4 space-y-3 overflow-y-auto hide-scrollbar"
-          >
+          <nav class="mt-4 flex-1 mb-4 mx-4 space-y-3 overflow-y-auto hide-scrollbar">
             <template v-if="authStore.isAuthenticated">
               <!-- admin-layout component -->
               <admin-layout v-if="isAdmin" />
@@ -84,44 +78,28 @@
 
           <!-- Logout Button -->
           <div class="p-4 border-t border-gray-700">
-            <base-button
-              :default-icon="false"
-              :hover-color="'bg-gray-100'"
-              :border-color="'border-gray-700'"
-              :text-color="'text-white'"
-              :variant="'outline'"
-              :block="true"
-              :route="true"
-              :type="'button'"
+            <base-button :default-icon="false" :hover-color="'bg-gray-100'" :border-color="'border-gray-700'"
+              :text-color="'text-white'" :variant="'outline'" :block="true" :route="true" :type="'button'"
               :no-border="true"
               class="flex items-center justify-center p-2 rounded-lg border-2 transition-colors group bg-gray-400 hover:bg-gray-500"
-              @click="handleLogout"
-              :to="'/auth'"
-              >{{ t("btn.logout") }}</base-button
-            >
+              @click="handleLogout" :to="'/auth'">{{ t("btn.logout") }}</base-button>
           </div>
         </aside>
 
         <!-- Main content area -->
         <div class="flex-1 flex flex-col overflow-hidden lg:ms-0">
           <!-- Navbar (Top Bar) -->
-          <header
-            class="bg-white shadow-md p-4 flex justify-between items-center z-20"
-          >
+          <header class="bg-white shadow-md p-4 flex justify-between items-center z-20">
             <!-- Hamburger menu for small screens -->
-            <button
-              @click="isSidebarOpen = !isSidebarOpen"
-              class="text-gray-600 hover:text-gray-800 focus:outline-none lg:hidden"
-            >
+            <button @click="isSidebarOpen = !isSidebarOpen"
+              class="text-gray-600 hover:text-gray-800 focus:outline-none lg:hidden">
               <icon name="material-symbols:menu" class="h-6 w-6" />
             </button>
 
             <div class="flex items-center justify-end ms-auto space-x-5">
               <!-- RTL Toggle -->
-              <button
-                class="text-gray-600 hover:text-gray-800 me-1"
-                @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')"
-              >
+              <button class="text-gray-600 hover:text-gray-800 me-1"
+                @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
                 <span v-if="localeStore.isRTL" class="flex items-center">
                   <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
                   En
@@ -226,16 +204,16 @@ watch(currentRole, (newRole) => {
   console.log("Current user role changed to:", newRole);
 });
 
-const isUserMenuOpen = ref(false);
-const isNotificationsMenuOpen = ref(false);
+// const isUserMenuOpen = ref(false);
+// const isNotificationsMenuOpen = ref(false);
 
-const toggleUserMenu = () => {
-  isUserMenuOpen.value = !isUserMenuOpen.value;
-  if (isUserMenuOpen.value) isNotificationsMenuOpen.value = false;
-};
+// const toggleUserMenu = () => {
+//   isUserMenuOpen.value = !isUserMenuOpen.value;
+//   if (isUserMenuOpen.value) isNotificationsMenuOpen.value = false;
+// };
 
-const toggleNotificationsMenu = () => {
-  isNotificationsMenuOpen.value = !isNotificationsMenuOpen.value;
-  if (isNotificationsMenuOpen.value) isUserMenuOpen.value = false;
-};
+// const toggleNotificationsMenu = () => {
+//   isNotificationsMenuOpen.value = !isNotificationsMenuOpen.value;
+//   if (isNotificationsMenuOpen.value) isUserMenuOpen.value = false;
+// };
 </script>
