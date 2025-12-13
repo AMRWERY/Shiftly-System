@@ -54,8 +54,42 @@
         </div>
       </form>
 
-      <!-- step 3 -->
-      <form v-else-if="currentStep === 2" @submit.prevent="handleSignup" class="gap-y-4">
+      <!-- step 3: OTP Verification -->
+      <form v-else-if="currentStep === 2" @submit.prevent="handleVerifyOtp" class="space-y-6">
+        <div class="text-center mb-4">
+          <p class="text-sm text-gray-600 mb-2">{{ t('form.otp_instruction') }}</p>
+          <p class="text-xs text-gray-500">{{ t('form.check_email_for_code_or_link') }}</p>
+        </div>
+        
+        <div class="flex flex-col space-y-16">
+          <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
+            <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
+              class="w-16 h-16 text-lg text-center bg-white border border-gray-200 outline-none rounded-xl focus:bg-gray-50 focus:ring-2 ring-blue-700"
+              @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
+          </div>
+        </div>
+
+        <div class="mt-7">
+          <base-button :default-icon="false" :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
+            :padding-y="'py-2.5'"
+            class="flex items-center justify-center rounded-lg border-2 transition-colors group"
+            :disabled="loading">
+            <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
+            <span v-else>{{ t('btn.verify_account') }}</span>
+          </base-button>
+        </div>
+
+        <div class="flex items-center justify-center text-sm">
+          <p>{{ t('form.didnt_recieve_code') }} <button type="button" @click="resendOtp"
+              :disabled="resendCooldown > 0"
+              class="text-gray-600 hover:underline font-semibold disabled:text-gray-400 disabled:cursor-not-allowed">
+              {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
+            </button></p>
+        </div>
+      </form>
+
+      <!-- step 4: Image Selection -->
+      <form v-else-if="currentStep === 3" @submit.prevent="handleSignup" class="gap-y-4">
         <div class="flex flex-col items-center justify-center">
           <div v-if="imagePreviewUrl"
             class="rounded-full object-cover xl:w-[9rem] xl:h-[9rem] lg:w-[8rem] lg:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-yellow-500 shadow-xl relative">
@@ -100,9 +134,12 @@ const { isLoading: loading, startLoading } = useLoading(3000);
 const steps = [
   t("stepper.name"),
   t("stepper.email_password"),
+  t("stepper.otp"),
   t("stepper.choose_image"),
 ];
 const currentStep = ref(0);
+const resendCooldown = ref(0);
+let resendTimer: any = null;
 
 const form = ref<UserAuth>({
   firstName: "",
@@ -117,6 +154,7 @@ const form = ref<UserAuth>({
 // Track email verification status
 const isEmailVerified = ref(false);
 const confirmationEmailSent = ref(false);
+const otpInputs = ref<HTMLInputElement[]>([]);
 
 const rolesOptions = computed(() => [
   { value: "admin", label: t("roles.admin") },
@@ -179,7 +217,7 @@ const nextStep = async () => {
       currentStep.value++;
       return;
     }
-    // When clicking Next on step 2 (email & password), send confirmation email
+    // When clicking Next on step 2 (email & password), send OTP
     if (currentStep.value === 1) {
       // Validate required fields
       if (!form.value.email || !form.value.password || !form.value.role) {
@@ -190,46 +228,129 @@ const nextStep = async () => {
         });
         return;
       }
-      // Send confirmation email if not already sent
-      if (!confirmationEmailSent.value) {
-        startLoading();
-        const result = await authStore.sendConfirmationEmail(
-          form.value.email,
-          form.value.password
-        );
-        if (result.success) {
-          confirmationEmailSent.value = true;
-          triggerToast({
-            message: t("toast.confirmation_email_sent"),
-            type: "success",
-            icon: "material-symbols:mail-outline",
-          });
-        } else {
-          triggerToast({
-            message: t("toast.failed_to_send_confirmation_email"),
-            type: "error",
-            icon: "material-symbols:error-outline-rounded",
-          });
-          return; // Don't proceed if email sending failed
-        }
-      }
-      // Check if email is verified before allowing to proceed
-      if (!isEmailVerified.value) {
+      // Send OTP to email for sign-up verification
+      startLoading();
+      const result = await authStore.sendSignUpOtp(form.value.email);
+      if (result.success) {
         triggerToast({
-          message: t("toast.must_confirm_email_first"),
-          type: "warning",
-          icon: "material-symbols:warning-outline",
+          message: t("toast.otp_sent_successfully"),
+          type: "success",
+          icon: "mdi-check-circle",
         });
-        return; // Prevent moving to next step
+        // Start cooldown timer for resend
+        resendCooldown.value = 60;
+        if (resendTimer) clearInterval(resendTimer);
+        resendTimer = setInterval(() => {
+          resendCooldown.value--;
+          if (resendCooldown.value <= 0) {
+            clearInterval(resendTimer);
+            resendTimer = null;
+          }
+        }, 1000);
+        currentStep.value++;
+      } else {
+        triggerToast({
+          message: result.error || t("toast.failed_to_send_otp"),
+          type: "error",
+          icon: "material-symbols:error-outline-rounded",
+        });
+        return; // Don't proceed if OTP sending failed
       }
     }
-    currentStep.value++;
   }
 };
 
 const goToStep = (index: number) => {
   // Disable manual step navigation - users must use Next buttons
   return;
+};
+
+const handleVerifyOtp = async () => {
+  // Collect OTP from inputs
+  const otpValue = otpInputs.value.map(input => input?.value || '').join('');
+
+  if (otpValue.length !== 6) {
+    triggerToast({
+      message: t('toast.please_enter_valid_otp'),
+      type: 'error',
+      icon: 'material-symbols:error-outline-rounded',
+    });
+    return;
+  }
+  startLoading();
+  // Verify OTP - this authenticates the user via passwordless login
+  const result = await authStore.verifyOtp(form.value.email, otpValue);
+  if (result.success) {
+    triggerToast({
+      message: t('toast.otp_verified_successfully'),
+      type: 'success',
+      icon: 'mdi-check-circle',
+    });
+    // Clear resend timer
+    if (resendTimer) {
+      clearInterval(resendTimer);
+      resendTimer = null;
+    }
+    resendCooldown.value = 0;
+    // Mark email as verified
+    isEmailVerified.value = true;
+    // Move to next step (image selection)
+    if (currentStep.value < steps.length - 1) {
+      currentStep.value++;
+    }
+  } else {
+    triggerToast({
+      message: result.error || t('toast.invalid_otp'),
+      type: 'error',
+      icon: 'material-symbols:error-outline-rounded',
+    });
+  }
+};
+
+const resendOtp = async () => {
+  if (resendCooldown.value > 0) return;
+  
+  startLoading();
+  const result = await authStore.sendSignUpOtp(form.value.email);
+  if (result.success) {
+    triggerToast({
+      message: t('toast.otp_sent_successfully'),
+      type: 'success',
+      icon: 'mdi-check-circle',
+    });
+    // Start cooldown timer (60 seconds)
+    resendCooldown.value = 60;
+    if (resendTimer) clearInterval(resendTimer);
+    resendTimer = setInterval(() => {
+      resendCooldown.value--;
+      if (resendCooldown.value <= 0) {
+        clearInterval(resendTimer);
+        resendTimer = null;
+      }
+    }, 1000);
+  } else {
+    triggerToast({
+      message: result.error || t('toast.failed_to_send_otp'),
+      type: 'error',
+      icon: 'material-symbols:error-outline-rounded',
+    });
+  }
+};
+
+const handleInput = (e: Event, index: number) => {
+  const input = e.target as HTMLInputElement;
+  if (input.value.length > 1) input.value = input.value.slice(0, 1); // only 1 char
+
+  if (input.value && index < otpInputs.value.length - 1) {
+    nextTick(() => otpInputs.value[index + 1]?.focus());
+  }
+};
+
+const handleBackspace = (e: KeyboardEvent, index: number) => {
+  const input = e.target as HTMLInputElement;
+  if (!input.value && index > 0) {
+    nextTick(() => otpInputs.value[index - 1]?.focus());
+  }
 };
 
 const imagePreviewUrl = ref<string | null>(null);
@@ -289,6 +410,17 @@ const handleSignup = async () => {
     });
     return;
   }
+  
+  // Check if user is already authenticated via OTP
+  if (!authStore.isAuthenticated || !isEmailVerified.value) {
+    triggerToast({
+      message: t("toast.must_verify_email_first"),
+      type: "error",
+      icon: "material-symbols:error-outline-rounded",
+    });
+    return;
+  }
+  
   startLoading();
   const result = await authStore.signup({
     email: form.value.email,
@@ -325,6 +457,10 @@ onUnmounted(() => {
   // Clean up verification check interval
   if (verificationCheckInterval) {
     clearInterval(verificationCheckInterval);
+  }
+  // Clean up resend timer
+  if (resendTimer) {
+    clearInterval(resendTimer);
   }
 });
 </script>

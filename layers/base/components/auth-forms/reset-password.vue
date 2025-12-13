@@ -24,7 +24,7 @@
                 <p class="text-sm text-gray-600 mb-2">{{ t('form.otp_instruction') }}</p>
                 <p class="text-xs text-gray-500">{{ t('form.check_email_for_code_or_link') }}</p>
             </div>
-            
+
             <div class="flex flex-col space-y-16">
                 <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
                     <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
@@ -53,7 +53,7 @@
 
             <div class="flex items-center justify-center text-sm">
                 <nuxt-link-locale to="/auth" class="text-gray-600 hover:underline">{{ t('form.back_to_login')
-                    }}</nuxt-link-locale>
+                }}</nuxt-link-locale>
             </div>
         </form>
 
@@ -145,7 +145,6 @@ const goToStep = (index: number) => {
 const handleSubmitOtp = async () => {
     // Collect OTP from inputs
     const otpValue = otpInputs.value.map(input => input?.value || '').join('');
-
     if (otpValue.length !== 6) {
         triggerToast({
             message: t('toast.please_enter_valid_otp'),
@@ -185,7 +184,6 @@ const handleSubmitOtp = async () => {
 
 const resendOtp = async () => {
     if (resendCooldown.value > 0) return;
-    
     startLoading();
     const result = await authStore.sendPasswordResetOtp(form.value.email);
     if (result.success) {
@@ -221,7 +219,6 @@ const handleResetPassword = async () => {
         });
         return;
     }
-    
     if (form.value.newPassword !== form.value.confirmPassword) {
         triggerToast({
             message: t('toast.passwords_do_not_match'),
@@ -230,7 +227,6 @@ const handleResetPassword = async () => {
         });
         return;
     }
-    
     startLoading();
     // Update password using the authenticated session from OTP verification
     const result = await authStore.updatePassword(form.value.newPassword);
@@ -259,7 +255,6 @@ const otpInputs = ref<HTMLInputElement[]>([]);
 const handleInput = (e: Event, index: number) => {
     const input = e.target as HTMLInputElement;
     if (input.value.length > 1) input.value = input.value.slice(0, 1); // only 1 char
-
     if (input.value && index < otpInputs.value.length - 1) {
         nextTick(() => otpInputs.value[index + 1]?.focus());
     }

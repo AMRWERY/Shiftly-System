@@ -45,6 +45,7 @@
     "failed_to_send_confirmation_email": "فشل إرسال بريد التأكيد. يرجى المحاولة مرة أخرى.",
     "email_verified_successfully": "تم التحقق من البريد الإلكتروني بنجاح! يمكنك الآن المتابعة.",
     "must_confirm_email_first": "يجب تأكيد عنوان بريدك الإلكتروني قبل المتابعة. يرجى التحقق من صندوق الوارد الخاص بك.",
+    "must_verify_email_first": "يجب عليك التحقق من بريدك الإلكتروني برمز التحقق قبل إكمال التسجيل.",
     "image_size_too_large": "يجب أن يكون حجم الصورة أقل من 3 ميجابايت",
     "invalid_image_type": "يُسمح فقط بصور JPEG وPNG وWebP وGIF",
     "otp_sent_successfully": "تم إرسال رمز التحقق بنجاح",

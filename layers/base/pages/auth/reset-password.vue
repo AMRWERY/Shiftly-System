@@ -58,7 +58,6 @@ const switchLocale = async (value: SupportedLocale) => {
         const enMessages = await import('../../i18n/locales/en.json');
         setLocaleMessage('en', enMessages.default || enMessages);
     }
-    
     // Update locale store with preventNavigation flag to stay on same page
     await localeStore.updateLocale(value, true);
 };
