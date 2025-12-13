@@ -15,6 +15,14 @@
     "simple_secure": "Simple & Secure",
     "security_message": "Your data is protected with industry-standard security measures.",
     "forgot_your_password": "Forgot your password?",
+    "forgot_your_password_title": "Reset Your Password",
+    "forgot_your_password_desc": "Enter your email address and we'll send you a link to reset your password.",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "didnt_recieve_code": "Didn't receive code?",
+    "back_to_login": "Back to Login",
+    "otp_instruction": "Enter the 6-digit code sent to your email",
+    "check_email_for_code_or_link": "Check your email for the OTP code. If you received a magic link instead, click it to continue.",
     "chose_your_img": "Choose your image"
   },
   "btn": {
@@ -22,7 +30,10 @@
     "log_in": "Log In",
     "next": "Next",
     "create_account_button": "Create Account",
-    "logout": "Logout"
+    "logout": "Logout",
+    "verify_account": "Verify Account",
+    "resend": "Resend",
+    "reset_password": "Reset Password"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
@@ -35,11 +46,20 @@
     "email_verified_successfully": "Email verified successfully! You can now proceed.",
     "must_confirm_email_first": "You must confirm your email address before proceeding. Please check your inbox.",
     "image_size_too_large": "Image size must be less than 3MB",
-    "invalid_image_type": "Only JPEG, PNG, WebP, and GIF images are allowed"
+    "invalid_image_type": "Only JPEG, PNG, WebP, and GIF images are allowed",
+    "otp_sent_successfully": "OTP Sent Successfully",
+    "otp_verified_successfully": "OTP verified successfully!",
+    "please_enter_valid_otp": "Please enter a valid 6-digit OTP",
+    "invalid_otp": "Invalid OTP. Please try again.",
+    "failed_to_send_otp": "Failed to send OTP. Please try again.",
+    "passwords_do_not_match": "Passwords do not match",
+    "password_reset_successfully": "Password reset successfully! Redirecting to login...",
+    "failed_to_reset_password": "Failed to reset password. Please try again."
   },
   "head": {
     "dashboard": "Dashboard",
-    "auth": "Authentication"
+    "auth": "Authentication",
+    "reset_password": "Reset Password"
   },
   "roles": {
     "admin": "Admin",
@@ -54,6 +74,9 @@
   },
   "stepper": {
     "name": "Name",
+    "email": "Email",
+    "otp": "OTP",
+    "new_password": "New Password",
     "email_password": "Email & Password",
     "choose_image": "Choose Image"
   },

@@ -376,16 +376,22 @@ export const useAuthStore = defineStore("auth", {
 
     /**
      * Send OTP to email for password reset
+     * Uses passwordless OTP login to authenticate user before password reset
+     * Note: This uses signInWithOtp which is for passwordless authentication
+     * The OTP will be sent if email template is configured to show {{ .Token }}
      */
     async sendPasswordResetOtp(email: string) {
       const supabase = useSupabaseClient();
       this.loading = true;
 
       try {
+        // Use signInWithOtp for passwordless authentication
+        // This sends an OTP code (if email template includes {{ .Token }})
+        // or a magic link (if email template doesn't include the token)
         const { data, error } = await supabase.auth.signInWithOtp({
           email,
           options: {
-            shouldCreateUser: false,
+            shouldCreateUser: false, // Only send OTP to existing users
           },
         });
 

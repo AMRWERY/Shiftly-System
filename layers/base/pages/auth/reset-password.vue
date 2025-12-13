@@ -50,8 +50,7 @@ watch(() => localeStore.isRTL, (isRTL) => {
 }, { immediate: true });
 
 const switchLocale = async (value: SupportedLocale) => {
-    localeStore.updateLocale(value);
-    // Get i18n instance and ensure messages are loaded
+    // Get i18n instance and ensure messages are loaded first
     if (value === 'ar') {
         const arMessages = await import('../../i18n/locales/ar.json');
         setLocaleMessage('ar', arMessages.default || arMessages);
@@ -59,8 +58,9 @@ const switchLocale = async (value: SupportedLocale) => {
         const enMessages = await import('../../i18n/locales/en.json');
         setLocaleMessage('en', enMessages.default || enMessages);
     }
-    // Now set the locale
-    setLocale(value);
+    
+    // Update locale store with preventNavigation flag to stay on same page
+    await localeStore.updateLocale(value, true);
 };
 
 // Initialize direction on component mount

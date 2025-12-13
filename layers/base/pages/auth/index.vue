@@ -19,7 +19,7 @@
         <div class="flex items-center justify-center p-4">
 
             <!-- Added fixed height here -->
-            <div class="flex w-full max-w-4xl h-[450px] rounded-lg shadow-xl overflow-hidden">
+            <div class="flex w-full max-w-4xl h-[500px] rounded-lg shadow-xl overflow-hidden">
                 <!-- Left Side - Dark Background with Information -->
                 <div
                     class="hidden md:flex md:w-4/12 bg-gradient-to-l from-gray-900 to-gray-600 text-white p-10 flex-col justify-center">

@@ -2,19 +2,21 @@ export default defineNuxtRouteMiddleware(async (to) => {
   const authStore = useAuthStore();
   const supabase = useSupabaseClient();
 
-  // Define public routes that don't require authentication
+  // Define public routes that don't require authentication (without locale prefix)
   const publicRoutes = [
     "/auth",
     "/signup",
     "/register",
     "/forgot-password",
     "/reset-password",
-    "/auth",
   ];
+
+  // Remove locale prefix from path for checking (e.g., /ar/auth/reset-password -> /auth/reset-password)
+  const pathWithoutLocale = to.path.replace(/^\/[a-z]{2}(\/|$)/, '/').replace(/^\/[a-z]{2}-[a-z]{2}(\/|$)/, '/');
 
   // Check if the current route is public
   const isPublicRoute = publicRoutes.some((route) =>
-    to.path.toLowerCase().startsWith(route)
+    pathWithoutLocale.toLowerCase().startsWith(route)
   );
 
   // Initialize auth if not already done

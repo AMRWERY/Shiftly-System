@@ -15,6 +15,14 @@
     "simple_secure": "بسيط وآمن",
     "security_message": "بياناتك محمية بإجراءات أمان متوافقة مع معايير الصناعة.",
     "forgot_your_password": "هل نسيت كلمة المرور؟",
+    "forgot_your_password_title": "إعادة تعيين كلمة المرور",
+    "forgot_your_password_desc": "أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.",
+    "new_password": "كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور",
+    "didnt_recieve_code": "لم تستلم الرمز؟",
+    "back_to_login": "العودة لتسجيل الدخول",
+    "otp_instruction": "أدخل رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
+    "check_email_for_code_or_link": "تحقق من بريدك الإلكتروني للحصول على رمز التحقق. إذا استلمت رابطًا سحريًا بدلاً من ذلك، انقر عليه للمتابعة.",
     "chose_your_img": "اختر صورتك"
   },
   "btn": {
@@ -22,7 +30,10 @@
     "log_in": "تسجيل الدخول",
     "next": "التالي",
     "create_account_button": "إنشاء الحساب",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "verify_account": "التحقق من الحساب",
+    "resend": "إعادة الإرسال",
+    "reset_password": "إعادة تعيين كلمة المرور"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
@@ -35,11 +46,20 @@
     "email_verified_successfully": "تم التحقق من البريد الإلكتروني بنجاح! يمكنك الآن المتابعة.",
     "must_confirm_email_first": "يجب تأكيد عنوان بريدك الإلكتروني قبل المتابعة. يرجى التحقق من صندوق الوارد الخاص بك.",
     "image_size_too_large": "يجب أن يكون حجم الصورة أقل من 3 ميجابايت",
-    "invalid_image_type": "يُسمح فقط بصور JPEG وPNG وWebP وGIF"
+    "invalid_image_type": "يُسمح فقط بصور JPEG وPNG وWebP وGIF",
+    "otp_sent_successfully": "تم إرسال رمز التحقق بنجاح",
+    "otp_verified_successfully": "تم التحقق من رمز التحقق بنجاح!",
+    "please_enter_valid_otp": "يرجى إدخال رمز تحقق صالح مكون من 6 أرقام",
+    "invalid_otp": "رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.",
+    "failed_to_send_otp": "فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى.",
+    "passwords_do_not_match": "كلمات المرور غير متطابقة",
+    "password_reset_successfully": "تم إعادة تعيين كلمة المرور بنجاح! جاري التحويل لتسجيل الدخول...",
+    "failed_to_reset_password": "فشل إعادة تعيين كلمة المرور. يرجى المحاولة مرة أخرى."
   },
   "head": {
     "dashboard": "لوحة التحكم",
-    "auth": "المصادقة"
+    "auth": "التسجيل",
+    "reset_password": "إعادة تعيين كلمة المرور"
   },
   "roles": {
     "admin": "مدير النظام",
@@ -54,6 +74,9 @@
   },
   "stepper": {
     "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "otp": "رمز التحقق",
+    "new_password": "كلمة المرور الجديدة",
     "email_password": "البريد الإلكتروني وكلمة المرور",
     "choose_image": "اختر الصورة"
   },

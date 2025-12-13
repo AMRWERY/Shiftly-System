@@ -12,17 +12,27 @@ export const useLocaleStore = defineStore("locales", {
   }),
 
   actions: {
-    async updateLocale(newLocale: SupportedLocale) {
+    async updateLocale(newLocale: SupportedLocale, preventNavigation: boolean = false) {
       if (!import.meta.client) return;
 
       this.isOverlayVisible = true;
       const nuxtApp = useNuxtApp();
       
+      // Store current route to prevent navigation
+      const route = useRoute();
+      const currentPath = route.path;
+      const currentQuery = { ...route.query };
+      
       // Safely access i18n
       if (nuxtApp.$i18n) {
         const i18n = nuxtApp.$i18n as any;
-        if (i18n.setLocale) {
-          await i18n.setLocale(newLocale);
+        if (preventNavigation) {
+          // Set locale directly without triggering navigation
+          i18n.locale.value = newLocale;
+        } else {
+          if (i18n.setLocale) {
+            await i18n.setLocale(newLocale);
+          }
         }
       }
 
@@ -36,6 +46,14 @@ export const useLocaleStore = defineStore("locales", {
           localStorage.setItem("locale", newLocale);
         } catch (e) {
           // localStorage may not be available
+        }
+      }
+
+      // If navigation was prevented and route changed, restore it
+      if (preventNavigation) {
+        await nextTick();
+        if (route.path !== currentPath) {
+          await navigateTo({ path: currentPath, query: currentQuery }, { replace: true, external: false });
         }
       }
 
