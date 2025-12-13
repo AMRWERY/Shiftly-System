@@ -1,0 +1,26 @@
+{
+  // Base layer TypeScript configuration
+  // This extends from the nearest app's generated tsconfig
+  // When editing base layer files, ensure you have run 'nuxt prepare' in at least one app
+  "extends": "../../apps/maintenance-technician/.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@types/*": ["./types/*"],
+      "@locales/*": ["./i18n/locales/*"],
+      "@assets/*": ["./assets/*"],
+      "@public/*": ["./public/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue"
+  ],
+  "exclude": [
+    "node_modules",
+    ".nuxt",
+    "dist"
+  ]
+}
+

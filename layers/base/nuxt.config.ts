@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+/// <reference types="../../apps/maintenance-technician/.nuxt/nuxt.d.ts" />
 
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -68,9 +69,9 @@ export default defineNuxtConfig({
     types: false,
     cookieOptions: {
       maxAge: 60 * 60 * 24 * 7, // 7 days
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
-    }
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    },
   },
   // Vite configuration to fix dependency resolution issues
   vite: {
@@ -92,11 +93,11 @@ export default defineNuxtConfig({
     join(currentDir, "./assets/css/main.css"),
   ],
   alias: {
-      "@types": join(currentDir, "types"),
-      "@locales": join(currentDir, "locales"),
-      "@assets": join(currentDir, "assets"),
-      "@public": join(currentDir, "public"),
-    },
+    "@types": join(currentDir, "types"),
+    "@locales": join(currentDir, "locales"),
+    "@assets": join(currentDir, "assets"),
+    "@public": join(currentDir, "public"),
+  },
   components: [
     {
       path: join(currentDir, "components"),

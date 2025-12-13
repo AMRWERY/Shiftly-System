@@ -1,4 +1,4 @@
-export type UserRole = 'admin' | 'hr' | 'employee' | 'manager' | 'accountant'
+export type UserRole = 'admin' | 'hr' | 'employee' | 'manager' | 'accountant' | 'inventory_manager' | 'maintenance_technician' | 'system_auditor' | 'td_officer'
 
 export interface UserProfile {
   id: string

@@ -71,7 +71,7 @@ type SelectOption = { label: string; value: string | number };
 
 const props = defineProps({
   modelValue: {
-    type: [String, Number],
+    type: [String, Number, null, undefined] as PropType<string | number | null | undefined>,
     // required: true
   },
   label: {
@@ -120,7 +120,7 @@ const emit = defineEmits(['update:modelValue']);
 
 const internalValue = computed({
   get: () => props.modelValue,
-  set: (value: string | number | undefined) => emit('update:modelValue', value)
+  set: (value: string | number | null | undefined) => emit('update:modelValue', value)
 });
 
 // Get error message from VeeValidate field context

@@ -6,7 +6,7 @@ export interface UserAuth {
   lastName: string
   email: string
   password: string
-  role: UserRole | null
+  role: UserRole | null | undefined
   imageFile: File | null
 }
 
