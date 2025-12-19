@@ -1,11 +1,5 @@
-import type { User, Session } from "@supabase/supabase-js";
-
-interface AuthState {
-  user: User | null;
-  session: Session | null;
-  loading: boolean;
-  authListenerInitialized: boolean;
-}
+import type { User } from "@supabase/supabase-js";
+import type { AuthState } from "../types/auth";
 
 export const useAuthStore = defineStore("auth", {
   state: (): AuthState => ({
@@ -14,16 +8,6 @@ export const useAuthStore = defineStore("auth", {
     loading: true,
     authListenerInitialized: false,
   }),
-
-  getters: {
-    isAuthenticated: (state): boolean => !!state.user,
-    currentUser: (state): User | null => state.user,
-    userEmail: (state): string | undefined => state.user?.email,
-    userId: (state): string | undefined => state.user?.id,
-    currentUserRole: (state): string | undefined =>
-      state.user?.user_metadata?.role,
-    isAuthReady: (state): boolean => state.authListenerInitialized,
-  },
 
   actions: {
     /**
@@ -92,6 +76,15 @@ export const useAuthStore = defineStore("auth", {
     },
 
     /**
+     * Generate unique employee ID in format: shiftly-XXXX
+     */
+    generateEmployeeId(): string {
+      // Generate random 4-digit number between 1000-9999
+      const randomNum = Math.floor(Math.random() * 9000) + 1000;
+      return `shiftly-${randomNum}`;
+    },
+
+    /**
      * Sign up with full user data and profile image
      * If user already exists (from step 2), updates the user profile instead
      */
@@ -108,6 +101,10 @@ export const useAuthStore = defineStore("auth", {
       this.loading = true;
       try {
         let avatarUrl = "";
+        // Generate employee ID
+        const employeeId = this.generateEmployeeId();
+        const createdAt = new Date().toISOString();
+        const baseSalary = 0; // Default base salary
         // Upload profile image if provided
         if (userData.imageFile) {
           // Validate file size (max 3MB)
@@ -187,6 +184,10 @@ export const useAuthStore = defineStore("auth", {
               role: userData.role,
               avatarUrl: avatarUrl,
               fullName: `${userData.firstName} ${userData.middleName} ${userData.lastName}`,
+              phoneNumber: "",
+              employeeId: employeeId,
+              base_salary: baseSalary,
+              createdAt: createdAt,
             },
           });
           if (error) throw error;
@@ -212,6 +213,10 @@ export const useAuthStore = defineStore("auth", {
                 role: userData.role,
                 avatarUrl: avatarUrl,
                 fullName: `${userData.firstName} ${userData.middleName} ${userData.lastName}`,
+                phoneNumber: "",
+                employeeId: employeeId,
+                base_salary: baseSalary,
+                createdAt: createdAt,
               },
             },
           });
@@ -570,7 +575,6 @@ export const useAuthStore = defineStore("auth", {
         if (file.size > maxSize) {
           throw new Error("Image file size must be less than 3MB");
         }
-
         // Validate file type
         const allowedTypes = [
           "image/jpeg",
@@ -582,14 +586,12 @@ export const useAuthStore = defineStore("auth", {
         if (!allowedTypes.includes(file.type)) {
           throw new Error("Only JPEG, PNG, WebP, and GIF images are allowed");
         }
-
         // Generate unique filename
         const fileExt = file.name.split(".").pop()?.toLowerCase() || "jpg";
         const timestamp = Date.now();
         const uniqueId = crypto.randomUUID();
         const fileName = `${timestamp}_${uniqueId}.${fileExt}`;
         const filePath = `avatars/${fileName}`;
-
         // Upload to Supabase storage
         const { error: uploadError } = await supabase.storage
           .from("avatars")
@@ -597,28 +599,21 @@ export const useAuthStore = defineStore("auth", {
             cacheControl: "3600",
             upsert: false,
           });
-
         if (uploadError) {
           throw new Error(`Failed to upload image: ${uploadError.message}`);
         }
-
         // Get public URL
         const { data: urlData } = supabase.storage
           .from("avatars")
           .getPublicUrl(filePath);
-        
         const avatarUrl = urlData.publicUrl;
-
         // Update user profile with new avatar URL
         const { data, error } = await supabase.auth.updateUser({
           data: { avatarUrl },
         });
-
         if (error) throw error;
-
         // Update local state
         this.user = data.user;
-        
         return { success: true, data: avatarUrl };
       } catch (error: any) {
         console.error("Update profile image error:", error);
@@ -627,5 +622,20 @@ export const useAuthStore = defineStore("auth", {
         this.loading = false;
       }
     },
+  },
+
+  getters: {
+    isAuthenticated: (state): boolean => !!state.user,
+
+    currentUser: (state): User | null => state.user,
+
+    userEmail: (state): string | undefined => state.user?.email,
+
+    userId: (state): string | undefined => state.user?.id,
+
+    currentUserRole: (state): string | undefined =>
+      state.user?.user_metadata?.role,
+
+    isAuthReady: (state): boolean => state.authListenerInitialized,
   },
 });
