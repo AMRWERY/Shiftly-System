@@ -25,8 +25,8 @@ const props = defineProps({
     default: 'button',
   },
   defaultIcon: {
-    type: Boolean,
-    default: true
+    type: String,
+    default: ''
   },
   appendIcon: {
     type: String,
@@ -46,7 +46,7 @@ const props = defineProps({
   },
   bgColor: {
     type: String,
-    default: 'base-btn-bg'
+    default: 'base-btn-bg',
   },
   bgHoverColor: {
     type: String,

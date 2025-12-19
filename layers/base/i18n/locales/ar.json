@@ -60,7 +60,8 @@
   "head": {
     "dashboard": "لوحة التحكم",
     "auth": "التسجيل",
-    "reset_password": "إعادة تعيين كلمة المرور"
+    "reset_password": "إعادة تعيين كلمة المرور",
+    "my_profile": "ملفي الشخصي"
   },
   "roles": {
     "admin": "مدير النظام",

@@ -4,9 +4,8 @@
             {{ formattedUserRole }}</p>
 
         <div class="p-6 mt-16">
-            <base-button :default-icon="false" :type="'button'" :no-border="true" :block="false"
-                :padding-x="'px-4'" :padding-y="'py-2.5'" class="flex items-center justify-center rounded-lg transition-colors group"
-                @click="showDialog = true">
+            <base-button :type="'button'" :no-border="true" :block="false" :padding-x="'px-4'" :padding-y="'py-2.5'"
+                class="flex items-center justify-center rounded-lg transition-colors group" @click="showDialog = true">
                 <span>{{ t('btn.open_dialog') }}</span>
             </base-button>
 
@@ -24,8 +23,8 @@
                 </template>
 
                 <template #footer>
-                    <base-button :default-icon="false" :type="'button'" :hover-color="'hover:bg-gray-800'"
-                        :text-color="'text-white'" :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
+                    <base-button :type="'button'" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
+                        :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
                         class="rounded-lg border-2 transition-colors group" @click="handleConfirm">
                         {{ t('btn.verify_otp') }}
                     </base-button>
@@ -56,8 +55,6 @@ const formattedUserRole = computed(() => {
 
 definePageMeta({
     layout: 'dashboard',
-    middleware: ['role'],
-    roles: ['admin', 'hr', 'accountant', 'employee', 'manager'],
 });
 
 useHead({

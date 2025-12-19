@@ -78,9 +78,8 @@
 
           <!-- Logout Button -->
           <div class="p-4 border-t border-gray-700">
-            <base-button :default-icon="false" :hover-color="'bg-gray-100'" :border-color="'border-gray-700'"
-              :text-color="'text-white'" :variant="'outline'" :block="true" :route="true" :type="'button'"
-              :no-border="true"
+            <base-button :hover-color="'bg-gray-100'" :border-color="'border-gray-700'" :text-color="'text-white'"
+              :variant="'outline'" :block="true" :route="true" :type="'button'" :no-border="true"
               class="flex items-center justify-center p-2 rounded-lg border-2 transition-colors group bg-gray-400 hover:bg-gray-500"
               @click="handleLogout" :to="'/auth'">{{ t("btn.logout") }}</base-button>
           </div>
@@ -96,7 +95,14 @@
               <icon name="material-symbols:menu" class="h-6 w-6" />
             </button>
 
-            <div class="flex items-center justify-end ms-auto space-x-5">
+            <div class="flex items-center justify-end ms-auto space-s-5">
+              <!-- Profile Image -->
+              <div class="relative cursor-pointer" @click="navigateTo(localePath('/profile'))">
+                <img :src="authStore.currentUser?.user_metadata?.avatarUrl || '/img/dummy-profile-img.jpg'"
+                  alt="User Profile"
+                  class="w-8 h-8 rounded-full object-cover border border-gray-200 hover:border-blue-500 transition-colors" />
+              </div>
+
               <!-- RTL Toggle -->
               <button class="text-gray-600 hover:text-gray-800 me-1"
                 @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
@@ -125,7 +131,7 @@
             </div>
           </header>
 
-          <div class="px-1 sm:px-3 md:px-6">
+          <div class="px-1 sm:px-3 md:px-6 flex-1 overflow-y-auto">
             <slot></slot>
           </div>
         </div>
@@ -137,6 +143,7 @@
 <script lang="ts" setup>
 const route = useRoute();
 const { setLocale, setLocaleMessage, t } = useI18n();
+const localePath = useLocalePath();
 const localeStore = useLocaleStore();
 const authStore = useAuthStore();
 const { isAdmin, isAccountant, isEmployee, isHr, isManager, currentRole } =

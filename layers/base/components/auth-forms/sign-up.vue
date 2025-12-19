@@ -21,7 +21,7 @@
             :name="t('form.last_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.lastName" />
         </div>
         <div class="mt-7 sm:col-span-6 flex justify-end">
-          <base-button :default-icon="false" :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
+          <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
             :text-color="'text-white'" :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group" @click="nextStep">{{
               t("btn.next") }}</base-button>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="mt-7 sm:col-span-6 flex justify-end">
-          <base-button :default-icon="false" :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
+          <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
             :text-color="'text-white'" :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group" @click="nextStep">{{
               t("btn.next") }}</base-button>
@@ -70,7 +70,7 @@
         </div>
 
         <div class="mt-7">
-          <base-button :default-icon="false" :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
+          <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
             :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group"
             :disabled="loading">
@@ -112,7 +112,7 @@
         </div>
 
         <div class="mt-7">
-          <base-button :default-icon="false" :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
+          <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
             :padding-y="'py-2.5'" class="flex items-center justify-center rounded-lg border-2 transition-colors group"
             :disabled="loading">
             <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />

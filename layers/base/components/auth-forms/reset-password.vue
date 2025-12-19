@@ -10,7 +10,7 @@
                     :name="t('form.email')" :rules="'required|email'" :required="true" v-model="form.email" />
             </div>
             <div class="mt-7 sm:col-span-6 flex justify-end">
-                <base-button :default-icon="false" :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
+                <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
                     :text-color="'text-white'" :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                     @click="nextStep">{{ t('btn.next')
@@ -34,7 +34,7 @@
             </div>
 
             <div class="mt-7">
-                <base-button :default-icon="false" :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
+                <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
                     :padding-y="'py-2.5'"
                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                     :disabled="loading" @click="handleSubmitOtp">
@@ -70,7 +70,7 @@
                     v-model="form.confirmPassword" />
             </div>
             <div class="mt-7">
-                <base-button :default-icon="false" :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
+                <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
                     :padding-y="'py-2.5'"
                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                     :disabled="loading">

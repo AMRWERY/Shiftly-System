@@ -28,7 +28,7 @@
                         <div class="border-t border-gray-300 pt-6 flex justify-end gap-2"
                             v-if="$slots.footer || showDefaultFooter">
                             <slot name="footer">
-                                <base-button v-if="showDefaultFooter" :default-icon="false" :type="'button'"
+                                <base-button v-if="showDefaultFooter" :type="'button'"
                                     :hover-color="'hover:bg-gray-800'" :text-color="'text-white'" :variant="'solid'"
                                     :padding-x="'px-4'" :padding-y="'py-2.5'"
                                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"

@@ -60,7 +60,8 @@
   "head": {
     "dashboard": "Dashboard",
     "auth": "Authentication",
-    "reset_password": "Reset Password"
+    "reset_password": "Reset Password",
+    "my_profile": "My Profile"
   },
   "roles": {
     "admin": "Admin",

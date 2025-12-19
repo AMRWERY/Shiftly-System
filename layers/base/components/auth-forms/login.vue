@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="col-span-full">
-                    <base-button :default-icon="false" :block="true" :type="'submit'" :no-border="true"
+                    <base-button :block="true" :type="'submit'" :no-border="true"
                         :padding-x="'px-4'" :padding-y="'py-2.5'"
                         class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                         :disabled="loading">
