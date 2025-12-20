@@ -9,6 +9,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
     "/register",
     "/forgot-password",
     "/reset-password",
+    "/confirm-invite",
   ];
 
   // Remove locale prefix from path for checking (e.g., /ar/auth/reset-password -> /auth/reset-password)
@@ -43,7 +44,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
   }
 
   // If user is authenticated and trying to access auth pages, redirect to home
-  if (authStore.isAuthenticated && isPublicRoute) {
+  // UNLESS they have a 'from' query parameter (e.g., from invite confirmation)
+  if (authStore.isAuthenticated && isPublicRoute && !to.query.from) {
     return navigateTo("/");
   }
 });

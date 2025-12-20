@@ -23,7 +23,23 @@
     "back_to_login": "Back to Login",
     "otp_instruction": "Enter the 6-digit code sent to your email",
     "check_email_for_code_or_link": "Check your email for the OTP code. If you received a magic link instead, click it to continue.",
-    "chose_your_img": "Choose your image"
+    "chose_your_img": "Choose your image",
+    "phone_number": "Phone Number",
+    "employee_id": "Employee ID",
+    "base_salary": "Base Salary",
+    "enter_email": "Enter email address",
+    "enter_phone": "Enter phone number",
+    "enter_base_salary": "Enter base salary",
+    "enter_otp": "Enter OTP",
+    "welcome": "Welcome",
+    "activating_account": "We're setting up your account. Please wait...",
+    "setting_up_account": "Setting up your account...",
+    "activation_failed": "Activation Failed",
+    "activation_error": "An error occurred while activating your account.",
+    "account_activated": "Account Activated",
+    "default_password_set": "Your account has been activated successfully!",
+    "default_password": "Default Password",
+    "change_password_later": "You can change this password later from your profile settings."
   },
   "btn": {
     "sign_up": "Sign Up",
@@ -33,7 +49,16 @@
     "logout": "Logout",
     "verify_account": "Verify Account",
     "resend": "Resend",
-    "reset_password": "Reset Password"
+    "resend": "Resend",
+    "reset_password": "Reset Password",
+    "add_new_user": "Add New User",
+    "invite_user": "Invite User",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "verify_otp": "Verify OTP",
+    "retry": "Retry",
+    "back_to_login": "Back to Login",
+    "go_to_login": "Go to Login"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
@@ -55,13 +80,23 @@
     "failed_to_send_otp": "Failed to send OTP. Please try again.",
     "passwords_do_not_match": "Passwords do not match",
     "password_reset_successfully": "Password reset successfully! Redirecting to login...",
-    "failed_to_reset_password": "Failed to reset password. Please try again."
+    "failed_to_reset_password": "Failed to reset password. Please try again.",
+    "user_invited_successfully": "User invited successfully! An invitation email has been sent.",
+    "failed_to_invite_user": "Failed to invite user. Please try again.",
+    "failed_to_load_users": "Failed to load users. Please try again.",
+    "user_deleted_successfully": "User deleted successfully",
+    "failed_to_delete_user": "Failed to delete user",
+    "user_blocked_successfully": "User blocked successfully",
+    "user_unblocked_successfully": "User unblocked successfully",
+    "failed_to_update_user_status": "Failed to update user status",
+    "account_activated_successfully": "Account activated successfully! You can now login with the default password."
   },
   "head": {
     "dashboard": "Dashboard",
     "auth": "Authentication",
     "reset_password": "Reset Password",
-    "my_profile": "My Profile"
+    "my_profile": "My Profile",
+    "confirm_invite": "Confirm Invitation"
   },
   "roles": {
     "admin": "Admin",
@@ -234,5 +269,28 @@
     "stock_take_discrepancies": "Stock Take Discrepancies",
     "movement_verification": "Movement Verification",
     "quality_control_checks": "Quality Control Checks"
+  },
+  "table": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "employee_id": "Employee ID",
+    "role": "Role",
+    "base_salary": "Base Salary",
+    "created_at": "Created At",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "dialog": {
+    "invite_user_title": "Invite New User",
+    "invite_user_message": "Enter the user's information below. An invitation email will be sent to activate their account.",
+    "reset_password_title": "Reset Password",
+    "reset_password_message": "Are you sure you want to reset this user's password?",
+    "otp_message": "Please enter the OTP sent to your email.",
+    "delete_user_title": "Delete User",
+    "delete_user_message": "Are you sure you want to delete {name}? This action cannot be undone."
+  },
+  "tabs": {
+    "all_users": "All Users"
   }
 }

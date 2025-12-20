@@ -65,8 +65,14 @@ Each role has specific permissions and access levels defined in the auth store.
    Then edit `.env` and add your Supabase credentials:
    ```
    SUPABASE_URL=your-supabase-url
-   SUPABASE_KEY=your-supabase-anon-key
+   SUPABASE_ANON_KEY=your-supabase-anon-key
+   SUPABASE_SECRET_KEY=your-supabase-service-role-key
    ```
+   
+   **Important:** 
+   - Get these values from your Supabase Dashboard > Settings > API
+   - The `SUPABASE_SECRET_KEY` (service role key) is required for server-side admin operations like inviting users
+   - Never expose `SUPABASE_SECRET_KEY` in client-side code or public repositories
 
 3. **Run the admin app:**
    ```bash

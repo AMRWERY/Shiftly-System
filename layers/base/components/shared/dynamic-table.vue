@@ -13,11 +13,12 @@
                 <label for="checkbox-all-search" class="sr-only">checkbox</label>
               </div>
             </th>
-            <th v-for="(column, index) in columns" :key="index" scope="col" class="px-6 py-3 cursor-pointer select-none"
-              @click="sortByColumn(column.key)">
+            <th v-for="(column, index) in columns" :key="index" scope="col" 
+              :class="['px-6 py-3', column.key === 'avatar' ? '' : 'cursor-pointer select-none']"
+              @click="column.key !== 'avatar' ? sortByColumn(column.key) : null">
               <div class="flex items-center">
                 {{ column.label }}
-                <span v-if="sortColumn === column.key" class="ms-1 mt-1.5">
+                <span v-if="sortColumn === column.key && column.key !== 'avatar'" class="ms-1 mt-1.5">
                   <icon
                     :name="sortDirection === 'asc' ? 'material-symbols:keyboard-arrow-up' : 'material-symbols:keyboard-arrow-down'"
                     class="w-5 h-5 text-white" />
@@ -44,7 +45,8 @@
                   class="sr-only">checkbox</label>
               </div>
             </td>
-            <td v-for="(column, colIndex) in columns" :key="colIndex" class="px-6 py-4">
+            <td v-for="(column, colIndex) in columns" :key="colIndex" 
+              :class="['px-6 py-4', column.key === 'avatar' ? 'w-16' : '']">
               <template v-if="column.key === 'status' || column.key === 'employeeRate'">
                 <span v-if="item.status"
                   :class="['px-2.5 py-1 rounded-full text-sm font-medium', getStatusClass(item.status)]">
@@ -75,11 +77,16 @@
                 </template>
               </template>
 
-              <template v-else-if="column.format && column.key !== 'dates'">
-                {{ column.format(item, index) }}
+              <template v-else-if="column.key === 'avatar' && column.format">
+                <div class="flex items-center">
+                  <span v-html="column.format(item, index)"></span>
+                </div>
               </template>
               <template v-else-if="column.format && column.key === 'dates'">
                 <span v-html="column.format(item, index)"></span>
+              </template>
+              <template v-else-if="column.format && column.key !== 'dates' && column.key !== 'avatar'">
+                {{ column.format(item, index) }}
               </template>
 
               <template v-else>
@@ -95,7 +102,6 @@
                     <icon name="tabler:eye" class="w-7 h-7 text-blue-500 hover:text-blue-700" />
                   </button>
 
-                  :position="'top'">
                   <button v-if="hasBlock" class="rounded-full text-green-500 hover:text-green-700 transition"
                     @click="$emit('block', item)">
                     <icon name="material-symbols:block" class="w-6 h-6"
@@ -120,12 +126,12 @@
                       class="w-5 h-5 sm:w-6 sm:h-6 text-green-600 hover:text-green-800" />
                   </button>
 
-                  <button v-if="hasMarkFailed && actionConditions?.markFailed && actionConditions.markFailed(item)"
+                  <!-- <button v-if="hasMarkFailed && actionConditions?.markFailed && actionConditions.markFailed(item)"
                     class="rounded-full text-yellow-500 hover:text-yellow-700 transition"
                     @click="$emit('markFailed', item)">
                     <icon name="heroicons-outline:x-circle"
                       class="w-5 h-5 sm:w-6 sm:h-6 text-yellow-500 hover:text-yellow-700" />
-                  </button>
+                  </button> -->
               </div>
             </td>
           </tr>
@@ -136,7 +142,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Column, TableItem } from '@/types/tables'
+import type { Column, TableItem } from '../../types/tables'
 
 const { t } = useI18n()
 
