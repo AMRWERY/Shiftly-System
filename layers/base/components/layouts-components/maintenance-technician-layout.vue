@@ -148,20 +148,10 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 
-type DropdownNames =
-  | "service_requests"
-  | "preventive_maint"
-  | "asset_maintenance_log"
-  | "spare_parts";
-
-const { dropdownStates } = useSidebarDropdowns({
+const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   service_requests: true,
   preventive_maint: false,
   asset_maintenance_log: false,
   spare_parts: false,
 });
-
-const toggleDropdown = (name: DropdownNames) => {
-  dropdownStates.value[name] = !dropdownStates.value[name];
-};
 </script>

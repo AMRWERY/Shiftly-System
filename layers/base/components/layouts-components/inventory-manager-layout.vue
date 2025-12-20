@@ -312,21 +312,11 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 
-type DropdownNames =
-  | "inventory_overview"
-  | "item_master_data"
-  | "stock_movement"
-  | "stock_take_qc"
-  | "procurement_mgt"
-
-const { dropdownStates } = useSidebarDropdowns({
+const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   inventory_overview: true,
   item_master_data: false,
   stock_movement: false,
   procurement_mgt: false,
+  stock_take_qc: false,
 });
-
-const toggleDropdown = (name: DropdownNames) => {
-  dropdownStates.value[name] = !dropdownStates.value[name];
-};
 </script>

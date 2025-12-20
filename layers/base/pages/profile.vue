@@ -55,47 +55,48 @@
                 <div
                     class="xl:w-[80%] lg:w-[90%] md:w-[90%] sm:w-[92%] w-[90%] mx-auto flex flex-col gap-6 items-center relative lg:-top-8 md:-top-6 -top-4">
                     <!-- Personal Information Section -->
-                    <div class="w-full max-w-3xl mx-auto space-y-6 bg-white rounded-lg shadow-md p-6">
+                    <div class="w-full max-w-3xl mx-auto space-y-6 bg-white rounded-lg shadow-md p-6 profile-card-bg">
                         <div class="space-y-4">
-                            <h2 class="text-xl font-semibold text-gray-800 mb-7">Personal Information</h2>
+                            <h2 class="text-xl font-semibold text-gray-100 mb-7">Personal Information</h2>
                             <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
                                 <div class="sm:col-span-3">
                                     <dynamic-inputs v-model="formData.firstName" type="text" name="First Name"
-                                        label="First Name" />
+                                        label="First Name" :label-class="'text-gray-100'" />
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <dynamic-inputs v-model="formData.middleName" type="text" name="Middle Name"
-                                        label="Middle Name" />
+                                        label="Middle Name" :label-class="'text-gray-100'" />
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <dynamic-inputs v-model="formData.lastName" type="text" name="Last Name"
-                                        label="Last Name" />
+                                        label="Last Name" :label-class="'text-gray-100'" />
                                 </div>
 
                                 <div class="sm:col-span-3">
-                                    <dynamic-inputs v-model="formData.email" type="email" name="Email" label="Email" />
+                                    <dynamic-inputs v-model="formData.email" type="email" name="Email" label="Email"
+                                        :label-class="'text-gray-100'" />
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <dynamic-inputs v-model="formData.phoneNumber" type="tel" name="Phone Number"
-                                        label="Phone Number" placeholder="+1234567890" />
+                                        label="Phone Number" placeholder="+1234567890" :label-class="'text-gray-100'" />
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <dynamic-inputs v-model="formData.employeeId" type="text" name="Employee ID"
-                                        label="Employee ID" :readonly="true" />
+                                        label="Employee ID" :readonly="true" :label-class="'text-gray-100'" />
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <dynamic-inputs v-model="formData.baseSalary" type="text" name="Base Salary"
-                                        label="Base Salary" />
+                                        label="Base Salary" :label-class="'text-gray-100'" />
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <dynamic-inputs v-model="formData.createdAt" type="text" name="Created At"
-                                        label="Created At" :readonly="true" />
+                                        label="Created At" :readonly="true" :label-class="'text-gray-100'" />
                                 </div>
                             </div>
 
@@ -111,17 +112,17 @@
                     </div>
 
                     <!-- Password Update Section -->
-                    <div class="w-full max-w-3xl mx-auto space-y-6 bg-white rounded-lg shadow-md p-6">
+                    <div class="w-full max-w-3xl mx-auto space-y-6 bg-white rounded-lg shadow-md p-6 profile-card-bg">
                         <div class="space-y-4">
-                            <h2 class="text-xl font-semibold text-gray-800 mb-7">Change Password</h2>
+                            <h2 class="text-xl font-semibold text-gray-100 mb-7">Change Password</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <dynamic-inputs label="New Password" placeholder="••••••••" type="password"
                                     name="New Password" :rules="'required|minLength:7'" :required="true"
-                                    v-model="passwordForm.newPassword" />
+                                    :label-class="'text-gray-100'" v-model="passwordForm.newPassword" />
 
                                 <dynamic-inputs label="Confirm Password" placeholder="••••••••" type="password"
                                     name="Confirm Password" :rules="'required|minLength:7'" :required="true"
-                                    v-model="passwordForm.confirmPassword" />
+                                    :label-class="'text-gray-100'" v-model="passwordForm.confirmPassword" />
                             </div>
 
                             <div class="pt-4">

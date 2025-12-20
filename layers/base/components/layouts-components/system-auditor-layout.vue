@@ -159,20 +159,10 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 
-type DropdownNames =
-  | "compliance_overview"
-  | "audit_logs"
-  | "payroll_finance_review"
-  | "inventory_audit";
-
-const { dropdownStates } = useSidebarDropdowns({
+const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   compliance_overview: true,
   audit_logs: false,
   payroll_finance_review: false,
   inventory_audit: false,
 });
-
-const toggleDropdown = (name: DropdownNames) => {
-  dropdownStates.value[name] = !dropdownStates.value[name];
-};
 </script>

@@ -361,15 +361,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 
-type DropdownNames =
-  | "employees_records"
-  | "time_attendance"
-  | "leave_mgt"
-  | "performance"
-  | "asset_assignment"
-  | "recruitment";
-
-const { dropdownStates } = useSidebarDropdowns({
+const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   employees_records: true,
   time_attendance: false,
   leave_mgt: false,
@@ -377,8 +369,4 @@ const { dropdownStates } = useSidebarDropdowns({
   asset_assignment: false,
   recruitment: false,
 });
-
-const toggleDropdown = (name: DropdownNames) => {
-  dropdownStates.value[name] = !dropdownStates.value[name];
-};
 </script>

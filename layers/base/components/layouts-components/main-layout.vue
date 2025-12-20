@@ -53,26 +53,24 @@
               <maintenance-technician-layout v-if="isManager" />
 
               <!-- <li>
-                                <nuxt-link-locale to="/holiday-dates"
-                                    class="flex items-center p-2 text-white rounded-lg group"
-                                    active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
-                                    <icon name="heroicons-solid:calendar-days"
-                                        class="w-5 h-5 transition duration-75 group-hover:text-white"
-                                        :class="{ 'text-white': route.path === '/holiday-dates', 'text-gray-400': route.path !== '/holiday-dates' }" />
-                                    <span class="flex-1 ms-3 whitespace-nowrap">{{ t('layouts.holiday_dates') }}</span>
-                                </nuxt-link-locale>
-                            </li>
+                <nuxt-link-locale to="/holiday-dates" class="flex items-center p-2 text-white rounded-lg group"
+                  active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+                  <icon name="heroicons-solid:calendar-days"
+                    class="w-5 h-5 transition duration-75 group-hover:text-white"
+                    :class="{ 'text-white': route.path === '/holiday-dates', 'text-gray-400': route.path !== '/holiday-dates' }" />
+                  <span class="flex-1 ms-3 whitespace-nowrap">{{ t('layouts.holiday_dates') }}</span>
+                </nuxt-link-locale>
+              </li>
 
-                            <li>
-                                <nuxt-link-locale to="" class="flex items-center p-2 text-white rounded-lg group"
-                                    active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
-                                    <icon name="fluent:tasks-app-28-filled"
-                                        class="w-5 h-5 transition duration-75 group-hover:text-white"
-                                        :class="{ 'text-white': route.path === '', 'text-gray-400': route.path !== '' }" />
-                                    <span class="flex-1 ms-3 whitespace-nowrap">{{ t('layouts.task_management')
-                                    }}</span>
-                                </nuxt-link-locale>
-                            </li> -->
+              <li>
+                <nuxt-link-locale to="" class="flex items-center p-2 text-white rounded-lg group"
+                  active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+                  <icon name="fluent:tasks-app-28-filled" class="w-5 h-5 transition duration-75 group-hover:text-white"
+                    :class="{ 'text-white': route.path === '', 'text-gray-400': route.path !== '' }" />
+                  <span class="flex-1 ms-3 whitespace-nowrap">{{ t('layouts.task_management')
+                  }}</span>
+                </nuxt-link-locale>
+              </li> -->
             </template>
           </nav>
 
@@ -88,7 +86,7 @@
         <!-- Main content area -->
         <div class="flex-1 flex flex-col overflow-hidden lg:ms-0">
           <!-- Navbar (Top Bar) -->
-          <header class="bg-white shadow-md p-4 flex justify-between items-center z-20">
+          <header class="shadow-md p-4 flex justify-between items-center z-20 layout-bg-vertical">
             <!-- Hamburger menu for small screens -->
             <button @click="isSidebarOpen = !isSidebarOpen"
               class="text-gray-600 hover:text-gray-800 focus:outline-none lg:hidden">
@@ -104,7 +102,8 @@
               </div>
 
               <!-- RTL Toggle -->
-              <button class="text-gray-600 hover:text-gray-800 me-1"
+              <button
+                class="text-gray-100 hover:text-gray-200 me-1 border border-gray-100 hover:border-gray-200 py-1.5 px-2 rounded-lg"
                 @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
                 <span v-if="localeStore.isRTL" class="flex items-center">
                   <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
@@ -117,17 +116,7 @@
               </button>
 
               <!-- notifications-menu component -->
-              <!-- <notifications-menu
-                :is-open="isNotificationsMenuOpen"
-                @toggle="toggleNotificationsMenu"
-              /> -->
-
-              <!-- user-menu component -->
-              <!-- <user-menu
-                :is-open="isUserMenuOpen"
-                @toggle="toggleUserMenu"
-                @closeMenu="isUserMenuOpen = false"
-              /> -->
+              <notifications-menu :is-open="isNotificationsMenuOpen" @toggle="toggleNotificationsMenu" />
             </div>
           </header>
 
@@ -211,16 +200,9 @@ watch(currentRole, (newRole) => {
   console.log("Current user role changed to:", newRole);
 });
 
-// const isUserMenuOpen = ref(false);
-// const isNotificationsMenuOpen = ref(false);
+const isNotificationsMenuOpen = ref(false);
 
-// const toggleUserMenu = () => {
-//   isUserMenuOpen.value = !isUserMenuOpen.value;
-//   if (isUserMenuOpen.value) isNotificationsMenuOpen.value = false;
-// };
-
-// const toggleNotificationsMenu = () => {
-//   isNotificationsMenuOpen.value = !isNotificationsMenuOpen.value;
-//   if (isNotificationsMenuOpen.value) isUserMenuOpen.value = false;
-// };
+const toggleNotificationsMenu = () => {
+  isNotificationsMenuOpen.value = !isNotificationsMenuOpen.value;
+};
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div :dir="locale === 'ar' ? 'rtl' : 'ltr'">
     <label :for="id"
-      :class="['block mb-1 text-sm font-medium text-gray-700', errorMessage ? 'text-red-600' : 'text-slate-700']">
+      :class="['block mb-1 text-sm font-medium', labelClass || (errorMessage ? 'text-red-600' : 'text-slate-700')]">
       {{ label }}
       <span v-if="required" class="text-red-600">*</span>
     </label>
@@ -14,20 +14,19 @@
       </span>
       <!-- input -->
       <template v-if="type === 'textarea'">
-        <Field as="textarea" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly"
-          :options="options" v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }"
+        <Field as="textarea" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" :options="options"
+          v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }"
           class="w-full px-3 py-2 transition duration-300 border rounded-md shadow-sm placeholder:text-slate-400 text-slate-700 focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow"
           rows="4">
-          <textarea :name="name" :placeholder="placeholder" :id="id" :readonly="readonly"
-            v-model="internalValue"
+          <textarea :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" v-model="internalValue"
             class="w-full px-3 py-2 transition duration-300 border rounded-md shadow-sm placeholder:text-slate-400 text-slate-700 focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow"
             rows="4" />
         </Field>
       </template>
 
       <template v-else-if="type === 'select'">
-        <Field as="select" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly"
-          v-model="internalValue" :rules="rules"
+        <Field as="select" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" v-model="internalValue"
+          :rules="rules"
           class="w-full px-3 py-2 transition duration-300 border rounded-md shadow-sm placeholder:text-slate-400 text-slate-700 focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow">
           <option value="" disabled>{{ placeholder }}</option>
           <option v-for="option in options" :key="option.value" :value="option.value">
@@ -37,8 +36,8 @@
       </template>
 
       <template v-else>
-        <Field :type="showPassword ? 'text' : type" :name="name" :placeholder="placeholder" :id="id"
-          :options="options" :readonly="readonly" v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }">
+        <Field :type="showPassword ? 'text' : type" :name="name" :placeholder="placeholder" :id="id" :options="options"
+          :readonly="readonly" v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }">
           <input :type="showPassword ? 'text' : type" :name="name" :placeholder="placeholder" :id="id"
             :readonly="readonly" v-model="internalValue" :class="[
               'w-full text-sm text-slate-800 px-4 py-3 rounded-md outline-none border focus:border-blue-600',
@@ -50,8 +49,7 @@
       <!-- Eye icon -->
       <span v-if="type === 'password'" @click="togglePassword"
         class="absolute inset-y-0 flex items-center text-gray-400 cursor-pointer end-3 hover:text-gray-600">
-        <icon
-          :name="showPassword ? 'material-symbols:visibility-off-rounded' : 'material-symbols:visibility-rounded'"
+        <icon :name="showPassword ? 'material-symbols:visibility-off-rounded' : 'material-symbols:visibility-rounded'"
           class="w-5 h-5" />
       </span>
     </div>
@@ -113,6 +111,10 @@ const props = defineProps({
   options: {
     type: Array as PropType<SelectOption[]>,
     default: () => [],
+  },
+  labelClass: {
+    type: String,
+    default: ''
   }
 });
 

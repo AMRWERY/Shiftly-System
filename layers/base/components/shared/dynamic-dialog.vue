@@ -1,13 +1,13 @@
 <template>
     <div>
         <Teleport to="body">
-            <Transition name="fade">
+            <Transition name="modal">
                 <div v-if="modelValue"
                     class="fixed inset-0 p-4 flex flex-wrap justify-end items-end w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto">
 
                     <div class="absolute inset-0 bg-black/50" @click="closeOnOverlay && closeDialog"></div>
 
-                    <div class="relative w-full max-w-lg bg-white shadow-lg rounded-lg p-6 z-[1001]">
+                    <div class="relative w-full max-w-lg bg-white shadow-lg rounded-lg p-6 z-[1001] modal-card">
                         <div class="flex items-center pb-3 border-b border-gray-300">
                             <h3 class="text-slate-900 text-xl font-semibold flex-1">
                                 {{ title }}
@@ -61,15 +61,3 @@ const closeDialog = () => {
     emit('close');
 };
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.25s;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
-</style>

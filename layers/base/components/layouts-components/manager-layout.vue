@@ -239,20 +239,10 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 
-type DropdownNames =
-  | "my_team_dashboard"
-  | "approvals_center"
-  | "team_reports"
-  | "team_goals";
-
-const { dropdownStates } = useSidebarDropdowns({
+const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   my_team_dashboard: true,
   approvals_center: false,
   team_reports: false,
   team_goals: false,
 });
-
-const toggleDropdown = (name: DropdownNames) => {
-  dropdownStates.value[name] = !dropdownStates.value[name];
-};
 </script>

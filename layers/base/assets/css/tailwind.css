@@ -4,18 +4,22 @@
 
 @layer utilities {
   .layout-bg {
-    @apply bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[#202040] via-[#202060] to-[#602080];
+    @apply bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[#4C49ED] via-[#2d2da0] to-[#0A06F4];
+  }
+
+  .layout-bg-vertical {
+    @apply bg-gradient-to-b from-gray-600 via-blue-500 to-cyan-400;
   }
 
   .base-btn-bg {
-    @apply bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-[#002e94] via-[#083aa9] to-[#e1ceb5];
+    @apply bg-gradient-to-r from-gray-600 via-blue-500 to-cyan-400;
   }
 
   .base-btn-bg:hover {
-    @apply from-[#083aa9] via-[#0c46c4] to-[#f0dec5];
+    @apply from-[#083aa9] via-blue-600 to-cyan-500;
   }
 
-  .employee-details-bg {
+  .profile-card-bg {
     @apply bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[#4338ca] via-[#6366f1] to-[#a5b4fc];
   }
 
