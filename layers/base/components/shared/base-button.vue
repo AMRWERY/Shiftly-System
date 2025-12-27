@@ -1,12 +1,12 @@
 <template>
   <div>
-    <nuxt-link v-if="route && to" :to="to" :class="buttonClasses" :title="title" :type="type">
+    <nuxt-link-locale v-if="route && to" :to="to" :class="buttonClasses" :title="title" :type="type">
       <slot></slot>
       <slot name="icon">
         <icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="w-5 h-5 ms-2" />
         <icon v-else-if="appendIcon" :name="appendIcon" class="w-5 h-5 ms-2" />
       </slot>
-    </nuxt-link>
+    </nuxt-link-locale>
 
     <button v-else :class="buttonClasses" :title="title" :type="type">
       <slot></slot>
