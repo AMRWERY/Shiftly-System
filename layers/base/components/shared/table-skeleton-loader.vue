@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { TableHeader } from '@/types/table-header'
+import type { TableHeader } from '../../types/table-header'
 
 defineProps({
     headers: {

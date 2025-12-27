@@ -15,9 +15,7 @@
       </div>
 
       <!-- Loading State -->
-      <div v-if="pending" class="flex justify-center p-12">
-        <icon name="svg-spinners:180-ring-with-bg" class="w-10 h-10 text-blue-600" />
-      </div>
+      <table-skeleton-loader v-if="pending" :headers="columns" />
 
       <!-- Users Table -->
       <dynamic-table v-else :columns="columns" :items="filteredUsers" :has-view="true" :has-block="true"
@@ -30,13 +28,17 @@
       <delete-dialog :show="isDeleteDialogOpen" :title="t('dialog.delete_user_title')" :message="deleteDialogMessage"
         :loading="isDeleting" :confirm-text="'Yes Delete'" :cancel-text="'Cancel'" @close="closeDeleteDialog"
         @confirm="confirmDeleteUser" />
+
+      <!-- Block/Unblock Confirmation Dialog -->
+      <block-user-dialog :show="isBlockDialogOpen" :user="userToBlock" :loading="isBlocking" @close="closeBlockDialog"
+        @confirm="confirmBlockUser" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { Column } from '../../../../../layers/base/types/tables'
-import type { UserListItem, UserRole } from '../../../../../layers/base/types'
+import type { UserListItem } from '../../../../../layers/base/types'
 
 definePageMeta({
   layout: 'dashboard'
@@ -44,11 +46,19 @@ definePageMeta({
 
 const { t } = useI18n()
 const { triggerToast } = useToast()
+const usersStore = useUsersStore()
 const isInviteDialogOpen = ref(false)
-const selectedRole = ref<UserRole | 'all'>('all')
 const isDeleteDialogOpen = ref(false)
+const isBlockDialogOpen = ref(false)
 const isDeleting = ref(false)
+const isBlocking = ref(false)
 const userToDelete = ref<UserListItem | null>(null)
+const userToBlock = ref<UserListItem | null>(null)
+
+// Fetch users on mount
+onMounted(async () => {
+  await usersStore.fetchUsers()
+})
 
 // Define table columns
 const columns = computed<Column[]>(() => [
@@ -107,23 +117,13 @@ const columns = computed<Column[]>(() => [
   }
 ])
 
-// Fetch users
-const { data: usersData, pending, error, refresh } = useFetch<UserListItem[]>('/api/admin/users')
+// Get data from store
+const filteredUsers = computed(() => usersStore.filteredUsers)
+const pending = computed(() => usersStore.loading)
+const error = computed(() => usersStore.error)
 
-// Filter out admin users and filter by selected role
-const filteredUsers = computed(() => {
-  if (!usersData.value) return []
-  // Filter out admin users
-  let filtered = usersData.value.filter(user => user.role !== 'admin')
-  // Filter by selected role
-  if (selectedRole.value !== 'all') {
-    filtered = filtered.filter(user => user.role === selectedRole.value)
-  }
-  return filtered
-})
-
-const refreshUsers = () => {
-  refresh()
+const refreshUsers = async () => {
+  await usersStore.fetchUsers()
 }
 
 // Delete dialog message
@@ -140,11 +140,49 @@ const handleViewUser = (user: UserListItem) => {
 }
 
 const handleBlockUser = async (user: UserListItem) => {
-  // Implement block/unblock logic
-  triggerToast({
-    message: 'Block functionality not implemented yet',
-    type: 'info'
-  })
+  userToBlock.value = user
+  isBlockDialogOpen.value = true
+}
+
+const closeBlockDialog = () => {
+  isBlockDialogOpen.value = false
+  userToBlock.value = null
+}
+
+const confirmBlockUser = async () => {
+  if (!userToBlock.value) return
+
+  isBlocking.value = true
+  try {
+    const isCurrentlyBlocked = userToBlock.value.status === 'blocked'
+
+    if (isCurrentlyBlocked) {
+      await usersStore.unblockUser(userToBlock.value.id)
+      triggerToast({
+        message: t('toast.user_unblocked_successfully'),
+        type: 'success',
+        icon: 'mdi-check-circle',
+      })
+    } else {
+      await usersStore.blockUser(userToBlock.value.id)
+      triggerToast({
+        message: t('toast.user_blocked_successfully'),
+        type: 'success',
+        icon: 'mdi-check-circle',
+      })
+    }
+
+    closeBlockDialog()
+  } catch (err: any) {
+    console.error('Block/Unblock error:', err)
+    triggerToast({
+      message: err.message || t('toast.failed_to_update_user_status'),
+      type: 'error',
+      icon: 'material-symbols:error-outline-rounded',
+    })
+  } finally {
+    isBlocking.value = false
+  }
 }
 
 const handleDeleteUser = async (user: UserListItem) => {
@@ -159,28 +197,22 @@ const closeDeleteDialog = () => {
 
 const confirmDeleteUser = async () => {
   if (!userToDelete.value) return
+
   isDeleting.value = true
   try {
-    const { error: deleteError } = await useFetch(`/api/admin/users/${userToDelete.value.id}`, {
-      method: 'DELETE'
-    })
-
-    if (deleteError.value) {
-      throw deleteError.value
-    }
+    await usersStore.deleteUser(userToDelete.value.id)
     triggerToast({
       message: t('toast.user_deleted_successfully'),
       type: 'success',
-      icon: 'mdi-check-circle'
+      icon: 'mdi-check-circle',
     })
     closeDeleteDialog()
-    refreshUsers()
   } catch (err: any) {
     console.error('Delete user error:', err)
     triggerToast({
-      message: err.statusMessage || t('toast.failed_to_delete_user'),
+      message: err.message || t('toast.failed_to_delete_user'),
       type: 'error',
-      icon: 'material-symbols:error-outline-rounded'
+      icon: 'material-symbols:error-outline-rounded',
     })
   } finally {
     isDeleting.value = false

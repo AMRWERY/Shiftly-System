@@ -58,7 +58,9 @@
     "retry": "Retry",
     "back_to_login": "Back to Login",
     "go_to_login": "Go to Login",
-    "go_back_home": "Go Back Home"
+    "go_back_home": "Go Back Home",
+    "block": "Block",
+    "unblock": "Unblock"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
@@ -88,6 +90,8 @@
     "failed_to_delete_user": "Failed to delete user",
     "user_blocked_successfully": "User blocked successfully",
     "user_unblocked_successfully": "User unblocked successfully",
+    "failed_to_block_user": "Failed to block user",
+    "failed_to_unblock_user": "Failed to unblock user",
     "failed_to_update_user_status": "Failed to update user status",
     "account_activated_successfully": "Account activated successfully! You can now login with the default password."
   },
@@ -288,7 +292,11 @@
     "reset_password_message": "Are you sure you want to reset this user's password?",
     "otp_message": "Please enter the OTP sent to your email.",
     "delete_user_title": "Delete User",
-    "delete_user_message": "Are you sure you want to delete {name}? This action cannot be undone."
+    "delete_user_message": "Are you sure you want to delete {name}? This action cannot be undone.",
+    "block_user_title": "Block User",
+    "block_user_message": "Are you sure you want to block {name}? They will not be able to access the system.",
+    "unblock_user_title": "Unblock User",
+    "unblock_user_message": "Are you sure you want to unblock {name}? They will regain access to the system."
   },
   "tabs": {
     "all_users": "All Users"
