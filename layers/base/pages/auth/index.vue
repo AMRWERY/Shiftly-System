@@ -17,7 +17,6 @@
         </div>
 
         <div class="flex items-center justify-center p-4">
-
             <!-- Added fixed height here -->
             <div class="flex w-full max-w-4xl h-[500px] rounded-lg shadow-xl overflow-hidden">
                 <!-- Left Side - Dark Background with Information -->

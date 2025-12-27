@@ -4,6 +4,9 @@ export interface Column<T = any> {
   class?: string | ((item: T) => string[]);
   // class?: string;
   format?: (row: T, index?: number) => string;
+  type?: 'image' | 'text' | 'component';
+  html?: boolean;
+  sortable?: boolean;
 }
 
 export interface TableItem {

@@ -554,6 +554,30 @@ export const useAuthStore = defineStore("auth", {
         });
         if (error) throw error;
         this.user = data.user;
+
+        // Sync to profiles table
+        const updates: any = {
+          updated_at: new Date().toISOString(),
+        };
+
+        if (metadata.firstName) updates.first_name = metadata.firstName;
+        if (metadata.middleName) updates.middle_name = metadata.middleName;
+        if (metadata.lastName) updates.last_name = metadata.lastName;
+        if (metadata.fullName) updates.full_name = metadata.fullName;
+        if (metadata.phoneNumber) updates.phone_number = metadata.phoneNumber;
+        if (metadata.base_salary !== undefined) updates.base_salary = metadata.base_salary;
+        if (metadata.employeeId) updates.employee_id = metadata.employeeId;
+        if (metadata.avatarUrl) updates.avatar_url = metadata.avatarUrl;
+
+        if (this.user?.id) {
+            const { error: profileError } = await supabase
+            .from('profiles')
+            .update(updates)
+            .eq('id', this.user.id);
+            
+            if (profileError) console.error('Failed to sync profile', profileError);
+        }
+
         return { success: true, data };
       } catch (error: any) {
         console.error("Update profile error:", error);
@@ -612,6 +636,20 @@ export const useAuthStore = defineStore("auth", {
           data: { avatarUrl },
         });
         if (error) throw error;
+        
+        // Sync to profiles table
+        if (data.user?.id) {
+            const { error: profileError } = await supabase
+            .from('profiles')
+            .update({ 
+                avatar_url: avatarUrl,
+                updated_at: new Date().toISOString()
+            })
+            .eq('id', data.user.id);
+            
+            if (profileError) console.error('Failed to sync profile avatar', profileError);
+        }
+
         // Update local state
         this.user = data.user;
         return { success: true, data: avatarUrl };

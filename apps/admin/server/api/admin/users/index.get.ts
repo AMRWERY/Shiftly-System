@@ -1,5 +1,5 @@
 import { serverSupabaseServiceRole } from '#supabase/server'
-import type { UserListItem } from '@/types'
+import type { UserListItem } from '../../../../../../layers/base/types'
 
 export default defineEventHandler(async (event) => {
   const client = await serverSupabaseServiceRole(event)
@@ -12,6 +12,25 @@ export default defineEventHandler(async (event) => {
       .order('created_at', { ascending: false })
 
     if (error) throw error
+
+    // Fetch auth users to get metadata (avatars)
+    const { data: authData, error: authError } = await client.auth.admin.listUsers({
+        page: 1,
+        perPage: 1000 // Fetch a large batch to cover most users for now
+    })
+    
+    if (authError) console.error('Error fetching auth users:', authError)
+
+    // Create a map of user ID to avatar URL from metadata
+    const avatarMap = new Map<string, string>()
+    if (authData?.users) {
+        authData.users.forEach(user => {
+            const metadata = user.user_metadata || {}
+            if (metadata.avatarUrl) {
+                avatarMap.set(user.id, metadata.avatarUrl)
+            }
+        })
+    }
 
     const userList: UserListItem[] = (profiles || []).map(profile => ({
       id: profile.id,
@@ -26,8 +45,9 @@ export default defineEventHandler(async (event) => {
       createdAt: profile.created_at || '',
       role: profile.role || 'employee',
       status: profile.status || 'pending',
-      avatarUrl: profile.avatar_url,
-      avatar_url: profile.avatar_url // Keep snake_case for frontend
+      // detailed fetching of avatar from metadata map, fallback to profile table
+      avatarUrl: avatarMap.get(profile.id) || profile.avatar_url,
+      avatar_url: avatarMap.get(profile.id) || profile.avatar_url // Keep snake_case for frontend
     }))
 
     return userList

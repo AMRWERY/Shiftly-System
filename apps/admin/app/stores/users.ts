@@ -158,5 +158,31 @@ export const useUsersStore = defineStore('users', {
     setSelectedRole(role: UserRole | 'all') {
       this.selectedRole = role
     },
+
+    // Fetch single user
+    async fetchUser(id: string) {
+      this.loading = true
+      this.error = null
+
+      try {
+        const data = await $fetch<UserListItem>(`/api/admin/users/${id}`)
+        
+        // Update user in list if exists, otherwise add to list
+        const index = this.users.findIndex(u => u.id === id)
+        if (index !== -1) {
+          this.users[index] = data
+        } else {
+          this.users.push(data)
+        }
+        
+        return data
+      } catch (err: any) {
+        this.error = err.message
+        console.error('Error fetching user:', err)
+        throw err
+      } finally {
+        this.loading = false
+      }
+    },
   },
 })

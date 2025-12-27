@@ -44,7 +44,7 @@ definePageMeta({
   layout: 'dashboard'
 })
 
-const { t } = useI18n()
+const { t, n } = useI18n()
 const { triggerToast } = useToast()
 const usersStore = useUsersStore()
 const isInviteDialogOpen = ref(false)
@@ -64,12 +64,11 @@ onMounted(async () => {
 const columns = computed<Column[]>(() => [
   {
     key: 'avatar',
-    label: '',
-    sortable: true,
+    label: t('table.avatar') || 'Avatar',
+    html: true,
     format: (item: any) => {
-      const avatarUrl = item.avatar_url || '/img/dummy-profile-img.jpg'
-      const altText = item.fullName || item.email || 'User'
-      return `<img src="${avatarUrl}" alt="${altText}" class="w-10 h-10 rounded-full object-cover border border-gray-200" onerror="this.onerror=null; this.src='/img/dummy-profile-img.jpg';" />`
+      const src = item.avatarUrl || '/img/dummy-profile-img.jpg';
+      return `<img src="${src}" alt="${item.fullName}" class="w-10 h-10 rounded-full object-cover">`;
     }
   },
   {
@@ -91,7 +90,8 @@ const columns = computed<Column[]>(() => [
     key: 'role',
     label: t('table.role'),
     sortable: true,
-    format: (item: any) => t(`roles.${item.role}`)
+    html: true,
+    format: (item: any) => `<span class="text-indigo-600 font-medium">${t(`roles.${item.role}`)}</span>`
   },
   {
     key: 'phoneNumber',
@@ -102,7 +102,11 @@ const columns = computed<Column[]>(() => [
     key: 'baseSalary',
     label: t('table.base_salary'),
     sortable: true,
-    format: (item: any) => item.baseSalary?.toLocaleString()
+    html: true,
+    format: (item: any) => {
+      const val = Number(item.baseSalary)
+      return !isNaN(val) ? `<span class="text-emerald-600 font-medium">${val.toLocaleString()} EGP</span>` : '0 EGP'
+    }
   },
   {
     key: 'createdAt',
@@ -135,8 +139,8 @@ const deleteDialogMessage = computed(() => {
 
 // Action handlers
 const handleViewUser = (user: UserListItem) => {
-  // Navigate to user details or open a view modal
-  // navigateTo(`/users/${user.id}`)
+  // Navigate to user details
+  navigateTo(`/users/${user.id}`)
 }
 
 const handleBlockUser = async (user: UserListItem) => {
