@@ -128,7 +128,7 @@
         <user-profile-skeleton-loader v-if="loading" />
 
         <div v-else class="text-center p-8 bg-white max-w-md rounded-2xl shadow-xl border border-gray-100">
-          <error-message :message="t('users.user_not_found')" />
+          <custom-error-message :error-message="t('users.user_not_found')" />
 
           <no-data-message :message="t('users.user_not_found')"
             :icon="'material-symbols:person-alert-outline-rounded'" />

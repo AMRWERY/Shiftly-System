@@ -63,6 +63,7 @@
     "please_fill_all_fields": "Please fill all required fields",
     "login_successful": "Login successful! Redirecting...",
     "failed_to_login": "Failed to login. Please check your credentials.",
+    "invalid_credentials": "Invalid email or password. Please try again.",
     "new_account_registration_successful": "Account created successfully! Redirecting...",
     "failed_to_register_new_account": "Failed to create account. Please try again.",
     "confirmation_email_sent": "Confirmation email sent! Please check your inbox and click the verification link.",

@@ -39,8 +39,6 @@ export default defineNuxtConfig({
   veeValidate: {
     autoImports: true,
   },
-  // I18n configuration
-  // https://i18n.nuxtjs.org/
   i18n: {
     locales: [
       { code: "en", iso: "en-US", file: "en.json", name: "English" },

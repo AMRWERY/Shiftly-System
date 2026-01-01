@@ -8,7 +8,7 @@
                bg-gradient-to-r from-red-600 to-red-400
                bg-clip-text animate-success
                before:content-['X'] before:me-2">
-                {{ message }}
+                {{ errorMessage }}
             </p>
         </Transition>
     </div>
@@ -16,13 +16,13 @@
 
 <script lang="ts" setup>
 const props = defineProps<{
-    message: string;
+    errorMessage: string;
 }>();
 
 const isVisible = ref(false);
 let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-watch(() => props.message, (newMessage) => {
+watch(() => props.errorMessage, (newMessage) => {
     // Clear any existing timeout
     if (timeoutId) {
         clearTimeout(timeoutId);

@@ -81,6 +81,10 @@ export default defineNuxtPlugin((nuxtApp) => {
           ...en.messages,
           required: "{field} is required",
         },
+        names: {
+          email: "Email",
+          password: "Password",
+        }
       },
       ar: {
         ...ar,
@@ -88,6 +92,10 @@ export default defineNuxtPlugin((nuxtApp) => {
           ...ar.messages,
           required: "{field} مطلوب",
         },
+        names: {
+          email: "البريد الإلكتروني",
+          password: "كلمة المرور",
+        }
       },
     }),
     validateOnBlur: true,
@@ -96,9 +104,14 @@ export default defineNuxtPlugin((nuxtApp) => {
     validateOnModelUpdate: true,
   });
 
-  // Set initial locale
+  // Set initial locale and sync with i18n
   if (import.meta.client) {
     const savedLocale = localStorage.getItem("locale") || "en";
     setLocale(savedLocale);
+    
+    // Watch for locale changes
+    watch(() => i18n.locale.value, (newLocale) => {
+      setLocale(newLocale);
+    });
   }
 });

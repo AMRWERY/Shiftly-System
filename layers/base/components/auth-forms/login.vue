@@ -1,15 +1,15 @@
 <template>
     <div>
-        <ClientOnly>
-            <form @submit.prevent="handleLogin" class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4">
+        <Form @submit="handleLogin" v-slot="{ meta }">
+            <div class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4">
                 <div class="col-span-full">
                     <dynamic-inputs :label="t('form.email')" placeholder="example@test.com" type="email"
-                        :name="t('form.email')" :rules="'required|email'" :required="true" v-model="email" />
+                        name="email" :rules="'required|email'" :required="true" v-model="email" />
                 </div>
 
                 <div class="col-span-full">
                     <dynamic-inputs :label="t('form.password')" placeholder="••••••••" type="password"
-                        :name="t('form.password')" :rules="'required'" :required="true" v-model="password" />
+                        name="password" :rules="'required'" :required="true" v-model="password" />
                 </div>
 
                 <div class="col-span-full flex flex-wrap items-center justify-between gap-4">
@@ -25,17 +25,19 @@
                     <base-button :block="true" :type="'submit'" :no-border="true"
                         :padding-x="'px-4'" :padding-y="'py-2.5'"
                         class="flex items-center justify-center rounded-lg border-2 transition-colors group"
-                        :disabled="loading">
+                        :disabled="loading || !meta.valid">
                         <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
                         <span v-else>{{ t('btn.log_in') }}</span>
                     </base-button>
                 </div>
-            </form>
-        </ClientOnly>
+            </div>
+        </Form>
     </div>
 </template>
 
 <script lang="ts" setup>
+import { Form } from 'vee-validate'
+
 const { t } = useI18n()
 const authStore = useAuthStore();
 const { triggerToast } = useToast();
@@ -45,14 +47,6 @@ const email = ref('')
 const password = ref('')
 
 const handleLogin = async () => {
-    if (!email.value || !password.value) {
-        triggerToast({
-            message: t('toast.please_fill_all_fields'),
-            type: 'error',
-            icon: 'material-symbols:error-outline-rounded',
-        });
-        return;
-    }
     startLoading()
     const result = await authStore.login({ email: email.value, password: password.value });
     if (result.success) {
@@ -66,8 +60,15 @@ const handleLogin = async () => {
             navigateTo('/');
         }, 3000);
     } else {
+        // Show translated error message for invalid credentials
+        const errorMessage = result.error?.toLowerCase().includes('invalid') || 
+                            result.error?.toLowerCase().includes('credentials') ||
+                            result.error?.toLowerCase().includes('password')
+            ? t('toast.invalid_credentials')
+            : t('toast.failed_to_login');
+            
         triggerToast({
-            message: result.error || t('toast.failed_to_login'),
+            message: errorMessage,
             type: 'error',
             icon: 'material-symbols:error-outline-rounded',
         });

@@ -80,6 +80,6 @@ definePageMeta({
 });
 
 useHead({
-    titleTemplate: () => t('head.auth'),
+    titleTemplate: () => t('meta.auth'),
 });
 </script>

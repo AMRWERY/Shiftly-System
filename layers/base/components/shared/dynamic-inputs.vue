@@ -55,13 +55,12 @@
     </div>
 
     <!-- error messages -->
-    <ErrorMessage :name="name" class="block mt-1 text-sm text-red-500" />
+    <ErrorMessage :name="name" class="block mt-1 text-[13px] text-red-500" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, type PropType } from 'vue';
-import { useField } from 'vee-validate';
+// import { useField } from 'vee-validate';
 
 const { locale } = useI18n();
 
