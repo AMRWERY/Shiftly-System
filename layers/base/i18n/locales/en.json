@@ -39,12 +39,12 @@
     "account_activated": "Account Activated",
     "default_password_set": "Your account has been activated successfully!",
     "default_password": "Default Password",
-    "change_password_later": "You can change this password later from your profile settings."
+    "change_password_later": "You can change this password later from your profile settings.",
+    "search_by_email_or_name": "Search by email or name"
   },
   "btn": {
     "sign_up": "Sign Up",
     "log_in": "Log In",
-    "next": "Next",
     "create_account_button": "Create Account",
     "logout": "Logout",
     "verify_account": "Verify Account",
@@ -60,7 +60,9 @@
     "go_to_login": "Go to Login",
     "go_back_home": "Go Back Home",
     "block": "Block",
-    "unblock": "Unblock"
+    "unblock": "Unblock",
+    "previous": "Previous",
+    "next": "Next"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
@@ -93,14 +95,19 @@
     "failed_to_block_user": "Failed to block user",
     "failed_to_unblock_user": "Failed to unblock user",
     "failed_to_update_user_status": "Failed to update user status",
-    "account_activated_successfully": "Account activated successfully! You can now login with the default password."
+    "account_activated_successfully": "Account activated successfully! You can now login with the default password.",
+    "no_data_to_export": "No data to export.",
+    "download_successful": "File '{file}' downloaded successfully.",
+    "download_error": "An error occurred while downloading the file."
   },
-  "head": {
+  "meta": {
+    "users": "Users",
     "dashboard": "Dashboard",
     "auth": "Authentication",
     "reset_password": "Reset Password",
     "my_profile": "My Profile",
-    "confirm_invite": "Confirm Invitation"
+    "confirm_invite": "Confirm Invitation",
+    "holiday_dates": "Holiday Dates"
   },
   "roles": {
     "admin": "Admin",
@@ -283,7 +290,8 @@
     "base_salary": "Base Salary",
     "created_at": "Created At",
     "status": "Status",
-    "actions": "Actions"
+    "actions": "Actions",
+    "avatar": "Avatar"
   },
   "dialog": {
     "invite_user_title": "Invite New User",
@@ -300,6 +308,11 @@
   },
   "tabs": {
     "all_users": "All Users"
+  },
+  "menu": {
+    "download": "Download",
+    "download_as_pdf": "Download as PDF",
+    "download_as_excel": "Download as Excel"
   },
   "error_page": {
     "sorry_we_couldnt_find_what_you_are_looking_for": "Sorry, we couldn't find what you are looking for",

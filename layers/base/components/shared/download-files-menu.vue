@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useNuxtApp } from '#app';
+import { useNuxtApp } from 'nuxt/app';
 import type { Column } from '../../types/tables';
 
 const props = defineProps<{
@@ -46,6 +46,8 @@ const props = defineProps<{
 const { t, n } = useI18n();
 const { triggerToast } = useToast();
 const { $html2pdf, $xlsx } = useNuxtApp();
+const html2pdf = $html2pdf as () => any;
+const xlsx = $xlsx as typeof import('xlsx');
 
 const isOpen = ref(false);
 const dropdownContainer = ref<HTMLElement | null>(null);
@@ -101,7 +103,7 @@ const getFormattedCellValue = (item: any, column: Column<any>, index: number): s
 };
 
 const exportToPdf = async (headers: string[], dataRows: string[][], fileName: string): Promise<boolean> => {
-  if (!exportableTableContainer.value || !$html2pdf) return false;
+  if (!exportableTableContainer.value || !html2pdf) return false;
   try {
     let tableHtml = `<style>\n      table { width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; }\n      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }\n      th { background-color: #f2f2f2; }\n    </style><table><thead><tr>`;
     headers.forEach(header => { tableHtml += `<th>${header}</th>`; });
@@ -122,7 +124,7 @@ const exportToPdf = async (headers: string[], dataRows: string[][], fileName: st
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
       };
-      await $html2pdf().from(element).set(opt).save();
+      await html2pdf().from(element).set(opt).save();
       exportableTableContainer.value.innerHTML = '';
       return true;
     } else {
@@ -136,13 +138,13 @@ const exportToPdf = async (headers: string[], dataRows: string[][], fileName: st
 };
 
 const exportToExcel = (headers: string[], dataRows: string[][], fileName: string): boolean => {
-  if (!$xlsx) return false;
+  if (!xlsx) return false;
   try {
     const wsData = [headers, ...dataRows];
-    const ws = $xlsx.utils.aoa_to_sheet(wsData);
-    const wb = $xlsx.utils.book_new();
-    $xlsx.utils.book_append_sheet(wb, ws, 'Sheet1');
-    $xlsx.writeFile(wb, `${fileName}.xlsx`);
+    const ws = xlsx.utils.aoa_to_sheet(wsData);
+    const wb = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb, ws, 'Sheet1');
+    xlsx.writeFile(wb, `${fileName}.xlsx`);
     return true;
   } catch (err) {
     return false;
@@ -153,7 +155,7 @@ const downloadData = async (format: 'pdf' | 'excel') => {
   isOpen.value = false;
   if (!allItemsToExport.value || allItemsToExport.value.length === 0) {
     triggerToast({
-      message: t('toast.no_data_to_export', 'No data to export.'),
+      message: t('toast.no_data_to_export'),
       type: 'warning',
       icon: 'ic:baseline-warning',
     });
@@ -172,8 +174,9 @@ const downloadData = async (format: 'pdf' | 'excel') => {
       success = exportToExcel(headers, dataRows, fileName);
     }
     if (success) {
+      const extension = format === 'pdf' ? 'pdf' : 'xlsx';
       triggerToast({
-        message: t('toast.download_successful', `${fileName}.${format}`),
+        message: t('toast.download_successful', { file: `${fileName}.${extension}` }),
         type: 'success',
         icon: 'mdi:check-circle-outline',
       });

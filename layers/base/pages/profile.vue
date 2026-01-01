@@ -361,6 +361,6 @@ definePageMeta({
 });
 
 useHead({
-    titleTemplate: () => t('head.my_profile'),
+    titleTemplate: () => t('meta.my_profile'),
 });
 </script>

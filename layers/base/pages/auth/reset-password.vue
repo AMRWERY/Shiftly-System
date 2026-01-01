@@ -72,6 +72,6 @@ definePageMeta({
 });
 
 useHead({
-    titleTemplate: () => t('head.reset_password'),
+    titleTemplate: () => t('meta.reset_password'),
 });
 </script>

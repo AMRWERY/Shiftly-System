@@ -1,12 +1,28 @@
 <template>
   <div>
     <div class="p-6">
-      <div class="flex justify-between items-center mb-6">
+      <!-- Header + Controls Row -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
         <h1 class="text-2xl font-semibold text-gray-900">{{ t('layouts.users') }}</h1>
-        <base-button type="button" padding-x="px-4" padding-y="py-2" class="transition-colors"
-          @click="isInviteDialogOpen = true">
-          {{ t('btn.add_new_user') }}
-        </base-button>
+
+        <!-- Controls: Search + Refresh + Download + Add Button -->
+        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+          <!-- search-input component -->
+          <search-input v-model="localSearchTerm" @search="handleGlobalSearch"
+            :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
+
+          <!-- refresh-data-btn component -->
+          <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
+
+          <!-- download-files-menu component -->
+          <download-files-menu :allItems="usersStore.users" :columns="columns" fileNameBase="users" />
+
+          <!-- Add New User Button - now beside the others -->
+          <base-button type="button" padding-x="px-4" padding-y="py-2" class="transition-colors whitespace-nowrap"
+            @click="isInviteDialogOpen = true">
+            {{ t('btn.add_new_user') }}
+          </base-button>
+        </div>
       </div>
 
       <!-- Error State -->
@@ -18,18 +34,19 @@
       <table-skeleton-loader v-if="pending" :headers="columns" />
 
       <!-- Users Table -->
-      <dynamic-table v-else :columns="columns" :items="filteredUsers" :has-view="true" :has-block="true"
+      <dynamic-table v-else :columns="columns" :items="paginatedUsers" :has-view="true" :has-block="true"
         :has-delete="true" @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" />
 
-      <!-- Invite User Dialog -->
+      <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
+        @page-change="handlePageChange" />
+
+      <!-- Dialogs remain unchanged -->
       <invite-user-dialog :is-open="isInviteDialogOpen" @close="isInviteDialogOpen = false" @success="refreshUsers" />
 
-      <!-- Delete Confirmation Dialog -->
       <delete-dialog :show="isDeleteDialogOpen" :title="t('dialog.delete_user_title')" :message="deleteDialogMessage"
         :loading="isDeleting" :confirm-text="'Yes Delete'" :cancel-text="'Cancel'" @close="closeDeleteDialog"
         @confirm="confirmDeleteUser" />
 
-      <!-- Block/Unblock Confirmation Dialog -->
       <block-user-dialog :show="isBlockDialogOpen" :user="userToBlock" :loading="isBlocking" @close="closeBlockDialog"
         @confirm="confirmBlockUser" />
     </div>
@@ -54,6 +71,7 @@ const isDeleting = ref(false)
 const isBlocking = ref(false)
 const userToDelete = ref<UserListItem | null>(null)
 const userToBlock = ref<UserListItem | null>(null)
+const localSearchTerm = ref('')
 
 // Fetch users on mount
 onMounted(async () => {
@@ -122,7 +140,9 @@ const columns = computed<Column[]>(() => [
 ])
 
 // Get data from store
-const filteredUsers = computed(() => usersStore.filteredUsers)
+const paginatedUsers = computed(() => usersStore.paginatedUsers)
+const totalPages = computed(() => usersStore.totalPages)
+const currentPage = computed(() => usersStore.currentPage)
 const pending = computed(() => usersStore.loading)
 const error = computed(() => usersStore.error)
 
@@ -136,6 +156,14 @@ const deleteDialogMessage = computed(() => {
   const userName = userToDelete.value.fullName || userToDelete.value.email
   return t('dialog.delete_user_message').replace('{name}', userName)
 })
+
+const handlePageChange = (page: number) => {
+  usersStore.setCurrentPage(page)
+}
+
+const handleGlobalSearch = (term: string) => {
+  usersStore.setSearchTerm(term)
+}
 
 // Action handlers
 const handleViewUser = (user: UserListItem) => {
@@ -159,7 +187,6 @@ const confirmBlockUser = async () => {
   isBlocking.value = true
   try {
     const isCurrentlyBlocked = userToBlock.value.status === 'blocked'
-
     if (isCurrentlyBlocked) {
       await usersStore.unblockUser(userToBlock.value.id)
       triggerToast({
@@ -175,7 +202,6 @@ const confirmBlockUser = async () => {
         icon: 'mdi-check-circle',
       })
     }
-
     closeBlockDialog()
   } catch (err: any) {
     console.error('Block/Unblock error:', err)
@@ -201,7 +227,6 @@ const closeDeleteDialog = () => {
 
 const confirmDeleteUser = async () => {
   if (!userToDelete.value) return
-
   isDeleting.value = true
   try {
     await usersStore.deleteUser(userToDelete.value.id)
@@ -222,4 +247,8 @@ const confirmDeleteUser = async () => {
     isDeleting.value = false
   }
 }
+
+useHead({
+  titleTemplate: () => t('meta.users'),
+});
 </script>

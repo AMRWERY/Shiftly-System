@@ -207,6 +207,6 @@ definePageMeta({
 });
 
 useHead({
-    titleTemplate: () => t('head.holiday_dates'),
+    titleTemplate: () => t('meta.holiday_dates'),
 });
 </script>

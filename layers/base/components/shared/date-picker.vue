@@ -114,7 +114,7 @@ const currentMonthYear = computed(() => {
     'months.november',
     'months.december'
   ];
-  const translatedMonth = t(monthKeys[monthIndex]);
+  const translatedMonth = t(monthKeys[monthIndex]!);
   return `${translatedMonth} ${year}`;
 });
 

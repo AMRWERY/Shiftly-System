@@ -4,7 +4,7 @@
       <li
         class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm text-slate-900 font-semibold"
         :class="{ 'opacity-50 cursor-not-allowed': currentPage === 1 }" @click="changePage(currentPage - 1)">
-        {{ t('pagination.previous') }}
+        {{ t('btn.previous') }}
       </li>
 
       <template v-for="page in visiblePages" :key="page">
@@ -26,7 +26,7 @@
       <li
         class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm text-slate-900 font-semibold"
         :class="{ 'opacity-50 cursor-not-allowed': currentPage === totalPages }" @click="changePage(currentPage + 1)">
-        {{ t('pagination.next') }}
+        {{ t('btn.next') }}
       </li>
     </ul>
   </div>

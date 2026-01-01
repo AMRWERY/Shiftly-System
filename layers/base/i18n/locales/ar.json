@@ -39,12 +39,12 @@
     "account_activated": "تم تفعيل الحساب",
     "default_password_set": "تم تفعيل حسابك بنجاح!",
     "default_password": "كلمة المرور الافتراضية",
-    "change_password_later": "يمكنك تغيير كلمة المرور هذه لاحقاً من إعدادات ملفك الشخصي."
+    "change_password_later": "يمكنك تغيير كلمة المرور هذه لاحقاً من إعدادات ملفك الشخصي.",
+    "search_by_email_or_name": "ابحث باستخدام البريد الإلكتروني أو الاسم"
   },
   "btn": {
     "sign_up": "إنشاء حساب",
     "log_in": "تسجيل الدخول",
-    "next": "التالي",
     "create_account_button": "إنشاء الحساب",
     "logout": "تسجيل الخروج",
     "verify_account": "التحقق من الحساب",
@@ -58,7 +58,9 @@
     "retry": "إعادة المحاولة",
     "back_to_login": "العودة لتسجيل الدخول",
     "go_to_login": "الذهاب لتسجيل الدخول",
-    "go_back_home": "العودة إلى الصفحة الرئيسية"
+    "go_back_home": "العودة إلى الصفحة الرئيسية",
+    "previous": "سابق",
+    "next": "التالي"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
@@ -89,14 +91,19 @@
     "user_blocked_successfully": "تم حظر المستخدم بنجاح",
     "user_unblocked_successfully": "تم إلغاء حظر المستخدم بنجاح",
     "failed_to_update_user_status": "فشل تحديث حالة المستخدم",
-    "account_activated_successfully": "تم تفعيل الحساب بنجاح! يمكنك الآن تسجيل الدخول بكلمة المرور الافتراضية."
+    "account_activated_successfully": "تم تفعيل الحساب بنجاح! يمكنك الآن تسجيل الدخول بكلمة المرور الافتراضية.",
+    "no_data_to_export": "لا توجد بيانات للتصدير.",
+    "download_successful": "تم تحميل الملف '{file}' بنجاح.",
+    "download_error": "حدث خطأ أثناء تحميل الملف."
   },
-  "head": {
+  "meta": {
+    "users": "المستخدمين",
     "dashboard": "لوحة التحكم",
     "auth": "التسجيل",
     "reset_password": "إعادة تعيين كلمة المرور",
     "my_profile": "ملفي الشخصي",
-    "confirm_invite": "تأكيد الدعوة"
+    "confirm_invite": "تأكيد الدعوة",
+    "holiday_dates": "تقويم الاحتفالات"
   },
   "roles": {
     "admin": "مدير النظام",
@@ -279,7 +286,8 @@
     "base_salary": "الراتب الأساسي",
     "created_at": "تاريخ الإنشاء",
     "status": "الحالة",
-    "actions": "الإجراءات"
+    "actions": "الإجراءات",
+    "avatar": "الصوره"
   },
   "dialog": {
     "invite_user_title": "دعوة مستخدم جديد",
@@ -292,6 +300,11 @@
   },
   "tabs": {
     "all_users": "جميع المستخدمين"
+  },
+  "menu": {
+    "download": "تحميل",
+    "download_as_pdf": "تحميل ك PDF",
+    "download_as_excel": "تحميل ك Excel"
   },
   "error_page": {
     "sorry_we_couldnt_find_what_you_are_looking_for": "عذراً، لم نتمكن من العثور على ما تبحث عنه",

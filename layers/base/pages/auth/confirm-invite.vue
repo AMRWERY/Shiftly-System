@@ -337,6 +337,6 @@ definePageMeta({
 });
 
 useHead({
-  titleTemplate: () => t('head.confirm_invite'),
+  titleTemplate: () => t('meta.confirm_invite'),
 });
 </script>
