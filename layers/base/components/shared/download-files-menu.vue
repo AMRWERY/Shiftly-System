@@ -35,7 +35,7 @@
 
 <script lang="ts" setup>
 import { useNuxtApp } from '#app';
-import type { Column } from '@/types/tables';
+import type { Column } from '../../types/tables';
 
 const props = defineProps<{
   allItems: Array<any>;

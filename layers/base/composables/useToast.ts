@@ -1,4 +1,4 @@
-import type { ToastOptions } from "@/types/toast-options";
+import type { ToastOptions } from "../types/toast-options";
 
 export function useToast() {
   const toastState = useState("globalToast", () => ({

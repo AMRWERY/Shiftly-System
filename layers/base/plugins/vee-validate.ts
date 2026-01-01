@@ -1,3 +1,4 @@
+import { defineNuxtPlugin } from "nuxt/app";
 import { defineRule, configure } from "vee-validate";
 import {
   required,
@@ -17,23 +18,24 @@ import en from "@vee-validate/i18n/dist/locale/en.json";
 import ar from "@vee-validate/i18n/dist/locale/ar.json";
 
 export default defineNuxtPlugin((nuxtApp) => {
+  const i18n = nuxtApp.$i18n as any;
   // Define all rules
   defineRule("required", required);
-  
-  defineRule("email", (value) => {
+
+  defineRule("email", (value: any) => {
     if (!value || !value.length) {
       return true;
     }
     if (!/^[A-Z0-9._%+-]+@gmail\.com$/i.test(value)) {
       // Access i18n through nuxtApp
-      const locale = nuxtApp.$i18n.locale.value;
-      return locale === 'ar' 
+      const locale = i18n.locale.value;
+      return locale === "ar"
         ? "يجب أن يكون البريد الإلكتروني من Gmail"
         : "Email must be a valid Gmail address";
     }
     return true;
   });
-  
+
   defineRule("min", min);
   defineRule("max", max);
   defineRule("alpha_spaces", alpha_spaces);
@@ -44,26 +46,26 @@ export default defineNuxtPlugin((nuxtApp) => {
   defineRule("min_value", min_value);
   defineRule("max_value", max_value);
   defineRule("integer", integer);
-  
-  defineRule("confirmed", (value, [target]) => {
+
+  defineRule("confirmed", (value: any, [target]: [any]) => {
     if (value === target) {
       return true;
     }
     // Access i18n through nuxtApp
-    const locale = nuxtApp.$i18n.locale.value;
-    return locale === 'ar'
+    const locale = i18n.locale.value;
+    return locale === "ar"
       ? "كلمات المرور غير متطابقة"
       : "Passwords must match";
   });
-  
+
   defineRule("minLength", (value: any, [limit]: [number]) => {
     // The field is empty so it should pass
     if (!value || !value.length) {
       return true;
     }
     if (value.length < limit) {
-      const locale = nuxtApp.$i18n.locale.value;
-      return locale === 'ar'
+      const locale = i18n.locale.value;
+      return locale === "ar"
         ? `يجب أن يحتوي هذا الحقل على ${limit} حرفًا على الأقل`
         : `This field must be at least ${limit} characters`;
     }
