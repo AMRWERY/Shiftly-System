@@ -1,25 +1,39 @@
 <template>
   <div>
     <div class="p-6">
-      <div class="flex justify-between items-center mb-6">
+      <!-- Header + Controls Row -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
         <h1 class="text-2xl font-semibold text-gray-900">{{ t('layouts.users') }}</h1>
-        <base-button type="button" padding-x="px-4" padding-y="py-2" class="transition-colors"
-          @click="isInviteDialogOpen = true">
-          {{ t('btn.add_new_user') }}
-        </base-button>
+
+        <!-- Controls: Search + Refresh + Add Button -->
+        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+          <!-- search-input component -->
+          <search-input v-model="localSearchTerm" @search="handleSearch"
+            :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
+
+          <!-- refresh-data-btn component -->
+          <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
+
+          <!-- Add New User Button -->
+          <base-button type="button" padding-x="px-4" padding-y="py-2" class="transition-colors whitespace-nowrap"
+            @click="isInviteDialogOpen = true">
+            {{ t('btn.add_new_user') }}
+          </base-button>
+        </div>
       </div>
 
-      <!-- Error State -->
-      <div v-if="error" class="p-4 mb-4 text-red-700 bg-red-100 rounded-lg">
-        {{ t('toast.failed_to_load_users') }}
-      </div>
+      <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_users')" />
 
       <!-- Loading State -->
       <table-skeleton-loader v-if="pending" :headers="columns" />
 
       <!-- Users Table -->
-      <dynamic-table v-else :columns="columns" :items="filteredUsers" :has-view="true" :has-block="true"
+      <dynamic-table v-else :columns="columns" :items="paginatedUsers" :has-view="true" :has-block="true"
         :has-delete="true" @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" />
+
+      <!-- Pagination -->
+      <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
+        @page-change="handlePageChange" />
 
       <!-- Invite User Dialog -->
       <invite-user-dialog :is-open="isInviteDialogOpen" @close="isInviteDialogOpen = false" @success="refreshUsers" />
@@ -54,6 +68,7 @@ const isDeleting = ref(false)
 const isBlocking = ref(false)
 const userToDelete = ref<UserListItem | null>(null)
 const userToBlock = ref<UserListItem | null>(null)
+const localSearchTerm = ref('')
 
 // Fetch users on mount
 onMounted(async () => {
@@ -122,12 +137,22 @@ const columns = computed<Column[]>(() => [
 ])
 
 // Get data from store
-const filteredUsers = computed(() => usersStore.filteredUsers)
+const paginatedUsers = computed(() => usersStore.paginatedUsers)
+const totalPages = computed(() => usersStore.totalPages)
+const currentPage = computed(() => usersStore.currentPage)
 const pending = computed(() => usersStore.loading)
 const error = computed(() => usersStore.error)
 
 const refreshUsers = async () => {
   await usersStore.fetchUsers()
+}
+
+const handleSearch = (term: string) => {
+  usersStore.setSearchTerm(term)
+}
+
+const handlePageChange = (page: number) => {
+  usersStore.setCurrentPage(page)
 }
 
 // Delete dialog message
@@ -201,7 +226,6 @@ const closeDeleteDialog = () => {
 
 const confirmDeleteUser = async () => {
   if (!userToDelete.value) return
-
   isDeleting.value = true
   try {
     await usersStore.deleteUser(userToDelete.value.id)
@@ -222,4 +246,8 @@ const confirmDeleteUser = async () => {
     isDeleting.value = false
   }
 }
+
+useHead({
+    titleTemplate: () => t('meta.users'),
+});
 </script>
