@@ -10,7 +10,6 @@
     "enter_your_last_name": "أدخل اسم عائلتك",
     "role": "الدور الوظيفي",
     "select_role": "اختر دورك الوظيفي",
-    "create_your_account": "أنشئ حسابك",
     "welcome_message": "انضم إلينا اليوم وابدأ في إدارة نوباتك بكفاءة.",
     "simple_secure": "بسيط وآمن",
     "security_message": "بياناتك محمية بإجراءات أمان متوافقة مع معايير الصناعة.",
@@ -23,13 +22,8 @@
     "back_to_login": "العودة لتسجيل الدخول",
     "otp_instruction": "أدخل رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
     "check_email_for_code_or_link": "تحقق من بريدك الإلكتروني للحصول على رمز التحقق. إذا استلمت رابطًا سحريًا بدلاً من ذلك، انقر عليه للمتابعة.",
-    "chose_your_img": "اختر صورتك",
-    "phone_number": "رقم الهاتف",
-    "employee_id": "رقم الموظف",
     "base_salary": "الراتب الأساسي",
-    "enter_email": "أدخل البريد الإلكتروني",
     "enter_phone": "أدخل رقم الهاتف",
-    "enter_base_salary": "أدخل الراتب الأساسي",
     "enter_otp": "أدخل رمز التحقق",
     "welcome": "مرحباً",
     "activating_account": "نقوم بإعداد حسابك. يرجى الانتظار...",
@@ -59,8 +53,11 @@
     "back_to_login": "العودة لتسجيل الدخول",
     "go_to_login": "الذهاب لتسجيل الدخول",
     "go_back_home": "العودة إلى الصفحة الرئيسية",
+    "block": "حظر المستخدم",
+    "unblock": "إلغاء حظر المستخدم",
     "previous": "سابق",
-    "next": "التالي"
+    "next": "التالي",
+    "back": "رجوع"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
@@ -83,27 +80,26 @@
     "passwords_do_not_match": "كلمات المرور غير متطابقة",
     "password_reset_successfully": "تم إعادة تعيين كلمة المرور بنجاح! جاري التحويل لتسجيل الدخول...",
     "failed_to_reset_password": "فشل إعادة تعيين كلمة المرور. يرجى المحاولة مرة أخرى.",
-    "user_invited_successfully": "تمت دعوة المستخدم بنجاح! تم إرسال بريد إلكتروني للدعوة.",
-    "failed_to_invite_user": "فشل دعوة المستخدم. يرجى المحاولة مرة أخرى.",
-    "failed_to_load_users": "فشل تحميل المستخدمين. يرجى المحاولة مرة أخرى.",
-    "user_deleted_successfully": "تم حذف المستخدم بنجاح",
-    "failed_to_delete_user": "فشل حذف المستخدم",
-    "user_blocked_successfully": "تم حظر المستخدم بنجاح",
-    "user_unblocked_successfully": "تم إلغاء حظر المستخدم بنجاح",
-    "failed_to_update_user_status": "فشل تحديث حالة المستخدم",
+    "user_invited_successfully": "تمت دعوة الموظف بنجاح! تم إرسال بريد إلكتروني للدعوة.",
+    "failed_to_invite_user": "فشل دعوة الموظف. يرجى المحاولة مرة أخرى.",
+    "user_deleted_successfully": "تم حذف الموظف بنجاح",
+    "failed_to_delete_user": "فشل حذف الموظف",
+    "user_blocked_successfully": "تم حظر الموظف بنجاح",
+    "user_unblocked_successfully": "تم إلغاء حظر الموظف بنجاح",
+    "failed_to_update_user_status": "فشل تحديث حالة الموظف",
     "account_activated_successfully": "تم تفعيل الحساب بنجاح! يمكنك الآن تسجيل الدخول بكلمة المرور الافتراضية.",
     "no_data_to_export": "لا توجد بيانات للتصدير.",
     "download_successful": "تم تحميل الملف '{file}' بنجاح.",
     "download_error": "حدث خطأ أثناء تحميل الملف."
   },
   "meta": {
-    "users": "المستخدمين",
+    "users": "الموظففين",
     "dashboard": "لوحة التحكم",
     "auth": "التسجيل",
     "reset_password": "إعادة تعيين كلمة المرور",
     "my_profile": "ملفي الشخصي",
     "confirm_invite": "تأكيد الدعوة",
-    "holiday_dates": "تقويم الاحتفالات"
+    "holiday_dates": "تقويم الأجازات"
   },
   "roles": {
     "admin": "مدير النظام",
@@ -126,8 +122,8 @@
   },
   "layouts": {
     "overview": "نظرة عامة",
-    "user_roles_mgt": "إدارة المستخدمين والأدوار",
-    "users": "المستخدمون",
+    "user_roles_mgt": "إدارة الموظففين والأدوار",
+    "users": "الموظفون",
     "roles": "الأدوار",
     "permissions": "الصلاحيات",
     "system_access_log": "سجل الوصول للنظام",
@@ -171,8 +167,8 @@
     "p_l_basic": "الأرباح والخسائر الأساسية",
     "cash_flow_summary": "ملخص التدفق النقدي",
     "cost_center_analysis": "تحليل مراكز التكلفة",
-    "employees_records": "سجلات الموظفين",
-    "employee_list": "قائمة الموظفين",
+    "employees_records": "سجلات الموظففين",
+    "employee_list": "قائمة الموظففين",
     "document_management": "إدارة المستندات",
     "onboarding_offboarding": "الانضمام/المغادرة",
     "time_attendance": "الوقت والحضور",
@@ -188,7 +184,7 @@
     "goals_setting_kpis": "تحديد الأهداف ومؤشرات الأداء",
     "360_feedback": "التغذية الراجعة 360 درجة",
     "asset_assignment": "تعيين الأصول",
-    "employee_assets_list": "قائمة أصول الموظف",
+    "employee_assets_list": "قائمة أصول الموظفف",
     "handover_return_process": "عملية التسليم/الاسترجاع",
     "recruitment": "التوظيف",
     "candidate_pipeline": "خط أنابيب المرشحين",
@@ -251,7 +247,7 @@
     "course_creation": "إنشاء الدورة",
     "scheduling": "الجدولة",
     "resource_mgt": "إدارة الموارد",
-    "employee_development": "تطوير الموظفين",
+    "employee_development": "تطوير الموظففين",
     "training_records": "سجلات التدريب",
     "certifications": "الشهادات",
     "career_path_mapping": "رسم مسار الوظيفي",
@@ -281,7 +277,7 @@
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "phone": "الهاتف",
-    "employee_id": "رقم الموظف",
+    "employee_id": "رقم الموظفف",
     "role": "الدور",
     "base_salary": "الراتب الأساسي",
     "created_at": "تاريخ الإنشاء",
@@ -291,15 +287,19 @@
   },
   "dialog": {
     "invite_user_title": "دعوة مستخدم جديد",
-    "invite_user_message": "أدخل معلومات المستخدم أدناه. سيتم إرسال بريد إلكتروني للدعوة لتفعيل حسابهم.",
+    "invite_user_message": "أدخل معلومات الموظف أدناه. سيتم إرسال بريد إلكتروني للدعوة لتفعيل حسابهم.",
     "reset_password_title": "إعادة تعيين كلمة المرور",
-    "reset_password_message": "هل أنت متأكد من أنك تريد إعادة تعيين كلمة مرور هذا المستخدم؟",
+    "reset_password_message": "هل أنت متأكد من أنك تريد إعادة تعيين كلمة مرور هذا الموظف؟",
     "otp_message": "يرجى إدخال رمز التحقق المرسل إلى بريدك الإلكتروني.",
-    "delete_user_title": "حذف المستخدم",
-    "delete_user_message": "هل أنت متأكد من أنك تريد حذف {name}؟ لا يمكن التراجع عن هذا الإجراء."
+    "delete_user_title": "حذف الموظف",
+    "delete_user_message": "هل أنت متأكد من أنك تريد حذف {name}? لا يمكن التراجع عن هذا الإجراء.",
+    "block_user_title": "حظر المستخدم",
+    "block_user_message": "هل أنت متأكد من أنك تريد حظر {name}? سيتم حظره من الوصول إلى النظام.",
+    "unblock_user_title": "إلغاء حظر المستخدم",
+    "unblock_user_message": "هل أنت متأكد من أنك تريد إلغاء حظر {name}? سيتم إلغاء حظره من الوصول إلى النظام."
   },
   "tabs": {
-    "all_users": "جميع المستخدمين"
+    "all_users": "جميع الموظففين"
   },
   "menu": {
     "download": "تحميل",
@@ -310,5 +310,23 @@
     "sorry_we_couldnt_find_what_you_are_looking_for": "عذراً، لم نتمكن من العثور على ما تبحث عنه",
     "unauthorized_access": "ليس لديك صلاحية للوصول إلى هذه الصفحة",
     "contact_admin": "يرجى الاتصال بالمسؤول إذا كنت تعتقد أن هذا خطأ"
+  },
+  "users": {
+    "member_since": "موظف منذ",
+    "employee_id": "رقم الموظفف",
+    "base_salary": "الراتب الأساسي",
+    "role": "الدور",
+    "employment_details": "تفاصيل الموظف",
+    "personal_info": "معلومات شخصية",
+    "middle_name": "الاسم الأوسط",
+    "last_name": "اسم العائلة",
+    "first_name": "الاسم الأول",
+    "failed_to_load_users": "فشل تحميل الموظففين. يرجى المحاولة مرة أخرى.",
+    "user_not_found": "الموظفف غير موجود"
+  },
+  "status": {
+    "active": "نشط",
+    "pending": "قيد الانتظار",
+    "blocked": "محظور"
   }
 }

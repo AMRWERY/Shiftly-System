@@ -10,7 +10,6 @@
     "enter_your_last_name": "Enter your last name",
     "role": "Role",
     "select_role": "Select your role",
-    "create_your_account": "Create Your Account",
     "welcome_message": "Join us today and start managing your shifts efficiently.",
     "simple_secure": "Simple & Secure",
     "security_message": "Your data is protected with industry-standard security measures.",
@@ -23,13 +22,8 @@
     "back_to_login": "Back to Login",
     "otp_instruction": "Enter the 6-digit code sent to your email",
     "check_email_for_code_or_link": "Check your email for the OTP code. If you received a magic link instead, click it to continue.",
-    "chose_your_img": "Choose your image",
     "phone_number": "Phone Number",
-    "employee_id": "Employee ID",
     "base_salary": "Base Salary",
-    "enter_email": "Enter email address",
-    "enter_phone": "Enter phone number",
-    "enter_base_salary": "Enter base salary",
     "enter_otp": "Enter OTP",
     "welcome": "Welcome",
     "activating_account": "We're setting up your account. Please wait...",
@@ -62,7 +56,8 @@
     "block": "Block",
     "unblock": "Unblock",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "back": "Back"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
@@ -87,7 +82,6 @@
     "failed_to_reset_password": "Failed to reset password. Please try again.",
     "user_invited_successfully": "User invited successfully! An invitation email has been sent.",
     "failed_to_invite_user": "Failed to invite user. Please try again.",
-    "failed_to_load_users": "Failed to load users. Please try again.",
     "user_deleted_successfully": "User deleted successfully",
     "failed_to_delete_user": "Failed to delete user",
     "user_blocked_successfully": "User blocked successfully",
@@ -318,5 +312,23 @@
     "sorry_we_couldnt_find_what_you_are_looking_for": "Sorry, we couldn't find what you are looking for",
     "unauthorized_access": "You don't have permission to access this page",
     "contact_admin": "Please contact your administrator if you believe this is an error"
+  },
+  "users": {
+    "member_since": "Employee Since",
+    "employee_id": "Employee ID",
+    "base_salary": "Base Salary",
+    "role": "Role",
+    "employment_details": "Employment Details",
+    "personal_info": "Personal Info",
+    "middle_name": "Middle Name",
+    "last_name": "Last Name",
+    "first_name": "First Name",
+    "failed_to_load_users": "Failed to load users. Please try again.",
+    "user_not_found": "User not found"
+  },
+  "status": {
+    "active": "Active",
+    "pending": "Pending",
+    "blocked": "Blocked"
   }
 }

@@ -3,10 +3,10 @@
         <div class="w-full">
             <div class="relative w-full">
                 <!-- full gray track (base) -->
-                <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-300 z-0"></div>
+                <div class="absolute start-0 end-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-300 z-0"></div>
 
                 <!-- gray progress track -->
-                <div class="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-500 z-5 transition-all duration-300"
+                <div class="absolute start-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-500 z-5 transition-all duration-300"
                     :style="{ width: progressWidth }"></div>
 
                 <div class="relative z-10 flex justify-between items-center">

@@ -25,10 +25,7 @@
         </div>
       </div>
 
-      <!-- Error State -->
-      <div v-if="error" class="p-4 mb-4 text-red-700 bg-red-100 rounded-lg">
-        {{ t('toast.failed_to_load_users') }}
-      </div>
+      <error-message v-if="error" :message="t('users.failed_to_load_users')" />
 
       <!-- Loading State -->
       <table-skeleton-loader v-if="pending" :headers="columns" />
