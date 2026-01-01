@@ -54,10 +54,6 @@
 import type { Column } from '../../../../../layers/base/types/tables'
 import type { UserListItem } from '../../../../../layers/base/types'
 
-definePageMeta({
-  layout: 'dashboard'
-})
-
 const { t, n } = useI18n()
 const { triggerToast } = useToast()
 const usersStore = useUsersStore()
@@ -79,7 +75,7 @@ onMounted(async () => {
 const columns = computed<Column[]>(() => [
   {
     key: 'avatar',
-    label: t('table.avatar') || 'Avatar',
+    label: t('table.avatar'),
     html: true,
     format: (item: any) => {
       const src = item.avatarUrl || '/img/dummy-profile-img.jpg';
@@ -246,6 +242,10 @@ const confirmDeleteUser = async () => {
     isDeleting.value = false
   }
 }
+
+definePageMeta({
+  layout: 'dashboard'
+})
 
 useHead({
     titleTemplate: () => t('meta.users'),

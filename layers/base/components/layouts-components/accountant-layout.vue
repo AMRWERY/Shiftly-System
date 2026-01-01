@@ -14,24 +14,24 @@
         </button>
         <ul v-if="dropdownStates.payroll" class="py-2 space-y-2">
           <li>
-            <nuxt-link-locale to="/monthly-process" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/monthly-process" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/monthly-process') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.monthly_process")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/salary-components" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/salary-components" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/salary-components') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.salary_components")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/payslips-generation" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/payslips-generation" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/payslips-generation') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.payslips_generation")
               }}</span>
@@ -53,16 +53,16 @@
         </button>
         <ul v-if="dropdownStates.expenses_advances" class="py-2 space-y-2">
           <li>
-            <nuxt-link-locale to="/expense-claims-mgt" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/expense-claims-mgt" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/expense-claims-mgt') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.expense_claims_mgt")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/deduction-schedules" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/deduction-schedules" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/deduction-schedules') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.deduction_schedules")
               }}</span>
@@ -84,25 +84,24 @@
         </button>
         <ul v-if="dropdownStates.invoicing" class="py-2 space-y-2">
           <li>
-            <nuxt-link-locale to="/sales-invoices" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/sales-invoices" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/sales-invoices') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.sales_invoices")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/purchase-invoices" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/purchase-invoices" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/purchase-invoices') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.purchase_invoices")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/accounts-receivable-payable"
-              class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/accounts-receivable-payable" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/accounts-receivable-payable') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.accounts_receivable_payable")
               }}</span>
@@ -124,24 +123,24 @@
         </button>
         <ul v-if="dropdownStates.financial_reports" class="py-2 space-y-2">
           <li>
-            <nuxt-link-locale to="/p-l-basic" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/p-l-basic" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/p-l-basic') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.p_l_basic")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/cash-flow-summary" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/cash-flow-summary" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/cash-flow-summary') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.cash_flow_summary")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/cost-center-analysis" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/cost-center-analysis" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/cost-center-analysis') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.cost_center_analysis")
               }}</span>
@@ -155,6 +154,7 @@
 
 <script lang="ts" setup>
 const { t } = useI18n();
+const { isActive } = useIsActive();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   payroll: true,

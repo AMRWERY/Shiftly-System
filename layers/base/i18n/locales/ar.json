@@ -113,6 +113,40 @@
     "maintenance_technician": "فني الصيانة",
     "td_officer": "مسؤول التدريب والتطوير"
   },
+  "permissions": {
+    "title": "إدارة الصلاحيات",
+    "edit_permissions": "تعديل الصلاحيات",
+    "user_permissions": "صلاحيات الموظف",
+    "select_permissions": "اختر الصلاحيات لهذا الموظف",
+    "save_permissions": "حفظ الصلاحيات",
+    "permissions_updated": "تم تحديث الصلاحيات بنجاح",
+    "failed_to_update_permissions": "فشل تحديث الصلاحيات",
+    "no_permissions": "لم يتم تعيين صلاحيات مخصصة",
+    "modules": {
+      "users": "إدارة الموظفين",
+      "roles": "إدارة الأدوار",
+      "employees": "الموظفون",
+      "payroll": "كشف الرواتب",
+      "attendance": "الحضور",
+      "leave": "إدارة الإجازات",
+      "recruitment": "التوظيف",
+      "performance": "الأداء",
+      "training": "التدريب والتطوير",
+      "inventory": "المخزون",
+      "maintenance": "الصيانة",
+      "finance": "المالية",
+      "reports": "التقارير",
+      "audit": "التدقيق",
+      "settings": "الإعدادات"
+    },
+    "actions": {
+      "view": "عرض",
+      "create": "إنشاء",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "approve": "موافقة"
+    }
+  },
   "stepper": {
     "name": "الاسم",
     "email": "البريد الإلكتروني",

@@ -3,8 +3,8 @@
         <div class="mb-6">
             <base-button variant="outline" :padding-x="'px-2'" :padding-y="'py-2'"
                 class="flex items-center gap-2 text-gray-500 hover:text-gray-700" @click="router.back()">
-                <icon name="heroicons:arrow-left" class="w-4 h-4 me-1" />
-                {{ t("btn.back") }}
+                <icon name="heroicons:arrow-left" class="w-4 h-4 me-1 rtl:rotate-180" />
+                <span>{{ t("btn.back") }}</span>
             </base-button>
         </div>
     </div>

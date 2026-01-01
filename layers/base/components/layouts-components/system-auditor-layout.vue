@@ -14,16 +14,16 @@
         </button>
         <ul v-if="dropdownStates.compliance_overview" class="py-2 space-y-2">
           <li>
-            <nuxt-link-locale to="/status-summary" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/status-summary" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/status-summary') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.status_summary")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/policy-violations" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/policy-violations" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/policy-violations') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.policy_violations")
               }}</span>
@@ -45,25 +45,24 @@
         </button>
         <ul v-if="dropdownStates.audit_logs" class="py-2 space-y-2">
           <li>
-            <nuxt-link-locale to="/all-system-activity" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/all-system-activity" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/all-system-activity') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.all_system_activity")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/financial-transactions"
-              class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/financial-transactions" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/financial-transactions') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.financial_transactions")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/inventory-adjustments" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/inventory-adjustments" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/inventory-adjustments') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.inventory_adjustments")
               }}</span>
@@ -85,25 +84,24 @@
         </button>
         <ul v-if="dropdownStates.payroll_finance_review" class="py-2 space-y-2">
           <li>
-            <nuxt-link-locale to="/payroll-reports" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/payroll-reports" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/payroll-reports') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.payroll_reports")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/expense-claims-audit" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/expense-claims-audit" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/expense-claims-audit') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.expense_claims_audit")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/invoicing-verification"
-              class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/invoicing-verification" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/invoicing-verification') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.invoicing_verification")
               }}</span>
@@ -125,26 +123,24 @@
         </button>
         <ul v-if="dropdownStates.inventory_audit" class="py-2 space-y-2">
           <li>
-            <nuxt-link-locale to="/stock-take-discrepancies"
-              class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/stock-take-discrepancies" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/stock-take-discrepancies') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.stock_take_discrepancies")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/movement-verification" class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/movement-verification" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/movement-verification') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.movement_verification")
               }}</span>
             </nuxt-link-locale>
           </li>
           <li>
-            <nuxt-link-locale to="/quality-control-checks"
-              class="flex items-center p-2 text-white rounded-lg group ps-7"
-              active-class="bg-gray-400 text-white hover:bg-gray-500" :exact="true">
+            <nuxt-link-locale to="/quality-control-checks" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/quality-control-checks') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.quality_control_checks")
               }}</span>
@@ -158,6 +154,7 @@
 
 <script lang="ts" setup>
 const { t } = useI18n();
+const { isActive } = useIsActive();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   compliance_overview: true,

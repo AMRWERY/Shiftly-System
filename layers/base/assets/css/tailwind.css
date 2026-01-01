@@ -26,4 +26,8 @@
   .table-header-bg {
     @apply bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-[#351f39] via-[#726a95] to-[#719fb0]; /* good */
   }
+
+  .close-btn {
+    @apply bg-gradient-to-b from-[#E88B76] to-[#CA5048] bg-clip-text text-transparent text-sm font-medium;
+  }
 }

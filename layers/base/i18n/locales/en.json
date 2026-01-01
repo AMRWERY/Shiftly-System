@@ -115,6 +115,40 @@
     "maintenance_technician": "Maintenance Technician",
     "td_officer": "T&D Officer"
   },
+  "permissions": {
+    "title": "Permissions Management",
+    "edit_permissions": "Edit Permissions",
+    "user_permissions": "User Permissions",
+    "select_permissions": "Select permissions for this user",
+    "save_permissions": "Save Permissions",
+    "permissions_updated": "Permissions updated successfully",
+    "failed_to_update_permissions": "Failed to update permissions",
+    "no_permissions": "No custom permissions assigned",
+    "modules": {
+      "users": "Users Management",
+      "roles": "Roles Management",
+      "employees": "Employees",
+      "payroll": "Payroll",
+      "attendance": "Attendance",
+      "leave": "Leave Management",
+      "recruitment": "Recruitment",
+      "performance": "Performance",
+      "training": "Training & Development",
+      "inventory": "Inventory",
+      "maintenance": "Maintenance",
+      "finance": "Finance",
+      "reports": "Reports",
+      "audit": "Audit",
+      "settings": "Settings"
+    },
+    "actions": {
+      "view": "View",
+      "create": "Create",
+      "edit": "Edit",
+      "delete": "Delete",
+      "approve": "Approve"
+    }
+  },
   "stepper": {
     "name": "Name",
     "email": "Email",
