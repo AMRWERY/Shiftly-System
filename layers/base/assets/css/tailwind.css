@@ -28,6 +28,6 @@
   }
 
   .close-btn {
-    @apply bg-gradient-to-b from-[#E88B76] to-[#CA5048] bg-clip-text text-transparent text-sm font-medium;
+    @apply text-gray-400 hover:text-red-500;
   }
 }

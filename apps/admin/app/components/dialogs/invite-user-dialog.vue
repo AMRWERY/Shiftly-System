@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import type { InviteUserData } from '../../../../layers/base/types'
+import type { InviteUserData } from '../../../../../layers/base/types'
 
 const props = defineProps<{
   isOpen: boolean

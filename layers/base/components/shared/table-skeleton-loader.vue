@@ -1,5 +1,26 @@
 <template>
     <div>
+        <!-- Controls Skeleton -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
+            <!-- Title Skeleton -->
+            <div class="h-8 bg-gray-200 rounded-md w-32 animate-pulse"></div>
+
+            <!-- Actions Skeleton -->
+            <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+                <!-- Search Input Skeleton -->
+                <div class="h-10 bg-gray-200 rounded-md w-full sm:w-[300px] animate-pulse"></div>
+
+                <!-- Download Button Skeleton -->
+                <div class="h-10 w-28 bg-gray-200 rounded-md animate-pulse"></div>
+
+                <!-- Refresh Button Skeleton -->
+                <div class="h-10 w-10 bg-gray-200 rounded-md animate-pulse"></div>
+
+                <!-- Add Button Skeleton -->
+                <div class="h-10 w-32 bg-gray-200 rounded-md animate-pulse"></div>
+            </div>
+        </div>
+
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-gray-500 text-start">
                 <thead class="text-xs text-gray-700 capitalize bg-gray-50">
@@ -26,6 +47,18 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Pagination Skeleton -->
+        <div class="flex divide-s-2 divide-gray-100 rounded-lg overflow-hidden w-max my-9 ms-auto animate-pulse">
+            <!-- Previous -->
+            <div class="px-4 py-2 bg-gray-300 w-24 h-10"></div>
+            <!-- Pages -->
+            <div class="px-4 py-2 bg-gray-300 w-10 h-10 border-s"></div>
+            <div class="px-4 py-2 bg-gray-300 w-10 h-10 border-s"></div>
+            <div class="px-4 py-2 bg-gray-300 w-10 h-10 border-s"></div>
+            <!-- Next -->
+            <div class="px-4 py-2 bg-gray-300 w-20 h-10 border-s"></div>
         </div>
     </div>
 </template>

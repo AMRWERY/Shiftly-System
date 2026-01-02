@@ -105,7 +105,7 @@ const getFormattedCellValue = (item: any, column: Column<any>, index: number): s
 const exportToPdf = async (headers: string[], dataRows: string[][], fileName: string): Promise<boolean> => {
   if (!exportableTableContainer.value || !html2pdf) return false;
   try {
-    let tableHtml = `<style>\n      table { width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; }\n      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }\n      th { background-color: #f2f2f2; }\n    </style><table><thead><tr>`;
+    let tableHtml = `<style>\n      table { width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 10px; }\n      th, td { border: 1px solid #ddd; padding: 4px; text-align: left; word-break: break-all; }\n      th { background-color: #f2f2f2; }\n    </style><table><thead><tr>`;
     headers.forEach(header => { tableHtml += `<th>${header}</th>`; });
     tableHtml += '</tr></thead><tbody>';
     dataRows.forEach(row => {
@@ -122,7 +122,7 @@ const exportToPdf = async (headers: string[], dataRows: string[][], fileName: st
         filename: `${fileName}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
       };
       await html2pdf().from(element).set(opt).save();
       exportableTableContainer.value.innerHTML = '';
@@ -161,9 +161,29 @@ const downloadData = async (format: 'pdf' | 'excel') => {
     });
     return;
   }
-  const headers = exportableColumns.value.map(col => col.label || String(col.key));
+  const stripHtml = (html: string) => {
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  };
+
+  // Filter columns based on format
+  const columnsToExport = exportableColumns.value.filter(col => {
+    if (format === 'excel' && col.key === 'avatar') return false;
+    return true;
+  });
+
+  const headers = columnsToExport.map(col => col.label || String(col.key));
+
   const dataRows = allItemsToExport.value.map((item, index) => {
-    return exportableColumns.value.map(col => getFormattedCellValue(item, col, index));
+    return columnsToExport.map(col => {
+      let val = getFormattedCellValue(item, col, index);
+      // For Excel, strip HTML. For PDF, keep it (it renders nicer).
+      if (format === 'excel') {
+        return stripHtml(val);
+      }
+      return val;
+    });
   });
   const fileName = fileNameToUse.value;
   let success: boolean = false;

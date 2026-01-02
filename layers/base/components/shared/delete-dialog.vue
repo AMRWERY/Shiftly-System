@@ -6,7 +6,7 @@
           class="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto">
           <div class="w-full max-w-lg bg-white shadow-lg rounded-lg p-3 relative modal-card">
             <button @click="closeModal" class="absolute top-4 end-4">
-              <icon name="material-symbols:close-small-rounded" class="w-6 h-6 text-gray-400 hover:text-red-500" />
+              <icon name="material-symbols:close-small-rounded" class="w-6 h-6 close-btn" />
             </button>
 
             <div class="my-6 text-center">

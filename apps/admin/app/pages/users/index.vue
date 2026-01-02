@@ -1,41 +1,47 @@
 <template>
   <div>
     <div class="p-6">
-      <!-- Header + Controls Row -->
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
-        <h1 class="text-2xl font-semibold text-gray-900">{{ t('layouts.users') }}</h1>
-
-        <!-- Controls: Search + Refresh + Add Button -->
-        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-          <!-- search-input component -->
-          <search-input v-model="localSearchTerm" @search="handleSearch"
-            :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
-
-          <!-- refresh-data-btn component -->
-          <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
-
-          <!-- Add New User Button -->
-          <base-button type="button" padding-x="px-4" padding-y="py-2" class="transition-colors whitespace-nowrap"
-            @click="isInviteDialogOpen = true">
-            {{ t('btn.add_new_user') }}
-          </base-button>
-        </div>
-      </div>
-
-      <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_users')" />
-
-      <!-- Loading State -->
+      <!-- Loading State: Full Page Skeleton -->
       <table-skeleton-loader v-if="pending" :headers="columns" />
 
-      <!-- Users Table -->
-      <dynamic-table v-else :columns="columns" :items="paginatedUsers" :has-view="true" :has-block="true"
-        :has-delete="true" @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" />
+      <!-- Loaded Content -->
+      <div v-else>
+        <!-- Header + Controls Row -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
+          <h1 class="text-2xl font-semibold text-gray-900">{{ t('layouts.users') }}</h1>
 
-      <!-- Pagination -->
-      <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
-        @page-change="handlePageChange" />
+          <!-- Controls: Search + Refresh + Add Button -->
+          <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+            <!-- search-input component -->
+            <search-input v-model="localSearchTerm" @search="handleSearch"
+              :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
 
-      <!-- Invite User Dialog -->
+            <!-- download-files-menu component -->
+            <download-files-menu :all-items="filteredUsers" :columns="columns" file-name-base="users_list" />
+
+            <!-- refresh-data-btn component -->
+            <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
+
+            <!-- Add New User Button -->
+            <base-button type="button" padding-x="px-4" padding-y="py-2" class="transition-colors whitespace-nowrap"
+              @click="isInviteDialogOpen = true">
+              {{ t('btn.add_new_user') }}
+            </base-button>
+          </div>
+        </div>
+
+        <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_users')" />
+
+        <!-- Users Table -->
+        <dynamic-table :columns="columns" :items="paginatedUsers" :has-view="true" :has-block="true" :has-delete="true"
+          @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" />
+
+        <!-- Pagination -->
+        <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
+          @page-change="handlePageChange" />
+      </div>
+
+      <!-- Dialogs -->
       <invite-user-dialog :is-open="isInviteDialogOpen" @close="isInviteDialogOpen = false" @success="refreshUsers" />
 
       <!-- Delete Confirmation Dialog -->
@@ -134,6 +140,7 @@ const columns = computed<Column[]>(() => [
 
 // Get data from store
 const paginatedUsers = computed(() => usersStore.paginatedUsers)
+const filteredUsers = computed(() => usersStore.filteredUsers)
 const totalPages = computed(() => usersStore.totalPages)
 const currentPage = computed(() => usersStore.currentPage)
 const pending = computed(() => usersStore.loading)
@@ -248,6 +255,6 @@ definePageMeta({
 })
 
 useHead({
-    titleTemplate: () => t('meta.users'),
+  titleTemplate: () => t('meta.users'),
 });
 </script>

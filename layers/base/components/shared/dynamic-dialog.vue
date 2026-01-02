@@ -13,8 +13,7 @@
                                 {{ title }}
                             </h3>
                             <icon name="material-symbols:close-small-rounded"
-                                class="ms-2 cursor-pointer shrink-0 text-gray-400 hover:text-red-500 w-5 h-5"
-                                @click="closeDialog" />
+                                class="ms-2 cursor-pointer shrink-0 close-btn w-5 h-5" @click="closeDialog" />
                         </div>
 
                         <div class="my-6">
