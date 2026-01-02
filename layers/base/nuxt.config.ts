@@ -66,7 +66,7 @@ export default defineNuxtConfig({
     redirect: false,
     types: false,
     cookieOptions: {
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      // maxAge: 60 * 60 * 24 * 7, // 7 days (Commented out to make it a session cookie - clears on browser close)
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
     },

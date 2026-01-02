@@ -30,6 +30,7 @@ export const useAuthStore = defineStore("auth", {
           this.session = session;
           this.user = session.user;
         }
+
         // Listen for auth changes (only once)
         if (!this.authListenerInitialized) {
           supabase.auth.onAuthStateChange((_event, session) => {
@@ -37,12 +38,37 @@ export const useAuthStore = defineStore("auth", {
             this.user = session?.user ?? null;
           });
           this.authListenerInitialized = true;
+
+          // Start 15-minute refresh timer
+          this.startTokenRefreshTimer();
         }
       } catch (error) {
         console.error("Error initializing auth:", error);
       } finally {
         this.loading = false;
       }
+    },
+
+    /**
+     * Start a timer to refresh the token every 15 minutes
+     */
+    startTokenRefreshTimer() {
+      const REFRESH_INTERVAL = 15 * 60 * 1000; // 15 minutes
+
+      setInterval(async () => {
+        if (!this.session) return;
+
+        const supabase = useSupabaseClient();
+        const { data, error } = await supabase.auth.refreshSession();
+
+        if (error) {
+          console.error("Error refreshing token:", error);
+        } else if (data.session) {
+          this.session = data.session;
+          this.user = data.session.user;
+          // console.log('Token refreshed successfully');
+        }
+      }, REFRESH_INTERVAL);
     },
 
     /**
@@ -565,17 +591,19 @@ export const useAuthStore = defineStore("auth", {
         if (metadata.lastName) updates.last_name = metadata.lastName;
         if (metadata.fullName) updates.full_name = metadata.fullName;
         if (metadata.phoneNumber) updates.phone_number = metadata.phoneNumber;
-        if (metadata.base_salary !== undefined) updates.base_salary = metadata.base_salary;
+        if (metadata.base_salary !== undefined)
+          updates.base_salary = metadata.base_salary;
         if (metadata.employeeId) updates.employee_id = metadata.employeeId;
         if (metadata.avatarUrl) updates.avatar_url = metadata.avatarUrl;
 
         if (this.user?.id) {
-            const { error: profileError } = await supabase
-            .from('profiles')
+          const { error: profileError } = await supabase
+            .from("profiles")
             .update(updates)
-            .eq('id', this.user.id);
-            
-            if (profileError) console.error('Failed to sync profile', profileError);
+            .eq("id", this.user.id);
+
+          if (profileError)
+            console.error("Failed to sync profile", profileError);
         }
 
         return { success: true, data };
@@ -636,18 +664,19 @@ export const useAuthStore = defineStore("auth", {
           data: { avatarUrl },
         });
         if (error) throw error;
-        
+
         // Sync to profiles table
         if (data.user?.id) {
-            const { error: profileError } = await supabase
-            .from('profiles')
-            .update({ 
-                avatar_url: avatarUrl,
-                updated_at: new Date().toISOString()
+          const { error: profileError } = await supabase
+            .from("profiles")
+            .update({
+              avatar_url: avatarUrl,
+              updated_at: new Date().toISOString(),
             })
-            .eq('id', data.user.id);
-            
-            if (profileError) console.error('Failed to sync profile avatar', profileError);
+            .eq("id", data.user.id);
+
+          if (profileError)
+            console.error("Failed to sync profile avatar", profileError);
         }
 
         // Update local state

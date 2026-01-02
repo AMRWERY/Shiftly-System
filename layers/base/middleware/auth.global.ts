@@ -26,7 +26,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-
       if (session) {
         authStore.session = session;
         authStore.user = session.user;
