@@ -14,6 +14,18 @@
   /* Chrome/Safari/Webkit */
 }
 
+select {
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+  -moz-appearance: none; /* Firefox */
+  appearance: none; /* Standard */
+  background-image: none !important; /* Hide background arrow */
+}
+
+/* For IE/Edge old versions */
+select::-ms-expand {
+  display: none;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;

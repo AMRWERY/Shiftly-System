@@ -5,94 +5,99 @@
     "country_name_ar": "مصر",
     "holidays": [
       {
-        "date": "2025-01-07",
+        "date": "2026-01-01",
+        "name_en": "New Year's Day",
+        "name_ar": "رأس السنة الميلادية"
+      },
+      {
+        "date": "2026-01-07",
         "name_en": "Coptic Christmas Day",
         "name_ar": "عيد الميلاد القبطي"
       },
       {
-        "date": "2025-01-25",
-        "name_en": "January 25 Revolution Day",
+        "date": "2026-01-25",
+        "name_en": "Revolution Day (January 25)",
         "name_ar": "عيد ثورة 25 يناير"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday 1",
-        "name_ar": "وقفة عيد الفطر"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr Holiday",
+        "name_ar": "عطلة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-04-01",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-04-02",
+        "date": "2026-04-02",
         "name_en": "Eid al-Fitr Day 3",
-        "name_ar": "عيد الفطر المبارك اليوم الثالث"
+        "name_ar": "عيد الفطر المبارك - اليوم الثالث"
       },
       {
-        "date": "2025-04-17",
-        "name_en": "Coptic Easter Monday (Sham Ennessim)",
+        "date": "2026-04-20",
+        "name_en": "Coptic Easter Monday (Sham El-Nessim)",
         "name_ar": "شم النسيم"
       },
       {
-        "date": "2025-04-25",
+        "date": "2026-04-25",
         "name_en": "Sinai Liberation Day",
         "name_ar": "عيد تحرير سيناء"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-08",
+        "date": "2026-06-08",
         "name_en": "Eid al-Adha Day 3",
-        "name_ar": "عيد الأضحى المبارك اليوم الثالث"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثالث"
       },
       {
-        "date": "2025-06-09",
+        "date": "2026-06-09",
         "name_en": "Eid al-Adha Day 4",
-        "name_ar": "عيد الأضحى المبارك اليوم الرابع"
+        "name_ar": "عيد الأضحى المبارك - اليوم الرابع"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-07-23",
-        "name_en": "July 23 Revolution Day",
+        "date": "2026-07-23",
+        "name_en": "Revolution Day (July 23)",
         "name_ar": "عيد ثورة 23 يوليو"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-10-06",
+        "date": "2026-10-06",
         "name_en": "Armed Forces Day",
-        "name_ar": "عيد القوات المسلحة (انتصارات أكتوبر)"
+        "name_ar": "عيد القوات المسلحة"
       }
     ]
   },
@@ -102,52 +107,62 @@
     "country_name_ar": "المملكة العربية السعودية",
     "holidays": [
       {
-        "date": "2025-02-22",
+        "date": "2026-02-22",
         "name_en": "Founding Day",
         "name_ar": "يوم التأسيس"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday 1",
+        "date": "2026-03-29",
+        "name_en": "Eid al-Fitr Holiday",
         "name_ar": "إجازة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-04-02",
+        "date": "2026-04-01",
         "name_en": "Eid al-Fitr Day 3",
-        "name_ar": "عيد الفطر المبارك اليوم الثالث"
+        "name_ar": "عيد الفطر المبارك - اليوم الثالث"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-04-02",
+        "name_en": "Eid al-Fitr Day 4",
+        "name_ar": "عيد الفطر المبارك - اليوم الرابع"
+      },
+      {
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-08",
+        "date": "2026-06-08",
         "name_en": "Eid al-Adha Day 3",
-        "name_ar": "عيد الأضحى المبارك اليوم الثالث"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثالث"
       },
       {
-        "date": "2025-09-23",
+        "date": "2026-06-09",
+        "name_en": "Eid al-Adha Day 4",
+        "name_ar": "عيد الأضحى المبارك - اليوم الرابع"
+      },
+      {
+        "date": "2026-09-23",
         "name_en": "Saudi National Day",
         "name_ar": "اليوم الوطني السعودي"
       }
@@ -159,67 +174,72 @@
     "country_name_ar": "الإمارات العربية المتحدة",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-29",
+        "date": "2026-03-29",
         "name_en": "Eid al-Fitr Holiday",
         "name_ar": "إجازة عيد الفطر"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-04-01",
         "name_en": "Eid al-Fitr Day 3",
-        "name_ar": "عيد الفطر المبارك اليوم الثالث"
+        "name_ar": "عيد الفطر المبارك - اليوم الثالث"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-08",
+        "date": "2026-06-08",
         "name_en": "Eid al-Adha Day 3",
-        "name_ar": "عيد الأضحى المبارك اليوم الثالث"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثالث"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year (Hijri New Year)",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-12-02",
+        "date": "2026-11-30",
+        "name_en": "Commemoration Day",
+        "name_ar": "يوم الشهيد"
+      },
+      {
+        "date": "2026-12-02",
         "name_en": "UAE National Day",
         "name_ar": "اليوم الوطني الإماراتي"
       },
       {
-        "date": "2025-12-03",
+        "date": "2026-12-03",
         "name_en": "UAE National Day Holiday",
         "name_ar": "إجازة اليوم الوطني الإماراتي"
       }
@@ -231,64 +251,69 @@
     "country_name_ar": "الجزائر",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-01-12",
+        "name_en": "Amazigh New Year (Yennayer)",
+        "name_ar": "رأس السنة الأمازيغية"
+      },
+      {
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "name_ar": "عطلة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-04-01",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-07-05",
+        "date": "2026-07-05",
         "name_en": "Independence Day",
         "name_ar": "عيد الاستقلال"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-11-01",
+        "date": "2026-11-01",
         "name_en": "Revolution Day",
-        "name_ar": "عيد الثورة"
+        "name_ar": "عيد اندلاع الثورة"
       }
     ]
   },
@@ -298,62 +323,77 @@
     "country_name_ar": "البحرين",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-03-29",
         "name_en": "Eid al-Fitr Holiday",
         "name_ar": "إجازة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-04-01",
+        "name_en": "Eid al-Fitr Day 3",
+        "name_ar": "عيد الفطر المبارك - اليوم الثالث"
+      },
+      {
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-08",
+        "name_en": "Eid al-Adha Day 3",
+        "name_ar": "عيد الأضحى المبارك - اليوم الثالث"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-07-05",
+        "name_en": "Ashura",
+        "name_ar": "يوم عاشوراء"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-12-16",
+        "date": "2026-12-16",
         "name_en": "National Day",
         "name_ar": "اليوم الوطني"
       },
       {
-        "date": "2025-12-17",
+        "date": "2026-12-17",
         "name_en": "National Day Holiday",
         "name_ar": "إجازة اليوم الوطني"
       }
@@ -365,42 +405,37 @@
     "country_name_ar": "جزر القمر",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr",
+        "name_ar": "عيد الفطر المبارك"
       },
       {
-        "date": "2025-03-31",
-        "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
-      },
-      {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
-        "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "date": "2026-06-06",
+        "name_en": "Eid al-Adha",
+        "name_ar": "عيد الأضحى المبارك"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-07-06",
+        "date": "2026-07-06",
         "name_en": "Independence Day",
         "name_ar": "عيد الاستقلال"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       }
@@ -412,49 +447,49 @@
     "country_name_ar": "جيبوتي",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr",
+        "name_ar": "عيد الفطر المبارك"
       },
       {
-        "date": "2025-03-31",
-        "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
-      },
-      {
-        "date": "2025-05-01",
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
-        "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "date": "2026-06-06",
+        "name_en": "Eid al-Adha",
+        "name_ar": "عيد الأضحى المبارك"
       },
       {
-        "date": "2025-06-27",
-        "name_en": "Independence Day",
-        "name_ar": "عيد الاستقلال"
-      },
-      {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-06-27",
+        "name_en": "Independence Day",
+        "name_ar": "عيد الاستقلال"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
+      },
+      {
+        "date": "2026-12-25",
+        "name_en": "Christmas Day",
+        "name_ar": "عيد الميلاد المجيد"
       }
     ]
   },
@@ -464,55 +499,79 @@
     "country_name_ar": "العراق",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
-      { "date": "2025-03-21", "name_en": "Nowruz", "name_ar": "نوروز" },
       {
-        "date": "2025-03-30",
+        "date": "2026-01-06",
+        "name_en": "Army Day",
+        "name_ar": "عيد الجيش"
+      },
+      {
+        "date": "2026-03-21",
+        "name_en": "Nowruz (Persian New Year)",
+        "name_ar": "عيد النوروز"
+      },
+      {
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "name_ar": "عطلة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-04-01",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-07-05",
+        "name_en": "Ashura",
+        "name_ar": "يوم عاشوراء"
+      },
+      {
+        "date": "2026-07-14",
+        "name_en": "Republic Day",
+        "name_ar": "عيد الجمهورية"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
+      },
+      {
+        "date": "2026-10-03",
+        "name_en": "National Day",
+        "name_ar": "اليوم الوطني"
       }
     ]
   },
@@ -522,59 +581,84 @@
     "country_name_ar": "الأردن",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-01-30",
+        "name_en": "King Abdullah II's Birthday",
+        "name_ar": "عيد ميلاد الملك عبدالله الثاني"
+      },
+      {
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "name_ar": "عطلة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-04-01",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-05-25",
+        "date": "2026-05-25",
         "name_en": "Independence Day",
         "name_ar": "عيد الاستقلال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-09",
+        "name_en": "King Abdullah I's Accession to the Throne",
+        "name_ar": "عيد جلوس الملك عبدالله الأول"
+      },
+      {
+        "date": "2026-06-10",
+        "name_en": "Great Arab Revolt Day",
+        "name_ar": "عيد الثورة العربية الكبرى"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
+      },
+      {
+        "date": "2026-11-14",
+        "name_en": "King Hussein's Birthday",
+        "name_ar": "عيد ميلاد الملك حسين"
+      },
+      {
+        "date": "2026-12-25",
+        "name_en": "Christmas Day",
+        "name_ar": "عيد الميلاد المجيد"
       }
     ]
   },
@@ -584,57 +668,72 @@
     "country_name_ar": "الكويت",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-02-25",
+        "date": "2026-02-25",
         "name_en": "National Day",
         "name_ar": "اليوم الوطني"
       },
       {
-        "date": "2025-02-26",
+        "date": "2026-02-26",
         "name_en": "Liberation Day",
         "name_ar": "عيد التحرير"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-03-01",
+        "name_en": "Isra and Mi'raj",
+        "name_ar": "الإسراء والمعراج"
+      },
+      {
+        "date": "2026-03-29",
         "name_en": "Eid al-Fitr Holiday",
         "name_ar": "إجازة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-04-01",
+        "name_en": "Eid al-Fitr Day 3",
+        "name_ar": "عيد الفطر المبارك - اليوم الثالث"
+      },
+      {
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-08",
+        "name_en": "Eid al-Adha Day 3",
+        "name_ar": "عيد الأضحى المبارك - اليوم الثالث"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       }
@@ -646,54 +745,99 @@
     "country_name_ar": "لبنان",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-01-06",
+        "date": "2026-01-06",
         "name_en": "Armenian Christmas",
         "name_ar": "عيد الميلاد الأرمني"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "date": "2026-02-09",
+        "name_en": "Saint Maroun Day",
+        "name_ar": "عيد مار مارون"
       },
       {
-        "date": "2025-03-31",
-        "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr",
+        "name_ar": "عيد الفطر المبارك"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-04-03",
+        "name_en": "Good Friday (Catholic)",
+        "name_ar": "الجمعة العظيمة الكاثوليكية"
+      },
+      {
+        "date": "2026-04-05",
+        "name_en": "Easter Sunday (Catholic)",
+        "name_ar": "عيد الفصح الكاثوليكي"
+      },
+      {
+        "date": "2026-04-06",
+        "name_en": "Easter Monday (Catholic)",
+        "name_ar": "إثنين الفصح الكاثوليكي"
+      },
+      {
+        "date": "2026-04-10",
+        "name_en": "Good Friday (Orthodox)",
+        "name_ar": "الجمعة العظيمة الأرثوذكسية"
+      },
+      {
+        "date": "2026-04-13",
+        "name_en": "Easter Monday (Orthodox)",
+        "name_ar": "إثنين الفصح الأرثوذكسي"
+      },
+      {
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
-        "name_en": "Arafat Day",
-        "name_ar": "وقفة عرفات"
+        "date": "2026-05-25",
+        "name_en": "Liberation and Resistance Day",
+        "name_ar": "عيد المقاومة والتحرير"
       },
       {
-        "date": "2025-06-06",
-        "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "date": "2026-06-06",
+        "name_en": "Eid al-Adha",
+        "name_ar": "عيد الأضحى المبارك"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-07-05",
+        "name_en": "Ashura",
+        "name_ar": "يوم عاشوراء"
+      },
+      {
+        "date": "2026-08-15",
+        "name_en": "Assumption Day",
+        "name_ar": "عيد انتقال السيدة العذراء"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-11-22",
+        "date": "2026-11-01",
+        "name_en": "All Saints' Day",
+        "name_ar": "عيد جميع القديسين"
+      },
+      {
+        "date": "2026-11-22",
         "name_en": "Independence Day",
         "name_ar": "عيد الاستقلال"
+      },
+      {
+        "date": "2026-12-25",
+        "name_en": "Christmas Day",
+        "name_ar": "عيد الميلاد المجيد"
       }
     ]
   },
@@ -703,49 +847,59 @@
     "country_name_ar": "ليبيا",
     "holidays": [
       {
-        "date": "2025-02-24",
-        "name_en": "Independence Day",
-        "name_ar": "عيد الاستقلال"
+        "date": "2026-02-17",
+        "name_en": "Revolution Day",
+        "name_ar": "عيد الثورة"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "name_ar": "عطلة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-05-01",
-        "name_en": "Labour Day",
-        "name_ar": "عيد العمال"
+        "date": "2026-04-01",
+        "name_en": "Eid al-Fitr Day 2",
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-07",
+        "name_en": "Eid al-Adha Day 2",
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-09-16",
-        "name_en": "Martyrs' Day",
-        "name_ar": "يوم الشهداء"
+        "date": "2026-10-23",
+        "name_en": "Liberation Day",
+        "name_ar": "عيد التحرير"
+      },
+      {
+        "date": "2026-12-24",
+        "name_en": "Independence Day",
+        "name_ar": "عيد الاستقلال"
       }
     ]
   },
@@ -755,47 +909,52 @@
     "country_name_ar": "موريتانيا",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr",
+        "name_ar": "عيد الفطر المبارك"
       },
       {
-        "date": "2025-03-31",
-        "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
-      },
-      {
-        "date": "2025-05-01",
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-05-25",
+        "name_en": "African Liberation Day",
+        "name_ar": "عيد التحرير الأفريقي"
+      },
+      {
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
-        "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "date": "2026-06-06",
+        "name_en": "Eid al-Adha",
+        "name_ar": "عيد الأضحى المبارك"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-07-10",
+        "name_en": "Armed Forces Day",
+        "name_ar": "عيد القوات المسلحة"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-11-28",
+        "date": "2026-11-28",
         "name_en": "Independence Day",
         "name_ar": "عيد الاستقلال"
       }
@@ -807,58 +966,92 @@
     "country_name_ar": "المغرب",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-01-11",
+        "date": "2026-01-11",
         "name_en": "Independence Manifesto Day",
-        "name_ar": "يوم وثيقة الاستقلال"
+        "name_ar": "ذكرى تقديم وثيقة الاستقلال"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-01-14",
+        "name_en": "Amazigh New Year (Yennayer)",
+        "name_ar": "رأس السنة الأمازيغية"
+      },
+      {
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "name_ar": "عطلة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-04-01",
+        "name_en": "Eid al-Fitr Day 2",
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
+      },
+      {
+        "date": "2026-05-01",
         "name_en": "Labour Day",
-        "name_ar": "عيد العمال"
+        "name_ar": "عيد الشغل"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-07",
+        "name_en": "Eid al-Adha Day 2",
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
-        "name_ar": "رأس السنة الهجرية"
+        "name_ar": "فاتح محرم - رأس السنة الهجرية"
       },
-      { "date": "2025-07-30", "name_en": "Throne Day", "name_ar": "عيد العرش" },
       {
-        "date": "2025-09-04",
+        "date": "2026-07-30",
+        "name_en": "Throne Day",
+        "name_ar": "عيد العرش"
+      },
+      {
+        "date": "2026-08-14",
+        "name_en": "Oued Ed-Dahab Day",
+        "name_ar": "ذكرى استرجاع إقليم وادي الذهب"
+      },
+      {
+        "date": "2026-08-20",
+        "name_en": "Revolution Day",
+        "name_ar": "ثورة الملك والشعب"
+      },
+      {
+        "date": "2026-08-21",
+        "name_en": "Youth Day",
+        "name_ar": "عيد الشباب"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-11-06",
+        "date": "2026-11-06",
         "name_en": "Green March Day",
-        "name_ar": "يوم المسيرة الخضراء"
+        "name_ar": "ذكرى المسيرة الخضراء"
       },
       {
-        "date": "2025-11-18",
+        "date": "2026-11-18",
         "name_en": "Independence Day",
         "name_ar": "عيد الاستقلال"
       }
@@ -870,49 +1063,74 @@
     "country_name_ar": "عُمان",
     "holidays": [
       {
-        "date": "2025-03-30",
+        "date": "2026-01-01",
+        "name_en": "New Year's Day",
+        "name_ar": "رأس السنة الميلادية"
+      },
+      {
+        "date": "2026-02-11",
+        "name_en": "Sultan's Accession Day",
+        "name_ar": "ذكرى تولي جلالة السلطان"
+      },
+      {
+        "date": "2026-03-29",
         "name_en": "Eid al-Fitr Holiday",
         "name_ar": "إجازة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-04-01",
+        "name_en": "Eid al-Fitr Day 3",
+        "name_ar": "عيد الفطر المبارك - اليوم الثالث"
+      },
+      {
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-08",
+        "name_en": "Eid al-Adha Day 3",
+        "name_ar": "عيد الأضحى المبارك - اليوم الثالث"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-11-18",
+        "date": "2026-11-18",
         "name_en": "National Day",
-        "name_ar": "اليوم الوطني"
+        "name_ar": "اليوم الوطني العُماني"
+      },
+      {
+        "date": "2026-11-19",
+        "name_en": "National Day Holiday",
+        "name_ar": "إجازة اليوم الوطني"
       }
     ]
   },
@@ -922,44 +1140,74 @@
     "country_name_ar": "فلسطين",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "date": "2026-01-07",
+        "name_en": "Orthodox Christmas",
+        "name_ar": "عيد الميلاد الأرثوذكسي"
       },
       {
-        "date": "2025-03-31",
-        "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr",
+        "name_ar": "عيد الفطر المبارك"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-04-03",
+        "name_en": "Good Friday",
+        "name_ar": "الجمعة العظيمة"
+      },
+      {
+        "date": "2026-04-04",
+        "name_en": "Holy Saturday",
+        "name_ar": "سبت النور"
+      },
+      {
+        "date": "2026-04-05",
+        "name_en": "Easter Sunday",
+        "name_ar": "أحد الفصح"
+      },
+      {
+        "date": "2026-04-06",
+        "name_en": "Easter Monday",
+        "name_ar": "إثنين الفصح"
+      },
+      {
+        "date": "2026-05-01",
+        "name_en": "Labour Day",
+        "name_ar": "عيد العمال"
+      },
+      {
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
-        "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "date": "2026-06-06",
+        "name_en": "Eid al-Adha",
+        "name_ar": "عيد الأضحى المبارك"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-11-15",
+        "date": "2026-11-15",
         "name_en": "Independence Day",
-        "name_ar": "عيد الاستقلال"
+        "name_ar": "ذكرى إعلان الاستقلال"
+      },
+      {
+        "date": "2026-12-25",
+        "name_en": "Christmas Day",
+        "name_ar": "عيد الميلاد المجيد"
       }
     ]
   },
@@ -969,54 +1217,69 @@
     "country_name_ar": "قطر",
     "holidays": [
       {
-        "date": "2025-02-11",
+        "date": "2026-02-10",
         "name_en": "National Sports Day",
-        "name_ar": "اليوم الرياضي الوطني"
+        "name_ar": "اليوم الرياضي للدولة"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-03-29",
         "name_en": "Eid al-Fitr Holiday",
         "name_ar": "إجازة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-01",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 2",
-        "name_ar": "عيد الفطر المبارك اليوم الثاني"
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-04-01",
+        "name_en": "Eid al-Fitr Day 3",
+        "name_ar": "عيد الفطر المبارك - اليوم الثالث"
+      },
+      {
+        "date": "2026-04-02",
+        "name_en": "Eid al-Fitr Day 4",
+        "name_ar": "عيد الفطر المبارك - اليوم الرابع"
+      },
+      {
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-07",
+        "date": "2026-06-07",
         "name_en": "Eid al-Adha Day 2",
-        "name_ar": "عيد الأضحى المبارك اليوم الثاني"
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-08",
+        "name_en": "Eid al-Adha Day 3",
+        "name_ar": "عيد الأضحى المبارك - اليوم الثالث"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-12-18",
+        "date": "2026-12-18",
         "name_en": "National Day",
-        "name_ar": "اليوم الوطني"
+        "name_ar": "اليوم الوطني لدولة قطر"
       }
     ]
   },
@@ -1026,42 +1289,47 @@
     "country_name_ar": "الصومال",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr",
+        "name_ar": "عيد الفطر المبارك"
       },
       {
-        "date": "2025-03-31",
-        "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "date": "2026-05-01",
+        "name_en": "Labour Day",
+        "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
-        "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "date": "2026-06-06",
+        "name_en": "Eid al-Adha",
+        "name_ar": "عيد الأضحى المبارك"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
+        "name_en": "Independence Day (South)",
+        "name_ar": "عيد الاستقلال (الجنوب)"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-07-01",
-        "name_en": "Independence Day",
-        "name_ar": "عيد الاستقلال"
+        "date": "2026-07-01",
+        "name_en": "Independence Day (North)",
+        "name_ar": "عيد الاستقلال (الشمال)"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       }
@@ -1073,49 +1341,54 @@
     "country_name_ar": "السودان",
     "holidays": [
       {
-        "date": "2025-01-01",
-        "name_en": "New Year's Day",
-        "name_ar": "رأس السنة الميلادية"
+        "date": "2026-01-01",
+        "name_en": "Independence Day",
+        "name_ar": "عيد الاستقلال"
       },
       {
-        "date": "2025-01-07",
-        "name_en": "Coptic Christmas Day",
+        "date": "2026-01-07",
+        "name_en": "Coptic Christmas",
         "name_ar": "عيد الميلاد القبطي"
       },
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr",
+        "name_ar": "عيد الفطر المبارك"
       },
       {
-        "date": "2025-03-31",
-        "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "date": "2026-04-06",
+        "name_en": "Coptic Easter Monday",
+        "name_ar": "إثنين الفصح القبطي"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
-        "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "date": "2026-06-06",
+        "name_en": "Eid al-Adha",
+        "name_ar": "عيد الأضحى المبارك"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-06-30",
+        "name_en": "Revolution Day",
+        "name_ar": "يوم الثورة"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-12-25",
-        "name_en": "Independence Day",
-        "name_ar": "عيد الاستقلال"
+        "date": "2026-12-25",
+        "name_en": "Christmas Day",
+        "name_ar": "عيد الميلاد المجيد"
       }
     ]
   },
@@ -1125,54 +1398,94 @@
     "country_name_ar": "سوريا",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-08",
+        "date": "2026-03-08",
         "name_en": "Revolution Day",
-        "name_ar": "يوم الثورة"
+        "name_ar": "عيد الثورة"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-03-21",
+        "name_en": "Mother's Day",
+        "name_ar": "عيد الأم"
+      },
+      {
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "name_ar": "عطلة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-17",
-        "name_en": "Independence Day",
-        "name_ar": "عيد الاستقلال"
+        "date": "2026-04-01",
+        "name_en": "Eid al-Fitr Day 2",
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-04-10",
+        "name_en": "Good Friday (Orthodox)",
+        "name_ar": "الجمعة العظيمة الأرثوذكسية"
+      },
+      {
+        "date": "2026-04-12",
+        "name_en": "Easter Sunday (Orthodox)",
+        "name_ar": "عيد الفصح الأرثوذكسي"
+      },
+      {
+        "date": "2026-04-17",
+        "name_en": "Independence Day (Evacuation Day)",
+        "name_ar": "عيد الجلاء"
+      },
+      {
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-05-06",
+        "name_en": "Martyrs' Day",
+        "name_ar": "عيد الشهداء"
+      },
+      {
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-07",
+        "name_en": "Eid al-Adha Day 2",
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
+      },
+      {
+        "date": "2026-10-06",
+        "name_en": "Liberation War Day",
+        "name_ar": "ذكرى حرب تشرين التحريرية"
+      },
+      {
+        "date": "2026-12-25",
+        "name_en": "Christmas Day",
+        "name_ar": "عيد الميلاد المجيد"
       }
     ]
   },
@@ -1182,59 +1495,84 @@
     "country_name_ar": "تونس",
     "holidays": [
       {
-        "date": "2025-01-01",
+        "date": "2026-01-01",
         "name_en": "New Year's Day",
         "name_ar": "رأس السنة الميلادية"
       },
       {
-        "date": "2025-03-20",
+        "date": "2026-01-14",
+        "name_en": "Revolution and Youth Day",
+        "name_ar": "عيد الثورة والشباب"
+      },
+      {
+        "date": "2026-03-20",
         "name_en": "Independence Day",
         "name_ar": "عيد الاستقلال"
       },
       {
-        "date": "2025-03-30",
+        "date": "2026-03-30",
         "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "name_ar": "عطلة عيد الفطر"
       },
       {
-        "date": "2025-03-31",
+        "date": "2026-03-31",
         "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
+        "name_ar": "عيد الفطر المبارك - اليوم الأول"
       },
       {
-        "date": "2025-04-09",
+        "date": "2026-04-01",
+        "name_en": "Eid al-Fitr Day 2",
+        "name_ar": "عيد الفطر المبارك - اليوم الثاني"
+      },
+      {
+        "date": "2026-04-09",
         "name_en": "Martyrs' Day",
-        "name_ar": "يوم الشهداء"
+        "name_ar": "عيد الشهداء"
       },
       {
-        "date": "2025-05-01",
+        "date": "2026-05-01",
         "name_en": "Labour Day",
-        "name_ar": "عيد العمال"
+        "name_ar": "عيد الشغل"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
+        "date": "2026-06-06",
         "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "name_ar": "عيد الأضحى المبارك - اليوم الأول"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-07",
+        "name_en": "Eid al-Adha Day 2",
+        "name_ar": "عيد الأضحى المبارك - اليوم الثاني"
+      },
+      {
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-07-25",
+        "date": "2026-07-25",
         "name_en": "Republic Day",
         "name_ar": "عيد الجمهورية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-08-13",
+        "name_en": "Women's Day",
+        "name_ar": "عيد المرأة"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
+      },
+      {
+        "date": "2026-10-15",
+        "name_en": "Evacuation Day",
+        "name_ar": "عيد الجلاء"
       }
     ]
   },
@@ -1244,49 +1582,59 @@
     "country_name_ar": "اليمن",
     "holidays": [
       {
-        "date": "2025-03-30",
-        "name_en": "Eid al-Fitr Holiday",
-        "name_ar": "إجازة عيد الفطر"
+        "date": "2026-03-30",
+        "name_en": "Eid al-Fitr",
+        "name_ar": "عيد الفطر المبارك"
       },
       {
-        "date": "2025-03-31",
-        "name_en": "Eid al-Fitr Day 1",
-        "name_ar": "عيد الفطر المبارك اليوم الأول"
-      },
-      {
-        "date": "2025-05-01",
+        "date": "2026-05-01",
         "name_en": "Labour Day",
         "name_ar": "عيد العمال"
       },
       {
-        "date": "2025-05-22",
+        "date": "2026-05-22",
         "name_en": "National Unity Day",
-        "name_ar": "يوم الوحدة الوطنية"
+        "name_ar": "عيد الوحدة اليمنية"
       },
       {
-        "date": "2025-06-05",
+        "date": "2026-06-05",
         "name_en": "Arafat Day",
         "name_ar": "وقفة عرفات"
       },
       {
-        "date": "2025-06-06",
-        "name_en": "Eid al-Adha Day 1",
-        "name_ar": "عيد الأضحى المبارك اليوم الأول"
+        "date": "2026-06-06",
+        "name_en": "Eid al-Adha",
+        "name_ar": "عيد الأضحى المبارك"
       },
       {
-        "date": "2025-06-26",
+        "date": "2026-06-26",
         "name_en": "Islamic New Year",
         "name_ar": "رأس السنة الهجرية"
       },
       {
-        "date": "2025-09-04",
+        "date": "2026-07-05",
+        "name_en": "Ashura",
+        "name_ar": "يوم عاشوراء"
+      },
+      {
+        "date": "2026-09-04",
         "name_en": "Prophet Muhammad's Birthday",
         "name_ar": "المولد النبوي الشريف"
       },
       {
-        "date": "2025-09-14",
+        "date": "2026-09-26",
         "name_en": "Revolution Day",
-        "name_ar": "يوم الثورة"
+        "name_ar": "ذكرى ثورة 26 سبتمبر"
+      },
+      {
+        "date": "2026-10-14",
+        "name_en": "October 14 Revolution Day",
+        "name_ar": "ذكرى ثورة 14 أكتوبر"
+      },
+      {
+        "date": "2026-11-30",
+        "name_en": "Independence Day",
+        "name_ar": "عيد الاستقلال"
       }
     ]
   }

@@ -38,7 +38,7 @@ const datetimeFormats: DatetimeFormats = {
 
 // This map is the single source of truth for all supported currencies.
 // The key is the ISO 4217 currency code.
-const supportedCurrencies = {
+export const supportedCurrencies = {
   EGP: "Egyptian Pound", // Egypt
   SDG: "Sudanese Pound", // Sudan
   DJF: "Djiboutian franc", // Djibouti

@@ -93,7 +93,9 @@
     "account_activated_successfully": "Account activated successfully! You can now login with the default password.",
     "no_data_to_export": "No data to export.",
     "download_successful": "File '{file}' downloaded successfully.",
-    "download_error": "An error occurred while downloading the file."
+    "download_error": "An error occurred while downloading the file.",
+    "settings_saved": "Settings saved successfully!",
+    "failed_to_save_settings": "Failed to save settings. Please try again."
   },
   "meta": {
     "users": "Users",
@@ -102,7 +104,8 @@
     "reset_password": "Reset Password",
     "my_profile": "My Profile",
     "confirm_invite": "Confirm Invitation",
-    "holiday_dates": "Holiday Dates"
+    "holiday_dates": "Holiday Dates",
+    "global_config":"Global Configuration"
   },
   "roles": {
     "admin": "Admin",
@@ -365,5 +368,48 @@
     "active": "Active",
     "pending": "Pending",
     "blocked": "Blocked"
+  },
+  "global_config": {
+    "title": "Global Configuration",
+    "save_settings": "Save Settings",
+    "work_days": "Work Days & Hours",
+    "select_work_days": "Select the working days for your organization",
+    "start_time": "Start Time",
+    "end_time": "End Time",
+    "currency": "Currency",
+    "official_holidays": "Official Holidays",
+    "select_country": "Select Country for Public Holidays",
+    "country_holidays_description": "Selecting a country will automatically apply its official holidays for the system.",
+    "custom_holidays": "Custom Holidays",
+    "additional_holidays": "Additional Holidays",
+    "no_custom_holidays": "No custom holidays added.",
+    "add_holiday": "Add Holiday",
+    "holiday_name": "Holiday Name",
+    "holiday_date": "Holiday Date",
+    "holiday_calendar": "Holiday Calendar",
+    "preview_holidays_for_country": "Preview official holidays for the selected country",
+    "days": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    }
+  },
+  "months": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
   }
 }

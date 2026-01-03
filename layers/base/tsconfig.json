@@ -11,6 +11,6 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.vue"
-  ],
+, "../../apps/admin/app/stores/settingsStore.ts"  ],
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

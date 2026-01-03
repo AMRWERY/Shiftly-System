@@ -1,128 +1,108 @@
 <template>
   <div>
     <div class="p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-semibold text-gray-900">{{ t('permissions.title') }}</h1>
+      </div>
+
+      <!-- Error State -->
+      <div v-if="error" class="p-4 mb-4 text-red-700 bg-red-100 rounded-lg">
+        {{ t('users.failed_to_load_users') }}
+      </div>
+
       <!-- Loading State -->
       <table-skeleton-loader v-if="pending" :headers="columns" />
 
-      <div v-else>
-        <div class="flex justify-between items-center mb-6">
-          <div>
-            <h1 class="text-2xl font-semibold text-gray-900">
-              {{ t("permissions.title") }}
-            </h1>
-          </div>
+      <!-- Users Table -->
+      <dynamic-table v-else :columns="columns" :items="nonAdminUsers" :has-view="false" :has-block="false"
+        :has-delete="false" :has-edit="true" :action-conditions="{ edit: () => true }" @edit="handleEditPermissions" />
 
-          <!-- Search and Refresh -->
-          <div class="flex items-center gap-4">
-            <search-input v-model="localSearchTerm" @search="handleSearch"
-              :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
-            <download-files-menu :all-items="filteredList" :columns="columns" file-name-base="permissions_list" />
-            <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
-          </div>
-        </div>
-
-        <!-- Error State -->
-        <custom-error-message v-if="error" :error-message="t('users.failed_to_load_users')" />
-
-        <!-- Users Table -->
-        <dynamic-table v-else :columns="columns" :items="paginatedList" :has-view="false" :has-block="false"
-          :has-delete="false" :has-edit="true" :action-conditions="{ edit: () => true }"
-          @edit="handleEditPermissions" />
-
-        <!-- Pagination -->
-        <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
-          @page-change="handlePageChange" />
-      </div>
+      <!-- Edit Permissions Dialog -->
+      <edit-permissions-dialog :is-open="isEditDialogOpen" :user="selectedUser" @close="closeEditDialog"
+        @success="refreshData" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { Column } from "../../../../../layers/base/types/tables";
-import type { UserListItem } from "../../../../../layers/base/types";
+import type { Column } from '../../../../../layers/base/types/tables'
+import type { UserListItem } from '../../../../../layers/base/types'
 
-const { t } = useI18n();
-const usersStore = useUsersStore();
-const localSearchTerm = ref("");
+definePageMeta({
+  layout: 'dashboard'
+})
+
+const { t } = useI18n()
+const { triggerToast } = useToast()
+const usersStore = useUsersStore()
+const isEditDialogOpen = ref(false)
+const selectedUser = ref<UserListItem | null>(null)
 
 // Fetch users on mount
 onMounted(async () => {
-  await usersStore.fetchUsers();
-});
-
-// Get data from store
-const paginatedList = computed(() => usersStore.paginatedUsers);
-const filteredList = computed(() => usersStore.filteredUsers);
-const totalPages = computed(() => usersStore.totalPages);
-const currentPage = computed(() => usersStore.currentPage);
-const pending = computed(() => usersStore.loading);
-const error = computed(() => usersStore.error);
+  await usersStore.fetchUsers()
+})
 
 // Define table columns
 const columns = computed<Column[]>(() => [
   {
-    key: "avatar",
-    label: t("table.avatar"),
-    html: true,
+    key: 'avatar',
+    label: '',
+    sortable: false,
     format: (item: any) => {
-      const src = item.avatarUrl || "/img/dummy-profile-img.jpg";
-      return `<img src="${src}" alt="${item.fullName}" class="w-10 h-10 rounded-full object-cover">`;
-    },
+      const avatarUrl = item.avatar_url || item.avatarUrl || '/img/dummy-profile-img.jpg'
+      const altText = item.fullName || item.email || 'User'
+      return `<img src="${avatarUrl}" alt="${altText}" class="w-10 h-10 rounded-full object-cover border border-gray-200" onerror="this.onerror=null; this.src='/img/dummy-profile-img.jpg';" />`
+    }
   },
   {
-    key: "employeeId",
-    label: t("table.employee_id"),
-    sortable: true,
+    key: 'employeeId',
+    label: t('table.employee_id'),
+    sortable: true
   },
   {
-    key: "fullName",
-    label: t("table.name"),
-    sortable: true,
+    key: 'fullName',
+    label: t('table.name'),
+    sortable: true
   },
   {
-    key: "email",
-    label: t("table.email"),
-    sortable: true,
+    key: 'email',
+    label: t('table.email'),
+    sortable: true
   },
   {
-    key: "role",
-    label: t("table.role"),
+    key: 'role',
+    label: t('table.role'),
     sortable: true,
-    html: true,
-    format: (item: any) =>
-      `<span class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-indigo-50 text-indigo-700">${t(
-        `roles.${item.role}`
-      )}</span>`,
+    format: (item: any) => t(`roles.${item.role}`)
   },
   {
-    key: "status",
-    label: t("table.status"),
-    sortable: true,
-  },
-]);
+    key: 'status',
+    label: t('table.status'),
+    sortable: true
+  }
+])
 
-const refreshUsers = async () => {
-  await usersStore.fetchUsers();
-};
+// Filter out admin users
+const nonAdminUsers = computed(() => {
+  return usersStore.filteredUsers.filter((user: UserListItem) => user.role !== 'admin')
+})
 
-const handleSearch = (term: string) => {
-  usersStore.setSearchTerm(term);
-};
+const pending = computed(() => usersStore.loading)
+const error = computed(() => usersStore.error)
 
-const handlePageChange = (page: number) => {
-  usersStore.setCurrentPage(page);
-};
+const refreshData = async () => {
+  await usersStore.fetchUsers()
+}
 
-// Edit permissions handler - navigate to page
+// Edit permissions handler
 const handleEditPermissions = (user: UserListItem) => {
-  navigateTo(`/permissions/${user.id}`);
-};
+  selectedUser.value = user
+  isEditDialogOpen.value = true
+}
 
-definePageMeta({
-  layout: "dashboard",
-});
-
-useHead({
-  title: t("permissions.title"),
-});
+const closeEditDialog = () => {
+  isEditDialogOpen.value = false
+  selectedUser.value = null
+}
 </script>

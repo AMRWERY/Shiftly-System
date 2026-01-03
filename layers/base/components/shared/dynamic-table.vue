@@ -25,8 +25,7 @@
                 </span>
               </div>
             </th>
-            <th scope="col" class="px-6 py-3"
-              v-if="hasView || hasDelete || hasBlock || hasEdit || hasMarkPaid || hasMarkFailed">
+            <th scope="col" class="px-6 py-3" v-if="hasView || hasDelete || hasBlock">
               <span class="sr-only">actions</span>
             </th>
           </tr>

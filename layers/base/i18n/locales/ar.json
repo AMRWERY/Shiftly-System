@@ -91,7 +91,9 @@
     "account_activated_successfully": "تم تفعيل الحساب بنجاح! يمكنك الآن تسجيل الدخول بكلمة المرور الافتراضية.",
     "no_data_to_export": "لا توجد بيانات للتصدير.",
     "download_successful": "تم تحميل الملف '{file}' بنجاح.",
-    "download_error": "حدث خطأ أثناء تحميل الملف."
+    "download_error": "حدث خطأ أثناء تحميل الملف.",
+    "settings_saved": "تم حفظ الإعدادات بنجاح!",
+    "failed_to_save_settings": "فشل حفظ الإعدادات. يرجى المحاولة مرة أخرى."
   },
   "meta": {
     "users": "الموظففين",
@@ -100,7 +102,8 @@
     "reset_password": "إعادة تعيين كلمة المرور",
     "my_profile": "ملفي الشخصي",
     "confirm_invite": "تأكيد الدعوة",
-    "holiday_dates": "تقويم الأجازات"
+    "holiday_dates": "تقويم الأجازات",
+    "global_config":"التكوين العام"
   },
   "roles": {
     "admin": "مدير النظام",
@@ -363,5 +366,48 @@
     "active": "نشط",
     "pending": "قيد الانتظار",
     "blocked": "محظور"
+  },
+  "global_config": {
+    "title": "الإعدادات العامة",
+    "save_settings": "حفظ الإعدادات",
+    "work_days": "أيام وساعات العمل",
+    "select_work_days": "حدد أيام العمل لمؤسستك",
+    "start_time": "وقت البدء",
+    "end_time": "وقت الانتهاء",
+    "currency": "العملة",
+    "official_holidays": "العطلات الرسمية",
+    "select_country": "اختر الدولة للعطلات الرسمية",
+    "country_holidays_description": "اختيار دولة سيطبق تلقائياً عطلاتها الرسمية على النظام.",
+    "custom_holidays": "العطلات المخصصة",
+    "additional_holidays": "عطلات إضافية",
+    "no_custom_holidays": "لم يتم إضافة عطلات مخصصة.",
+    "add_holiday": "إضافة عطلة",
+    "holiday_name": "اسم العطلة",
+    "holiday_date": "تاريخ العطلة",
+    "holiday_calendar": "تقويم العطلات",
+    "preview_holidays_for_country": "معاينة العطلات الرسمية للدولة المختارة",
+    "days": {
+      "sunday": "الأحد",
+      "monday": "الاثنين",
+      "tuesday": "الثلاثاء",
+      "wednesday": "الأربعاء",
+      "thursday": "الخميس",
+      "friday": "الجمعة",
+      "saturday": "السبت"
+    }
+  },
+  "months": {
+    "january": "يناير",
+    "february": "فبراير",
+    "march": "مارس",
+    "april": "أبريل",
+    "may": "مايو",
+    "june": "يونيو",
+    "july": "يوليو",
+    "august": "أغسطس",
+    "september": "سبتمبر",
+    "october": "أكتوبر",
+    "november": "نوفمبر",
+    "december": "ديسمبر"
   }
 }
