@@ -37,7 +37,6 @@
     "search_by_email_or_name": "ابحث باستخدام البريد الإلكتروني أو الاسم"
   },
   "btn": {
-    "sign_up": "إنشاء حساب",
     "log_in": "تسجيل الدخول",
     "create_account_button": "إنشاء الحساب",
     "logout": "تسجيل الخروج",
@@ -50,14 +49,15 @@
     "confirm": "تأكيد",
     "verify_otp": "التحقق من الرمز",
     "retry": "إعادة المحاولة",
-    "back_to_login": "العودة لتسجيل الدخول",
     "go_to_login": "الذهاب لتسجيل الدخول",
     "go_back_home": "العودة إلى الصفحة الرئيسية",
     "block": "حظر المستخدم",
     "unblock": "إلغاء حظر المستخدم",
     "previous": "سابق",
     "next": "التالي",
-    "back": "رجوع"
+    "back": "رجوع",
+    "update_personal_information": "تحديث المعلومات الشخصية",
+    "update_password": "تحديث كلمة المرور"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
@@ -66,10 +66,7 @@
     "invalid_credentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.",
     "new_account_registration_successful": "تم إنشاء الحساب بنجاح! جاري التحويل...",
     "failed_to_register_new_account": "فشل إنشاء الحساب. يرجى المحاولة مرة أخرى.",
-    "confirmation_email_sent": "تم إرسال بريد التأكيد! يرجى التحقق من صندوق الوارد والنقر على رابط التحقق.",
-    "failed_to_send_confirmation_email": "فشل إرسال بريد التأكيد. يرجى المحاولة مرة أخرى.",
     "email_verified_successfully": "تم التحقق من البريد الإلكتروني بنجاح! يمكنك الآن المتابعة.",
-    "must_confirm_email_first": "يجب تأكيد عنوان بريدك الإلكتروني قبل المتابعة. يرجى التحقق من صندوق الوارد الخاص بك.",
     "must_verify_email_first": "يجب عليك التحقق من بريدك الإلكتروني برمز التحقق قبل إكمال التسجيل.",
     "image_size_too_large": "يجب أن يكون حجم الصورة أقل من 3 ميجابايت",
     "invalid_image_type": "يُسمح فقط بصور JPEG وPNG وWebP وGIF",
@@ -93,7 +90,14 @@
     "download_successful": "تم تحميل الملف '{file}' بنجاح.",
     "download_error": "حدث خطأ أثناء تحميل الملف.",
     "settings_saved": "تم حفظ الإعدادات بنجاح!",
-    "failed_to_save_settings": "فشل حفظ الإعدادات. يرجى المحاولة مرة أخرى."
+    "failed_to_save_settings": "فشل حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
+    "failed_to_update_password": "فشل تحديث كلمة المرور",
+    "password_updated_successfully": "تم تحديث كلمة المرور بنجاح",
+    "password_too_short": "كلمة المرور قصيرة جداً",
+    "failed_to_update_personal_info": "فشل تحديث المعلومات الشخصية",
+    "personal_info_updated_successfully": "تم تحديث المعلومات الشخصية بنجاح",
+    "img_uploaded_successfully": "تم رفع الصورة بنجاح",
+    "faild_to_uplaod_img": "فشل رفع الصورة"
   },
   "meta": {
     "users": "الموظففين",
@@ -103,7 +107,7 @@
     "my_profile": "ملفي الشخصي",
     "confirm_invite": "تأكيد الدعوة",
     "holiday_dates": "تقويم الأجازات",
-    "global_config":"التكوين العام"
+    "global_config": "التكوين العام"
   },
   "roles": {
     "admin": "مدير النظام",
@@ -336,9 +340,6 @@
     "unblock_user_title": "إلغاء حظر المستخدم",
     "unblock_user_message": "هل أنت متأكد من أنك تريد إلغاء حظر {name}? سيتم إلغاء حظره من الوصول إلى النظام."
   },
-  "tabs": {
-    "all_users": "جميع الموظففين"
-  },
   "menu": {
     "download": "تحميل",
     "download_as_pdf": "تحميل ك PDF",
@@ -409,5 +410,19 @@
     "october": "أكتوبر",
     "november": "نوفمبر",
     "december": "ديسمبر"
+  },
+  "profile": {
+    "personal_information": "المعلومات الشخصية",
+    "first_name": "الاسم الأول",
+    "middle_name": "الاسم الأوسط",
+    "last_name": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone_number": "رقم الهاتف",
+    "employee_id": "الرقم الوظيفي",
+    "base_salary": "الراتب الأساسي",
+    "created_at": "تاريخ الإنشاء",
+    "change_password": "تغيير كلمة المرور",
+    "new_password": "كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور"
   }
 }

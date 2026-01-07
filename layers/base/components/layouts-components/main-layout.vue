@@ -4,7 +4,7 @@
     <overlay :visible="localeStore.isOverlayVisible" />
 
     <div :class="{ rtl: localeStore.isRTL }">
-      <div class="flex h-screen bg-gray-100">
+      <div class="flex h-screen"
         <!-- Overlay for small screens -->
         <div v-if="isSidebarOpen" @click="isSidebarOpen = false"
           class="fixed inset-0 bg-gray-900 bg-opacity-50 z-30 lg:hidden"></div>
