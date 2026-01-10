@@ -22,3 +22,10 @@ export interface AppSettings {
   created_at?: string;
   updated_at?: string;
 }
+
+export interface DayInfo {
+  date: string;
+  dayNumber: number;
+  isHoliday: boolean;
+  holidayName: { en: string; ar: string } | null;
+}

@@ -107,7 +107,8 @@
     "my_profile": "My Profile",
     "confirm_invite": "Confirm Invitation",
     "holiday_dates": "Holiday Dates",
-    "global_config": "Global Configuration"
+    "global_config": "Global Configuration",
+    "permissions": "Permissions"
   },
   "roles": {
     "admin": "Admin",

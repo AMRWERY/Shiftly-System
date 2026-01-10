@@ -15,7 +15,7 @@
 
       <!-- Users Table -->
       <dynamic-table v-else :columns="columns" :items="nonAdminUsers" :has-view="false" :has-block="false"
-        :has-delete="false" :has-edit="true" :action-conditions="{ edit: () => true }" @edit="handleEditPermissions" />
+        :has-edit="true" :action-conditions="{ edit: () => true }" @edit="handleEditPermissions" />
 
       <!-- Edit Permissions Dialog -->
       <edit-permissions-dialog :is-open="isEditDialogOpen" :user="selectedUser" @close="closeEditDialog"
@@ -47,7 +47,8 @@ onMounted(async () => {
 const columns = computed<Column[]>(() => [
   {
     key: 'avatar',
-    label: '',
+    label: t('table.avatar') || 'Avatar',
+    html: true,
     sortable: false,
     format: (item: any) => {
       const avatarUrl = item.avatar_url || item.avatarUrl || '/img/dummy-profile-img.jpg'
@@ -105,4 +106,8 @@ const closeEditDialog = () => {
   isEditDialogOpen.value = false
   selectedUser.value = null
 }
+
+useHead({
+    titleTemplate: () => t('meta.permissions'),
+});
 </script>

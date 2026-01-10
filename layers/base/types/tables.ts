@@ -1,3 +1,5 @@
+export type StatusType = 'pending' | 'approved' | 'rejected' | 'cancelled' | 'blocked' | 'active' | 'paid' | 'failed' | 'weak' | 'medium' | 'strong';
+
 export interface Column<T = any> {
   key: string;
   label: string;

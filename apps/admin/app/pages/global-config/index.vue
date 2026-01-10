@@ -345,18 +345,9 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
-// @ts-ignore
 import arabHolidays from "../../../../layers/base/assets/arab-holidays.json";
-// @ts-ignore
 import { supportedCurrencies } from "../../../../layers/base/config/i18n.config";
-
-interface DayInfo {
-  date: string;
-  dayNumber: number;
-  isHoliday: boolean;
-  holidayName: { en: string; ar: string } | null;
-}
+import type { DayInfo } from "../../../../layers/base/types/tables";
 
 const { t } = useI18n();
 const settingsStore = useSettingsStore();

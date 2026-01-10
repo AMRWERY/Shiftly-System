@@ -107,7 +107,8 @@
     "my_profile": "ملفي الشخصي",
     "confirm_invite": "تأكيد الدعوة",
     "holiday_dates": "تقويم الأجازات",
-    "global_config": "التكوين العام"
+    "global_config": "التكوين العام",
+    "permissions": "الصلاحيات"
   },
   "roles": {
     "admin": "مدير النظام",
