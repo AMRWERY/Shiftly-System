@@ -24,7 +24,6 @@
             :toastType="toastType"
             :duration="toastDuration"
             :toastIcon="toastIcon"
-            @toastClosed="showToast = false"
           />
         </div>
       </div>

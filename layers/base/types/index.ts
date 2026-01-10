@@ -28,7 +28,12 @@ export type PermissionModule =
   | "settings";
 
 // Permission actions
-export type PermissionAction = "view" | "create" | "edit" | "delete" | "approve";
+export type PermissionAction =
+  | "view"
+  | "create"
+  | "edit"
+  | "delete"
+  | "approve";
 
 // Single permission structure
 export interface Permission {
@@ -73,7 +78,7 @@ export interface InviteUserData {
   lastName: string;
   email: string;
   phoneNumber?: string;
-  role: UserRole | '';
+  role: UserRole | "";
   baseSalary?: number;
 }
 
@@ -89,7 +94,7 @@ export interface UserListItem {
   baseSalary: number;
   createdAt: string;
   role: UserRole;
-  status: "active" | "pending" | "blocked";
+  status: "active" | "pending" | "blocked" | "deactivated";
   avatarUrl?: string;
   avatar_url?: string; // snake_case for compatibility with API
   permissions?: Permission[]; // User's custom permissions

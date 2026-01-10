@@ -19,7 +19,7 @@
             </th>
             <!-- Changed: Add visible label for actions column -->
             <th scope="col" class="px-6 py-3 text-center"
-              v-if="hasView || hasDelete || hasBlock || hasEdit || hasMarkPaid || hasMarkFailed"></th>
+              v-if="hasView || hasDelete || hasBlock || hasEdit || hasMarkPaid || hasMarkFailed || hasDeactivate"></th>
           </tr>
         </thead>
         <tbody>
@@ -80,31 +80,35 @@
                 {{ getValue(item, column.key) }}
               </template>
             </td>
-            <td v-if="hasView || hasBlock || hasDelete || hasEdit || hasMarkPaid || hasMarkFailed"
+            <td v-if="hasView || hasBlock || hasDelete || hasEdit || hasMarkPaid || hasMarkFailed || hasDeactivate"
               class="px-6 py-4 text-end">
               <div class="flex items-center gap-3.5 justify-end">
-                <button v-if="hasView" class="rounded-full text-blue-500 hover:text-blue-700 transition"
-                  @click="$emit('view', item)">
+                <button v-if="hasView && normalizedActionConditions.view(item)"
+                  class="rounded-full text-blue-500 hover:text-blue-700 transition" @click="$emit('view', item)">
                   <icon name="tabler:eye" class="w-7 h-7 text-blue-500 hover:text-blue-700" />
                 </button>
-                <button v-if="hasBlock" class="rounded-full text-green-500 hover:text-green-700 transition"
-                  @click="$emit('block', item)">
+                <button v-if="hasBlock && normalizedActionConditions.block(item)"
+                  class="rounded-full text-green-500 hover:text-green-700 transition" @click="$emit('block', item)">
                   <icon name="material-symbols:block" class="w-6 h-6"
                     :class="[item.status === 'blocked' ? 'text-green-500 hover:text-green-700' : 'text-red-500 hover:text-red-700']" />
                 </button>
-                <button v-if="hasDelete && actionConditions?.delete && actionConditions.delete(item)"
+                <button v-if="hasDelete && normalizedActionConditions.delete(item)"
                   class="rounded-full text-red-500 hover:text-red-700 transition" @click="$emit('delete', item)">
                   <icon name="material-symbols:delete-sharp" class="w-6 h-6 text-red-500 hover:text-red-700" />
                 </button>
-                <button v-if="hasEdit && actionConditions?.edit && actionConditions.edit(item)"
+                <button v-if="hasEdit && normalizedActionConditions.edit(item)"
                   class="rounded-full text-indigo-500 hover:text-indigo-700 transition" @click="$emit('edit', item)">
                   <icon name="heroicons-outline:pencil-alt"
                     class="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600 hover:text-indigo-800" />
                 </button>
-                <button v-if="hasMarkPaid && actionConditions?.markPaid && actionConditions.markPaid(item)"
+                <button v-if="hasMarkPaid && normalizedActionConditions.markPaid(item)"
                   class="rounded-full text-green-500 hover:text-green-700 transition" @click="$emit('markPaid', item)">
                   <icon name="heroicons-outline:check-circle"
                     class="w-5 h-5 sm:w-6 sm:h-6 text-green-600 hover:text-green-800" />
+                </button>
+                <button v-if="hasDeactivate && normalizedActionConditions.deactivate(item)"
+                  class="rounded-full text-gray-500 hover:text-gray-700 transition" @click="$emit('deactivate', item)">
+                  <icon name="material-symbols:person-off" class="w-6 h-6 text-gray-600 hover:text-gray-800" />
                 </button>
               </div>
             </td>
@@ -129,21 +133,41 @@ const props = defineProps<{
   hasEdit?: boolean;
   hasMarkPaid?: boolean;
   hasMarkFailed?: boolean;
+  hasDeactivate?: boolean;
   actionsLabel?: string;
   actionConditions?: {
+    view?: (item: any) => boolean;
+    block?: (item: any) => boolean;
     edit?: (item: any) => boolean;
     delete?: (item: any) => boolean;
     markPaid?: (item: any) => boolean;
     markFailed?: (item: any) => boolean;
+    deactivate?: (item: any) => boolean;
   };
 }>()
 
-const actionConditions = props.actionConditions || {
-  edit: () => true,
-  delete: () => true,
-  markPaid: () => true,
-  markFailed: () => true
-};
+const normalizedActionConditions = computed(() => {
+  if (!props.actionConditions) {
+    return {
+      view: () => true,
+      block: () => true,
+      edit: () => true,
+      delete: () => true,
+      markPaid: () => true,
+      markFailed: () => true,
+      deactivate: () => true
+    }
+  }
+  return {
+    view: (item: any) => props.actionConditions?.view ? props.actionConditions.view(item) : true,
+    block: (item: any) => props.actionConditions?.block ? props.actionConditions.block(item) : true,
+    edit: (item: any) => props.actionConditions?.edit ? props.actionConditions.edit(item) : false,
+    delete: (item: any) => props.actionConditions?.delete ? props.actionConditions.delete(item) : false,
+    markPaid: (item: any) => props.actionConditions?.markPaid ? props.actionConditions.markPaid(item) : false,
+    markFailed: (item: any) => props.actionConditions?.markFailed ? props.actionConditions.markFailed(item) : false,
+    deactivate: (item: any) => props.actionConditions?.deactivate ? props.actionConditions.deactivate(item) : false
+  }
+})
 
 const emit = defineEmits<{
   <T = any>(event: 'view', item: T): void;
@@ -151,6 +175,7 @@ const emit = defineEmits<{
   <T = any>(event: 'block', item: T): void;
   <T = any>(event: 'edit', item: T): void;
   <T = any>(event: 'markPaid', item: T): void;
+  <T = any>(event: 'deactivate', item: T): void;
 }>()
 
 const statusClasses: Record<StatusType, string> = {
@@ -160,6 +185,7 @@ const statusClasses: Record<StatusType, string> = {
   cancelled: 'text-gray-600 bg-gray-100 hover:bg-gray-200 capitalize',
   blocked: 'bg-red-100 text-red-800 hover:bg-red-200 capitalize',
   active: 'bg-green-100 text-green-800 hover:bg-green-200 capitalize',
+  deactivated: 'bg-gray-400 text-gray-800 hover:bg-gray-500 capitalize',
   paid: 'text-green-700 bg-green-200 hover:bg-green-200 capitalize',
   failed: 'text-orange-700 bg-orange-200 hover:bg-orange-200 capitalize',
   weak: 'text-red-700 bg-red-200 hover:bg-red-200 capitalize',

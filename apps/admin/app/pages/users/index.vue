@@ -29,7 +29,8 @@
 
       <!-- Users Table -->
       <dynamic-table v-else :columns="columns" :items="paginatedUsers" :has-view="true" :has-block="true"
-        :has-delete="true" @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" />
+        :has-delete="true" :has-deactivate="true" :action-conditions="actionConditions" @view="handleViewUser"
+        @block="handleBlockUser" @delete="handleDeleteUser" @deactivate="handleDeactivateUser" />
 
       <!-- Pagination -->
       <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
@@ -46,6 +47,10 @@
       <!-- Block/Unblock Confirmation Dialog -->
       <block-user-dialog :show="isBlockDialogOpen" :user="userToBlock" :loading="isBlocking" @close="closeBlockDialog"
         @confirm="confirmBlockUser" />
+
+      <!-- Deactivate Confirmation Dialog -->
+      <deactivate-user-dialog :show="isDeactivateDialogOpen" :user="userToDeactivate" :loading="isDeactivating"
+        @close="closeDeactivateDialog" @confirm="confirmDeactivateUser" />
     </div>
   </div>
 </template>
@@ -64,10 +69,13 @@ const usersStore = useUsersStore()
 const isInviteDialogOpen = ref(false)
 const isDeleteDialogOpen = ref(false)
 const isBlockDialogOpen = ref(false)
+const isDeactivateDialogOpen = ref(false)
 const isDeleting = ref(false)
 const isBlocking = ref(false)
+const isDeactivating = ref(false)
 const userToDelete = ref<UserListItem | null>(null)
 const userToBlock = ref<UserListItem | null>(null)
+const userToDeactivate = ref<UserListItem | null>(null)
 const localSearchTerm = ref('')
 
 // Fetch users on mount
@@ -162,6 +170,14 @@ const deleteDialogMessage = computed(() => {
   return t('dialog.delete_user_message').replace('{name}', userName)
 })
 
+// Action conditions based on user status
+const actionConditions = computed(() => ({
+  view: (user: UserListItem) => user.status !== 'pending', // Allow view for active, blocked, deactivated
+  block: (user: UserListItem) => user.status !== 'pending' && user.status !== 'deactivated',
+  deactivate: (user: UserListItem) => user.status !== 'pending' && user.status !== 'deactivated',
+  delete: () => true // Always show delete
+}))
+
 // Action handlers
 const handleViewUser = (user: UserListItem) => {
   // Navigate to user details
@@ -247,7 +263,41 @@ const confirmDeleteUser = async () => {
   }
 }
 
+// Deactivate user handlers
+const handleDeactivateUser = async (user: UserListItem) => {
+  userToDeactivate.value = user
+  isDeactivateDialogOpen.value = true
+}
+
+const closeDeactivateDialog = () => {
+  isDeactivateDialogOpen.value = false
+  userToDeactivate.value = null
+}
+
+const confirmDeactivateUser = async () => {
+  if (!userToDeactivate.value) return
+  isDeactivating.value = true
+  try {
+    await usersStore.deactivateUser(userToDeactivate.value.id)
+    triggerToast({
+      message: t('toast.user_deactivated_successfully'),
+      type: 'success',
+      icon: 'mdi-check-circle',
+    })
+    closeDeactivateDialog()
+  } catch (err: any) {
+    console.error('Deactivate user error:', err)
+    triggerToast({
+      message: err.message || t('toast.failed_to_deactivate_user'),
+      type: 'error',
+      icon: 'material-symbols:error-outline-rounded',
+    })
+  } finally {
+    isDeactivating.value = false
+  }
+}
+
 useHead({
-    titleTemplate: () => t('meta.users'),
+  titleTemplate: () => t('meta.users'),
 });
 </script>

@@ -53,6 +53,7 @@
     "go_back_home": "العودة إلى الصفحة الرئيسية",
     "block": "حظر المستخدم",
     "unblock": "إلغاء حظر المستخدم",
+    "deactivate": "إلغاء تفعيل المستخدم",
     "previous": "سابق",
     "next": "التالي",
     "back": "رجوع",
@@ -64,6 +65,8 @@
     "login_successful": "تم تسجيل الدخول بنجاح! جاري التحويل...",
     "failed_to_login": "فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد.",
     "invalid_credentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.",
+    "account_deactivated": "تم إلغاء تفعيل حسابك. يرجى الاتصال بالمسؤول.",
+    "account_blocked": "تم حظر حسابك. يرجى الاتصال بالمسؤول.",
     "new_account_registration_successful": "تم إنشاء الحساب بنجاح! جاري التحويل...",
     "failed_to_register_new_account": "فشل إنشاء الحساب. يرجى المحاولة مرة أخرى.",
     "email_verified_successfully": "تم التحقق من البريد الإلكتروني بنجاح! يمكنك الآن المتابعة.",
@@ -97,7 +100,9 @@
     "failed_to_update_personal_info": "فشل تحديث المعلومات الشخصية",
     "personal_info_updated_successfully": "تم تحديث المعلومات الشخصية بنجاح",
     "img_uploaded_successfully": "تم رفع الصورة بنجاح",
-    "faild_to_uplaod_img": "فشل رفع الصورة"
+    "faild_to_uplaod_img": "فشل رفع الصورة",
+    "user_deactivated_successfully": "تم إلغاء تفعيل الموظف بنجاح",
+    "failed_to_deactivate_user": "فشل إلغاء تفعيل الموظف"
   },
   "meta": {
     "users": "الموظففين",
@@ -339,7 +344,10 @@
     "block_user_title": "حظر المستخدم",
     "block_user_message": "هل أنت متأكد من أنك تريد حظر {name}? سيتم حظره من الوصول إلى النظام.",
     "unblock_user_title": "إلغاء حظر المستخدم",
-    "unblock_user_message": "هل أنت متأكد من أنك تريد إلغاء حظر {name}? سيتم إلغاء حظره من الوصول إلى النظام."
+    "unblock_user_message": "هل أنت متأكد من أنك تريد إلغاء حظر {name}? سيتم إلغاء حظره من الوصول إلى النظام.",
+    "deactivate_user_title": "إلغاء تفعيل المستخدم",
+    "deactivate_user_message": "هل أنت متأكد من أنك تريد إلغاء تفعيل {name}؟",
+    "deactivate_warning": "⚠️ هذا الإجراء دائم ولا يمكن التراجع عنه!"
   },
   "menu": {
     "download": "تحميل",
@@ -367,7 +375,8 @@
   "status": {
     "active": "نشط",
     "pending": "قيد الانتظار",
-    "blocked": "محظور"
+    "blocked": "محظور",
+    "deactivated": "معطل"
   },
   "global_config": {
     "title": "الإعدادات العامة",

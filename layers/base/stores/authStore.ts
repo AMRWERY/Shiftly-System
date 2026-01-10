@@ -27,8 +27,19 @@ export const useAuthStore = defineStore("auth", {
         } = await supabase.auth.getSession();
 
         if (session) {
-          this.session = session;
-          this.user = session.user;
+          // Check user status from user_metadata
+          const userStatus = session.user?.user_metadata?.status;
+          const isBlockedOrDeactivated =
+            userStatus === "deactivated" || userStatus === "blocked";
+
+          if (isBlockedOrDeactivated) {
+            await supabase.auth.signOut();
+            this.session = null;
+            this.user = null;
+          } else {
+            this.session = session;
+            this.user = session.user;
+          }
         }
 
         // Listen for auth changes (only once)
@@ -90,6 +101,21 @@ export const useAuthStore = defineStore("auth", {
           password,
         });
         if (error) throw error;
+
+        // Check user status from user_metadata
+        if (data.session?.user) {
+          const userStatus = data.user?.user_metadata?.status;
+
+          if (userStatus === "deactivated") {
+            await supabase.auth.signOut();
+            throw new Error("Your account has been deactivated.");
+          }
+          if (userStatus === "blocked") {
+            await supabase.auth.signOut();
+            throw new Error("Your account has been blocked.");
+          }
+        }
+
         this.session = data.session;
         this.user = data.user;
         return { success: true, data };
@@ -595,6 +621,7 @@ export const useAuthStore = defineStore("auth", {
           updates.base_salary = metadata.base_salary;
         if (metadata.employeeId) updates.employee_id = metadata.employeeId;
         if (metadata.avatarUrl) updates.avatar_url = metadata.avatarUrl;
+        if (metadata.status) updates.status = metadata.status;
 
         if (this.user?.id) {
           const { error: profileError } = await supabase

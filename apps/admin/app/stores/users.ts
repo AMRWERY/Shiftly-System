@@ -164,6 +164,37 @@ export const useUsersStore = defineStore("users", () => {
     }
   }
 
+  // Deactivate a user (permanent action)
+  async function deactivateUser(userId: string) {
+    try {
+      // Optimistic update
+      const userIndex = users.value.findIndex(
+        (u: UserListItem) => u.id === userId
+      );
+      if (userIndex !== -1) {
+        const user = users.value[userIndex];
+        if (user) {
+          const previousStatus = user.status;
+          user.status = "deactivated";
+
+          try {
+            await $fetch(`/api/admin/users/${userId}/deactivate`, {
+              method: "PATCH",
+            });
+            return { success: true, message: "User deactivated successfully" };
+          } catch (err: any) {
+            // Revert on error
+            user.status = previousStatus;
+            throw err;
+          }
+        }
+      }
+    } catch (err: any) {
+      console.error("Error deactivating user:", err);
+      throw err;
+    }
+  }
+
   // Invite a new user
   async function inviteUser(userData: InviteUserData) {
     try {
@@ -244,6 +275,7 @@ export const useUsersStore = defineStore("users", () => {
     blockUser,
     unblockUser,
     deleteUser,
+    deactivateUser,
     inviteUser,
     setSelectedRole,
     setCurrentPage,

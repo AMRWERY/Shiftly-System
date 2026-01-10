@@ -4,8 +4,7 @@
     <overlay :visible="localeStore.isOverlayVisible" />
 
     <div :class="{ rtl: localeStore.isRTL }">
-      <div class="flex h-screen"
-        <!-- Overlay for small screens -->
+      <div class="flex h-screen" <!-- Overlay for small screens -->
         <div v-if="isSidebarOpen" @click="isSidebarOpen = false"
           class="fixed inset-0 bg-gray-900 bg-opacity-50 z-30 lg:hidden"></div>
 
@@ -41,16 +40,16 @@
               <manager-layout v-if="isManager" />
 
               <!-- system-auditor-layout component -->
-              <system-auditor-layout v-if="isManager" />
+              <system-auditor-layout v-if="isSystemAuditor" />
 
               <!-- inventory-manager-layout component -->
-              <inventory-manager-layout v-if="isManager" />
+              <inventory-manager-layout v-if="isInventoryManager" />
 
               <!-- td-officer-layout component -->
-              <td-officer-layout v-if="isManager" />
+              <td-officer-layout v-if="isTdOfficer" />
 
               <!-- maintenance-technician-layout component -->
-              <maintenance-technician-layout v-if="isManager" />
+              <maintenance-technician-layout v-if="isMaintenanceTechnician" />
 
               <!-- <li>
                 <nuxt-link-locale to="/holiday-dates" class="flex items-center p-2 text-white rounded-lg group"
@@ -135,8 +134,18 @@ const { setLocale, setLocaleMessage, t } = useI18n();
 const localePath = useLocalePath();
 const localeStore = useLocaleStore();
 const authStore = useAuthStore();
-const { isAdmin, isAccountant, isEmployee, isHr, isManager, currentRole } =
-  useRole();
+const {
+  isAdmin,
+  isAccountant,
+  isEmployee,
+  isHr,
+  isManager,
+  isInventoryManager,
+  isMaintenanceTechnician,
+  isSystemAuditor,
+  isTdOfficer,
+  currentRole,
+} = useRole();
 const isSidebarOpen = ref(false);
 
 watch(

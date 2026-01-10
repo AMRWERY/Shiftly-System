@@ -13,7 +13,9 @@ export default defineNuxtRouteMiddleware(async (to) => {
   ];
 
   // Remove locale prefix from path for checking (e.g., /ar/auth/reset-password -> /auth/reset-password)
-  const pathWithoutLocale = to.path.replace(/^\/[a-z]{2}(\/|$)/, '/').replace(/^\/[a-z]{2}-[a-z]{2}(\/|$)/, '/');
+  const pathWithoutLocale = to.path
+    .replace(/^\/[a-z]{2}(\/|$)/, "/")
+    .replace(/^\/[a-z]{2}-[a-z]{2}(\/|$)/, "/");
 
   // Check if the current route is public
   const isPublicRoute = publicRoutes.some((route) =>
@@ -27,8 +29,27 @@ export default defineNuxtRouteMiddleware(async (to) => {
         data: { session },
       } = await supabase.auth.getSession();
       if (session) {
-        authStore.session = session;
-        authStore.user = session.user;
+        // Check user status before setting session
+        const { data: profile, error: profileError } = await supabase
+          .from("profiles")
+          .select("status")
+          .eq("id", session.user.id)
+          .single();
+
+        const isBlockedOrDeactivated =
+          !profileError &&
+          profile &&
+          (profile.status === "deactivated" || profile.status === "blocked");
+
+        if (isBlockedOrDeactivated) {
+          // Sign out and don't set session
+          await supabase.auth.signOut();
+          authStore.session = null;
+          authStore.user = null;
+        } else {
+          authStore.session = session;
+          authStore.user = session.user;
+        }
       }
       authStore.loading = false;
     } catch (error) {

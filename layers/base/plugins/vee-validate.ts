@@ -6,6 +6,7 @@ import {
   max,
   alpha_spaces,
   regex,
+  email,
   between,
   numeric,
   length,
@@ -22,19 +23,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   // Define all rules
   defineRule("required", required);
 
-  defineRule("email", (value: any) => {
-    if (!value || !value.length) {
-      return true;
-    }
-    if (!/^[A-Z0-9._%+-]+@gmail\.com$/i.test(value)) {
-      // Access i18n through nuxtApp
-      const locale = i18n.locale.value;
-      return locale === "ar"
-        ? "يجب أن يكون البريد الإلكتروني من Gmail"
-        : "Email must be a valid Gmail address";
-    }
-    return true;
-  });
+  defineRule("email", email);
 
   defineRule("min", min);
   defineRule("max", max);
@@ -84,7 +73,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         names: {
           email: "Email",
           password: "Password",
-        }
+        },
       },
       ar: {
         ...ar,
@@ -95,7 +84,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         names: {
           email: "البريد الإلكتروني",
           password: "كلمة المرور",
-        }
+        },
       },
     }),
     validateOnBlur: true,
@@ -108,10 +97,13 @@ export default defineNuxtPlugin((nuxtApp) => {
   if (import.meta.client) {
     const savedLocale = localStorage.getItem("locale") || "en";
     setLocale(savedLocale);
-    
+
     // Watch for locale changes
-    watch(() => i18n.locale.value, (newLocale) => {
-      setLocale(newLocale);
-    });
+    watch(
+      () => i18n.locale.value,
+      (newLocale) => {
+        setLocale(newLocale);
+      }
+    );
   }
 });

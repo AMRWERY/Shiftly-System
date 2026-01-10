@@ -3,13 +3,13 @@
         <Form @submit="handleLogin" v-slot="{ meta }">
             <div class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4">
                 <div class="col-span-full">
-                    <dynamic-inputs :label="t('form.email')" placeholder="example@test.com" type="email"
-                        name="email" :rules="'required|email'" :required="true" v-model="email" />
+                    <dynamic-inputs :label="t('form.email')" placeholder="example@test.com" type="email" name="email"
+                        :rules="'required|email'" :required="true" v-model="email" />
                 </div>
 
                 <div class="col-span-full">
-                    <dynamic-inputs :label="t('form.password')" placeholder="••••••••" type="password"
-                        name="password" :rules="'required'" :required="true" v-model="password" />
+                    <dynamic-inputs :label="t('form.password')" placeholder="••••••••" type="password" name="password"
+                        :rules="'required'" :required="true" v-model="password" />
                 </div>
 
                 <div class="col-span-full flex flex-wrap items-center justify-between gap-4">
@@ -22,8 +22,8 @@
                 </div>
 
                 <div class="col-span-full">
-                    <base-button :block="true" :type="'submit'" :no-border="true"
-                        :padding-x="'px-4'" :padding-y="'py-2.5'"
+                    <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
+                        :padding-y="'py-2.5'"
                         class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                         :disabled="loading || !meta.valid">
                         <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
@@ -55,22 +55,52 @@ const handleLogin = async () => {
             type: 'success',
             icon: 'mdi-check-circle',
         });
-        // Navigate based on user role (all roles use same app with different layouts)
-        setTimeout(() => {
-            navigateTo('/');
-        }, 3000);
+        // Get user role and redirect to appropriate app
+        const userRole = authStore.currentUserRole;
+        if (userRole) {
+            const { getAppUrlForRole } = await import('../../config/roleAppMapping');
+            const targetAppUrl = getAppUrlForRole(userRole as any);
+            const currentUrl = window.location.origin;
+
+            // If user is in the wrong app, redirect to their role-specific app
+            if (currentUrl !== targetAppUrl) {
+                setTimeout(() => {
+                    window.location.href = targetAppUrl;
+                }, 2000);
+            } else {
+                // User is already in the correct app, just navigate to home
+                setTimeout(() => {
+                    navigateTo('/');
+                }, 2000);
+            }
+        } else {
+            // Fallback to home if role is not found
+            setTimeout(() => {
+                navigateTo('/');
+            }, 2000);
+        }
     } else {
-        // Show translated error message for invalid credentials
-        const errorMessage = result.error?.toLowerCase().includes('invalid') || 
-                            result.error?.toLowerCase().includes('credentials') ||
-                            result.error?.toLowerCase().includes('password')
-            ? t('toast.invalid_credentials')
-            : t('toast.failed_to_login');
-            
+        // Stop loading on error to show toast properly
+        loading.value = false;
+        
+        // Show specific error messages for different error types
+        let errorMessage = t('toast.failed_to_login');
+
+        if (result.error?.toLowerCase().includes('deactivated')) {
+            errorMessage = t('toast.account_deactivated') || 'Your account has been deactivated.';
+        } else if (result.error?.toLowerCase().includes('blocked')) {
+            errorMessage = t('toast.account_blocked') || 'Your account has been blocked.';
+        } else if (result.error?.toLowerCase().includes('invalid') ||
+            result.error?.toLowerCase().includes('credentials') ||
+            result.error?.toLowerCase().includes('password')) {
+            errorMessage = t('toast.invalid_credentials');
+        }
+
         triggerToast({
             message: errorMessage,
             type: 'error',
             icon: 'material-symbols:error-outline-rounded',
+            duration: 5000, // Show error toast for 5 seconds
         });
     }
 };

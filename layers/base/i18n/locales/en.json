@@ -53,6 +53,7 @@
     "go_back_home": "Go Back Home",
     "block": "Block",
     "unblock": "Unblock",
+    "deactivate": "Deactivate",
     "previous": "Previous",
     "next": "Next",
     "back": "Back",
@@ -64,6 +65,8 @@
     "login_successful": "Login successful! Redirecting...",
     "failed_to_login": "Failed to login. Please check your credentials.",
     "invalid_credentials": "Invalid email or password. Please try again.",
+    "account_deactivated": "Your account has been deactivated. Please contact your administrator.",
+    "account_blocked": "Your account has been blocked. Please contact your administrator.",
     "new_account_registration_successful": "Account created successfully! Redirecting...",
     "failed_to_register_new_account": "Failed to create account. Please try again.",
     "email_verified_successfully": "Email verified successfully! You can now proceed.",
@@ -97,7 +100,9 @@
     "failed_to_update_personal_info": "Failed to update personal information",
     "personal_info_updated_successfully": "Personal information updated successfully",
     "img_uploaded_successfully": "Image uploaded successfully",
-    "faild_to_uplaod_img": "Faild to uplaod image"
+    "faild_to_uplaod_img": "Faild to uplaod image",
+    "user_deactivated_successfully": "User deactivated successfully",
+    "failed_to_deactivate_user": "Failed to deactivate user"
   },
   "meta": {
     "users": "Users",
@@ -339,7 +344,10 @@
     "block_user_title": "Block User",
     "block_user_message": "Are you sure you want to block {name}? They will not be able to access the system.",
     "unblock_user_title": "Unblock User",
-    "unblock_user_message": "Are you sure you want to unblock {name}? They will regain access to the system."
+    "unblock_user_message": "Are you sure you want to unblock {name}? They will regain access to the system.",
+    "deactivate_user_title": "Deactivate User",
+    "deactivate_user_message": "Are you sure you want to deactivate {name}?",
+    "deactivate_warning": "⚠️ This action is permanent and cannot be undone!"
   },
   "menu": {
     "download": "Download",
@@ -367,7 +375,8 @@
   "status": {
     "active": "Active",
     "pending": "Pending",
-    "blocked": "Blocked"
+    "blocked": "Blocked",
+    "deactivated": "Deactivated"
   },
   "global_config": {
     "title": "Global Configuration",

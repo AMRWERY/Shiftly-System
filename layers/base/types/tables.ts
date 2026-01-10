@@ -1,4 +1,16 @@
-export type StatusType = 'pending' | 'approved' | 'rejected' | 'cancelled' | 'blocked' | 'active' | 'paid' | 'failed' | 'weak' | 'medium' | 'strong';
+export type StatusType =
+  | "pending"
+  | "approved"
+  | "rejected"
+  | "cancelled"
+  | "blocked"
+  | "active"
+  | "deactivated"
+  | "paid"
+  | "failed"
+  | "weak"
+  | "medium"
+  | "strong";
 
 export interface Column<T = any> {
   key: string;
@@ -6,7 +18,7 @@ export interface Column<T = any> {
   class?: string | ((item: T) => string[]);
   // class?: string;
   format?: (row: T, index?: number) => string;
-  type?: 'image' | 'text' | 'component';
+  type?: "image" | "text" | "component";
   html?: boolean;
   sortable?: boolean;
 }
