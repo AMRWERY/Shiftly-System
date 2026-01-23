@@ -15,7 +15,7 @@
           <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
 
           <!-- Add New User Button -->
-          <base-button type="button" padding-x="px-4" padding-y="py-2" class="transition-colors whitespace-nowrap"
+          <base-button type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
             @click="isInviteDialogOpen = true">
             {{ t('btn.add_new_user') }}
           </base-button>

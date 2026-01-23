@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="p-6">
-
       <back-button />
 
       <div v-if="user" class="max-w-4xl mx-auto animate-fade-in">
@@ -43,8 +42,7 @@
                   class="px-3 py-1 rounded-full text-sm font-medium bg-indigo-50 text-indigo-700 border border-indigo-100">
                   {{ t(`roles.${user.role}`) }}
                 </span>
-                <span class="px-3 py-1 rounded-full text-sm font-medium border"
-                  :class="getStatusBadgeClass(user.status)">
+                <span class="px-3 py-1 rounded-full text-sm font-medium border" :class="getStatusClass(user.status)">
                   {{ t(`status.${user.status}`) }}
                 </span>
               </div>
@@ -144,6 +142,8 @@ const route = useRoute();
 const router = useRouter();
 const usersStore = useUsersStore();
 
+const { getStatusClass, getStatusColor } = useStatusClasses()
+
 const userId = computed(() => route.params.id as string);
 const user = computed(() => usersStore.getUserById(userId.value));
 const loading = ref(false);
@@ -158,32 +158,6 @@ onMounted(async () => {
     loading.value = false;
   }
 });
-
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case "active":
-      return "bg-green-500";
-    case "blocked":
-      return "bg-red-500";
-    case "pending":
-      return "bg-yellow-500";
-    default:
-      return "bg-gray-500";
-  }
-};
-
-const getStatusBadgeClass = (status: string) => {
-  switch (status) {
-    case "active":
-      return "bg-green-100 text-green-800 border-green-200";
-    case "blocked":
-      return "bg-red-100 text-red-800 border-red-200";
-    case "pending":
-      return "bg-yellow-100 text-yellow-800 border-yellow-200";
-    default:
-      return "bg-gray-100 text-gray-800 border-gray-200";
-  }
-};
 
 useHead({
   title: computed(() =>

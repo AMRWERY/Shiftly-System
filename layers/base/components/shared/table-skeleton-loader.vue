@@ -21,8 +21,9 @@
             </div>
         </div>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-gray-500 text-start">
+        <div class="relative sm:rounded-lg border overflow-hidden">
+            <div class="scroll-container overflow-x-auto smooth-scroll" @scroll="handleScroll">
+                <table class="w-full text-sm text-gray-500 text-start">
                 <thead class="text-xs text-gray-700 capitalize bg-gray-50">
                     <tr>
                         <th v-for="(header, index) in headers" :key="index" scope="col" class="px-6 py-3">
@@ -47,6 +48,9 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
+            <div v-if="showLeftShadow" class="scroll-shadow scroll-shadow-left"></div>
+            <div v-if="showRightShadow" class="scroll-shadow scroll-shadow-right"></div>
         </div>
 
         <!-- Pagination Skeleton -->
@@ -74,7 +78,83 @@ defineProps({
     },
     rows: {
         type: Number,
-        default: 5
+        default: 9
     }
 })
+
+const showLeftShadow = ref(false);
+const showRightShadow = ref(false);
+
+const handleScroll = (event: Event) => {
+  const target = event.target as HTMLElement;
+  const { scrollLeft, scrollWidth, clientWidth } = target;
+  
+  showLeftShadow.value = scrollLeft > 0;
+  showRightShadow.value = scrollLeft < scrollWidth - clientWidth - 10;
+};
 </script>
+
+<style scoped>
+/* Custom scrollbar styling */
+.scroll-container {
+  scroll-behavior: smooth;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  box-shadow: 0 0 6px rgba(102, 126, 234, 0.4);
+}
+
+/* Firefox */
+.scroll-container {
+  scrollbar-color: #667eea #f1f5f9;
+  scrollbar-width: thin;
+}
+
+/* Scroll shadows for better visual feedback */
+.scroll-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-shadow-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.08), transparent);
+}
+
+.scroll-shadow-right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.08), transparent);
+}
+
+/* Smooth scroll behavior */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Add a subtle border effect */
+.scroll-container {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+</style>
