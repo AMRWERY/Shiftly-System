@@ -43,7 +43,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps({
     modelValue: { type: Boolean, required: true },
     title: { type: String, default: 'Dialog Title' },

@@ -125,7 +125,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { UserListItem } from '../../../../../layers/base/types'
 
 const { t } = useI18n()

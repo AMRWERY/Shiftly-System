@@ -50,6 +50,8 @@
 
               <!-- maintenance-technician-layout component -->
               <maintenance-technician-layout v-if="isMaintenanceTechnician" />
+              
+              <manager-layout v-if="isMaintenanceTechnician" />
 
               <!-- <li>
                 <nuxt-link-locale to="/holiday-dates" class="flex items-center p-2 text-white rounded-lg group"

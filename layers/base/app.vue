@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const localeStore = useLocaleStore();
 
 const { showToast, toastMessage, toastType, toastIcon, toastDuration } =

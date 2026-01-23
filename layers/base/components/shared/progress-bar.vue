@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const progress = ref(0);
 const isLoading = ref(false);
 let interval: number;

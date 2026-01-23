@@ -57,7 +57,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const isOpen = ref(false);
 const dropdownRef = ref<HTMLElement | null>(null);
 

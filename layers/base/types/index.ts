@@ -99,3 +99,28 @@ export interface UserListItem {
   avatar_url?: string; // snake_case for compatibility with API
   permissions?: Permission[]; // User's custom permissions
 }
+
+// Role Management Types
+export interface RoleDefinition {
+  id: string;
+  name: UserRole;
+  displayName: string;
+  description: string;
+  isSystemRole: boolean;
+  userCount?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface RolePermissions {
+  id: string;
+  roleId: string;
+  module: PermissionModule;
+  actions: PermissionAction[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface RoleWithPermissions extends RoleDefinition {
+  permissions: Permission[];
+}
