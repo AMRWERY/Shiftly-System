@@ -7,9 +7,9 @@
 
                     <div class="absolute inset-0 bg-black/50" @click="closeOnOverlay && closeDialog"></div>
 
-                    <div class="relative w-full max-w-lg bg-white shadow-lg rounded-lg p-6 z-[1001] modal-card">
-                        <div class="flex items-center pb-3 border-b border-gray-300">
-                            <h3 class="text-slate-900 text-xl font-semibold flex-1">
+                    <div class="relative w-full max-w-lg card-bg shadow-lg rounded-lg p-6 z-[1001] modal-card">
+                        <div class="flex items-center pb-3 border-b border-gray-700">
+                            <h3 class="text-white text-xl font-semibold flex-1">
                                 {{ title }}
                             </h3>
                             <icon name="material-symbols:close-small-rounded"
@@ -18,13 +18,13 @@
 
                         <div class="my-6">
                             <slot name="body">
-                                <p class="text-slate-600 text-sm leading-relaxed">
+                                <p class="text-gray-300 text-sm leading-relaxed">
                                     {{ message }}
                                 </p>
                             </slot>
                         </div>
 
-                        <div class="border-t border-gray-300 pt-6 flex justify-end gap-2"
+                        <div class="border-t border-gray-700 pt-6 flex justify-end gap-2"
                             v-if="$slots.footer || showDefaultFooter">
                             <slot name="footer">
                                 <base-button v-if="showDefaultFooter" :type="'button'"

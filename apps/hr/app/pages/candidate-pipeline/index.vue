@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>candidate-pipeline</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">candidate-pipeline</p>
   </div>
 </template>
 

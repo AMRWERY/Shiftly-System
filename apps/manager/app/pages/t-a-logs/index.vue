@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>t-a-logs</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">t-a-logs</p>
   </div>
 </template>
 

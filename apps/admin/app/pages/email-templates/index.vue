@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>email-templates</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">email-templates</p>
   </div>
 </template>
 

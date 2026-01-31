@@ -1,11 +1,13 @@
 <template>
-    <div>
-        <p>scheduled-tasks</p>
-    </div>
+  <div>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      scheduled-tasks
+    </p>
+  </div>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-    layout: 'dashboard'
-})
+  layout: "dashboard",
+});
 </script>

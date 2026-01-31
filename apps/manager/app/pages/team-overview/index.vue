@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>team-overview</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      team-overview
+    </p>
   </div>
 </template>
 

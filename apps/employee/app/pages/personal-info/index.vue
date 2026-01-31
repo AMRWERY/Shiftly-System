@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>personal-info</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">personal-info</p>
   </div>
 </template>
 

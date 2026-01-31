@@ -1,47 +1,46 @@
 <template>
-    <div>
-        <div class="flex items-center justify-end ms-auto p-10">
-            <!-- RTL Toggle -->
+    <div class="min-h-screen flex items-center justify-center relative p-4 lg:p-8">
+        <!-- RTL Toggle positioned absolutely -->
+        <div class="absolute top-4 end-4 lg:top-8 lg:end-8 z-50">
             <button
-                class="text-gray-600 hover:text-gray-800 me-1 p-2 border border-gray-300 rounded-lg hover:bg-gray-100"
+                class="text-gray-100 hover:text-white me-1 border border-gray-200/20 hover:border-gray-300/40 py-1.5 px-3 rounded-lg transition-all bg-white/5 backdrop-blur-sm"
                 @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
                 <span v-if="localeStore.isRTL" class="flex items-center">
-                    <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
+                    <icon name="heroicons:language" class="w-4 h-4 me-2" />
                     En
                 </span>
                 <span v-else class="flex items-center">
-                    <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
+                    <icon name="heroicons:language" class="w-4 h-4 me-2" />
                     العربية
                 </span>
             </button>
         </div>
 
-        <div class="flex items-center justify-center p-4">
-            <!-- Added fixed height here -->
-            <div class="flex w-full max-w-4xl h-[500px] rounded-lg shadow-xl overflow-hidden">
-                <!-- Left Side - Dark Background with Information -->
-                <div
-                    class="hidden md:flex md:w-4/12 bg-gradient-to-l from-gray-900 to-gray-600 text-white p-10 flex-col justify-center">
-                    <div class="max-w-md mx-auto">
-                        <h1 class="text-3xl font-bold mb-4">{{ t('btn.log_in') }}</h1>
-                        <p class="text-gray-300 mb-10">
-                            {{ t('form.welcome_message') }}
-                        </p>
+        <!-- Main Card Container -->
+        <div
+            class="w-full max-w-4xl h-[600px] md:h-[550px] lg:h-[500px] rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-700/50 relative z-10 transition-all">
+            <!-- Left Side - Dark Background with Information -->
+            <div
+                class="hidden md:flex md:w-4/12 bg-gradient-to-br from-indigo-900 via-brand-systemBg to-brand-layoutBg text-white p-10 flex-col justify-center border-e border-gray-700">
+                <div class="max-w-md mx-auto">
+                    <h1 class="text-3xl font-bold mb-4">{{ t('btn.log_in') }}</h1>
+                    <p class="text-gray-400 mb-10">
+                        {{ t('form.welcome_message') }}
+                    </p>
 
-                        <h2 class="text-2xl font-bold mb-4">{{ t('form.simple_secure') }}</h2>
-                        <p class="text-gray-300">
-                            {{ t('form.security_message') }}
-                        </p>
-                    </div>
+                    <h2 class="text-2xl font-bold mb-4">{{ t('form.simple_secure') }}</h2>
+                    <p class="text-gray-300">
+                        {{ t('form.security_message') }}
+                    </p>
                 </div>
+            </div>
 
-                <!-- Right Side - Form -->
-                <!-- Added overflow-y-auto to handle content overflow -->
-                <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-white overflow-y-auto">
-                    <div class="w-full max-w-lg">
-                        <!-- login component -->
-                        <login />
-                    </div>
+            <!-- Right Side - Form -->
+            <!-- Added overflow-y-auto to handle content overflow -->
+            <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-brand-systemBg overflow-y-auto">
+                <div class="w-full max-w-lg">
+                    <!-- login component -->
+                    <login />
                 </div>
             </div>
         </div>

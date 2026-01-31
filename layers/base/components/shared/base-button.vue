@@ -104,7 +104,7 @@ const buttonClasses = computed(() => {
       props.paddingX, props.paddingY,
       inlineClass,
       'items-center justify-center',
-      'text-blue-600 hover:underline',
+      'text-blue-400 hover:underline',
       props.block ? 'w-full' : ''
     ]
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>physical-count-records</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">physical-count-records</p>
   </div>
 </template>
 

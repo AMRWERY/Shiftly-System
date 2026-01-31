@@ -15,7 +15,7 @@
         <ul v-if="dropdownStates.compliance_overview" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/status-summary" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/status-summary') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/status-summary') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.status_summary")
               }}</span>
@@ -23,7 +23,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/policy-violations" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/policy-violations') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/policy-violations') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.policy_violations")
               }}</span>
@@ -46,7 +46,7 @@
         <ul v-if="dropdownStates.audit_logs" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/all-system-activity" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/all-system-activity') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/all-system-activity') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.all_system_activity")
               }}</span>
@@ -54,7 +54,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/financial-transactions" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/financial-transactions') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/financial-transactions') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.financial_transactions")
               }}</span>
@@ -62,7 +62,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/inventory-adjustments" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/inventory-adjustments') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/inventory-adjustments') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.inventory_adjustments")
               }}</span>
@@ -85,7 +85,7 @@
         <ul v-if="dropdownStates.payroll_finance_review" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/payroll-reports" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/payroll-reports') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/payroll-reports') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.payroll_reports")
               }}</span>
@@ -93,7 +93,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/expense-claims-audit" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/expense-claims-audit') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/expense-claims-audit') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.expense_claims_audit")
               }}</span>
@@ -101,7 +101,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/invoicing-verification" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/invoicing-verification') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/invoicing-verification') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.invoicing_verification")
               }}</span>
@@ -124,7 +124,7 @@
         <ul v-if="dropdownStates.inventory_audit" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/stock-take-discrepancies" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/stock-take-discrepancies') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/stock-take-discrepancies') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.stock_take_discrepancies")
               }}</span>
@@ -132,7 +132,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/movement-verification" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/movement-verification') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/movement-verification') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.movement_verification")
               }}</span>
@@ -140,7 +140,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/quality-control-checks" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/quality-control-checks') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/quality-control-checks') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.quality_control_checks")
               }}</span>

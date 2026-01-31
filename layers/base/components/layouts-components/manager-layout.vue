@@ -15,7 +15,7 @@
         <ul v-if="dropdownStates.my_team_dashboard" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/team-overview" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/team-overview') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/team-overview') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.team_overview")
               }}</span>
@@ -23,7 +23,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/quick-access-contacts" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/quick-access-contacts') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/quick-access-contacts') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.quick_access_contacts")
               }}</span>
@@ -46,7 +46,7 @@
         <ul v-if="dropdownStates.approvals_center" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/pending-leave" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/pending-leave') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/pending-leave') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.pending_leave")
               }}</span>
@@ -54,7 +54,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/pending-overtime" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/pending-overtime') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/pending-overtime') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.pending_overtime")
               }}</span>
@@ -62,7 +62,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/pending-expenses" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/pending-expenses') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/pending-expenses') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.pending_expenses")
               }}</span>
@@ -85,7 +85,7 @@
         <ul v-if="dropdownStates.team_reports" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/t-a-logs" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/t-a-logs') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/t-a-logs') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.t_a_logs")
               }}</span>
@@ -93,7 +93,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/performance-status" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/performance-status') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/performance-status') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.performance_status")
               }}</span>
@@ -101,7 +101,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/leave-tracking" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/leave-tracking') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/leave-tracking') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.leave_tracking")
               }}</span>
@@ -124,7 +124,7 @@
         <ul v-if="dropdownStates.team_goals" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/goal-setting" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/goal-setting') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/goal-setting') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.goal_setting")
               }}</span>
@@ -132,7 +132,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/progress-tracking" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/progress-tracking') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/progress-tracking') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.progress_tracking")
               }}</span>
@@ -140,7 +140,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/review-submission" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/review-submission') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/review-submission') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.review_submission")
               }}</span>

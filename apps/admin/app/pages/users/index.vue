@@ -3,7 +3,7 @@
     <div class="p-6">
       <!-- Header + Controls Row -->
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
-        <h1 class="text-2xl font-semibold text-gray-900">{{ t('layouts.users') }}</h1>
+        <h1 class="text-2xl font-semibold text-gray-200">{{ t('layouts.users') }}</h1>
 
         <!-- Controls: Search + Refresh + Add Button -->
         <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
@@ -114,7 +114,7 @@ const columns = computed<Column[]>(() => [
     label: t('table.role'),
     sortable: true,
     html: true,
-    format: (item: any) => `<span class="text-indigo-600 font-medium">${t(`roles.${item.role}`)}</span>`
+    format: (item: any) => `<span class="text-indigo-400 font-medium">${t(`roles.${item.role}`)}</span>`
   },
   {
     key: 'phoneNumber',
@@ -128,7 +128,7 @@ const columns = computed<Column[]>(() => [
     html: true,
     format: (item: any) => {
       const val = Number(item.baseSalary)
-      return !isNaN(val) ? `<span class="text-emerald-600 font-medium">${val.toLocaleString()} EGP</span>` : '0 EGP'
+      return !isNaN(val) ? `<span class="text-emerald-400 font-medium">${val.toLocaleString()} EGP</span>` : '0 EGP'
     }
   },
   {

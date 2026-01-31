@@ -15,7 +15,7 @@
         <ul v-if="dropdownStates.training_catalog" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/course-creation" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/course-creation') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/course-creation') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.course_creation")
               }}</span>
@@ -23,7 +23,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/scheduling" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/scheduling') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/scheduling') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.scheduling")
               }}</span>
@@ -31,7 +31,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/resource-mgt" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/resource-mgt') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/resource-mgt') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.resource_mgt")
               }}</span>
@@ -54,7 +54,7 @@
         <ul v-if="dropdownStates.employee_development" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/training-records" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/training-records') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/training-records') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.training_records")
               }}</span>
@@ -62,7 +62,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/certifications" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/certifications') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/certifications') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.certifications")
               }}</span>
@@ -70,7 +70,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/career-path-mapping" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/career-path-mapping') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/career-path-mapping') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.career_path_mapping")
               }}</span>
@@ -93,7 +93,7 @@
         <ul v-if="dropdownStates.request_approval" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/enrollment-requests" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/enrollment-requests') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/enrollment-requests') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.enrollment_requests")
               }}</span>
@@ -101,7 +101,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/budget-approvals" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/budget-approvals') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/budget-approvals') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.budget_approvals")
               }}</span>
@@ -124,7 +124,7 @@
         <ul v-if="dropdownStates.skills_gaps_report" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/skill-matrix" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/skill-matrix') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/skill-matrix') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.skill_matrix")
               }}</span>
@@ -132,7 +132,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/stock-adjustment" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/stock-adjustment') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/stock-adjustment') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.required_training_analysis")
               }}</span>

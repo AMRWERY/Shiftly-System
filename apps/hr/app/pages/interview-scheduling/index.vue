@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>interview-scheduling</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">interview-scheduling</p>
   </div>
 </template>
 

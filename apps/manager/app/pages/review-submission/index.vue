@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>review-submission</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      review-submission
+    </p>
   </div>
 </template>
 

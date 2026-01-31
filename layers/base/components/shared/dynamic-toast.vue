@@ -1,11 +1,9 @@
 <template>
   <div>
     <transition name="bounce" mode="out-in">
-      <div
-        v-if="visible"
-        :class="`relative flex items-center justify-between w-full shadow bg-white h-[50px] rounded-lg overflow-hidden ${textColorClass}`"
-        role="alert"
-      >
+      <div v-if="visible"
+        :class="`relative flex items-center justify-between w-full shadow-lg bg-brand-cardBg border border-gray-700 h-[50px] rounded-lg overflow-hidden ${textColorClass}`"
+        role="alert">
         <!-- Left color bar -->
         <div class="h-full w-1.5" :class="borderColorClass"></div>
 
@@ -19,22 +17,14 @@
         </div>
 
         <!-- Close button -->
-        <button
-          type="button"
-          aria-label="close"
-          class="active:scale-90 transition-all me-3 shrink-0"
-          @click="closeToast"
-        >
+        <button type="button" aria-label="close" class="active:scale-90 transition-all me-3 shrink-0"
+          @click="closeToast">
           <icon name="material-symbols:close-small-outline-rounded" />
         </button>
 
         <!-- Progress bar -->
-        <div class="absolute bottom-0 w-full h-1 bg-gray-200 start-0">
-          <div
-            class="h-full transition-all ease-linear"
-            :class="progressBarColorClass"
-            :style="progressBarStyle"
-          />
+        <div class="absolute bottom-0 w-full h-1 bg-gray-800 start-0">
+          <div class="h-full transition-all ease-linear" :class="progressBarColorClass" :style="progressBarStyle" />
         </div>
       </div>
     </transition>
@@ -64,39 +54,39 @@ const emit = defineEmits(["toastClosed"]);
 const textColorClass = computed(() => {
   switch (props.toastType) {
     case "success":
-      return "text-green-600";
+      return "text-emerald-400";
     case "error":
-      return "text-red-600";
+      return "text-red-400";
     case "warning":
-      return "text-yellow-600";
+      return "text-amber-400";
     default:
-      return "text-blue-600";
+      return "text-indigo-400";
   }
 });
 
 const borderColorClass = computed(() => {
   switch (props.toastType) {
     case "success":
-      return "bg-green-600";
+      return "bg-emerald-500";
     case "error":
-      return "bg-red-600";
+      return "bg-red-400";
     case "warning":
-      return "bg-yellow-600";
+      return "bg-amber-500";
     default:
-      return "bg-blue-600";
+      return "bg-indigo-500";
   }
 });
 
 const progressBarColorClass = computed(() => {
   switch (props.toastType) {
     case "success":
-      return "bg-green-600";
+      return "bg-emerald-500";
     case "error":
-      return "bg-red-600";
+      return "bg-red-400";
     case "warning":
-      return "bg-yellow-600";
+      return "bg-amber-500";
     default:
-      return "bg-blue-600";
+      return "bg-indigo-500";
   }
 });
 

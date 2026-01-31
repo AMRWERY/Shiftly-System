@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>goals-setting-kpis</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">goals-setting-kpis</p>
   </div>
 </template>
 

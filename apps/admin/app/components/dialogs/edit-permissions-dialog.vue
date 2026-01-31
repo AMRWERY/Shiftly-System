@@ -23,10 +23,10 @@
                 class="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
               />
               <div>
-                <h3 class="text-lg font-semibold text-gray-900">
+                <h3 class="text-lg font-semibold text-gray-400">
                   {{ user?.fullName }}
                 </h3>
-                <p class="text-sm text-gray-600">{{ user?.email }}</p>
+                <p class="text-sm text-gray-300">{{ user?.email }}</p>
                 <span
                   class="inline-block mt-1 px-2 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800"
                 >
@@ -36,25 +36,25 @@
             </div>
           </div>
 
-          <p class="text-sm text-gray-600 mb-4">
+          <p class="text-sm text-gray-300 mb-4">
             {{ t("permissions.select_permissions") }}
           </p>
 
           <!-- Permissions Grid -->
-          <div class="space-y-4 max-h-[450px] overflow-y-auto pr-2">
+          <div class="space-y-4 max-h-[450px] overflow-y-auto pe-2">
             <div
               v-for="module in permissionModules"
               :key="module"
               class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors"
             >
               <div class="flex items-center justify-between mb-3">
-                <label class="text-sm font-medium text-gray-900">
+                <label class="text-sm font-medium text-gray-400">
                   {{ t(`permissions.modules.${module}`) }}
                 </label>
                 <button
                   type="button"
                   @click="toggleAllActions(module)"
-                  class="text-xs text-blue-600 hover:text-blue-800 font-medium"
+                  class="text-xs text-blue-400 hover:text-blue-800 font-medium"
                 >
                   {{
                     areAllActionsSelected(module)
@@ -74,10 +74,10 @@
                     type="checkbox"
                     :checked="hasPermission(module, action)"
                     @change="togglePermission(module, action)"
-                    class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    class="w-4 h-4 text-blue-400 border-gray-300 rounded focus:ring-blue-500"
                   />
                   <span
-                    class="ms-2 text-sm text-gray-700 group-hover:text-gray-900"
+                    class="ms-2 text-sm text-gray-300 group-hover:text-gray-400"
                   >
                     {{ t(`permissions.actions.${action}`) }}
                   </span>
@@ -93,7 +93,7 @@
               variant="outline"
               bg-color="bg-gray-100"
               hover-color="hover:bg-gray-200"
-              text-color="text-gray-700"
+              text-color="text-gray-300"
               padding-x="px-4"
               padding-y="py-2"
               @click="closeModal"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>deduction-schedules</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">deduction-schedules</p>
   </div>
 </template>
 

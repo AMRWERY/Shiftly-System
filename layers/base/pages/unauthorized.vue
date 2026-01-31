@@ -5,8 +5,8 @@
                 <img src="/svg/error-403.svg" alt="unauthorized" class="emoji-403" />
 
                 <div class="mt-4 tracking-widest text-center">
-                    <span class="block text-6xl text-gray-500">403</span>
-                    <span class="block text-xl text-gray-500 mt-2">
+                    <span class="block text-6xl text-white">403</span>
+                    <span class="block text-xl text-gray-300 mt-2">
                         {{ t('error_page.unauthorized_access') }}
                     </span>
                     <span class="block text-sm text-gray-400 mt-2">
@@ -40,6 +40,7 @@ definePageMeta({
 }
 
 @keyframes shake {
+
     0%,
     100% {
         transform: translateX(0);

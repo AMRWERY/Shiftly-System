@@ -21,21 +21,20 @@
         <!-- Step 2 -->
         <form v-else-if="currentStep === 1" @submit.prevent="handleSubmitOtp" class="space-y-6">
             <div class="text-center mb-4">
-                <p class="text-sm text-gray-600 mb-2">{{ t('form.otp_instruction') }}</p>
-                <p class="text-xs text-gray-500">{{ t('form.check_email_for_code_or_link') }}</p>
+                <p class="text-sm text-gray-300 mb-2">{{ t('form.otp_instruction') }}</p>
+                <p class="text-xs text-gray-400">{{ t('form.check_email_for_code_or_link') }}</p>
             </div>
 
             <div class="flex flex-col space-y-16">
                 <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
                     <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
-                        class="w-16 h-16 text-lg text-center bg-white border border-gray-200 outline-none rounded-xl focus:bg-gray-50 focus:ring-2 ring-blue-700"
+                        class="w-16 h-16 text-lg text-center bg-brand-systemBg border border-gray-700 outline-none rounded-xl focus:bg-white/5 focus:ring-2 ring-indigo-500 text-white"
                         @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
                 </div>
             </div>
 
             <div class="mt-7">
-                <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
-                    :padding-y="'py-2.5'"
+                <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                     :disabled="loading" @click="handleSubmitOtp">
                     <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
@@ -43,17 +42,18 @@
                 </base-button>
             </div>
 
-            <div class="flex items-center justify-center text-sm">
+            <div class="flex items-center justify-center text-sm text-gray-300">
                 <p>{{ t('form.didnt_recieve_code') }} <button type="button" @click="resendOtp"
                         :disabled="resendCooldown > 0"
-                        class="text-gray-600 hover:underline font-semibold disabled:text-gray-400 disabled:cursor-not-allowed">
+                        class="text-indigo-400 hover:text-indigo-300 hover:underline font-semibold disabled:text-gray-300 disabled:cursor-not-allowed">
                         {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
                     </button></p>
             </div>
 
             <div class="flex items-center justify-center text-sm">
-                <nuxt-link-locale to="/auth" class="text-gray-600 hover:underline">{{ t('form.back_to_login')
-                }}</nuxt-link-locale>
+                <nuxt-link-locale to="/auth" class="text-indigo-400 hover:text-indigo-300 hover:underline">{{
+                    t('form.back_to_login')
+                    }}</nuxt-link-locale>
             </div>
         </form>
 
@@ -70,8 +70,7 @@
                     v-model="form.confirmPassword" />
             </div>
             <div class="mt-7">
-                <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
-                    :padding-y="'py-2.5'"
+                <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                     :disabled="loading">
                     <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />

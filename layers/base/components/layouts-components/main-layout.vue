@@ -4,9 +4,9 @@
     <overlay :visible="localeStore.isOverlayVisible" />
 
     <div :class="{ rtl: localeStore.isRTL }">
-      <div class="flex h-screen" <!-- Overlay for small screens -->
-        <div v-if="isSidebarOpen" @click="isSidebarOpen = false"
-          class="fixed inset-0 bg-gray-900 bg-opacity-50 z-30 lg:hidden"></div>
+      <div class="flex h-screen">
+        <!-- Overlay for small screens -->
+        <div v-if="isSidebarOpen" @click="isSidebarOpen = false" class="fixed inset-0 bg-black/50 z-30 lg:hidden"></div>
 
         <!-- Sidebar -->
         <aside
@@ -19,7 +19,7 @@
             'translate-x-0': isSidebarOpen,
             'hidden lg:flex': !isSidebarOpen,
           }">
-          <div class="p-4 text-2xl font-semibold border-b border-gray-700">
+          <div class="p-4 text-2xl font-semibold">
             Shiftly
           </div>
           <nav class="mt-4 flex-1 mb-4 mx-4 space-y-3 overflow-y-auto hide-scrollbar">
@@ -50,7 +50,7 @@
 
               <!-- maintenance-technician-layout component -->
               <maintenance-technician-layout v-if="isMaintenanceTechnician" />
-              
+
               <manager-layout v-if="isMaintenanceTechnician" />
 
               <!-- <li>
@@ -77,9 +77,9 @@
 
           <!-- Logout Button -->
           <div class="p-4 border-t border-gray-700">
-            <base-button :hover-color="'bg-gray-100'" :border-color="'border-gray-700'" :text-color="'text-white'"
-              :variant="'outline'" :block="true" :route="true" :type="'button'" :no-border="true"
-              class="flex items-center justify-center p-2 rounded-lg border-2 transition-colors group bg-gray-400 hover:bg-gray-500"
+            <base-button :border-color="'border-gray-700'" :text-color="'text-white'" :variant="'outline'" :block="true"
+              :route="true" :type="'button'" :no-border="true"
+              class="flex items-center justify-center p-2 rounded-lg border-2 transition-colors group bg-brand-systemBg hover:bg-opacity-80"
               @click="handleLogout" :to="'/auth'">{{ t("btn.logout") }}</base-button>
           </div>
         </aside>
@@ -90,7 +90,7 @@
           <header class="shadow-md p-4 flex justify-between items-center z-20 layout-bg-vertical">
             <!-- Hamburger menu for small screens -->
             <button @click="isSidebarOpen = !isSidebarOpen"
-              class="text-gray-600 hover:text-gray-800 focus:outline-none lg:hidden">
+              class="text-gray-400 hover:text-gray-500 focus:outline-none lg:hidden">
               <icon name="material-symbols:menu" class="h-6 w-6" />
             </button>
 
@@ -99,12 +99,12 @@
               <div class="relative cursor-pointer" @click="navigateTo(localePath('/profile'))">
                 <img :src="authStore.currentUser?.user_metadata?.avatarUrl || '/img/dummy-profile-img.jpg'"
                   alt="User Profile"
-                  class="w-8 h-8 rounded-full object-cover border border-gray-200 hover:border-blue-500 transition-colors" />
+                  class="w-10 h-10 rounded-full object-cover border border-gray-200 hover:border-indigo-300 transition-colors p-0.5" />
               </div>
 
               <!-- RTL Toggle -->
               <button
-                class="text-gray-100 hover:text-gray-200 me-1 border border-gray-100 hover:border-gray-200 py-1.5 px-2 rounded-lg"
+                class="text-gray-100 hover:text-white me-1 border border-gray-200 hover:border-gray-300 py-1.5 px-2 rounded-lg transition-colors"
                 @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
                 <span v-if="localeStore.isRTL" class="flex items-center">
                   <icon name="heroicons:language" class="w-4 h-4 me-1.5" />

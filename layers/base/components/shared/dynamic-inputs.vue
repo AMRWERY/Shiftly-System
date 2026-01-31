@@ -1,25 +1,25 @@
 <template>
   <div :dir="locale === 'ar' ? 'rtl' : 'ltr'">
     <label :for="id"
-      :class="['block mb-1 text-sm font-medium', labelClass || (errorMessage ? 'text-red-600' : 'text-slate-700')]">
+      :class="['block mb-1 text-sm font-medium', labelClass || (errorMessage ? 'text-red-300' : 'text-gray-200')]">
       {{ label }}
-      <span v-if="required" class="text-red-600">*</span>
+      <span v-if="required" class="text-red-300">*</span>
     </label>
 
     <div class="relative w-full">
       <!-- prefix-icon -->
       <span v-if="prefixIcon"
-        :class="['absolute inset-y-0 flex items-center text-gray-400 start-3 hover:text-gray-600', errorMessage ? 'text-red-600' : 'text-slate-400']">
+        :class="['absolute inset-y-0 flex items-center text-gray-400 start-3 hover:text-white transition-colors', errorMessage ? 'text-red-300' : 'text-gray-400']">
         <icon :name="prefixIcon" class="w-5 h-5" />
       </span>
       <!-- input -->
       <template v-if="type === 'textarea'">
         <Field as="textarea" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" :options="options"
           v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }"
-          class="w-full px-3 py-2 transition duration-300 border rounded-md shadow-sm placeholder:text-slate-400 text-slate-700 focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow"
+          class="w-full px-3 py-2 transition duration-300 border border-gray-600 rounded-md shadow-sm placeholder:text-gray-500 text-white bg-brand-systemBg focus:outline-none focus:border-indigo-500 hover:border-gray-500 focus:shadow"
           rows="4">
           <textarea :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" v-model="internalValue"
-            class="w-full px-3 py-2 transition duration-300 border rounded-md shadow-sm placeholder:text-slate-400 text-slate-700 focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow"
+            class="w-full px-3 py-2 transition duration-300 border border-gray-600 rounded-md shadow-sm placeholder:text-gray-500 text-white bg-brand-systemBg focus:outline-none focus:border-indigo-500 hover:border-gray-500 focus:shadow"
             rows="4" />
         </Field>
       </template>
@@ -27,7 +27,7 @@
       <template v-else-if="type === 'select'">
         <Field as="select" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" v-model="internalValue"
           :rules="rules"
-          class="w-full px-3 py-2 transition duration-300 border rounded-md shadow-sm placeholder:text-slate-400 text-slate-700 focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow">
+          class="w-full px-3 py-2 transition duration-300 border border-gray-600 rounded-md shadow-sm placeholder:text-gray-500 text-white bg-brand-systemBg focus:outline-none focus:border-indigo-500 hover:border-gray-500 focus:shadow">
           <option value="" disabled selected>{{ placeholder }}</option>
           <option v-for="option in options" :key="option.value" :value="option.value">
             {{ option.label }}
@@ -40,22 +40,22 @@
           :readonly="readonly" v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }">
           <input :type="showPassword ? 'text' : type" :name="name" :placeholder="placeholder" :id="id"
             :readonly="readonly" v-model="internalValue" :class="[
-              'w-full text-sm text-slate-800 px-4 py-3 rounded-md outline-none border focus:border-blue-600',
-              fieldError ? 'border-red-600' : 'border-slate-200'
+              'w-full text-sm text-white px-4 py-3 rounded-md outline-none border bg-brand-systemBg focus:border-indigo-500 transition-colors',
+              fieldError ? 'border-red-500' : 'border-gray-600'
             ]" />
         </Field>
       </template>
 
       <!-- Eye icon -->
       <span v-if="type === 'password'" @click="togglePassword"
-        class="absolute inset-y-0 flex items-center text-gray-400 cursor-pointer end-3 hover:text-gray-600">
+        class="absolute inset-y-0 flex items-center text-gray-400 cursor-pointer end-3 hover:text-gray-300">
         <icon :name="showPassword ? 'material-symbols:visibility-off-rounded' : 'material-symbols:visibility-rounded'"
           class="w-5 h-5" />
       </span>
     </div>
 
     <!-- error messages -->
-    <ErrorMessage :name="name" class="block mt-1 text-[13px] text-red-500" />
+    <ErrorMessage :name="name" class="block mt-1 text-[13px] text-red-300" />
   </div>
 </template>
 

@@ -4,7 +4,7 @@
       @update:model-value="closeModal" @close="closeModal">
       <template #body>
         <div class="mt-2">
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-sm text-gray-300 mb-4">
             {{ t('dialog.invite_user_message') }}
           </p>
 
@@ -54,8 +54,8 @@
             </div>
 
             <div class="mt-6 flex justify-end gap-3">
-              <base-button type="button" variant="outline" bg-color="bg-gray-100" hover-color="hover:bg-gray-200"
-                text-color="text-gray-700" padding-x="px-4" padding-y="py-2" @click="closeModal">
+              <base-button type="button" variant="outline" :border-color="'border-gray-700'" :text-color="'text-white'"
+                padding-x="px-4" padding-y="py-2" @click="closeModal" class="hover:bg-gray-700 transition-colors">
                 {{ t('btn.cancel') }}
               </base-button>
               <base-button type="submit" :disabled="loading" hover-color="hover:bg-blue-700" padding-x="px-4"

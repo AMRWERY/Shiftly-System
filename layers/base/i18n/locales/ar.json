@@ -34,7 +34,8 @@
     "default_password_set": "تم تفعيل حسابك بنجاح!",
     "default_password": "كلمة المرور الافتراضية",
     "change_password_later": "يمكنك تغيير كلمة المرور هذه لاحقاً من إعدادات ملفك الشخصي.",
-    "search_by_email_or_name": "ابحث باستخدام البريد الإلكتروني أو الاسم"
+    "search_by_email_or_name": "ابحث باستخدام البريد الإلكتروني أو الاسم",
+    "search_roles": "ابحث باسم الدور"
   },
   "btn": {
     "log_in": "تسجيل الدخول",
@@ -58,7 +59,8 @@
     "next": "التالي",
     "back": "رجوع",
     "update_personal_information": "تحديث المعلومات الشخصية",
-    "update_password": "تحديث كلمة المرور"
+    "update_password": "تحديث كلمة المرور",
+    "add_new_role": "إضافة دور جديد"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
@@ -113,7 +115,9 @@
     "confirm_invite": "تأكيد الدعوة",
     "holiday_dates": "تقويم الأجازات",
     "global_config": "التكوين العام",
-    "permissions": "الصلاحيات"
+    "permissions": "الصلاحيات",
+    "roles": "الأدوار",
+    "role_details": "تفاصيل الدور"
   },
   "roles": {
     "admin": "مدير النظام",
@@ -124,7 +128,8 @@
     "system_auditor": "مدقق النظام",
     "inventory_manager": "مدير المخزون",
     "maintenance_technician": "فني الصيانة",
-    "td_officer": "مسؤول التدريب والتطوير"
+    "td_officer": "مسؤول التدريب والتطوير",
+    "system_role": "دور النظام"
   },
   "permissions": {
     "title": "إدارة الصلاحيات",
@@ -331,7 +336,10 @@
     "created_at": "تاريخ الإنشاء",
     "status": "الحالة",
     "actions": "الإجراءات",
-    "avatar": "الصوره"
+    "avatar": "الصوره",
+    "role_name": "اسم الدور",
+    "description": "وصف الدور",
+    "users": "المستخدمون"
   },
   "dialog": {
     "invite_user_title": "دعوة مستخدم جديد",

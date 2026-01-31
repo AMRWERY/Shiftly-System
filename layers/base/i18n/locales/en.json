@@ -34,7 +34,8 @@
     "default_password_set": "Your account has been activated successfully!",
     "default_password": "Default Password",
     "change_password_later": "You can change this password later from your profile settings.",
-    "search_by_email_or_name": "Search by email or name"
+    "search_by_email_or_name": "Search by email or name",
+    "search_roles": "Search by role name"
   },
   "btn": {
     "log_in": "Log In",
@@ -58,7 +59,8 @@
     "next": "Next",
     "back": "Back",
     "update_personal_information": "Update Personal Information",
-    "update_password": "Update Password"
+    "update_password": "Update Password",
+    "add_new_role": "Add new role"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
@@ -113,7 +115,9 @@
     "confirm_invite": "Confirm Invitation",
     "holiday_dates": "Holiday Dates",
     "global_config": "Global Configuration",
-    "permissions": "Permissions"
+    "permissions": "Permissions",
+    "roles": "Roles",
+    "role_details": "Role details"
   },
   "roles": {
     "admin": "Admin",
@@ -124,7 +128,8 @@
     "system_auditor": "System Auditor",
     "inventory_manager": "Inventory Manager",
     "maintenance_technician": "Maintenance Technician",
-    "td_officer": "T&D Officer"
+    "td_officer": "T&D Officer",
+    "system_role": "System Role"
   },
   "permissions": {
     "title": "Permissions Management",
@@ -331,7 +336,10 @@
     "created_at": "Created At",
     "status": "Status",
     "actions": "Actions",
-    "avatar": "Avatar"
+    "avatar": "Avatar",
+    "role_name": "Role Name",
+    "description": "Role Description",
+    "users": "Users"
   },
   "dialog": {
     "invite_user_title": "Invite New User",

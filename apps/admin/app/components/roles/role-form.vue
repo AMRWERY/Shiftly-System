@@ -4,9 +4,9 @@
       <div>
         <label
           for="roleName"
-          class="block text-sm font-medium text-gray-700 mb-2"
+          class="block text-sm font-medium text-gray-300 mb-2"
         >
-          {{ t("roles.role_name") }} <span class="text-red-500">*</span>
+          {{ t("roles.role_name") }} <span class="text-red-300">*</span>
         </label>
         <input
           id="roleName"
@@ -17,7 +17,7 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
           :class="{ 'border-red-500': errors.name }"
         />
-        <p v-if="errors.name" class="mt-1 text-sm text-red-600">
+        <p v-if="errors.name" class="mt-1 text-sm text-red-400">
           {{ errors.name }}
         </p>
         <p v-if="isEditMode" class="mt-1 text-xs text-gray-500">
@@ -28,9 +28,9 @@
       <div>
         <label
           for="displayName"
-          class="block text-sm font-medium text-gray-700 mb-2"
+          class="block text-sm font-medium text-gray-300 mb-2"
         >
-          {{ t("roles.display_name") }} <span class="text-red-500">*</span>
+          {{ t("roles.display_name") }} <span class="text-red-300">*</span>
         </label>
         <input
           id="displayName"
@@ -40,7 +40,7 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           :class="{ 'border-red-500': errors.displayName }"
         />
-        <p v-if="errors.displayName" class="mt-1 text-sm text-red-600">
+        <p v-if="errors.displayName" class="mt-1 text-sm text-red-400">
           {{ errors.displayName }}
         </p>
       </div>
@@ -48,7 +48,7 @@
       <div>
         <label
           for="description"
-          class="block text-sm font-medium text-gray-700 mb-2"
+          class="block text-sm font-medium text-gray-300 mb-2"
         >
           {{ t("roles.description") }}
         </label>

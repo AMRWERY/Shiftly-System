@@ -1,41 +1,55 @@
 <template>
   <div>
-    <div class="relative sm:rounded-lg border overflow-hidden">
+    <div class="relative sm:rounded-lg border border-gray-400 overflow-hidden bg-brand-layoutBg">
       <div class="scroll-container overflow-x-auto smooth-scroll" @scroll="handleScroll">
-        <table class="w-full text-sm text-start text-gray-500 whitespace-nowrap bg-white table-auto">
-          <thead class="text-sm table-header-bg text-white sticky top-0 z-10 bg-gray-100 border-b">
+        <table class="w-full text-sm text-start text-gray-300 whitespace-nowrap bg-transparent table-auto">
+          <thead
+            class="text-sm table-header-bg text-gray-200 sticky top-0 z-10 border-b border-gray-700 bg-brand-layoutBg">
             <tr>
               <th scope="col" class="px-6 py-3">#</th>
-              <th v-for="(column, index) in columns" :key="index" scope="col"
-                :class="['px-6 py-3', column.key === 'avatar' ? '' : 'cursor-pointer select-none']"
-                @click="column.key !== 'avatar' ? sortByColumn(column.key) : null">
+              <th v-for="(column, index) in columns" :key="index" scope="col" :class="[
+                'px-6 py-3',
+                column.key === 'avatar' ? '' : 'cursor-pointer select-none',
+              ]" @click="
+                  column.key !== 'avatar' ? sortByColumn(column.key) : null
+                  ">
                 <div class="flex items-center">
                   {{ column.label }}
                   <span v-if="sortColumn === column.key && column.key !== 'avatar'" class="ms-1 mt-1.5">
-                    <icon
-                      :name="sortDirection === 'asc' ? 'material-symbols:keyboard-arrow-up' : 'material-symbols:keyboard-arrow-down'"
-                      class="w-5 h-5 text-white" />
+                    <icon :name="sortDirection === 'asc'
+                        ? 'material-symbols:keyboard-arrow-up'
+                        : 'material-symbols:keyboard-arrow-down'
+                      " class="w-5 h-5 text-white" />
                   </span>
                 </div>
               </th>
               <!-- Changed: Add visible label for actions column -->
-              <th scope="col" class="px-6 py-3 text-center"
-                v-if="hasView || hasDelete || hasBlock || hasEdit || hasMarkPaid || hasMarkFailed || hasDeactivate">
-              </th>
+              <th scope="col" class="px-6 py-3 text-center" v-if="
+                hasView ||
+                hasDelete ||
+                hasBlock ||
+                hasEdit ||
+                hasMarkPaid ||
+                hasMarkFailed ||
+                hasDeactivate
+              "></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item, index) in sortedItems" :key="index" :class="[
-              'border-b',
-              index % 2 === 0 ? 'bg-white' : 'bg-gray-100',
-              'hover:bg-gray-50 transition-colors'
+              'border-b border-gray-700',
+              'bg-transparent hover:bg-white/5 transition-colors',
             ]">
-              <td class="px-6 py-4 font-medium text-gray-700">{{ index + 1 }}</td>
+              <td class="px-6 py-4 font-medium text-white">{{ index + 1 }}</td>
               <td v-for="(column, colIndex) in columns" :key="colIndex"
                 :class="['px-6 py-4', column.key === 'avatar' ? 'w-16' : '']">
-                <template v-if="column.key === 'status' || column.key === 'employeeRate'">
-                  <span v-if="item.status"
-                    :class="['px-2.5 py-1 rounded-full text-sm font-medium', getStatusClass(item.status)]">
+                <template v-if="
+                  column.key === 'status' || column.key === 'employeeRate'
+                ">
+                  <span v-if="item.status" :class="[
+                    'px-2.5 py-1 rounded-full text-sm font-medium',
+                    getStatusClass(item.status),
+                  ]">
                     <template v-if="column.format">
                       {{ column.format(item) }}
                     </template>
@@ -43,8 +57,10 @@
                       {{ item.status }}
                     </template>
                   </span>
-                  <span v-else-if="item.employeeRate"
-                    :class="['px-2.5 py-1 rounded-full text-sm font-medium', getStatusClass(item.employeeRate)]">
+                  <span v-else-if="item.employeeRate" :class="[
+                    'px-2.5 py-1 rounded-full text-sm font-medium',
+                    getStatusClass(item.employeeRate),
+                  ]">
                     {{ t(`status.${item.employeeRate}`) }}
                     <template v-if="column.format">
                       {{ column.format(item) }}
@@ -75,44 +91,61 @@
                 <template v-else-if="column.format && column.key === 'dates'">
                   <span v-html="column.format(item, index)"></span>
                 </template>
-                <template v-else-if="column.format && column.key !== 'dates' && column.key !== 'avatar'">
+                <template v-else-if="
+                  column.format &&
+                  column.key !== 'dates' &&
+                  column.key !== 'avatar'
+                ">
                   {{ column.format(item, index) }}
                 </template>
                 <template v-else>
                   {{ getValue(item, column.key) }}
                 </template>
               </td>
-              <td v-if="hasView || hasBlock || hasDelete || hasEdit || hasMarkPaid || hasMarkFailed || hasDeactivate"
-                class="px-6 py-4 text-end">
+              <td v-if="
+                hasView ||
+                hasBlock ||
+                hasDelete ||
+                hasEdit ||
+                hasMarkPaid ||
+                hasMarkFailed ||
+                hasDeactivate
+              " class="px-6 py-4 text-end">
                 <div class="flex items-center gap-3.5 justify-end">
                   <button v-if="hasView && normalizedActionConditions.view(item)"
-                    class="rounded-full text-blue-500 hover:text-blue-700 transition" @click="$emit('view', item)">
-                    <icon name="tabler:eye" class="w-7 h-7 text-blue-500 hover:text-blue-700" />
+                    class="rounded-full text-blue-400 hover:text-blue-500 transition" @click="$emit('view', item)">
+                    <icon name="tabler:eye" class="w-7 h-7 text-blue-400 hover:text-blue-500" />
                   </button>
                   <button v-if="hasBlock && normalizedActionConditions.block(item)"
                     class="rounded-full text-green-500 hover:text-green-700 transition" @click="$emit('block', item)">
-                    <icon name="material-symbols:block" class="w-6 h-6"
-                      :class="[item.status === 'blocked' ? 'text-green-500 hover:text-green-700' : 'text-red-500 hover:text-red-700']" />
+                    <icon name="material-symbols:block" class="w-6 h-6" :class="[
+                      item.status === 'blocked'
+                        ? 'text-green-500 hover:text-green-700'
+                        : 'text-red-400 hover:text-red-300',
+                    ]" />
                   </button>
                   <button v-if="hasDelete && normalizedActionConditions.delete(item)"
-                    class="rounded-full text-red-500 hover:text-red-700 transition" @click="$emit('delete', item)">
-                    <icon name="material-symbols:delete-sharp" class="w-6 h-6 text-red-500 hover:text-red-700" />
+                    class="rounded-full text-red-400 hover:text-red-300 transition" @click="$emit('delete', item)">
+                    <icon name="material-symbols:delete-sharp" class="w-6 h-6 text-red-400 hover:text-red-300" />
                   </button>
                   <button v-if="hasEdit && normalizedActionConditions.edit(item)"
                     class="rounded-full text-indigo-500 hover:text-indigo-700 transition" @click="$emit('edit', item)">
                     <icon name="heroicons-outline:pencil-alt"
-                      class="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600 hover:text-indigo-800" />
+                      class="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 hover:text-indigo-800" />
                   </button>
-                  <button v-if="hasMarkPaid && normalizedActionConditions.markPaid(item)"
-                    class="rounded-full text-green-500 hover:text-green-700 transition"
+                  <button v-if="
+                    hasMarkPaid && normalizedActionConditions.markPaid(item)
+                  " class="rounded-full text-green-500 hover:text-green-700 transition"
                     @click="$emit('markPaid', item)">
                     <icon name="heroicons-outline:check-circle"
                       class="w-5 h-5 sm:w-6 sm:h-6 text-green-600 hover:text-green-800" />
                   </button>
-                  <button v-if="hasDeactivate && normalizedActionConditions.deactivate(item)"
-                    class="rounded-full text-gray-500 hover:text-gray-700 transition"
+                  <button v-if="
+                    hasDeactivate &&
+                    normalizedActionConditions.deactivate(item)
+                  " class="rounded-full text-gray-500 hover:text-gray-300 transition"
                     @click="$emit('deactivate', item)">
-                    <icon name="material-symbols:person-off" class="w-6 h-6 text-gray-600 hover:text-gray-800" />
+                    <icon name="material-symbols:person-off" class="w-6 h-6 text-gray-400 hover:text-gray-500" />
                   </button>
                 </div>
               </td>
@@ -127,9 +160,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { Column, TableItem, StatusType } from '../../types/tables'
+import type { Column, TableItem, StatusType } from "../../types/tables";
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 const props = defineProps<{
   items: readonly any[];
@@ -151,7 +184,7 @@ const props = defineProps<{
     markFailed?: (item: any) => boolean;
     deactivate?: (item: any) => boolean;
   };
-}>()
+}>();
 
 const normalizedActionConditions = computed(() => {
   if (!props.actionConditions) {
@@ -162,40 +195,55 @@ const normalizedActionConditions = computed(() => {
       delete: () => true,
       markPaid: () => true,
       markFailed: () => true,
-      deactivate: () => true
-    }
+      deactivate: () => true,
+    };
   }
   return {
-    view: (item: any) => props.actionConditions?.view ? props.actionConditions.view(item) : true,
-    block: (item: any) => props.actionConditions?.block ? props.actionConditions.block(item) : true,
-    edit: (item: any) => props.actionConditions?.edit ? props.actionConditions.edit(item) : false,
-    delete: (item: any) => props.actionConditions?.delete ? props.actionConditions.delete(item) : false,
-    markPaid: (item: any) => props.actionConditions?.markPaid ? props.actionConditions.markPaid(item) : false,
-    markFailed: (item: any) => props.actionConditions?.markFailed ? props.actionConditions.markFailed(item) : false,
-    deactivate: (item: any) => props.actionConditions?.deactivate ? props.actionConditions.deactivate(item) : false
-  }
-})
+    view: (item: any) =>
+      props.actionConditions?.view ? props.actionConditions.view(item) : true,
+    block: (item: any) =>
+      props.actionConditions?.block ? props.actionConditions.block(item) : true,
+    edit: (item: any) =>
+      props.actionConditions?.edit ? props.actionConditions.edit(item) : false,
+    delete: (item: any) =>
+      props.actionConditions?.delete
+        ? props.actionConditions.delete(item)
+        : false,
+    markPaid: (item: any) =>
+      props.actionConditions?.markPaid
+        ? props.actionConditions.markPaid(item)
+        : false,
+    markFailed: (item: any) =>
+      props.actionConditions?.markFailed
+        ? props.actionConditions.markFailed(item)
+        : false,
+    deactivate: (item: any) =>
+      props.actionConditions?.deactivate
+        ? props.actionConditions.deactivate(item)
+        : false,
+  };
+});
 
 const emit = defineEmits<{
-  <T = any>(event: 'view', item: T): void;
-  <T = any>(event: 'delete', item: T): void;
-  <T = any>(event: 'block', item: T): void;
-  <T = any>(event: 'edit', item: T): void;
-  <T = any>(event: 'markPaid', item: T): void;
-  <T = any>(event: 'deactivate', item: T): void;
-}>()
+  <T = any>(event: "view", item: T): void;
+  <T = any>(event: "delete", item: T): void;
+  <T = any>(event: "block", item: T): void;
+  <T = any>(event: "edit", item: T): void;
+  <T = any>(event: "markPaid", item: T): void;
+  <T = any>(event: "deactivate", item: T): void;
+}>();
 
-const { getStatusClass } = useStatusClasses()
+const { getStatusClass } = useStatusClasses();
 
 const getValue = (item: TableItem, key: string | number | symbol): any => {
-  if (typeof key === 'string') {
+  if (typeof key === "string") {
     return item[key];
   }
-  return '';
-}
+  return "";
+};
 
 const sortColumn = ref<string | null>(null);
-const sortDirection = ref<'asc' | 'desc'>('asc');
+const sortDirection = ref<"asc" | "desc">("asc");
 const showLeftShadow = ref(false);
 const showRightShadow = ref(false);
 
@@ -210,10 +258,10 @@ const handleScroll = (event: Event) => {
 
 const sortByColumn = (key: string) => {
   if (sortColumn.value === key) {
-    sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc';
+    sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
   } else {
     sortColumn.value = key;
-    sortDirection.value = 'asc';
+    sortDirection.value = "asc";
   }
 };
 
@@ -225,15 +273,17 @@ const sortedItems = computed(() => {
   return itemsToSort.sort((a, b) => {
     const aValue = getValue(a, sortColumn.value!);
     const bValue = getValue(b, sortColumn.value!);
-    if (aValue === null || aValue === undefined) return sortDirection.value === 'asc' ? 1 : -1;
-    if (bValue === null || bValue === undefined) return sortDirection.value === 'asc' ? -1 : 1;
-    if (typeof aValue === 'string' && typeof bValue === 'string') {
-      return sortDirection.value === 'asc'
+    if (aValue === null || aValue === undefined)
+      return sortDirection.value === "asc" ? 1 : -1;
+    if (bValue === null || bValue === undefined)
+      return sortDirection.value === "asc" ? -1 : 1;
+    if (typeof aValue === "string" && typeof bValue === "string") {
+      return sortDirection.value === "asc"
         ? aValue.localeCompare(bValue)
         : bValue.localeCompare(aValue);
     } else {
       const comparison = aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-      return sortDirection.value === 'asc' ? comparison : -comparison;
+      return sortDirection.value === "asc" ? comparison : -comparison;
     }
   });
 });
@@ -251,7 +301,7 @@ const sortedItems = computed(() => {
 }
 
 .scroll-container::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #2e2e48;
   border-radius: 10px;
 }
 
@@ -268,7 +318,7 @@ const sortedItems = computed(() => {
 
 /* Firefox */
 .scroll-container {
-  scrollbar-color: #667eea #f1f5f9;
+  scrollbar-color: #6366f1 #2e2e48;
   scrollbar-width: thin;
 }
 

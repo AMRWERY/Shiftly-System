@@ -1,19 +1,11 @@
 <template>
   <div>
-    <dynamic-dialog
-      :model-value="isOpen"
-      :title="dialogTitle"
-      :show-default-footer="false"
-      @update:model-value="handleClose"
-      @close="handleClose"
-    >
+    <dynamic-dialog :model-value="isOpen" :title="dialogTitle" :show-default-footer="false"
+      @update:model-value="handleClose" @close="handleClose">
       <!-- Loading State -->
       <template #body>
         <div v-if="loading" class="flex items-center justify-center p-12">
-          <icon
-            name="svg-spinners:ring-resize"
-            class="w-8 h-8 text-indigo-600"
-          />
+          <icon name="svg-spinners:ring-resize" class="w-8 h-8 text-indigo-400" />
         </div>
 
         <!-- Content -->
@@ -29,12 +21,7 @@
       <!-- Footer -->
       <template #footer>
         <div v-if="!loading" class="flex items-center justify-end gap-3">
-          <base-button
-            type="button"
-            variant="outline"
-            @click="handleClose"
-            :disabled="saving"
-          >
+          <base-button type="button" variant="outline" @click="handleClose" :disabled="saving">
             {{ t("btn.cancel") }}
           </base-button>
           <base-button type="button" @click="handleSubmit" :disabled="saving">

@@ -1,65 +1,67 @@
 <template>
-  <div>
-    <div class="flex items-center justify-end ms-auto p-10">
-      <!-- RTL Toggle -->
-      <button class="text-gray-600 hover:text-gray-800 me-1 p-2 border border-gray-300 rounded-lg hover:bg-gray-100"
+  <div class="min-h-screen flex items-center justify-center relative p-4 lg:p-8">
+    <!-- RTL Toggle positioned absolutely -->
+    <div class="absolute top-4 end-4 lg:top-8 lg:end-8 z-50">
+      <button
+        class="text-gray-100 hover:text-white me-1 border border-gray-200/20 hover:border-gray-300/40 py-1.5 px-3 rounded-lg transition-all bg-white/5 backdrop-blur-sm"
         @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
         <span v-if="localeStore.isRTL" class="flex items-center">
-          <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
+          <icon name="heroicons:language" class="w-4 h-4 me-2" />
           En
         </span>
         <span v-else class="flex items-center">
-          <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
+          <icon name="heroicons:language" class="w-4 h-4 me-2" />
           العربية
         </span>
       </button>
     </div>
 
-    <div class="flex items-center justify-center min-h-screen p-4">
-      <div class="flex w-full max-w-4xl rounded-lg shadow-xl overflow-hidden">
-        <!-- Left Side - Dark Background with Information -->
-        <div
-          class="hidden md:flex md:w-4/12 bg-gradient-to-l from-gray-900 to-gray-600 text-white p-10 flex-col justify-center">
-          <div class="max-w-md mx-auto">
-            <h1 class="text-3xl font-bold mb-4">{{ t('form.welcome') }}</h1>
-            <p class="text-gray-300 mb-10">
-              {{ t('form.activating_account') }}
-            </p>
-          </div>
+    <!-- Main Card Container -->
+    <div
+      class="flex flex-col md:flex-row w-full max-w-4xl h-auto min-h-[400px] rounded-2xl shadow-2xl overflow-hidden border border-gray-700/50 relative z-10 transition-all">
+      <!-- Left Side - Dark Background with Information -->
+      <div
+        class="hidden md:flex md:w-4/12 bg-gradient-to-br from-indigo-900 via-brand-systemBg to-brand-layoutBg text-white p-10 flex-col justify-center border-e border-gray-700">
+        <div class="max-w-md mx-auto">
+          <h1 class="text-3xl font-bold mb-4">{{ t('form.welcome') }}</h1>
+          <p class="text-gray-300 mb-10">
+            {{ t('form.activating_account') }}
+          </p>
         </div>
+      </div>
 
-        <!-- Right Side - Content -->
-        <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-white">
-          <div class="w-full max-w-lg text-center">
-            <div v-if="loading" class="space-y-4">
-              <icon name="svg-spinners:180-ring-with-bg" class="w-12 h-12 mx-auto text-blue-600" />
-              <p class="text-gray-600">{{ t('form.setting_up_account') }}</p>
-            </div>
+      <!-- Right Side - Content -->
+      <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-brand-systemBg">
+        <div class="w-full max-w-lg text-center">
+          <div v-if="loading" class="space-y-4">
+            <icon name="svg-spinners:180-ring-with-bg" class="w-12 h-12 mx-auto text-indigo-500" />
+            <p class="text-gray-300">{{ t('form.setting_up_account') }}</p>
+          </div>
 
-            <div v-else-if="error" class="space-y-4">
-              <icon name="material-symbols:error-outline-rounded" class="w-12 h-12 mx-auto text-red-600" />
-              <h2 class="text-xl font-semibold text-gray-800">{{ t('form.activation_failed') }}</h2>
-              <p class="text-gray-600">{{ errorMessage }}</p>
-              <base-button @click="retry" variant="outline" class="mt-4 flex items-center justify-center" :padding-x="'px-3'" :padding-y="'py-2'">
-                {{ t('btn.retry') }}
-              </base-button>
-            </div>
+          <div v-else-if="error" class="space-y-4">
+            <icon name="material-symbols:error-outline-rounded" class="w-12 h-12 mx-auto text-red-300" />
+            <h2 class="text-xl font-semibold text-white">{{ t('form.activation_failed') }}</h2>
+            <p class="text-gray-300">{{ errorMessage }}</p>
+            <base-button @click="retry" variant="outline" class="mt-4 flex items-center justify-center"
+              :padding-x="'px-3'" :padding-y="'py-2'">
+              {{ t('btn.retry') }}
+            </base-button>
+          </div>
 
-            <div v-else-if="success" class="space-y-4">
-              <icon name="mdi-check-circle" class="w-12 h-12 mx-auto text-green-600" />
-              <h2 class="text-xl font-semibold text-gray-800">{{ t('form.account_activated') }}</h2>
-              <p class="text-gray-600">{{ t('form.default_password_set') }}</p>
-              <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
-                <p class="text-sm text-blue-800">
-                  <strong>{{ t('form.default_password') }}:</strong> 1234567
-                </p>
-                <p class="text-xs text-blue-600 mt-2">{{ t('form.change_password_later') }}</p>
-              </div>
-              <base-button @click="goToLogin" class="mt-4 flex items-center justify-center" :padding-x="'px-3'"
-                :padding-y="'py-2'">
-                {{ t('btn.go_to_login') }}
-              </base-button>
+          <div v-else-if="success" class="space-y-4">
+            <icon name="mdi-check-circle" class="w-12 h-12 mx-auto text-emerald-500" />
+            <h2 class="text-xl font-semibold text-white">{{ t('form.account_activated') }}</h2>
+            <p class="text-gray-300">{{ t('form.default_password_set') }}</p>
+            <div class="bg-indigo-900/30 border border-indigo-500/30 rounded-lg p-4 mt-4">
+              <p class="text-sm text-indigo-300">
+                <strong>{{ t('form.default_password') }}:</strong> 1234567
+              </p>
+              <p class="text-xs text-indigo-400 mt-2">{{ t('form.change_password_later') }}</p>
             </div>
+            <base-button @click="goToLogin" class="mt-4 flex items-center justify-center" :padding-x="'px-3'"
+              :padding-y="'py-2'">
+              {{ t('btn.go_to_login') }}
+            </base-button>
           </div>
         </div>
       </div>
@@ -166,9 +168,9 @@ const handleInviteConfirmation = async () => {
     if (hashError || queryError) {
       const errorCode = hashErrorCode || hashError || queryError;
       const errorDesc = hashErrorDescription || queryErrorDescription || '';
-      
+
       console.error('Invite link error:', { errorCode, errorDesc });
-      
+
       // Provide user-friendly error messages
       if (errorCode === 'otp_expired' || errorDesc.includes('expired')) {
         throw new Error('The invite link has expired. Please contact your administrator to send you a new invitation.');
@@ -305,18 +307,18 @@ const goToLogin = async () => {
     // Clear the session and store completely
     authStore.session = null;
     authStore.user = null;
-    
+
     // Also sign out from Supabase
     await supabase.auth.signOut();
-    
+
     // Clear local storage to be extra safe
     if (typeof window !== 'undefined') {
       localStorage.removeItem('sb-' + process.env.SUPABASE_URL?.split('//')[1]?.split('.')[0] + '-auth-token');
     }
-    
+
     // Small delay to ensure everything is cleared
     await new Promise(resolve => setTimeout(resolve, 100));
-    
+
     // Force full page reload to login with a query param to bypass middleware check
     window.location.replace('/auth?from=invite');
   } catch (err) {

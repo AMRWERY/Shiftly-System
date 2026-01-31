@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>pending-leave</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      pending-leave
+    </p>
   </div>
 </template>
 

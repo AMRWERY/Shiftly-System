@@ -1,6 +1,7 @@
 <template>
     <div>
-        <p class="p-6 text-3xl text-gray-600 hover:font-semibold hover:underline hover:text-gray-800 cursor-pointer">
+        <p
+            class="p-6 text-3xl text-gray-300 hover:font-semibold hover:underline hover:text-white cursor-pointer transition-colors">
             {{ formattedUserRole }}</p>
 
         <div class="p-6 mt-16">
@@ -14,11 +15,11 @@
                 :message="t('dialog.reset_password_message')" :confirm-text="t('btn.confirm')">
                 <template #body>
                     <!-- dialog body will be here -->
-                    <p class="text-gray-700 text-sm mb-4">
+                    <p class="text-gray-300 text-sm mb-4">
                         {{ t('dialog.otp_message') }}
                     </p>
                     <input type="text" maxlength="6"
-                        class="border border-gray-300 rounded-md px-4 py-2 w-full text-center tracking-widest"
+                        class="border border-gray-600 rounded-md px-4 py-2 w-full text-center tracking-widest bg-brand-systemBg text-white"
                         :placeholder="t('form.enter_otp')" />
                 </template>
 

@@ -26,10 +26,10 @@
                         <img :src="user.avatarUrl || '/img/dummy-profile-img.jpg'" :alt="user.fullName"
                             class="w-20 h-20 rounded-full object-cover border-4 border-gray-50 shadow-md" />
                         <div class="flex-1">
-                            <h1 class="text-2xl font-bold text-gray-900 mb-1">
+                            <h1 class="text-2xl font-bold text-gray-400 mb-1">
                                 {{ t('permissions.edit_permissions_for') }}: {{ user.fullName }}
                             </h1>
-                            <p class="text-sm text-gray-600 mb-2">{{ user.email }}</p>
+                            <p class="text-sm text-gray-300 mb-2">{{ user.email }}</p>
                             <div class="flex gap-2">
                                 <span
                                     class="inline-block px-3 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800">
@@ -47,10 +47,10 @@
                 <!-- Permissions Section -->
                 <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8">
                     <div class="mb-6">
-                        <h2 class="text-xl font-semibold text-gray-900 mb-2">
+                        <h2 class="text-xl font-semibold text-gray-400 mb-2">
                             {{ t('permissions.manage_permissions') }}
                         </h2>
-                        <p class="text-sm text-gray-600">
+                        <p class="text-sm text-gray-300">
                             {{ t('permissions.select_permissions_description') }}
                         </p>
                     </div>
@@ -69,16 +69,16 @@
                     </div>
 
                     <!-- Permissions Grid -->
-                    <div v-else class="space-y-4 max-h-[500px] overflow-y-auto pr-2">
+                    <div v-else class="space-y-4 max-h-[500px] overflow-y-auto pe-2">
                         <div v-for="module in permissionsStore.permissionModules" :key="module"
                             class="border border-gray-200 rounded-lg p-5 hover:border-blue-300 transition-all duration-200 hover:shadow-md">
                             <div class="flex items-center justify-between mb-4">
-                                <label class="text-base font-semibold text-gray-900 flex items-center gap-2">
-                                    <icon :name="getModuleIcon(module)" class="w-5 h-5 text-blue-600" />
+                                <label class="text-base font-semibold text-gray-400 flex items-center gap-2">
+                                    <icon :name="getModuleIcon(module)" class="w-5 h-5 text-blue-400" />
                                     {{ t(`permissions.modules.${module}`) }}
                                 </label>
                                 <button type="button" @click="permissionsStore.toggleAllModuleActions(module)"
-                                    class="text-xs text-blue-600 hover:text-blue-800 font-medium px-3 py-1.5 rounded-md hover:bg-blue-50 transition-colors">
+                                    class="text-xs text-blue-400 hover:text-blue-800 font-medium px-3 py-1.5 rounded-md hover:bg-blue-50 transition-colors">
                                     {{ permissionsStore.areAllActionsSelected(module) ? t('permissions.deselect_all') :
                                     t('permissions.select_all') }}
                                 </button>
@@ -90,8 +90,8 @@
                                     <input type="checkbox" :checked="permissionsStore.hasPermission(module, action)"
                                         @change="permissionsStore.togglePermission(module, action)"
                                         :disabled="permissionsStore.saving"
-                                        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" />
-                                    <span class="ms-2 text-sm text-gray-700 group-hover:text-gray-900 font-medium">
+                                        class="w-4 h-4 text-blue-400 border-gray-300 rounded focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" />
+                                    <span class="ms-2 text-sm text-gray-300 group-hover:text-gray-400 font-medium">
                                         {{ t(`permissions.actions.${action}`) }}
                                     </span>
                                 </label>
@@ -102,7 +102,7 @@
                     <!-- Action Buttons -->
                     <div class="mt-8 flex justify-end gap-3 pt-6 border-t border-gray-200">
                         <base-button type="button" variant="outline" bg-color="bg-gray-100"
-                            hover-color="hover:bg-gray-200" text-color="text-gray-700" padding-x="px-6"
+                            hover-color="hover:bg-gray-200" text-color="text-gray-300" padding-x="px-6"
                             padding-y="py-2.5" @click="navigateBack" :disabled="permissionsStore.saving">
                             {{ t('btn.cancel') }}
                         </base-button>
@@ -213,11 +213,11 @@ const getStatusBadgeClass = (status: string) => {
         case 'active':
             return 'bg-green-100 text-green-800 border-green-200'
         case 'blocked':
-            return 'bg-red-100 text-red-800 border-red-200'
+            return 'bg-red-100 text-red-500 border-red-200'
         case 'pending':
             return 'bg-yellow-100 text-yellow-800 border-yellow-200'
         default:
-            return 'bg-gray-100 text-gray-800 border-gray-200'
+            return 'bg-gray-100 text-gray-500 border-gray-200'
     }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>employee-assets-list</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">employee-assets-list</p>
   </div>
 </template>
 

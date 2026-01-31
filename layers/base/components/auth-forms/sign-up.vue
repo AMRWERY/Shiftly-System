@@ -21,8 +21,8 @@
             :name="t('form.last_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.lastName" />
         </div>
         <div class="mt-7 sm:col-span-6 flex justify-end">
-          <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
-            :text-color="'text-white'" :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
+          <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
+            :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group" @click="nextStep">{{
               t("btn.next") }}</base-button>
         </div>
@@ -47,8 +47,8 @@
         </div>
 
         <div class="mt-7 sm:col-span-6 flex justify-end">
-          <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
-            :text-color="'text-white'" :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
+          <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
+            :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group" @click="nextStep">{{
               t("btn.next") }}</base-button>
         </div>
@@ -57,32 +57,29 @@
       <!-- step 3: OTP Verification -->
       <form v-else-if="currentStep === 2" @submit.prevent="handleVerifyOtp" class="space-y-6">
         <div class="text-center mb-4">
-          <p class="text-sm text-gray-600 mb-2">{{ t('form.otp_instruction') }}</p>
-          <p class="text-xs text-gray-500">{{ t('form.check_email_for_code_or_link') }}</p>
+          <p class="text-sm text-gray-300 mb-2">{{ t('form.otp_instruction') }}</p>
+          <p class="text-xs text-gray-400">{{ t('form.check_email_for_code_or_link') }}</p>
         </div>
-        
+
         <div class="flex flex-col space-y-16">
           <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
             <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
-              class="w-16 h-16 text-lg text-center bg-white border border-gray-200 outline-none rounded-xl focus:bg-gray-50 focus:ring-2 ring-blue-700"
+              class="w-16 h-16 text-lg text-center bg-brand-systemBg border border-gray-700 outline-none rounded-xl focus:bg-white/5 focus:ring-2 ring-indigo-500 text-white"
               @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
           </div>
         </div>
 
         <div class="mt-7">
-          <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
-            :padding-y="'py-2.5'"
-            class="flex items-center justify-center rounded-lg border-2 transition-colors group"
-            :disabled="loading">
+          <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
+            class="flex items-center justify-center rounded-lg border-2 transition-colors group" :disabled="loading">
             <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
             <span v-else>{{ t('btn.verify_account') }}</span>
           </base-button>
         </div>
 
-        <div class="flex items-center justify-center text-sm">
-          <p>{{ t('form.didnt_recieve_code') }} <button type="button" @click="resendOtp"
-              :disabled="resendCooldown > 0"
-              class="text-gray-600 hover:underline font-semibold disabled:text-gray-400 disabled:cursor-not-allowed">
+        <div class="flex items-center justify-center text-sm text-gray-300">
+          <p>{{ t('form.didnt_recieve_code') }} <button type="button" @click="resendOtp" :disabled="resendCooldown > 0"
+              class="text-indigo-400 hover:text-indigo-300 hover:underline font-semibold disabled:text-gray-300 disabled:cursor-not-allowed">
               {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
             </button></p>
         </div>
@@ -95,15 +92,15 @@
             class="rounded-full object-cover xl:w-[9rem] xl:h-[9rem] lg:w-[8rem] lg:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-yellow-500 shadow-xl relative">
             <img :src="imagePreviewUrl" class="object-cover w-full h-full rounded-full" />
             <button type="button" v-if="imagePreviewUrl" @click="removeImagePreview"
-              class="absolute p-0.5 text-white bg-red-500 rounded-full -top-0 -end-0 hover:bg-red-600 flex items-center">
+              class="absolute p-0.5 text-white bg-red-400 rounded-full -top-0 -end-0 hover:bg-red-400 flex items-center">
               <icon name="material-symbols:close-small-rounded"></icon>
             </button>
           </div>
           <div v-else
-            class="p-4 border border-indigo-500 rounded-full shadow-md object-cover xl:w-[9rem] xl:h-[9rem] lg:w-[8rem] lg:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-yellow-500 bg-gray-50">
+            class="p-4 border border-gray-700 rounded-full shadow-md object-cover xl:w-[9rem] xl:h-[9rem] lg:w-[8rem] lg:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-indigo-500 bg-brand-systemBg">
             <label for="profile-img" class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
-              <icon name="material-symbols:photo" class="text-indigo-600 w-12 h-12"></icon>
-              <p class="font-medium text-center text-gray-600">
+              <icon name="material-symbols:photo" class="text-indigo-400 w-12 h-12"></icon>
+              <p class="font-medium text-center text-gray-300">
                 {{ t("form.chose_your_img") }}
               </p>
             </label>
@@ -112,9 +109,8 @@
         </div>
 
         <div class="mt-7">
-          <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
-            :padding-y="'py-2.5'" class="flex items-center justify-center rounded-lg border-2 transition-colors group"
-            :disabled="loading">
+          <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
+            class="flex items-center justify-center rounded-lg border-2 transition-colors group" :disabled="loading">
             <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
             <span v-else>{{ t("btn.create_account_button") }}</span>
           </base-button>
@@ -309,7 +305,7 @@ const handleVerifyOtp = async () => {
 
 const resendOtp = async () => {
   if (resendCooldown.value > 0) return;
-  
+
   startLoading();
   const result = await authStore.sendSignUpOtp(form.value.email);
   if (result.success) {
@@ -410,7 +406,7 @@ const handleSignup = async () => {
     });
     return;
   }
-  
+
   // Check if user is already authenticated via OTP
   if (!authStore.isAuthenticated || !isEmailVerified.value) {
     triggerToast({
@@ -420,7 +416,7 @@ const handleSignup = async () => {
     });
     return;
   }
-  
+
   startLoading();
   const result = await authStore.signup({
     email: form.value.email,

@@ -1,11 +1,13 @@
 <template>
-    <div>
-        <p>policy-violations</p>
-    </div>
+  <div>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      policy-violations
+    </p>
+  </div>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-    layout: "dashboard",
+  layout: "dashboard",
 });
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>job-openings</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">job-openings</p>
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="max-w-7xl mx-auto p-4">
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-500">
-                <div class="flex items-center justify-between px-6 py-4 bg-gray-800 text-white rounded-t-lg">
+            <div class="card-bg shadow-lg rounded-lg overflow-hidden">
+                <div class="flex items-center justify-between px-6 py-4 bg-brand-systemBg text-white rounded-t-lg">
                     <button @click="prevMonth" class="p-2 rounded-full transition-colors">
                         <icon name="material-symbols:chevron-left" class="w-6 h-6 rtl:rotate-180" />
                     </button>
@@ -12,46 +12,47 @@
                     </button>
                 </div>
 
-                <div class="grid grid-cols-7 gap-px bg-gray-200" v-if="!loading">
+                <div class="grid grid-cols-7 gap-px bg-gray-700" v-if="!loading">
                     <div v-for="day in dayHeaders" :key="day"
-                        class="text-center py-3 bg-gray-100 text-gray-700 font-medium text-sm rounded-t-none">
+                        class="text-center py-3 bg-brand-systemBg text-gray-300 font-medium text-sm rounded-t-none">
                         {{ day }}
                     </div>
 
                     <div v-for="blank in blankDays" :key="'blank-' + blank"
-                        class="bg-gray-50 p-2 h-24 sm:h-32 rounded-none"></div>
+                        class="bg-brand-layoutBg/50 p-2 h-24 sm:h-32 rounded-none"></div>
 
                     <div v-for="day in daysInMonth" :key="day.date" :class="[
-                        'p-2 text-center relative h-24 sm:h-32 overflow-hidden rounded-none cursor-pointer',
-                        isToday(day.date) ? 'bg-blue-100 border-2 border-blue-500' : 'bg-white hover:bg-gray-50',
-                        day.isHolidayEgypt ? 'bg-green-100 border border-green-400' : ''
+                        'p-2 text-center relative h-24 sm:h-32 overflow-hidden rounded-none cursor-pointer transition-colors',
+                        isToday(day.date) ? 'bg-indigo-500/20 border-2 border-indigo-500' : 'bg-brand-layoutBg hover:bg-white/5',
+                        day.isHolidayEgypt ? 'bg-green-500/20 border border-green-500' : ''
                     ]">
                         <span :class="[
                             'text-sm sm:text-base font-medium',
-                            isToday(day.date) ? 'text-blue-700 font-bold' : 'text-gray-800',
-                            day.isHolidayEgypt ? 'text-green-700 font-bold' : ''
+                            isToday(day.date) ? 'text-indigo-400 font-extrabold' : 'text-gray-300',
+                            day.isHolidayEgypt ? 'text-green-400 font-bold' : ''
                         ]">
                             {{ day.dayNumber }}
                         </span>
                         <div v-if="day.isHolidayEgypt && day.holidayName"
-                            class="mt-1 text-xs text-green-600 break-words leading-tight">
+                            class="mt-1 text-xs text-green-400 break-words leading-tight">
                             <p class="font-semibold mt-4">{{ localizedHolidayName(day) }}</p>
                         </div>
                     </div>
                 </div>
 
-                <div v-else class="grid grid-cols-7 gap-px bg-gray-200 animate-pulse">
+                <div v-else class="grid grid-cols-7 gap-px bg-gray-700 animate-pulse">
                     <!-- Skeleton for day headers -->
-                    <div v-for="n in 7" :key="'header-skel-' + n" class="h-10 bg-gray-300 rounded"></div>
+                    <div v-for="n in 7" :key="'header-skel-' + n" class="h-10 bg-brand-systemBg rounded"></div>
                     <!-- Skeleton for blank days -->
                     <div v-for="n in blankDays.length" :key="'blank-skel-' + n"
-                        class="bg-gray-100 h-24 sm:h-32 rounded"></div>
+                        class="bg-brand-layoutBg h-24 sm:h-32 rounded"></div>
                     <!-- Skeleton for days in month -->
-                    <div v-for="n in numDaysInMonth" :key="'day-skel-' + n" class="bg-gray-100 h-24 sm:h-32 rounded">
+                    <div v-for="n in numDaysInMonth" :key="'day-skel-' + n"
+                        class="bg-brand-layoutBg h-24 sm:h-32 rounded">
                     </div>
                 </div>
 
-                <div v-if="error" class="p-4 text-center text-red-500">{{ error }}</div>
+                <div v-if="error" class="p-4 text-center text-red-300">{{ error }}</div>
             </div>
         </div>
     </div>

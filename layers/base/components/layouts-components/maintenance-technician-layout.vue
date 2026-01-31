@@ -15,7 +15,7 @@
         <ul v-if="dropdownStates.service_requests" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/pending-tasks" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/pending-tasks') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/pending-tasks') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.pending_tasks")
               }}</span>
@@ -23,7 +23,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/completed-history" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/completed-history') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/completed-history') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.completed_history")
               }}</span>
@@ -31,7 +31,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/priority-queue" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/priority-queue') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/priority-queue') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.priority_queue")
               }}</span>
@@ -54,7 +54,7 @@
         <ul v-if="dropdownStates.preventive_maint" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/scheduled-tasks" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/scheduled-tasks') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/scheduled-tasks') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.scheduled_tasks")
               }}</span>
@@ -62,7 +62,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/maintenance-calendar" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/maintenance-calendar') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/maintenance-calendar') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.maintenance_calendar")
               }}</span>
@@ -85,7 +85,7 @@
         <ul v-if="dropdownStates.asset_maintenance_log" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/asset-list" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/asset-list') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/asset-list') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.asset_list")
               }}</span>
@@ -93,7 +93,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/repair-history" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/repair-history') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/repair-history') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.repair_history")
               }}</span>
@@ -101,7 +101,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/cost-tracking" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/cost-tracking') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/cost-tracking') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.cost_tracking")
               }}</span>
@@ -124,7 +124,7 @@
         <ul v-if="dropdownStates.spare_parts" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/parts-usage" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/parts-usage') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/parts-usage') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.parts_usage")
               }}</span>
@@ -132,7 +132,7 @@
           </li>
           <li>
             <nuxt-link-locale to="/stock-request-from-inventory" class="flex items-center p-2 rounded-lg group ps-7"
-              :class="isActive('/stock-request-from-inventory') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
+              :class="isActive('/stock-request-from-inventory') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
                 t("layouts.stock_request_from_inventory")
               }}</span>

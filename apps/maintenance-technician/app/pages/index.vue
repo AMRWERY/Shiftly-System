@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h1>Maintenance Technician</h1>
-    <p>Welcome to the Maintenance Technician application.</p>
+    <div class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      <p>Shiftly Maintenance Technician Dashboard</p>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'dashboard'
-})
+  layout: "dashboard",
+});
 </script>

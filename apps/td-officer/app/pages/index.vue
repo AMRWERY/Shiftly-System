@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>T&D Officer</h1>
-    <p>Welcome to the Training & Development Officer application.</p>
+    <div class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      <p>Shiftly Training & Development Officer Dashboard</p>
+    </div>
   </div>
 </template>
 

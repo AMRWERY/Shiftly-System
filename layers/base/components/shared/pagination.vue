@@ -1,31 +1,28 @@
 <template>
   <div>
-    <ul class="flex border-2 border-gray-200 divide-s-2 divide-gray-200 rounded-lg overflow-hidden w-max my-9 ms-auto">
-      <li
-        class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm text-slate-900 font-semibold"
-        :class="{ 'opacity-50 cursor-not-allowed': currentPage === 1 }" @click="changePage(currentPage - 1)">
+    <ul class="flex border border-gray-700 divide-x divide-gray-700 rounded-lg overflow-hidden w-max my-9 ms-auto">
+      <li class="flex items-center justify-center shrink-0 px-4 py-2 cursor-pointer text-sm text-white font-semibold"
+        :class="{ 'opacity-30 cursor-not-allowed': currentPage === 1 }" @click="changePage(currentPage - 1)">
         {{ t('btn.previous') }}
       </li>
 
       <template v-for="page in visiblePages" :key="page">
         <li v-if="page === '...'"
-          class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-base font-semibold text-gray-500">
+          class="flex items-center justify-center shrink-0 px-4 py-2 cursor-pointer text-base font-semibold text-gray-300">
           ...
         </li>
-        
-        <li v-else
-          class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-base font-semibold"
+
+        <li v-else class="flex items-center justify-center shrink-0 px-4 py-2 cursor-pointer text-base font-semibold"
           :class="{
-            '!bg-gray-100 text-slate-900': page === currentPage,
-            'text-gray-500': page !== currentPage
+            'bg-brand-systemBg text-white': page === currentPage,
+            'text-gray-400 hover:bg-white/5': page !== currentPage
           }" @click="changePage(page as number)">
           {{ page }}
         </li>
       </template>
 
-      <li
-        class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm text-slate-900 font-semibold"
-        :class="{ 'opacity-50 cursor-not-allowed': currentPage === totalPages }" @click="changePage(currentPage + 1)">
+      <li class="flex items-center justify-center shrink-0 px-4 py-2 cursor-pointer text-sm text-white font-semibold"
+        :class="{ 'opacity-30 cursor-not-allowed': currentPage === totalPages }" @click="changePage(currentPage + 1)">
         {{ t('btn.next') }}
       </li>
     </ul>

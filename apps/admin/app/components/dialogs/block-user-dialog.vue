@@ -1,56 +1,35 @@
 <template>
   <div>
-    <dynamic-dialog
-      :model-value="show"
-      :title="dialogTitle"
-      :show-default-footer="false"
-      @update:model-value="closeDialog"
-      @close="closeDialog"
-    >
+    <dynamic-dialog :model-value="show" :title="dialogTitle" :show-default-footer="false"
+      @update:model-value="closeDialog" @close="closeDialog">
       <template #body>
         <div class="text-center">
-          <icon
-            :name="
-              isBlocked
-                ? 'mdi:account-check-outline'
-                : 'mdi:account-cancel-outline'
-            "
-            :class="[
+          <icon :name="isBlocked
+              ? 'mdi:account-check-outline'
+              : 'mdi:account-cancel-outline'
+            " :class="[
               'w-20 h-20 mx-auto',
               isBlocked ? 'text-green-500' : 'text-orange-500',
-            ]"
-          />
-          <p class="text-gray-600 mt-4">{{ dialogMessage }}</p>
+            ]" />
+          <p class="text-gray-300 mt-4">{{ dialogMessage }}</p>
         </div>
       </template>
       <template #footer>
-        <button
-          @click="closeDialog"
-          type="button"
-          class="px-5 py-2.5 rounded-lg text-slate-900 text-sm font-medium bg-gray-200 hover:bg-gray-300 active:bg-gray-200"
-        >
+        <button @click="closeDialog" type="button"
+          class="px-5 py-2.5 rounded-lg text-white text-sm font-medium bg-gray-700 hover:bg-gray-600 active:bg-gray-700 transition-colors">
           {{ cancelText }}
         </button>
-        <button
-          @click="confirmAction"
-          type="button"
-          :class="[
-            'px-5 py-2.5 rounded-lg text-white text-sm font-medium ms-4',
-            loading
-              ? isBlocked
-                ? 'bg-green-400 cursor-not-allowed'
-                : 'bg-orange-400 cursor-not-allowed'
-              : isBlocked
+        <button @click="confirmAction" type="button" :class="[
+          'px-5 py-2.5 rounded-lg text-white text-sm font-medium ms-4',
+          loading
+            ? isBlocked
+              ? 'bg-green-400 cursor-not-allowed'
+              : 'bg-orange-400 cursor-not-allowed'
+            : isBlocked
               ? 'bg-green-600 hover:bg-green-700 active:bg-green-600'
               : 'bg-orange-600 hover:bg-orange-700 active:bg-orange-600',
-          ]"
-          :disabled="loading"
-        >
-          <icon
-            v-if="loading"
-            name="svg-spinners:270-ring"
-            class="w-5 h-5 inline"
-          />
+        ]" :disabled="loading">
+          <icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5 inline" />
           <span v-else>{{ confirmText }}</span>
         </button>
       </template>

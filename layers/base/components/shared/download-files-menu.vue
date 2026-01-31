@@ -2,14 +2,14 @@
   <div>
     <div class="relative w-max mx-auto" ref="dropdownContainer">
       <button type="button" @click="isOpen = !isOpen"
-        class="px-5 py-2.5 rounded text-sm font-medium border border-slate-300 cursor-pointer outline-0 bg-white hover:bg-slate-50 flex items-center">
+        class="px-5 py-2.5 rounded text-sm font-medium border border-gray-700 cursor-pointer outline-0 bg-brand-systemBg hover:bg-white/10 text-white transition-colors flex items-center">
         {{ t('menu.download') }}
-        <icon name="ic:sharp-keyboard-arrow-down" class="w-5 h-5 ms-3" />
+        <icon name="ic:sharp-keyboard-arrow-down" class="w-5 h-5 ms-3 text-gray-400" />
       </button>
       <ul v-show="isOpen"
-        class="absolute block shadow-lg bg-white py-2 px-2 z-[1000] min-w-full w-max rounded-sm max-h-96 overflow-auto mt-1">
+        class="absolute block shadow-2xl bg-brand-cardBg border border-gray-700 py-2 px-2 z-[1000] min-w-full w-max rounded-lg max-h-96 overflow-auto mt-2">
         <li @click="downloadData('pdf')"
-          class="dropdown-item py-2.5 px-4 hover:bg-slate-100 rounded-sm text-sm font-medium cursor-pointer">
+          class="dropdown-item py-2.5 px-4 hover:bg-white/5 text-gray-200 rounded-md text-sm font-medium cursor-pointer transition-colors">
           <div class="flex items-center">
             <div class="flex items-center gap-3">
               <icon name="vscode-icons:file-type-pdf2" />
@@ -18,7 +18,7 @@
           </div>
         </li>
         <li @click="downloadData('excel')"
-          class="dropdown-item py-2.5 px-4 hover:bg-slate-100 rounded-sm text-sm font-medium cursor-pointer">
+          class="dropdown-item py-2.5 px-4 hover:bg-white/5 text-gray-200 rounded-md text-sm font-medium cursor-pointer transition-colors">
           <div class="flex items-center">
             <div class="flex items-center gap-3">
               <icon name="vscode-icons:file-type-excel" />

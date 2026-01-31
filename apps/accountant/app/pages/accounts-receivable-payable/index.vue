@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>accounts-receivable-payable</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">accounts-receivable-payable</p>
   </div>
 </template>
 

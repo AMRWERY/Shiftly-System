@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>pending-expenses</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      pending-expenses
+    </p>
   </div>
 </template>
 

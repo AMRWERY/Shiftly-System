@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>evaluation-cycles</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">evaluation-cycles</p>
   </div>
 </template>
 

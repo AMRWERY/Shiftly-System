@@ -5,7 +5,7 @@
         <button @click="toggleDropdown('employees_records')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
-            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
+            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-300" aria-hidden="true" />
           <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.employees_records")
           }}</span>
@@ -44,7 +44,7 @@
         <button @click="toggleDropdown('time_attendance')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
-            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
+            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-300" aria-hidden="true" />
           <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.time_attendance")
           }}</span>
@@ -83,7 +83,7 @@
         <button @click="toggleDropdown('leave_mgt')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
-            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
+            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-300" aria-hidden="true" />
           <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.leave_mgt")
           }}</span>
@@ -122,7 +122,7 @@
         <button @click="toggleDropdown('performance')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
-            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
+            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-300" aria-hidden="true" />
           <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.performance")
           }}</span>
@@ -161,7 +161,7 @@
         <button @click="toggleDropdown('asset_assignment')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
-            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
+            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-300" aria-hidden="true" />
           <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.asset_assignment")
           }}</span>
@@ -192,7 +192,7 @@
         <button @click="toggleDropdown('recruitment')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
-            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
+            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-300" aria-hidden="true" />
           <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.recruitment")
           }}</span>

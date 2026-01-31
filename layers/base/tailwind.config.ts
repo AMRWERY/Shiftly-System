@@ -13,6 +13,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: {
+          systemBg: "#2E2E48",
+          layoutBg: "#464667",
+          cardBg: "#3A3A5A",
+        },
         // Light grays for backgrounds or cards
         lightsmoke: "#F5F5F5",
         gainsboro: "#DCDCDC",

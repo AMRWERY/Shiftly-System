@@ -1,48 +1,28 @@
 <template>
   <div>
-    <dynamic-dialog
-      :model-value="show"
-      :title="dialogTitle"
-      :show-default-footer="false"
-      @update:model-value="closeDialog"
-      @close="closeDialog"
-    >
+    <dynamic-dialog :model-value="show" :title="dialogTitle" :show-default-footer="false"
+      @update:model-value="closeDialog" @close="closeDialog">
       <template #body>
         <div class="text-center">
-          <icon
-            name="material-symbols:warning-outline"
-            class="w-20 h-20 mx-auto text-red-500"
-          />
-          <p class="text-gray-600 mt-4">{{ dialogMessage }}</p>
-          <p class="text-red-600 font-semibold mt-3">
+          <icon name="material-symbols:warning-outline" class="w-20 h-20 mx-auto text-red-300" />
+          <p class="text-gray-300 mt-4">{{ dialogMessage }}</p>
+          <p class="text-red-400 font-semibold mt-3">
             {{ t("dialog.deactivate_warning") }}
           </p>
         </div>
       </template>
       <template #footer>
-        <button
-          @click="closeDialog"
-          type="button"
-          class="px-5 py-2.5 rounded-lg text-slate-900 text-sm font-medium bg-gray-200 hover:bg-gray-300 active:bg-gray-200"
-        >
+        <button @click="closeDialog" type="button"
+          class="px-5 py-2.5 rounded-lg text-white text-sm font-medium bg-gray-700 hover:bg-gray-600 active:bg-gray-700 transition-colors">
           {{ cancelText }}
         </button>
-        <button
-          @click="confirmAction"
-          type="button"
-          :class="[
-            'px-5 py-2.5 rounded-lg text-white text-sm font-medium ms-4',
-            loading
-              ? 'bg-red-400 cursor-not-allowed'
-              : 'bg-red-600 hover:bg-red-700 active:bg-red-600',
-          ]"
-          :disabled="loading"
-        >
-          <icon
-            v-if="loading"
-            name="svg-spinners:270-ring"
-            class="w-5 h-5 inline"
-          />
+        <button @click="confirmAction" type="button" :class="[
+          'px-5 py-2.5 rounded-lg text-white text-sm font-medium ms-4',
+          loading
+            ? 'bg-red-400 cursor-not-allowed'
+            : 'bg-red-400 hover:bg-red-500 active:bg-red-400',
+        ]" :disabled="loading">
+          <icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5 inline" />
           <span v-else>{{ confirmText }}</span>
         </button>
       </template>

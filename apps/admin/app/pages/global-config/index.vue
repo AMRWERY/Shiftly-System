@@ -2,132 +2,82 @@
   <div>
     <div class="space-y-6 p-6">
       <div class="flex items-center justify-between">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900">
+        <h1 class="text-2xl font-bold tracking-tight text-white">
           {{ t("global_config.title") }}
         </h1>
-        <base-button
-          type="button"
-          :padding-x="'px-4'"
-          :padding-y="'py-2'"
-          @click="save"
-          :disabled="loading"
-        >
+        <base-button type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
+          class="rounded-lg transition-colors" @click="save" :disabled="loading">
           {{ t("global_config.save_settings") }}
         </base-button>
       </div>
 
       <!-- Alert Error -->
-      <div v-if="error" class="rounded-md bg-red-50 p-4">
-        <div class="flex">
+      <!-- Alert Error -->
+      <div v-if="error" class="rounded-lg bg-red-500/10 border border-red-500/30 p-4">
+        <div class="flex items-center">
           <div class="flex-shrink-0">
-            <svg
-              class="h-5 w-5 text-red-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            <icon name="material-symbols:error-outline-rounded" class="h-5 w-5 text-red-400" />
           </div>
           <div class="ms-3">
-            <h3 class="text-sm font-medium text-red-800">{{ error }}</h3>
+            <h3 class="text-sm font-medium text-red-300">{{ error }}</h3>
           </div>
         </div>
       </div>
 
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <!-- Work Days Section -->
-        <div class="bg-white shadow rounded-lg p-6">
-          <h2 class="text-lg font-medium leading-6 text-gray-900 mb-4">
+        <div class="card-bg p-6 rounded-lg">
+          <h2 class="text-lg font-medium leading-6 text-white mb-4">
             {{ t("global_config.work_days") }}
           </h2>
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-sm text-gray-400 mb-4">
             {{ t("global_config.select_work_days") }}
           </p>
-
           <div class="space-y-4">
             <!-- Days Checkboxes -->
             <div class="grid grid-cols-2 gap-2">
-              <div
-                v-for="day in weekDays"
-                :key="day.value"
-                class="flex items-center"
-              >
-                <input
-                  :id="`day-${day.value}`"
-                  type="checkbox"
-                  :value="day.value"
-                  v-model="form.workDays"
-                  class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
-                />
-                <label
-                  :for="`day-${day.value}`"
-                  class="ms-3 text-sm leading-6 text-gray-900 font-medium"
-                >
+              <div v-for="day in weekDays" :key="day.value" class="flex items-center">
+                <input :id="`day-${day.value}`" type="checkbox" :value="day.value" v-model="form.workDays"
+                  class="h-4 w-4 rounded border-gray-700 bg-brand-systemBg text-indigo-500 focus:ring-indigo-600" />
+                <label :for="`day-${day.value}`" class="ms-3 text-sm leading-6 text-white font-medium">
                   {{ day.label }}
                 </label>
               </div>
             </div>
 
             <!-- Work Hours -->
-            <div
-              class="grid grid-cols-2 gap-4 border-t border-gray-100 pt-4 mt-4"
-            >
+            <div class="grid grid-cols-2 gap-4 border-t border-gray-700 pt-4 mt-4">
               <div>
-                <label
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >
+                <label class="block text-sm font-medium leading-6 text-white">
                   {{ t("global_config.start_time") }}
                 </label>
-                <input
-                  type="time"
-                  v-model="form.workHours.start"
-                  class="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                />
+                <input type="time" v-model="form.workHours.start"
+                  class="mt-1 block w-full rounded-md border border-gray-700 py-1.5 text-white bg-brand-systemBg shadow-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
               </div>
               <div>
-                <label
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >
+                <label class="block text-sm font-medium leading-6 text-white">
                   {{ t("global_config.end_time") }}
                 </label>
-                <input
-                  type="time"
-                  v-model="form.workHours.end"
-                  class="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                />
+                <input type="time" v-model="form.workHours.end"
+                  class="mt-1 block w-full rounded-md border border-gray-700 py-1.5 text-white bg-brand-systemBg shadow-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
               </div>
             </div>
           </div>
         </div>
 
         <!-- Currency Section -->
-        <div class="bg-white shadow rounded-lg p-6 h-fit">
-          <h2 class="text-lg font-medium leading-6 text-gray-900 mb-4">
+        <div class="card-bg p-6 rounded-lg h-fit">
+          <h2 class="text-lg font-medium leading-6 text-white mb-4">
             {{ t("global_config.currency") }}
           </h2>
           <div>
-            <label
-              for="currency"
-              class="block text-sm font-medium leading-6 text-gray-900"
-            >
+            <label for="currency" class="block text-sm font-medium leading-6 text-white">
               {{ t("global_config.currency") }}
             </label>
-            <div class="mt-2">
-              <select
-                id="currency"
-                v-model="form.currency"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 hide-scrollbar"
-              >
-                <option
-                  v-for="(name, code) in supportedCurrencies"
-                  :key="code"
-                  :value="code"
-                >
+            <div class="mt-2 text-white">
+              <select id="currency" v-model="form.currency"
+                class="block w-full rounded-md border border-gray-700 py-1.5 text-white bg-brand-systemBg shadow-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 hide-scrollbar">
+                <option v-for="(name, code) in supportedCurrencies" :key="code" :value="code">
                   {{ code }} - {{ name }}
                 </option>
               </select>
@@ -137,25 +87,19 @@
       </div>
 
       <!-- Holidays Section -->
-      <div class="bg-white shadow rounded-lg p-6">
-        <h2 class="text-lg font-medium leading-6 text-gray-900 mb-4">
+      <div class="card-bg p-6 rounded-lg">
+        <h2 class="text-lg font-medium leading-6 text-white mb-4">
           {{ t("global_config.official_holidays") }}
         </h2>
 
         <!-- Country Selection -->
         <div class="mb-6">
-          <label class="block text-sm font-medium leading-6 text-gray-900 mb-1">
+          <label class="block text-sm font-medium leading-6 text-white mb-1">
             {{ t("global_config.select_country") }}
           </label>
-          <select
-            v-model="form.holidayCountryCode"
-            class="hide-scrollbar block w-full max-w-xs rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-          >
-            <option
-              v-for="country in arabHolidays"
-              :key="country.country_code"
-              :value="country.country_code"
-            >
+          <select v-model="form.holidayCountryCode"
+            class="hide-scrollbar block w-full max-w-xs rounded-md border border-gray-700 py-1.5 text-white bg-brand-systemBg shadow-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <option v-for="country in arabHolidays" :key="country.country_code" :value="country.country_code">
               {{
                 $i18n.locale === "ar"
                   ? country.country_name_ar
@@ -163,7 +107,7 @@
               }}
             </option>
           </select>
-          <p class="mt-1 text-sm text-gray-500">
+          <p class="mt-2 text-sm text-gray-400">
             {{ t("global_config.country_holidays_description") }}
           </p>
         </div>
@@ -171,78 +115,52 @@
         <!-- Custom Holidays Divider -->
         <div class="relative py-4">
           <div class="absolute inset-0 flex items-center" aria-hidden="true">
-            <div class="w-full border-t border-gray-300"></div>
+            <div class="w-full border-t border-gray-700"></div>
           </div>
           <div class="relative flex justify-start">
-            <span class="bg-white pe-2 text-sm text-gray-500">{{
+            <span class="bg-brand-cardBg pe-2 text-sm text-gray-400">{{
               t("global_config.custom_holidays")
             }}</span>
           </div>
         </div>
 
         <div class="flex items-center justify-between mb-4">
-          <h3 class="text-base font-medium leading-6 text-gray-900">
+          <h3 class="text-base font-medium leading-6 text-white">
             {{ t("global_config.additional_holidays") }}
           </h3>
-          <base-button
-            type="button"
-            :padding-x="'px-4'"
-            :padding-y="'py-2'"
-            @click="addHoliday"
-          >
+          <base-button type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
+            class="rounded-lg transition-colors" @click="addHoliday">
             {{ t("global_config.add_holiday") }}
           </base-button>
         </div>
 
-        <div
-          v-if="form.customHolidays.length === 0"
-          class="text-center py-6 text-gray-500 text-sm"
-        >
+        <div v-if="form.customHolidays.length === 0" class="text-center py-6 text-gray-400 text-sm">
           {{ t("global_config.no_custom_holidays") }}
         </div>
 
         <div v-else class="space-y-4">
-          <div
-            v-for="(holiday, index) in form.customHolidays"
-            :key="index"
-            class="flex gap-4 items-end border-b border-gray-100 pb-4 last:border-0 last:pb-0"
-          >
+          <div v-for="(holiday, index) in form.customHolidays" :key="index"
+            class="flex gap-4 items-end border-b border-gray-700 pb-4 last:border-0 last:pb-0">
             <div class="flex-1">
-              <label class="block text-sm font-medium leading-6 text-gray-900">
+              <label class="block text-sm font-medium leading-6 text-white">
                 {{ t("global_config.holiday_name") }}
               </label>
-              <input
-                type="text"
-                v-model="holiday.name"
-                class="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-              />
+              <input type="text" v-model="holiday.name"
+                class="mt-1 block w-full rounded-md border border-gray-700 py-1.5 text-white bg-brand-systemBg shadow-sm placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
             <div class="flex-1">
-              <label class="block text-sm font-medium leading-6 text-gray-900">
+              <label class="block text-sm font-medium leading-6 text-white">
                 {{ t("global_config.holiday_date") }}
               </label>
-              <input
-                type="date"
-                v-model="holiday.date"
-                class="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-              />
+              <input type="date" v-model="holiday.date"
+                class="mt-1 block w-full rounded-md border border-gray-700 py-1.5 text-white bg-brand-systemBg shadow-sm placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
-            <button
-              type="button"
-              @click="removeHoliday(index)"
-              class="rounded bg-red-50 p-2 text-red-600 hover:bg-red-100"
-            >
-              <svg
-                class="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
+            <button type="button" @click="removeHoliday(index)"
+              class="rounded bg-red-500/10 p-2 text-red-500 hover:bg-red-500/20 transition-colors">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd"
                   d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
-                  clip-rule="evenodd"
-                />
+                  clip-rule="evenodd" />
               </svg>
             </button>
           </div>
@@ -250,87 +168,57 @@
       </div>
 
       <!-- Holiday Calendar Preview -->
-      <div class="bg-white shadow rounded-lg overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-medium leading-6 text-gray-900">
+      <div class="card-bg rounded-lg overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-700">
+          <h2 class="text-lg font-medium leading-6 text-white">
             {{ t("global_config.holiday_calendar") }}
           </h2>
-          <p class="mt-1 text-sm text-gray-500">
+          <p class="mt-1 text-sm text-gray-400">
             {{ t("global_config.preview_holidays_for_country") }}
           </p>
         </div>
 
         <div class="p-6">
-          <div
-            class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300"
-          >
-            <div
-              class="flex items-center justify-between px-6 py-4 bg-gray-800 text-white rounded-t-lg"
-            >
-              <button
-                @click="prevMonth"
-                class="p-2 rounded-full hover:bg-gray-700 transition-colors"
-              >
-                <icon
-                  name="material-symbols:chevron-left"
-                  class="w-6 h-6 rtl:rotate-180"
-                />
+          <div class="card-bg shadow-lg rounded-lg overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 bg-brand-systemBg text-white rounded-t-lg">
+              <button @click="prevMonth" class="p-2 rounded-full hover:bg-white/5 transition-colors">
+                <icon name="material-symbols:chevron-left" class="w-6 h-6 rtl:rotate-180" />
               </button>
               <h2 class="text-xl font-semibold">
                 {{ monthName }} {{ currentYear }}
               </h2>
-              <button
-                @click="nextMonth"
-                class="p-2 rounded-full hover:bg-gray-700 transition-colors"
-              >
-                <icon
-                  name="material-symbols:chevron-right"
-                  class="w-6 h-6 rtl:rotate-180"
-                />
+              <button @click="nextMonth" class="p-2 rounded-full hover:bg-white/5 transition-colors">
+                <icon name="material-symbols:chevron-right" class="w-6 h-6 rtl:rotate-180" />
               </button>
             </div>
 
-            <div class="grid grid-cols-7 gap-px bg-gray-200">
-              <div
-                v-for="day in dayHeaders"
-                :key="day"
-                class="text-center py-3 bg-gray-100 text-gray-700 font-medium text-sm"
-              >
+            <div class="grid grid-cols-7 gap-px bg-gray-700">
+              <div v-for="day in dayHeaders" :key="day"
+                class="text-center py-3 bg-brand-systemBg text-gray-300 font-medium text-sm">
                 {{ day }}
               </div>
 
-              <div
-                v-for="blank in blankDays"
-                :key="'blank-' + blank"
-                class="bg-gray-50 p-2 h-24 sm:h-32"
-              ></div>
+              <div v-for="blank in blankDays" :key="'blank-' + blank" class="bg-brand-layoutBg/50 p-2 h-24 sm:h-32">
+              </div>
 
-              <div
-                v-for="day in daysInMonth"
-                :key="day.date"
-                :class="[
-                  'p-2 text-center relative h-24 sm:h-32 overflow-hidden cursor-pointer transition-colors',
+              <div v-for="day in daysInMonth" :key="day.date" :class="[
+                'p-2 text-center relative h-24 sm:h-32 overflow-hidden cursor-pointer transition-colors',
+                isToday(day.date)
+                  ? 'bg-indigo-500/20 border-2 border-indigo-500'
+                  : 'bg-brand-layoutBg hover:bg-white/5',
+                day.isHoliday ? 'bg-green-500/20 border border-green-500' : '',
+              ]">
+                <span :class="[
+                  'text-sm sm:text-base font-medium',
                   isToday(day.date)
-                    ? 'bg-blue-100 border-2 border-blue-500'
-                    : 'bg-white hover:bg-gray-50',
-                  day.isHoliday ? 'bg-green-100 border border-green-400' : '',
-                ]"
-              >
-                <span
-                  :class="[
-                    'text-sm sm:text-base font-medium',
-                    isToday(day.date)
-                      ? 'text-blue-700 font-bold'
-                      : 'text-gray-800',
-                    day.isHoliday ? 'text-green-700 font-bold' : '',
-                  ]"
-                >
+                    ? 'text-indigo-400 font-bold'
+                    : 'text-gray-300',
+                  day.isHoliday ? 'text-green-400 font-bold' : '',
+                ]">
                   {{ day.dayNumber }}
                 </span>
-                <div
-                  v-if="day.isHoliday && day.holidayName"
-                  class="mt-1 text-xs text-green-600 break-words leading-tight px-1"
-                >
+                <div v-if="day.isHoliday && day.holidayName"
+                  class="mt-1 text-xs text-green-400 break-words leading-tight px-1">
                   <p class="font-semibold mt-2">
                     {{ localizedHolidayName(day) }}
                   </p>

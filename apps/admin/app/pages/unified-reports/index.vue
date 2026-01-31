@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>unified-reports</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">unified-reports</p>
   </div>
 </template>
 

@@ -15,7 +15,7 @@
                 <div class="col-span-full flex flex-wrap items-center justify-between gap-4">
                     <div class="text-sm ms-auto">
                         <nuxt-link-locale to="/auth/reset-password"
-                            class="text-blue-600 hover:text-blue-500 font-medium">
+                            class="text-indigo-400 hover:text-indigo-300 font-medium">
                             {{ t('form.forgot_your_password') }}
                         </nuxt-link-locale>
                     </div>
@@ -82,7 +82,7 @@ const handleLogin = async () => {
     } else {
         // Stop loading on error to show toast properly
         loading.value = false;
-        
+
         // Show specific error messages for different error types
         let errorMessage = t('toast.failed_to_login');
 

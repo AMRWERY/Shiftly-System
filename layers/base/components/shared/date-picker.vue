@@ -6,28 +6,29 @@
         <div class="relative">
           <input type="text" :value="formattedDate" readonly @click="toggleCalendar"
             :placeholder="t('form.select_date')"
-            class="w-full px-3 py-2 transition duration-300 border rounded-md shadow-sm placeholder:text-slate-400 text-slate-700 focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow" />
+            class="w-full px-3 py-2 transition duration-300 border border-gray-700 bg-brand-systemBg rounded-md shadow-sm placeholder:text-gray-500 text-white focus:outline-none focus:border-indigo-500 hover:border-gray-600 focus:shadow" />
           <div class="absolute inset-y-0 flex items-center pointer-events-none end-0 pe-3">
-            <icon name="material-symbols:calendar-month" class="w-5 h-5 text-gray-400" />
+            <icon name="material-symbols:calendar-month" class="w-5 h-5 text-gray-500" />
           </div>
         </div>
 
         <!-- Calendar dropdown -->
-        <div v-if="showCalendar" class="absolute z-10 w-[300px] mt-1 bg-gray-50 rounded-xl shadow-2xl">
+        <div v-if="showCalendar"
+          class="absolute z-10 w-[303px] mt-2 bg-brand-cardBg border border-gray-700 rounded-xl shadow-2xl">
           <!-- Calendar header -->
-          <div class="flex items-center justify-between p-2 border-b">
-            <button @click="previousMonth" class="p-1 rounded-full hover:bg-gray-100">
-              <icon name="material-symbols:chevron-left" class="w-5 h-5 text-gray-600 rtl:rotate-180" />
+          <div class="flex items-center justify-between p-2 border-b border-gray-700">
+            <button @click="previousMonth" class="p-1 rounded-full hover:bg-white/5 transition-colors">
+              <icon name="material-symbols:chevron-left" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
             </button>
-            <span class="font-semibold text-gray-700">{{ currentMonthYear }}</span>
-            <button @click="nextMonth" class="p-1 rounded-full hover:bg-gray-100">
-              <icon name="material-symbols:chevron-right" class="w-5 h-5 text-gray-600 rtl:rotate-180" />
+            <span class="font-semibold text-white">{{ currentMonthYear }}</span>
+            <button @click="nextMonth" class="p-1 rounded-full hover:bg-white/5 transition-colors">
+              <icon name="material-symbols:chevron-right" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
             </button>
           </div>
 
           <!-- Days of week -->
-          <div class="grid grid-cols-7 gap-1 p-2 text-center border-b">
-            <span v-for="day in daysOfWeek" :key="day" class="text-xs font-medium text-gray-500">
+          <div class="grid grid-cols-7 gap-1 p-2 text-center border-b border-gray-700">
+            <span v-for="day in daysOfWeek" :key="day" class="text-xs font-medium text-gray-400">
               {{ day }}
             </span>
           </div>
@@ -36,11 +37,11 @@
           <div class="grid grid-cols-7 gap-1 p-2">
             <button v-for="{ date, isCurrentMonth, isToday } in calendarDays" :key="date.toISOString()"
               @click="selectDate(date)" :disabled="isDateDisabled(date)" :class="[
-                'w-8 h-8 text-sm rounded-full flex items-center justify-center',
-                isDateDisabled(date) ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
-                isCurrentMonth ? 'text-gray-700' : 'text-gray-400',
-                isToday ? 'bg-indigo-100' : '',
-                isSelected(date) ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'hover:bg-gray-100',
+                'w-8 h-8 text-sm rounded-full flex items-center justify-center transition-colors',
+                isDateDisabled(date) ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer',
+                isCurrentMonth ? 'text-gray-200' : 'text-gray-500',
+                isToday ? 'bg-indigo-500/20 text-indigo-400' : '',
+                isSelected(date) ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'hover:bg-white/5',
               ]">
               {{ date.getDate() }}
             </button>

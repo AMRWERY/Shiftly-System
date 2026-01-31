@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>custom-report-builder</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">custom-report-builder</p>
   </div>
 </template>
 

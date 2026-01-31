@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="p-10 space-y-10 text-3xl font-semibold">
+    <div class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
       <p>Shiftly Employee Dashboard</p>
     </div>
   </div>

@@ -2,7 +2,7 @@
   <div>
     <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
       <div class="mb-6">
-        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+        <h3 class="text-lg font-semibold text-gray-400 mb-2">
           {{ t("roles.permissions_matrix") }}
         </h3>
         <p class="text-sm text-gray-500">
@@ -14,78 +14,49 @@
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b-2 border-gray-200">
-              <th class="text-left py-3 px-4 font-semibold text-gray-700">
+              <th class="text-start py-3 px-4 font-semibold text-gray-300">
                 {{ t("roles.module") }}
               </th>
-              <th
-                v-for="action in permissionActions"
-                :key="action"
-                class="text-center py-3 px-4"
-              >
+              <th v-for="action in permissionActions" :key="action" class="text-center py-3 px-4">
                 <div class="flex flex-col items-center gap-1">
-                  <span class="font-semibold text-gray-700 capitalize">{{
+                  <span class="font-semibold text-gray-300 capitalize">{{
                     t(`permissions.${action}`)
                   }}</span>
-                  <input
-                    type="checkbox"
-                    :checked="areAllModulesSelectedForAction(action)"
-                    :indeterminate="isSomeModulesSelectedForAction(action)"
-                    @change="toggleAllModulesForAction(action)"
-                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer"
-                  />
+                  <input type="checkbox" :checked="areAllModulesSelectedForAction(action)"
+                    :indeterminate="isSomeModulesSelectedForAction(action)" @change="toggleAllModulesForAction(action)"
+                    class="w-4 h-4 text-indigo-400 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer" />
                 </div>
               </th>
               <th class="text-center py-3 px-4">
                 <div class="flex flex-col items-center gap-1">
-                  <span class="font-semibold text-gray-700">{{
+                  <span class="font-semibold text-gray-300">{{
                     t("roles.all")
                   }}</span>
-                  <input
-                    type="checkbox"
-                    :checked="areAllPermissionsSelected"
-                    :indeterminate="isSomePermissionsSelected"
+                  <input type="checkbox" :checked="areAllPermissionsSelected" :indeterminate="isSomePermissionsSelected"
                     @change="toggleAllPermissions"
-                    class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer"
-                  />
+                    class="w-4 h-4 text-indigo-400 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer" />
                 </div>
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="module in permissionModules"
-              :key="module"
-              class="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-            >
-              <td class="py-3 px-4 font-medium text-gray-900">
+            <tr v-for="module in permissionModules" :key="module"
+              class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+              <td class="py-3 px-4 font-medium text-gray-400">
                 <div class="flex items-center gap-2">
-                  <icon
-                    :name="getModuleIcon(module)"
-                    class="w-5 h-5 text-indigo-500"
-                  />
+                  <icon :name="getModuleIcon(module)" class="w-5 h-5 text-indigo-500" />
                   <span>{{ t(`permissions.modules.${module}`) }}</span>
                 </div>
               </td>
-              <td
-                v-for="action in permissionActions"
-                :key="`${module}-${action}`"
-                class="text-center py-3 px-4"
-              >
-                <input
-                  type="checkbox"
-                  :checked="hasPermission(module, action)"
+              <td v-for="action in permissionActions" :key="`${module}-${action}`" class="text-center py-3 px-4">
+                <input type="checkbox" :checked="hasPermission(module, action)"
                   @change="togglePermission(module, action)"
-                  class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer"
-                />
+                  class="w-4 h-4 text-indigo-400 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer" />
               </td>
               <td class="text-center py-3 px-4">
-                <input
-                  type="checkbox"
-                  :checked="areAllActionsSelected(module)"
-                  :indeterminate="isSomeActionsSelected(module)"
-                  @change="toggleAllModuleActions(module)"
-                  class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer"
-                />
+                <input type="checkbox" :checked="areAllActionsSelected(module)"
+                  :indeterminate="isSomeActionsSelected(module)" @change="toggleAllModuleActions(module)"
+                  class="w-4 h-4 text-indigo-400 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer" />
               </td>
             </tr>
           </tbody>
@@ -94,11 +65,9 @@
 
       <div v-if="showStats" class="mt-6 pt-6 border-t border-gray-200">
         <div class="flex items-center justify-between text-sm">
-          <span class="text-gray-600">{{ t("roles.total_permissions") }}:</span>
-          <span class="font-semibold text-indigo-600"
-            >{{ selectedPermissionsCount }} /
-            {{ totalPossiblePermissions }}</span
-          >
+          <span class="text-gray-300">{{ t("roles.total_permissions") }}:</span>
+          <span class="font-semibold text-indigo-400">{{ selectedPermissionsCount }} /
+            {{ totalPossiblePermissions }}</span>
         </div>
       </div>
     </div>
@@ -232,7 +201,6 @@ const toggleAllModuleActions = (module: PermissionModule) => {
   const existingIndex = localPermissions.value.findIndex(
     (p) => p.module === module
   );
-
   if (allSelected) {
     // Deselect all - remove module
     if (existingIndex !== -1) {
@@ -264,12 +232,10 @@ const isSomeModulesSelectedForAction = (action: PermissionAction): boolean => {
 
 const toggleAllModulesForAction = (action: PermissionAction) => {
   const allSelected = areAllModulesSelectedForAction(action);
-
   permissionModules.forEach((module) => {
     const existingIndex = localPermissions.value.findIndex(
       (p) => p.module === module
     );
-
     if (allSelected) {
       // Remove this action from all modules
       if (existingIndex !== -1) {

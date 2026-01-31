@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>purchase-requests-pr</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">purchase-requests-pr</p>
   </div>
 </template>
 

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>progress-tracking</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      progress-tracking
+    </p>
   </div>
 </template>
 

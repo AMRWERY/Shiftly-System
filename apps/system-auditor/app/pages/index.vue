@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>System Auditor</h1>
-    <p>Welcome to the System Auditor application.</p>
+    <div class="p-10 space-y-10 text-3xl font-semibold text-gray-100">
+      <p>Shiftly System Auditor Dashboard</p>
+    </div>
   </div>
 </template>
 

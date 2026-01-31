@@ -17,7 +17,7 @@
 
             <div class="text-center md:text-start flex-1">
               <div class="flex flex-col md:flex-row md:justify-between items-center gap-4">
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                <h1 class="text-3xl font-bold text-gray-400 mb-2">
                   {{ user.fullName }}
                 </h1>
                 <div v-if="user.createdAt" class="text-sm text-gray-500">
@@ -26,7 +26,7 @@
                 </div>
               </div>
 
-              <div class="flex flex-wrap justify-center md:justify-start gap-4 text-gray-600 mb-6">
+              <div class="flex flex-wrap justify-center md:justify-start gap-4 text-gray-300 mb-6">
                 <div class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg">
                   <icon name="heroicons:envelope" class="w-4 h-4 text-gray-400" />
                   <span class="text-sm">{{ user.email }}</span>
@@ -55,7 +55,7 @@
           <!-- Employment Details -->
           <div
             class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
-            <h2 class="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2 pb-2 border-b border-gray-50">
+            <h2 class="text-lg font-semibold text-gray-400 mb-6 flex items-center gap-2 pb-2 border-b border-gray-50">
               <div class="p-2 bg-blue-50 rounded-lg flex items-center justify-center">
                 <icon name="heroicons:briefcase" class="w-5 h-5 text-blue-500" />
               </div>
@@ -63,22 +63,22 @@
             </h2>
             <div class="space-y-4">
               <div class="flex justify-between items-center group">
-                <span class="text-gray-500 group-hover:text-gray-700 transition-colors">{{ t("users.employee_id")
+                <span class="text-gray-500 group-hover:text-gray-300 transition-colors">{{ t("users.employee_id")
                 }}</span>
-                <span class="font-medium text-gray-900 bg-gray-50 px-2 py-1 rounded">{{ user.employeeId }}</span>
+                <span class="font-medium text-gray-400 bg-gray-50 px-2 py-1 rounded">{{ user.employeeId }}</span>
               </div>
               <div class="flex justify-between items-center group">
-                <span class="text-gray-500 group-hover:text-gray-700 transition-colors">{{ t("users.base_salary")
+                <span class="text-gray-500 group-hover:text-gray-300 transition-colors">{{ t("users.base_salary")
                 }}</span>
-                <span class="text-emerald-600 font-medium">{{
+                <span class="text-emerald-400 font-medium">{{
                   !isNaN(Number(user.baseSalary))
                     ? `${Number(user.baseSalary).toLocaleString()} EGP`
                     : "0 EGP"
                 }}</span>
               </div>
               <div class="flex justify-between items-center group">
-                <span class="text-gray-500 group-hover:text-gray-700 transition-colors">{{ t("users.role") }}</span>
-                <span class="text-indigo-600 font-medium">{{
+                <span class="text-gray-500 group-hover:text-gray-300 transition-colors">{{ t("users.role") }}</span>
+                <span class="text-indigo-400 font-medium">{{
                   t(`roles.${user.role}`)
                 }}</span>
               </div>
@@ -88,7 +88,7 @@
           <!-- Personal Info -->
           <div
             class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
-            <h2 class="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2 pb-2 border-b border-gray-50">
+            <h2 class="text-lg font-semibold text-gray-400 mb-6 flex items-center gap-2 pb-2 border-b border-gray-50">
               <div class="p-2 bg-purple-50 rounded-lg flex items-center justify-center">
                 <icon name="heroicons:user-circle" class="w-5 h-5 text-purple-500" />
               </div>
@@ -96,23 +96,23 @@
             </h2>
             <div class="space-y-4">
               <div class="flex justify-between items-center group">
-                <span class="text-gray-500 group-hover:text-gray-700 transition-colors">{{ t("users.first_name")
+                <span class="text-gray-500 group-hover:text-gray-300 transition-colors">{{ t("users.first_name")
                 }}</span>
-                <span class="font-medium text-gray-900">{{
+                <span class="font-medium text-gray-400">{{
                   user.firstName
                 }}</span>
               </div>
               <div class="flex justify-between items-center group">
-                <span class="text-gray-500 group-hover:text-gray-700 transition-colors">{{ t("users.middle_name")
+                <span class="text-gray-500 group-hover:text-gray-300 transition-colors">{{ t("users.middle_name")
                 }}</span>
-                <span class="font-medium text-gray-900">{{
+                <span class="font-medium text-gray-400">{{
                   user.middleName
                 }}</span>
               </div>
               <div class="flex justify-between items-center group">
-                <span class="text-gray-500 group-hover:text-gray-700 transition-colors">{{ t("users.last_name")
+                <span class="text-gray-500 group-hover:text-gray-300 transition-colors">{{ t("users.last_name")
                 }}</span>
-                <span class="font-medium text-gray-900">{{
+                <span class="font-medium text-gray-400">{{
                   user.lastName
                 }}</span>
               </div>

@@ -3,10 +3,11 @@
     <div class="relative w-full" :class="containerClass">
       <input type="text" :value="modelValue" @input="onInput"
         @keydown.enter="$emit('search', ($event.target as HTMLInputElement).value)"
-        :placeholder="placeholder || t('form.search_placeholder')" class="w-full px-4 py-2 border rounded-lg pe-10"
+        :placeholder="placeholder || t('form.search_placeholder')"
+        class="w-full px-4 py-2 border border-gray-600 rounded-lg pe-10 bg-[#2e2e48] text-white placeholder-gray-400"
         aria-label="Search" />
       <div class="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
-        <icon name="heroicons-solid:magnifying-glass" class="w-5 h-5 text-gray-400" />
+        <icon name="heroicons-solid:magnifying-glass" class="w-5 h-5 text-gray-300" />
       </div>
     </div>
   </div>

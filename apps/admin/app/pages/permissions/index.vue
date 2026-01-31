@@ -2,11 +2,11 @@
   <div>
     <div class="p-6">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-900">{{ t('permissions.title') }}</h1>
+        <h1 class="text-2xl font-semibold text-gray-400">{{ t('permissions.title') }}</h1>
       </div>
 
       <!-- Error State -->
-      <div v-if="error" class="p-4 mb-4 text-red-700 bg-red-100 rounded-lg">
+      <div v-if="error" class="p-4 mb-4 text-red-400 bg-red-100 rounded-lg">
         {{ t('users.failed_to_load_users') }}
       </div>
 
