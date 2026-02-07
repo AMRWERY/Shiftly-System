@@ -18,6 +18,31 @@ body {
   /* Chrome/Safari/Webkit */
 }
 
+.colored-scrollbar {
+  scrollbar-width: thin; /* Firefox - makes it thinner */
+  scrollbar-color: #6366f1 #1f2937; /* Firefox - thumb color, track color */
+}
+
+/* Chrome/Safari/Webkit */
+.colored-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of vertical scrollbar */
+  height: 8px; /* Height of horizontal scrollbar */
+}
+
+.colored-scrollbar::-webkit-scrollbar-track {
+  background: #1f2937; /* Track color (dark gray) */
+  border-radius: 10px;
+}
+
+.colored-scrollbar::-webkit-scrollbar-thumb {
+  background: #6366f1; /* Thumb color (indigo) */
+  border-radius: 10px;
+}
+
+.colored-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5; /* Darker indigo on hover */
+}
+
 select {
   -webkit-appearance: none; /* Chrome, Safari, Edge */
   -moz-appearance: none; /* Firefox */

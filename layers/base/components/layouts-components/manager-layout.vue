@@ -1,7 +1,41 @@
 <template>
   <div>
     <ul class="space-y-3">
-      <li>
+      <!-- User & Roles Management: show when manager has users/roles permission (e.g. from admin dashboard) -->
+      <li v-if="hasPermission('users', 'view') || hasPermission('roles', 'view')">
+        <button @click="toggleDropdown('user_roles_mgt')" type="button"
+          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+          <icon name="eos-icons:cluster-management"
+            class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
+          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+            t("layouts.user_roles_mgt")
+          }}</span>
+          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+            :class="{ 'rotate-180': dropdownStates.user_roles_mgt }" aria-hidden="true" />
+        </button>
+        <ul v-if="dropdownStates.user_roles_mgt" class="py-2 space-y-2">
+          <li v-if="hasPermission('users', 'view')">
+            <nuxt-link-locale to="/users" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/users') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
+              <span class="flex-1 whitespace-nowrap">{{ t("layouts.users") }}</span>
+            </nuxt-link-locale>
+          </li>
+          <li v-if="hasPermission('roles', 'view')">
+            <nuxt-link-locale to="/roles" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/roles') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
+              <span class="flex-1 whitespace-nowrap">{{ t("layouts.roles") }}</span>
+            </nuxt-link-locale>
+          </li>
+          <li v-if="hasPermission('users', 'view') || hasPermission('roles', 'view')">
+            <nuxt-link-locale to="/permissions" class="flex items-center p-2 rounded-lg group ps-7"
+              :class="isActive('/permissions') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
+              <span class="flex-1 whitespace-nowrap">{{ t("layouts.permissions") }}</span>
+            </nuxt-link-locale>
+          </li>
+        </ul>
+      </li>
+
+      <li v-if="hasPermission('employees', 'view')">
         <button @click="toggleDropdown('my_team_dashboard')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -32,7 +66,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('leave', 'approve') || hasPermission('payroll', 'approve')">
         <button @click="toggleDropdown('approvals_center')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -44,7 +78,7 @@
             :class="{ 'rotate-180': dropdownStates.approvals_center }" aria-hidden="true" />
         </button>
         <ul v-if="dropdownStates.approvals_center" class="py-2 space-y-2">
-          <li>
+          <li v-if="hasPermission('leave', 'approve')">
             <nuxt-link-locale to="/pending-leave" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/pending-leave') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -52,7 +86,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('payroll', 'approve')">
             <nuxt-link-locale to="/pending-overtime" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/pending-overtime') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -60,7 +94,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('payroll', 'approve')">
             <nuxt-link-locale to="/pending-expenses" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/pending-expenses') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -71,7 +105,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('reports', 'view')">
         <button @click="toggleDropdown('team_reports')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -110,7 +144,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('performance', 'view')">
         <button @click="toggleDropdown('team_goals')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -155,8 +189,10 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const { isActive } = useIsActive();
+const { hasPermission } = usePermission();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
+  user_roles_mgt: false,
   my_team_dashboard: true,
   approvals_center: false,
   team_reports: false,

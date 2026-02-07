@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="space-y-3">
-      <li>
+      <li v-if="hasPermission('payroll', 'create') || hasPermission('payroll', 'view')">
         <button @click="toggleDropdown('payroll')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -13,7 +13,7 @@
             :class="{ 'rotate-180': dropdownStates.payroll }" aria-hidden="true" />
         </button>
         <ul v-if="dropdownStates.payroll" class="py-2 space-y-2">
-          <li>
+          <li v-if="hasPermission('payroll', 'create')">
             <nuxt-link-locale to="/monthly-process" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/monthly-process') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -21,7 +21,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('payroll', 'view')">
             <nuxt-link-locale to="/salary-components" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/salary-components') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -29,7 +29,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('payroll', 'create')">
             <nuxt-link-locale to="/payslips-generation" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/payslips-generation') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -40,7 +40,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('payroll', 'approve')">
         <button @click="toggleDropdown('expenses_advances')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -71,7 +71,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('invoices', 'view')">
         <button @click="toggleDropdown('invoicing')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -110,7 +110,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('reports', 'view')">
         <button @click="toggleDropdown('financial_reports')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -155,6 +155,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const { isActive } = useIsActive();
+const { hasPermission } = usePermission();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   payroll: true,

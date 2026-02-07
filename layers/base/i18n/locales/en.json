@@ -60,7 +60,11 @@
     "back": "Back",
     "update_personal_information": "Update Personal Information",
     "update_password": "Update Password",
-    "add_new_role": "Add new role"
+    "add_new_role": "Add new role",
+    "save_changes": "Save Changes",
+    "create_role": "Create Role",
+    "saving": "Saving...",
+    "creating": "Creating..."
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
@@ -104,7 +108,8 @@
     "img_uploaded_successfully": "Image uploaded successfully",
     "faild_to_uplaod_img": "Faild to uplaod image",
     "user_deactivated_successfully": "User deactivated successfully",
-    "failed_to_deactivate_user": "Failed to deactivate user"
+    "failed_to_deactivate_user": "Failed to deactivate user",
+    "failed_to_load_roles": "Failed to load roles. Please try again."
   },
   "meta": {
     "users": "Users",
@@ -129,7 +134,28 @@
     "inventory_manager": "Inventory Manager",
     "maintenance_technician": "Maintenance Technician",
     "td_officer": "T&D Officer",
-    "system_role": "System Role"
+    "system_role": "System Role",
+    "total_users": "Total Users",
+    "permissions_granted": "Permissions Granted",
+    "created_on": "Created On",
+    "role_permissions": "Role Permissions",
+    "users_with_role": "Users with this Role",
+    "no_users_assigned": "No users assigned to this role yet.",
+    "role_not_found": "Role not found",
+    "permissions_matrix": "Permissions Matrix",
+    "permissions_matrix_description": "Manage what this role can see and do across the system.",
+    "module": "Module",
+    "all": "All",
+    "total_permissions": "Total Permissions",
+    "edit_role": "Edit Role",
+    "create_new_role": "Create New Role",
+    "role_name": "Role Name",
+    "role_name_placeholder": "e.g. branch_manager",
+    "role_name_cannot_be_changed": "The system name of the role cannot be changed once created.",
+    "display_name": "Display Name",
+    "display_name_placeholder": "e.g. Branch Manager",
+    "description": "Description",
+    "description_placeholder": "Briefly describe the purpose of this role"
   },
   "permissions": {
     "title": "Permissions Management",
@@ -442,5 +468,10 @@
     "change_password": "Change Password",
     "new_password": "New Password",
     "confirm_password": "Confirm Password"
+  },
+  "validation": {
+    "role_name_required": "Role name is required",
+    "role_name_format": "Role name must contain only lowercase letters and underscores",
+    "display_name_required": "Display name is required"
   }
 }

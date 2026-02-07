@@ -60,7 +60,11 @@
     "back": "رجوع",
     "update_personal_information": "تحديث المعلومات الشخصية",
     "update_password": "تحديث كلمة المرور",
-    "add_new_role": "إضافة دور جديد"
+    "add_new_role": "إضافة دور جديد",
+    "save_changes": "حفظ التغييرات",
+    "create_role": "إنشاء الدور",
+    "saving": "جاري الحفظ...",
+    "creating": "جاري الإنشاء..."
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
@@ -104,7 +108,8 @@
     "img_uploaded_successfully": "تم رفع الصورة بنجاح",
     "faild_to_uplaod_img": "فشل رفع الصورة",
     "user_deactivated_successfully": "تم إلغاء تفعيل الموظف بنجاح",
-    "failed_to_deactivate_user": "فشل إلغاء تفعيل الموظف"
+    "failed_to_deactivate_user": "فشل إلغاء تفعيل الموظف",
+    "failed_to_load_roles": "فشل تحميل الأدوار. يرجى المحاولة مرة أخرى."
   },
   "meta": {
     "users": "الموظففين",
@@ -129,7 +134,28 @@
     "inventory_manager": "مدير المخزون",
     "maintenance_technician": "فني الصيانة",
     "td_officer": "مسؤول التدريب والتطوير",
-    "system_role": "دور النظام"
+    "system_role": "دور النظام",
+    "total_users": "إجمالي المستخدمين",
+    "permissions_granted": "الصلاحيات الممنوحة",
+    "created_on": "أنشئ في",
+    "role_permissions": "صلاحيات الدور",
+    "users_with_role": "المستخدمون بهذا الدور",
+    "no_users_assigned": "لم يتم تعيين مستخدمين لهذا الدور بعد.",
+    "role_not_found": "الدور غير موجود",
+    "permissions_matrix": "مصفوفة الصلاحيات",
+    "permissions_matrix_description": "إدارة ما يمكن لهذا الدور رؤيته والقيام به عبر النظام.",
+    "module": "الوحدة",
+    "all": "الكل",
+    "total_permissions": "إجمالي الصلاحيات",
+    "edit_role": "تعديل الدور",
+    "create_new_role": "إنشاء دور جديد",
+    "role_name": "اسم الدور",
+    "role_name_placeholder": "مثلاً branch_manager",
+    "role_name_cannot_be_changed": "لا يمكن تغيير اسم النظام للدور بعد إنشائه.",
+    "display_name": "الاسم المعروض",
+    "display_name_placeholder": "مثلاً مدير فرع",
+    "description": "الوصف",
+    "description_placeholder": "صف بإيجاز الغرض من هذا الدور"
   },
   "permissions": {
     "title": "إدارة الصلاحيات",
@@ -442,5 +468,10 @@
     "change_password": "تغيير كلمة المرور",
     "new_password": "كلمة المرور الجديدة",
     "confirm_password": "تأكيد كلمة المرور"
+  },
+  "validation": {
+    "role_name_required": "اسم الدور مطلوب",
+    "role_name_format": "يجب أن يحتوي اسم الدور على أحرف صغيرة وشرطات سفلية فقط",
+    "display_name_required": "الاسم المعروض مطلوب"
   }
 }

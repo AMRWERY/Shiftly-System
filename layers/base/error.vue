@@ -11,8 +11,9 @@
                 </div>
 
                 <div class="mt-6">
-                    <base-button :type="'button'" :variant="'outline'" :inline="true"
-                        :route="true" to="/" :padding-x="'px-4'" :padding-y="'py-2'">{{ t('btn.go_back_home') }}</base-button>
+                    <base-button :type="'button'" :variant="'outline'" :inline="true" :border-color="'border-gray-100'"
+                        :text-color="'text-gray-100'" :route="true" to="/" :padding-x="'px-4'" :padding-y="'py-2'">{{
+                            t('btn.go_back_home') }}</base-button>
                 </div>
             </div>
         </div>

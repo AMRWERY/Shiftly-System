@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="space-y-3">
-      <li>
+      <li v-if="hasPermission('profile', 'view')">
         <button @click="toggleDropdown('my_profile')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -40,7 +40,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('leave', 'create') || hasPermission('payroll', 'create')">
         <button @click="toggleDropdown('my_requests')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -52,7 +52,7 @@
             :class="{ 'rotate-180': dropdownStates.my_requests }" aria-hidden="true" />
         </button>
         <ul v-if="dropdownStates.my_requests" class="py-2 space-y-2">
-          <li>
+          <li v-if="hasPermission('leave', 'create')">
             <nuxt-link-locale to="/leave-request" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/leave-request') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -60,7 +60,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('payroll', 'create')">
             <nuxt-link-locale to="/expense-claim" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/expense-claim') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -68,7 +68,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('payroll', 'create')">
             <nuxt-link-locale to="/advance-request" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/advance-request') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -87,7 +87,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('payroll', 'view')">
         <button @click="toggleDropdown('payroll_docs')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -126,7 +126,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('attendance', 'view')">
         <button @click="toggleDropdown('t_a_my_logs')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -138,7 +138,7 @@
             :class="{ 'rotate-180': dropdownStates.t_a_my_logs }" aria-hidden="true" />
         </button>
         <ul v-if="dropdownStates.t_a_my_logs" class="py-2 space-y-2">
-          <li>
+          <li v-if="hasPermission('attendance', 'create')">
             <nuxt-link-locale to="/clock-in-out" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/clock-in-out') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -157,7 +157,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('assets', 'view')">
         <button @click="toggleDropdown('company_assets')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -177,7 +177,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('assets', 'create')">
             <nuxt-link-locale to="/maintenance-request" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/maintenance-request') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -194,6 +194,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const { isActive } = useIsActive();
+const { hasPermission } = usePermission();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   my_profile: true,

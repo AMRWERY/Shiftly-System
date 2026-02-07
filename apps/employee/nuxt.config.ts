@@ -12,4 +12,10 @@ export default defineNuxtConfig({
 
   // Extend the base layer for shared functionality
   extends: ["../../layers/base"],
+
+  app: {
+    head: {
+      titleTemplate: "%s - Shiftly Employee",
+    },
+  },
 });

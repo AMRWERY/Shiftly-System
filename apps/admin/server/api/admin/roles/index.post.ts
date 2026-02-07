@@ -9,10 +9,9 @@ export default defineEventHandler(async (event) => {
     name: string;
     displayName: string;
     description: string;
-    permissions: Permission[];
+    permissions?: Permission[];
   };
 
-  // Validate required fields
   if (!name || !displayName) {
     throw createError({
       statusCode: 400,
@@ -20,12 +19,13 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const normalizedName = name.toLowerCase().replace(/\s+/g, "_");
+
   try {
-    // Check if role already exists
     const { data: existingRole } = await supabase
       .from("roles")
       .select("id")
-      .eq("name", name)
+      .eq("name", normalizedName)
       .single();
 
     if (existingRole) {
@@ -35,13 +35,12 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Create the role
     const { data: roleData, error: roleError } = await supabase
       .from("roles")
       .insert({
-        name,
+        name: normalizedName,
         display_name: displayName,
-        description: description || "",
+        description: description ?? "",
         is_system_role: false,
       })
       .select()
@@ -49,19 +48,16 @@ export default defineEventHandler(async (event) => {
 
     if (roleError) throw roleError;
 
-    // Insert permissions
-    if (permissions && permissions.length > 0) {
-      const permissionsToInsert = permissions.map((perm) => ({
+    if (permissions?.length) {
+      const toInsert = permissions.map((p) => ({
         role_id: roleData.id,
-        module: perm.module,
-        actions: perm.actions,
+        module: p.module,
+        actions: p.actions,
       }));
-
-      const { error: permissionsError } = await supabase
+      const { error: permErr } = await supabase
         .from("role_permissions")
-        .insert(permissionsToInsert);
-
-      if (permissionsError) throw permissionsError;
+        .insert(toInsert);
+      if (permErr) throw permErr;
     }
 
     return {
@@ -74,14 +70,14 @@ export default defineEventHandler(async (event) => {
         userCount: 0,
         createdAt: roleData.created_at,
         updatedAt: roleData.updated_at,
-        permissions: permissions || [],
+        permissions: permissions ?? [],
       },
     };
   } catch (error: any) {
     console.error("Error creating role:", error);
     throw createError({
-      statusCode: error.statusCode || 500,
-      statusMessage: error.statusMessage || "Failed to create role",
+      statusCode: error.statusCode ?? 500,
+      statusMessage: error.statusMessage ?? "Failed to create role",
     });
   }
 });

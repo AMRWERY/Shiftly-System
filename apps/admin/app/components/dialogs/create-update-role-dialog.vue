@@ -9,7 +9,7 @@
         </div>
 
         <!-- Content -->
-        <div v-else class="space-y-6 overflow-y-auto max-h-[60vh]">
+        <div v-else class="space-y-6 overflow-y-auto max-h-[60vh] hide-scrollbar">
           <!-- Role Form -->
           <role-form ref="roleFormRef" v-model="formData" />
 
@@ -21,10 +21,10 @@
       <!-- Footer -->
       <template #footer>
         <div v-if="!loading" class="flex items-center justify-end gap-3">
-          <base-button type="button" variant="outline" @click="handleClose" :disabled="saving">
+          <base-button type="button" variant="outline" :padding-x="'px-3'" :border-color="'border-gray-100'" :text-color="'text-gray-100'" :padding-y="'py-2'" @click="handleClose" :disabled="saving">
             {{ t("btn.cancel") }}
           </base-button>
-          <base-button type="button" @click="handleSubmit" :disabled="saving">
+          <base-button type="button" :padding-x="'px-3'" :padding-y="'py-2'" @click="handleSubmit" :disabled="saving">
             <span v-if="saving" class="flex items-center gap-2">
               <icon name="svg-spinners:ring-resize" class="w-4 h-4" />
               {{ savingText }}

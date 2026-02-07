@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="space-y-3">
-      <li>
+      <li v-if="hasPermission('employees', 'view')">
         <button @click="toggleDropdown('employees_records')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -21,7 +21,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('documents', 'view')">
             <nuxt-link-locale to="/document-management" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/document-management') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -29,7 +29,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('onboarding', 'view')">
             <nuxt-link-locale to="/onboarding-offboarding" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/onboarding-offboarding') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -40,7 +40,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('attendance', 'view')">
         <button @click="toggleDropdown('time_attendance')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -79,7 +79,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('leave', 'view')">
         <button @click="toggleDropdown('leave_mgt')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -118,7 +118,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('performance', 'view')">
         <button @click="toggleDropdown('performance')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -157,7 +157,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('assets', 'view')">
         <button @click="toggleDropdown('asset_assignment')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -188,7 +188,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('recruitment', 'view')">
         <button @click="toggleDropdown('recruitment')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -233,6 +233,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const { isActive } = useIsActive();
+const { hasPermission } = usePermission();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   employees_records: true,

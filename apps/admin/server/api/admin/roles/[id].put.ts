@@ -20,7 +20,6 @@ export default defineEventHandler(async (event) => {
   };
 
   try {
-    // Check if role exists
     const { data: existingRole, error: fetchError } = await supabase
       .from("roles")
       .select("*")
@@ -34,20 +33,10 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Prevent editing system roles' name
-    if (existingRole.is_system_role) {
-      throw createError({
-        statusCode: 403,
-        statusMessage: "Cannot modify system role",
-      });
-    }
-
-    // Update role basic info
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       updated_at: new Date().toISOString(),
     };
-
-    if (displayName) updateData.display_name = displayName;
+    if (displayName !== undefined) updateData.display_name = displayName;
     if (description !== undefined) updateData.description = description;
 
     const { data: roleData, error: roleError } = await supabase
@@ -59,37 +48,30 @@ export default defineEventHandler(async (event) => {
 
     if (roleError) throw roleError;
 
-    // Update permissions if provided
     if (permissions) {
-      // Delete existing permissions
-      const { error: deleteError } = await supabase
+      const { error: delError } = await supabase
         .from("role_permissions")
         .delete()
         .eq("role_id", roleId);
+      if (delError) throw delError;
 
-      if (deleteError) throw deleteError;
-
-      // Insert new permissions
       if (permissions.length > 0) {
-        const permissionsToInsert = permissions.map((perm) => ({
+        const toInsert = permissions.map((p) => ({
           role_id: roleId,
-          module: perm.module,
-          actions: perm.actions,
+          module: p.module,
+          actions: p.actions,
         }));
-
         const { error: insertError } = await supabase
           .from("role_permissions")
-          .insert(permissionsToInsert);
-
+          .insert(toInsert);
         if (insertError) throw insertError;
       }
     }
 
-    // Get user count
     const { count } = await supabase
-      .from("users")
+      .from("profiles")
       .select("*", { count: "exact", head: true })
-      .eq("role", roleData.name);
+      .or(`role_id.eq.${roleId},role.eq.${roleData.name}`);
 
     return {
       role: {
@@ -98,17 +80,17 @@ export default defineEventHandler(async (event) => {
         displayName: roleData.display_name,
         description: roleData.description,
         isSystemRole: roleData.is_system_role,
-        userCount: count || 0,
+        userCount: count ?? 0,
         createdAt: roleData.created_at,
         updatedAt: roleData.updated_at,
-        permissions: permissions || [],
+        permissions: permissions ?? [],
       },
     };
   } catch (error: any) {
     console.error("Error updating role:", error);
     throw createError({
-      statusCode: error.statusCode || 500,
-      statusMessage: error.statusMessage || "Failed to update role",
+      statusCode: error.statusCode ?? 500,
+      statusMessage: error.statusMessage ?? "Failed to update role",
     });
   }
 });

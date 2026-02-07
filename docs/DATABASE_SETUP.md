@@ -1,64 +1,23 @@
-# Database Setup for Role Management
+# Database Setup for Shiftly
 
-## Required Tables
+## Dynamic RBAC (recommended)
 
-You need to create two tables in your Supabase database before using the role management system.
+The **Dynamic RBAC** system uses four tables: `roles`, `permissions`, `role_permissions` (junction), and `profiles` linked to `role_id`, with RLS and a trigger to auto-create profiles for new users.
 
-### 1. Create `roles` table
+**Run the migrations in this order** (Supabase SQL Editor):
 
-```sql
-CREATE TABLE roles (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  name TEXT UNIQUE NOT NULL,
-  display_name TEXT NOT NULL,
-  description TEXT,
-  is_system_role BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+1. **[docs/database/01_rbac_schema.sql](database/01_rbac_schema.sql)** – Creates `roles`, `permissions`, `role_permissions`, `profiles`, and the trigger that creates a profile for each new `auth.users` row (default role: employee).
+2. **[docs/database/02_rbac_seed.sql](database/02_rbac_seed.sql)** – Seeds system roles and permission keys (`module:action`), and assigns default permissions to admin and other roles.
+3. **[docs/database/03_rbac_rls.sql](database/03_rbac_rls.sql)** – RLS helper functions and policies.
+4. **[docs/database/04_rbac_backfill_profiles.sql](database/04_rbac_backfill_profiles.sql)** – (Optional) Backfill `profiles.role_id` from existing `profiles.role` (role name).
 
--- Create index for faster lookups
-CREATE INDEX idx_roles_name ON roles(name);
-```
+See **[docs/database/README.md](database/README.md)** for schema overview and RLS helpers.
 
-### 2. Create `role_permissions` table
+## Quick steps
 
-```sql
-CREATE TABLE role_permissions (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  role_id UUID NOT NULL REFERENCES roles(id) ON DELETE CASCADE,
-  module TEXT NOT NULL,
-  actions TEXT[] NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  UNIQUE(role_id, module)
-);
+1. Open your Supabase project → SQL Editor.
+2. Run `01_rbac_schema.sql`, then `02_rbac_seed.sql`, then `03_rbac_rls.sql`.
+3. If you already have a `profiles` table with a `role` (text) column, run `04_rbac_backfill_profiles.sql`.
+4. Restart or refresh your app.
 
--- Create index for faster lookups
-CREATE INDEX idx_role_permissions_role_id ON role_permissions(role_id);
-```
-
-### 3. (Optional) Seed System Roles
-
-```sql
-INSERT INTO roles (name, display_name, description, is_system_role) VALUES
-('admin', 'Administrator', 'Full system access with all permissions', true),
-('hr', 'HR Manager', 'Human resources management and employee operations', true),
-('employee', 'Employee', 'Basic employee access', true),
-('manager', 'Manager', 'Team and project management', true),
-('accountant', 'Accountant', 'Financial and payroll management', true),
-('inventory_manager', 'Inventory Manager', 'Inventory and stock management', true),
-('td_officer', 'TD Officer', 'Training and development operations', true),
-('system_auditor', 'System Auditor', 'System audit and compliance', true),
-('maintenance_technician', 'Maintenance Technician', 'Maintenance and repair operations', true);
-```
-
-## How to Run
-
-1. Go to your Supabase project dashboard
-2. Navigate to the SQL Editor
-3. Copy and paste the SQL scripts above
-4. Run each script in order
-5. Refresh your application
-
-Once the tables are created, the role management system will work correctly.
+After this, the Admin dashboard can manage roles and their permissions (checkboxes synced with `role_permissions`), and the frontend/backend use permissions for route and UI visibility and RLS.

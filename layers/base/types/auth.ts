@@ -1,5 +1,5 @@
 import type { User, Session } from "@supabase/supabase-js";
-import type { UserRole } from "./index";
+import type { UserRole, Permission } from "./index";
 
 export interface UserAuth {
   firstName: string;
@@ -35,4 +35,8 @@ export interface AuthState {
   session: Session | null;
   loading: boolean;
   authListenerInitialized: boolean;
+  userPermissions?: Permission[];
+  permissionsFetched: boolean;
+  /** Role from profile/API when user_metadata.role is missing (used for layout/sidebar) */
+  profileRole: string | null;
 }

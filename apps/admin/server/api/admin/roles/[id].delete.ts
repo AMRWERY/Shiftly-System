@@ -12,7 +12,6 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    // Check if role exists
     const { data: existingRole, error: fetchError } = await supabase
       .from("roles")
       .select("*")
@@ -26,7 +25,6 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Prevent deleting system roles
     if (existingRole.is_system_role) {
       throw createError({
         statusCode: 403,
@@ -34,11 +32,10 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Check if any users have this role
     const { count } = await supabase
-      .from("users")
+      .from("profiles")
       .select("*", { count: "exact", head: true })
-      .eq("role", existingRole.name);
+      .or(`role_id.eq.${roleId},role.eq.${existingRole.name}`);
 
     if (count && count > 0) {
       throw createError({
@@ -47,31 +44,24 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Delete role permissions first
-    const { error: permissionsError } = await supabase
+    const { error: permError } = await supabase
       .from("role_permissions")
       .delete()
       .eq("role_id", roleId);
+    if (permError) throw permError;
 
-    if (permissionsError) throw permissionsError;
-
-    // Delete the role
     const { error: roleError } = await supabase
       .from("roles")
       .delete()
       .eq("id", roleId);
-
     if (roleError) throw roleError;
 
-    return {
-      success: true,
-      message: "Role deleted successfully",
-    };
+    return { success: true, message: "Role deleted successfully" };
   } catch (error: any) {
     console.error("Error deleting role:", error);
     throw createError({
-      statusCode: error.statusCode || 500,
-      statusMessage: error.statusMessage || "Failed to delete role",
+      statusCode: error.statusCode ?? 500,
+      statusMessage: error.statusMessage ?? "Failed to delete role",
     });
   }
 });

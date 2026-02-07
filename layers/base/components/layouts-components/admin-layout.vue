@@ -12,7 +12,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li>
+      <li v-if="hasPermission('users', 'view') || hasPermission('roles', 'view')">
         <button @click="toggleDropdown('user_roles_mgt')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -24,7 +24,7 @@
             :class="{ 'rotate-180': dropdownStates.user_roles_mgt }" aria-hidden="true" />
         </button>
         <ul v-if="dropdownStates.user_roles_mgt" class="py-2 space-y-2">
-          <li>
+          <li v-if="hasPermission('users', 'view')">
             <nuxt-link-locale to="/users" class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
               :class="isActive('/users') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -32,7 +32,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('roles', 'view')">
             <nuxt-link-locale to="/roles" class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
               :class="isActive('/roles') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
               <span class="flex-1 whitespace-nowrap">{{
@@ -48,7 +48,7 @@
               }}</span>
             </nuxt-link-locale>
           </li>
-          <li>
+          <li v-if="hasPermission('audit', 'view')">
             <nuxt-link-locale to="/system-access-log"
               class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
               :class="isActive('/system-access-log') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
@@ -60,7 +60,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('settings', 'view')">
         <button @click="toggleDropdown('system_settings')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="clarity:employee-group-solid"
@@ -99,66 +99,64 @@
             </nuxt-link-locale>
           </li>
         </ul>
-
-        <ul v-if="dropdownStates.audit_security" class="py-2 space-y-2">
-          <li>
-            <nuxt-link-locale to="/audit-log" class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
-              :class="isActive('/audit-log') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
-              <span class="flex-1 whitespace-nowrap">{{
-                t("layouts.audit_log")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/policies-review"
-              class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
-              :class="isActive('/policies-review') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
-              <span class="flex-1 whitespace-nowrap">{{
-                t("layouts.policies_review")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/activity-monitoring"
-              class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
-              :class="isActive('/activity-monitoring') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
-              <span class="flex-1 whitespace-nowrap">{{
-                t("layouts.activity_monitoring")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-        </ul>
-
-        <ul v-if="dropdownStates.advanced_reports" class="py-2 space-y-2">
-          <li>
-            <nuxt-link-locale to="/unified-reports"
-              class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
-              :class="isActive('/unified-reports') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
-              <span class="flex-1 whitespace-nowrap">{{
-                t("layouts.unified_reports")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/custom-report-builder"
-              class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
-              :class="isActive('/custom-report-builder') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
-              <span class="flex-1 whitespace-nowrap">{{
-                t("layouts.custom_report_builder")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/financial-dashboards"
-              class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
-              :class="isActive('/financial-dashboards') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
-              <span class="flex-1 whitespace-nowrap">{{
-                t("layouts.financial_dashboards")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-        </ul>
       </li>
+
+      <ul v-if="dropdownStates.audit_security" class="py-2 space-y-2">
+        <li>
+          <nuxt-link-locale to="/audit-log" class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
+            :class="isActive('/audit-log') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+            <span class="flex-1 whitespace-nowrap">{{
+              t("layouts.audit_log")
+            }}</span>
+          </nuxt-link-locale>
+        </li>
+        <li>
+          <nuxt-link-locale to="/policies-review" class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
+            :class="isActive('/policies-review') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+            <span class="flex-1 whitespace-nowrap">{{
+              t("layouts.policies_review")
+            }}</span>
+          </nuxt-link-locale>
+        </li>
+        <li>
+          <nuxt-link-locale to="/activity-monitoring"
+            class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
+            :class="isActive('/activity-monitoring') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+            <span class="flex-1 whitespace-nowrap">{{
+              t("layouts.activity_monitoring")
+            }}</span>
+          </nuxt-link-locale>
+        </li>
+      </ul>
+
+      <ul v-if="dropdownStates.advanced_reports" class="py-2 space-y-2">
+        <li>
+          <nuxt-link-locale to="/unified-reports" class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
+            :class="isActive('/unified-reports') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+            <span class="flex-1 whitespace-nowrap">{{
+              t("layouts.unified_reports")
+            }}</span>
+          </nuxt-link-locale>
+        </li>
+        <li>
+          <nuxt-link-locale to="/custom-report-builder"
+            class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
+            :class="isActive('/custom-report-builder') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+            <span class="flex-1 whitespace-nowrap">{{
+              t("layouts.custom_report_builder")
+            }}</span>
+          </nuxt-link-locale>
+        </li>
+        <li>
+          <nuxt-link-locale to="/financial-dashboards"
+            class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
+            :class="isActive('/financial-dashboards') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+            <span class="flex-1 whitespace-nowrap">{{
+              t("layouts.financial_dashboards")
+            }}</span>
+          </nuxt-link-locale>
+        </li>
+      </ul>
     </ul>
   </div>
 </template>
@@ -166,6 +164,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const { isActive } = useIsActive();
+const { hasPermission } = usePermission();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   user_roles_mgt: true,

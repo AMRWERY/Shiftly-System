@@ -1,34 +1,41 @@
-import { checkRouteAccess, PUBLIC_ROUTES, removeLocalePrefix } from "../utils/routeAccess";
+import type { PermissionModule, PermissionAction } from "../types";
+import {
+  checkRouteAccess,
+  checkRouteAccessWithPermissions,
+  PUBLIC_ROUTES,
+  removeLocalePrefix,
+} from "../utils/routeAccess";
 
 export default defineNuxtRouteMiddleware((to) => {
   const authStore = useAuthStore();
+  const { hasPermission } = usePermission();
 
-  // Remove locale prefix for checking
   const pathWithoutLocale = removeLocalePrefix(to.path);
 
-  // Skip authorization check for public routes
-  const isPublicRoute = PUBLIC_ROUTES.some((route) =>
-    pathWithoutLocale.toLowerCase().startsWith(route)
-  );
-
-  if (isPublicRoute) {
+  if (
+    PUBLIC_ROUTES.some((route) =>
+      pathWithoutLocale.toLowerCase().startsWith(route),
+    )
+  ) {
     return;
   }
 
-  // Skip if not authenticated (auth.global.ts handles this)
   if (!authStore.isAuthenticated) {
     return;
   }
 
-  // Get user role from metadata
   const userRole = authStore.currentUserRole;
+  const permissionsLoaded = authStore.permissionsFetched;
 
-  // Check if user has access to this route
-  const hasAccess = checkRouteAccess(to.path, userRole);
+  const hasAccess = permissionsLoaded
+    ? checkRouteAccessWithPermissions(to.path, userRole, (module, action) =>
+        hasPermission(module as PermissionModule, action as PermissionAction),
+      )
+    : checkRouteAccess(to.path, userRole);
 
   if (!hasAccess) {
     console.warn(
-      `Unauthorized access attempt: User with role "${userRole}" tried to access "${to.path}"`
+      `Unauthorized: User role "${userRole}" tried to access "${to.path}"`,
     );
     return navigateTo("/unauthorized");
   }

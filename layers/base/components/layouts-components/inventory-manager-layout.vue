@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="space-y-3">
-      <li>
+      <li v-if="hasPermission('stock', 'view')">
         <button @click="toggleDropdown('inventory_overview')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -40,7 +40,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('items', 'view')">
         <button @click="toggleDropdown('item_master_data')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -79,7 +79,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('stock', 'move')">
         <button @click="toggleDropdown('stock_movement')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -118,7 +118,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('stock', 'adjust')">
         <button @click="toggleDropdown('stock_take_qc')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -157,7 +157,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('procurements', 'view')">
         <button @click="toggleDropdown('procurement_mgt')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -202,6 +202,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const { isActive } = useIsActive();
+const { hasPermission } = usePermission();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   inventory_overview: true,

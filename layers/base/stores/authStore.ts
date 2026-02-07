@@ -1,5 +1,6 @@
 import type { User } from "@supabase/supabase-js";
 import type { AuthState } from "../types/auth";
+import type { Permission } from "../types";
 
 export const useAuthStore = defineStore("auth", {
   state: (): AuthState => ({
@@ -7,9 +8,41 @@ export const useAuthStore = defineStore("auth", {
     session: null,
     loading: true,
     authListenerInitialized: false,
+    userPermissions: [],
+    permissionsFetched: false,
+    profileRole: null,
   }),
 
   actions: {
+    /**
+     * Fetch user permissions
+     */
+    async fetchUserPermissions() {
+      if (!this.user?.id) return;
+
+      try {
+        const data = await $fetch<{ permissions: Permission[]; role?: string }>(
+          "/api/user/permissions",
+          { credentials: "include" },
+        );
+
+        if (data?.permissions) {
+          this.userPermissions = data.permissions;
+        } else {
+          this.userPermissions = [];
+        }
+        if (data?.role != null && data.role !== "") {
+          this.profileRole = data.role;
+        } else {
+          this.profileRole = null;
+        }
+        this.permissionsFetched = true;
+      } catch (error) {
+        console.error("Failed to fetch user permissions:", error);
+        this.permissionsFetched = true;
+      }
+    },
+
     /**
      * Initialize auth state from Supabase session
      */
@@ -36,9 +69,11 @@ export const useAuthStore = defineStore("auth", {
             await supabase.auth.signOut();
             this.session = null;
             this.user = null;
+            this.profileRole = null;
           } else {
             this.session = session;
             this.user = session.user;
+            await this.fetchUserPermissions();
           }
         }
 
@@ -118,6 +153,7 @@ export const useAuthStore = defineStore("auth", {
 
         this.session = data.session;
         this.user = data.user;
+        await this.fetchUserPermissions();
         return { success: true, data };
       } catch (error: any) {
         console.error("Sign in error:", error);
@@ -291,7 +327,7 @@ export const useAuthStore = defineStore("auth", {
     async signUp(
       email: string,
       password: string,
-      metadata?: Record<string, any>
+      metadata?: Record<string, any>,
     ) {
       const supabase = useSupabaseClient();
       this.loading = true;
@@ -498,6 +534,7 @@ export const useAuthStore = defineStore("auth", {
         if (error) throw error;
         this.session = data.session;
         this.user = data.user;
+        await this.fetchUserPermissions();
         return { success: true, data };
       } catch (error: any) {
         console.error("Verify OTP error:", error);
@@ -538,6 +575,8 @@ export const useAuthStore = defineStore("auth", {
         if (error) throw error;
         this.session = null;
         this.user = null;
+        this.permissionsFetched = false;
+        this.profileRole = null;
         return { success: true };
       } catch (error: any) {
         console.error("Sign out error:", error);
@@ -561,9 +600,8 @@ export const useAuthStore = defineStore("auth", {
       const supabase = useSupabaseClient();
       this.loading = true;
       try {
-        const { data, error } = await supabase.auth.resetPasswordForEmail(
-          email
-        );
+        const { data, error } =
+          await supabase.auth.resetPasswordForEmail(email);
         if (error) throw error;
         return { success: true, data };
       } catch (error: any) {
@@ -721,6 +759,11 @@ export const useAuthStore = defineStore("auth", {
   getters: {
     isAuthenticated: (state): boolean => !!state.user,
 
+    isAdmin: (state): boolean => {
+      const role = state.profileRole ?? state.user?.user_metadata?.role;
+      return role === "admin";
+    },
+
     currentUser: (state): User | null => state.user,
 
     userEmail: (state): string | undefined => state.user?.email,
@@ -728,7 +771,7 @@ export const useAuthStore = defineStore("auth", {
     userId: (state): string | undefined => state.user?.id,
 
     currentUserRole: (state): string | undefined =>
-      state.user?.user_metadata?.role,
+      state.profileRole ?? state.user?.user_metadata?.role,
 
     isAuthReady: (state): boolean => state.authListenerInitialized,
   },

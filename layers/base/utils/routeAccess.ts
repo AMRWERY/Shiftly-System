@@ -9,7 +9,12 @@ export const ROLE_ROUTES: Record<string, readonly string[]> = {
   manager: ["/team", "/schedules", "/reports", "/approvals", "/profile"],
   accountant: ["/finance", "/invoices", "/expenses", "/reports", "/profile"],
   "inventory-manager": ["/inventory", "/stock", "/orders", "/profile"],
-  "maintenance-technician": ["/maintenance", "/work-orders", "/equipment", "/profile"],
+  "maintenance-technician": [
+    "/maintenance",
+    "/work-orders",
+    "/equipment",
+    "/profile",
+  ],
   "system-auditor": ["/audit-logs", "/compliance", "/reports", "/profile"],
   "td-officer": ["/training", "/development", "/courses", "/profile"],
 };
@@ -54,7 +59,7 @@ export function removeLocalePrefix(path: string): string {
 export function checkRouteAccess(
   path: string,
   userRole: string | undefined,
-  roleRoutes = ROLE_ROUTES
+  roleRoutes = ROLE_ROUTES,
 ): boolean {
   // Remove locale prefix
   const pathWithoutLocale = removeLocalePrefix(path);
@@ -62,7 +67,7 @@ export function checkRouteAccess(
   // Public routes are accessible to everyone
   if (
     PUBLIC_ROUTES.some((route) =>
-      pathWithoutLocale.toLowerCase().startsWith(route)
+      pathWithoutLocale.toLowerCase().startsWith(route),
     )
   ) {
     return true;
@@ -79,8 +84,7 @@ export function checkRouteAccess(
   }
 
   // Get allowed routes for this role
-  const allowedRoutes =
-    roleRoutes[userRole as keyof typeof roleRoutes] || [];
+  const allowedRoutes = roleRoutes[userRole as keyof typeof roleRoutes] || [];
 
   // Check for wildcard access (admin)
   if (allowedRoutes.includes("*")) {
@@ -92,10 +96,70 @@ export function checkRouteAccess(
 }
 
 /**
+ * Optional: routes that require a specific permission (module + action).
+ * If a route is listed here, access is granted only if the user has this permission
+ * (in addition to or instead of role-based access, depending on middleware).
+ */
+export const ROUTE_REQUIRED_PERMISSION: Record<
+  string,
+  { module: string; action: string }
+> = {
+  "/roles": { module: "roles", action: "view" },
+  "/users": { module: "users", action: "view" },
+  "/employees": { module: "employees", action: "view" },
+  "/audit-log": { module: "audit", action: "view" },
+  "/reports": { module: "reports", action: "view" },
+  "/settings": { module: "settings", action: "view" },
+};
+
+/**
+ * Get required permission for a path (first matching route prefix)
+ */
+export function getRequiredPermissionForPath(path: string): {
+  module: string;
+  action: string;
+} | null {
+  const pathWithoutLocale = removeLocalePrefix(path);
+  const entry = Object.entries(ROUTE_REQUIRED_PERMISSION).find(([route]) =>
+    pathWithoutLocale.startsWith(route),
+  );
+  return entry ? entry[1] : null;
+}
+
+/**
+ * Check if a user has access: either by role (legacy) or by permission when route has required permission
+ */
+export function checkRouteAccessWithPermissions(
+  path: string,
+  userRole: string | undefined,
+  hasPermission: (module: string, action: string) => boolean,
+): boolean {
+  const pathWithoutLocale = removeLocalePrefix(path);
+  if (
+    PUBLIC_ROUTES.some((route) =>
+      pathWithoutLocale.toLowerCase().startsWith(route),
+    )
+  ) {
+    return true;
+  }
+  if (!userRole) return false;
+  if (COMMON_ROUTES.some((route) => pathWithoutLocale.startsWith(route))) {
+    return true;
+  }
+
+  const required = getRequiredPermissionForPath(path);
+  if (required) {
+    return hasPermission(required.module, required.action);
+  }
+
+  return checkRouteAccess(path, userRole);
+}
+
+/**
  * Get the list of allowed routes for a specific role
  */
 export function getAllowedRoutesForRole(
-  userRole: string | undefined
+  userRole: string | undefined,
 ): string[] {
   if (!userRole) return [];
 

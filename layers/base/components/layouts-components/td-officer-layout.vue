@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="space-y-3">
-      <li>
+      <li v-if="hasPermission('training', 'view')">
         <button @click="toggleDropdown('training_catalog')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -40,7 +40,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('training', 'view')">
         <button @click="toggleDropdown('employee_development')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -79,7 +79,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('training', 'approve')">
         <button @click="toggleDropdown('request_approval')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -110,7 +110,7 @@
         </ul>
       </li>
 
-      <li>
+      <li v-if="hasPermission('reports', 'view')">
         <button @click="toggleDropdown('skills_gaps_report')" type="button"
           class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
           <icon name="eos-icons:cluster-management"
@@ -147,6 +147,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const { isActive } = useIsActive();
+const { hasPermission } = usePermission();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   training_catalog: true,
