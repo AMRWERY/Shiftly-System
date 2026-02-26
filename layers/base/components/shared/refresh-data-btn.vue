@@ -1,9 +1,9 @@
 <template>
   <div>
     <button @click="handleReload" :disabled="isLoading"
-      class="flex items-center justify-center p-2 text-gray-200 rounded-full bg-[#3b3b5c] hover:bg-[#4a4a6e] disabled:opacity-50 disabled:cursor-not-allowed shadow border border-gray-600">
-      <icon v-if="!isLoading" name="flowbite:refresh-outline" class="w-5 h-5" />
-      <icon v-else name="svg-spinners:90-ring-with-bg" class="w-5 h-5 animate-spin" />
+      class="flex items-center justify-center space-s-2 px-4 py-2 text-brand-primary rounded-full bg-transparent border border-brand-primary/30 hover:bg-brand-primary/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm">
+      <icon v-if="!isLoading" name="flowbite:refresh-outline" class="w-4 h-4" />
+      <icon v-else name="svg-spinners:90-ring-with-bg" class="w-4 h-4 animate-spin" />
     </button>
   </div>
 </template>

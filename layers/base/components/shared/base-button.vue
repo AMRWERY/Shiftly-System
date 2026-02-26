@@ -78,8 +78,8 @@ const props = defineProps({
   },
   variant: {
     type: String,
-    default: 'solid', // options: 'solid' | 'outline'
-    validator: (val: string) => ['solid', 'outline'].includes(val)
+    default: 'solid', // options: 'solid' | 'outline' | 'ghost'
+    validator: (val: string) => ['solid', 'outline', 'ghost'].includes(val)
   },
   link: {
     type: Boolean,
@@ -110,7 +110,7 @@ const buttonClasses = computed(() => {
   }
 
   const base = [
-    'font-medium rounded-lg text-sm text-center flex items-center justify-center',
+    'font-medium rounded-xl text-sm text-center flex items-center justify-center transition-all',
     props.paddingX, props.paddingY
   ]
 
@@ -119,7 +119,9 @@ const buttonClasses = computed(() => {
   const variantClass =
     props.variant === 'outline'
       ? [!props.noBorder ? 'border' : '', props.borderColor, props.textColor, 'bg-transparent']
-      : ['text-white', props.bgColor, props.bgHoverColor, props.hoverColor]
+      : props.variant === 'ghost'
+        ? ['bg-transparent', props.textColor]
+        : ['text-white', props.bgColor, props.bgHoverColor, props.hoverColor]
 
   return [...base, block, ...variantClass]
 })

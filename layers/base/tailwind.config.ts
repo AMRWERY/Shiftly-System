@@ -14,9 +14,14 @@ export default {
     extend: {
       colors: {
         brand: {
-          systemBg: "#2E2E48",
-          layoutBg: "#464667",
-          cardBg: "#3A3A5A",
+          systemBg: "#060818", // Deep navy black
+          layoutBg: "#0B0F19", // Slightly lighter navy
+          cardBg: "rgba(17, 24, 39, 0.7)", // Translucent navy for glassmorphism
+          primary: "#3b82f6", // Vibrant blue
+          secondary: "#1d4ed8", // Deep blue
+          accent: "#10b981", // Emerald green for success/positive trends
+          danger: "#ef4444", // Red for warnings/negative trends
+          warning: "#f59e0b", // Amber for pending actions
         },
         // Light grays for backgrounds or cards
         lightsmoke: "#F5F5F5",

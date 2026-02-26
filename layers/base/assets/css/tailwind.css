@@ -33,16 +33,20 @@
 
   /* Sidebar link active state */
   .sidebar-link-active {
-    @apply bg-brand-systemBg text-white;
+    @apply bg-brand-primary text-white shadow-[0_0_15px_rgba(59,130,246,0.5)];
   }
 
   /* Sidebar link hover state */
   .sidebar-link-hover {
-    @apply hover:bg-brand-systemBg hover:bg-opacity-40;
+    @apply hover:bg-white hover:bg-opacity-5;
   }
 
-  /* Card/Dialog background */
+  /* Card/Dialog background - Glassmorphism */
   .card-bg {
-    @apply bg-brand-cardBg border border-gray-700;
+    @apply bg-brand-cardBg backdrop-blur-md border border-white/10 rounded-2xl shadow-xl;
+  }
+
+  .glow-blue {
+    @apply shadow-[0_0_20px_rgba(59,130,246,0.3)];
   }
 }

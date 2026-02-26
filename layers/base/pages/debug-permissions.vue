@@ -38,7 +38,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const authStore = useAuthStore();
 const { user, userPermissions } = storeToRefs(authStore);
 const { hasPermission } = usePermission();

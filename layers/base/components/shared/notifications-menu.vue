@@ -1,14 +1,15 @@
 <template>
   <div>
     <!-- OPEN BUTTON -->
-    <button @click.stop="isOpen = !isOpen" class="relative text-gray-400 hover:text-white">
+    <base-button :variant="'ghost'" :text-color="'text-gray-400'" class="relative bg-white/5 hover:bg-white/10 p-1.5 rounded-xl transition-all border border-white/10"
+      @click.stop="isOpen = !isOpen">
       <icon name="material-symbols:notifications-outline-rounded"
         class="w-7 h-7 bg-gray-200 hover:bg-gray-400 rounded-full p-0.5" />
       <span
         class="absolute -top-0.5 -end-0.5 w-[7px] h-[7px] bg-gradient-to-b from-indigo-300 to-blue-300 rounded-full animate-ping"></span>
       <span
         class="absolute -top-0.5 -end-0.5 w-[7px] h-[7px] bg-gradient-to-b from-indigo-300 to-blue-300 rounded-full"></span>
-    </button>
+    </base-button>
 
     <!-- DROPDOWN DIALOG -->
     <Transition name="fade">
@@ -17,16 +18,17 @@
         <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)]" @click="closeDialog"></div>
 
         <!-- SIDEPANEL -->
-        <div class="relative w-full h-screen max-w-lg bg-brand-cardBg shadow-lg z-[1001] border-s border-gray-700">
+        <div class="relative w-full h-screen max-w-md bg-brand-layoutBg shadow-2xl z-[1001] border-s border-white/5">
           <div class="overflow-auto p-6 h-full hide-scrollbar">
             <!-- HEADER -->
             <div class="flex items-center gap-4 pb-6 text-white border-b border-gray-700">
               <h3 class="flex-1 text-sm font-medium">
                 Notifications
               </h3>
-              <button class="ms-2 close-btn text-gray-400 hover:text-white" @click="closeDialog">
+              <base-button :variant="'ghost'" :text-color="'text-gray-400'" class="ms-2 hover:text-white"
+                @click="closeDialog">
                 Close
-              </button>
+              </base-button>
             </div>
 
             <!-- OPTIONS -->

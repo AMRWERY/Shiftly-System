@@ -10,7 +10,7 @@
 
         <!-- Sidebar -->
         <aside
-          class="fixed inset-y-0 w-[280px] text-white flex-shrink-0 z-40 transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 flex flex-col layout-bg"
+          class="fixed inset-y-0 w-[260px] text-white flex-shrink-0 z-40 transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 flex flex-col bg-brand-layoutBg border-e border-white/5"
           :class="{
             'left-0': !localeStore.isRTL,
             'right-0': localeStore.isRTL,
@@ -19,8 +19,14 @@
             'translate-x-0': isSidebarOpen,
             'hidden lg:flex': !isSidebarOpen,
           }">
-          <div class="p-4 text-2xl font-semibold">
-            Shiftly
+          <div class="p-6 text-2xl font-bold flex items-center space-s-3">
+            <div class="w-8 h-8 bg-brand-primary rounded-lg flex items-center justify-center">
+              <icon name="material-symbols:shield" class="text-white w-5 h-5" />
+            </div>
+            <div class="flex flex-col">
+              <span class="text-lg leading-tight">Enterprise Admin</span>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium">Global Operations</span>
+            </div>
           </div>
           <nav class="mt-4 flex-1 mb-4 mx-4 space-y-3 overflow-y-auto hide-scrollbar">
             <template v-if="authStore.isAuthenticated">
@@ -76,36 +82,46 @@
           </nav>
 
           <!-- Logout Button -->
-          <div class="p-4 border-t border-gray-700">
-            <base-button :border-color="'border-gray-700'" :text-color="'text-white'" :variant="'outline'" :block="true"
-              :route="true" :type="'button'" :no-border="true"
-              class="flex items-center justify-center p-2 rounded-lg border-2 transition-colors group bg-brand-systemBg hover:bg-opacity-80"
-              @click="handleLogout" :to="'/auth'">{{ t("btn.logout") }}</base-button>
+          <div class="p-4 border-t border-white/5">
+            <base-button :variant="'solid'" :block="true" :route="true" :to="'/auth'" @click="handleLogout"
+              padding-x="px-6" padding-y="py-2.5">
+              {{ t("btn.logout") }}
+            </base-button>
           </div>
         </aside>
 
         <!-- Main content area -->
-        <div class="flex-1 flex flex-col overflow-hidden lg:ms-0">
+        <div class="flex-1 flex flex-col overflow-hidden lg:ms-0 bg-brand-systemBg">
           <!-- Navbar (Top Bar) -->
-          <header class="shadow-md p-4 flex justify-between items-center z-20 layout-bg-vertical">
+          <header
+            class="p-4 flex justify-between items-center z-20 bg-brand-systemBg/80 backdrop-blur-md border-b border-white/5">
             <!-- Hamburger menu for small screens -->
-            <button @click="isSidebarOpen = !isSidebarOpen"
-              class="text-gray-400 hover:text-gray-500 focus:outline-none lg:hidden">
+            <base-button :variant="'ghost'" :text-color="'text-gray-400'" @click="isSidebarOpen = !isSidebarOpen"
+              class="lg:hidden bg-white/5 hover:bg-white/10 p-1.5 rounded-xl transition-all border border-white/10 flex items-center justify-center">
               <icon name="material-symbols:menu" class="h-6 w-6" />
-            </button>
+            </base-button>
 
-            <div class="flex items-center justify-end ms-auto space-s-5">
+            <div class="flex items-center justify-end ms-auto space-s-4">
+              <!-- Search Input Component -->
+              <search-input v-model="searchQuery" :placeholder="'Search system resources...'"
+                class="hidden md:block w-72" />
+
               <!-- Profile Image -->
-              <div class="relative cursor-pointer" @click="navigateTo(localePath('/profile'))">
+              <div
+                class="relative cursor-pointer flex items-center space-s-3 bg-white/5 hover:bg-white/10 p-1.5 rounded-xl transition-all border border-white/10"
+                @click="navigateTo(localePath('/profile'))">
                 <img :src="authStore.currentUser?.user_metadata?.avatarUrl || '/img/dummy-profile-img.jpg'"
-                  alt="User Profile"
-                  class="w-10 h-10 rounded-full object-cover border border-gray-200 hover:border-indigo-300 transition-colors p-0.5" />
+                  alt="User Profile" class="w-8 h-8 rounded-lg object-cover" />
+                <div class="hidden lg:block text-start">
+                  <p class="text-[13px] font-semibold text-white leading-none">Alex Sterling</p>
+                  <p class="text-[11px] text-gray-500 mt-0.5">System Administrator</p>
+                </div>
               </div>
 
               <!-- RTL Toggle -->
-              <button
-                class="text-gray-100 hover:text-white me-1 border border-gray-200 hover:border-gray-300 py-1.5 px-2 rounded-lg transition-colors"
-                @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
+              <base-button :variant="'ghost'" :text-color="'text-gray-100'" :type="'button'"
+                class="relative cursor-pointer flex items-center space-s-3 bg-white/5 hover:bg-white/10 p-1.5 rounded-xl transition-all border border-white/10 me-1"
+                padding-x="px-2" padding-y="py-1.5" @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
                 <span v-if="localeStore.isRTL" class="flex items-center">
                   <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
                   En
@@ -114,7 +130,7 @@
                   <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
                   العربية
                 </span>
-              </button>
+              </base-button>
 
               <!-- notifications-menu component -->
               <notifications-menu :is-open="isNotificationsMenuOpen" @toggle="toggleNotificationsMenu" />
@@ -148,6 +164,7 @@ const {
   isTdOfficer,
   currentRole,
 } = useRole();
+const searchQuery = ref('');
 const isSidebarOpen = ref(false);
 
 watch(
