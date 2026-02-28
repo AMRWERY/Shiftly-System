@@ -65,7 +65,10 @@
     "create_role": "إنشاء الدور",
     "saving": "جاري الحفظ...",
     "creating": "جاري الإنشاء...",
-    "delete": "حذف"
+    "delete": "حذف",
+    "edit": "تعديل",
+    "view": "عرض",
+    "more_actions": "المزيد من الإجراءات"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
@@ -95,6 +98,8 @@
     "user_blocked_successfully": "تم حظر الموظف بنجاح",
     "user_unblocked_successfully": "تم إلغاء حظر الموظف بنجاح",
     "failed_to_update_user_status": "فشل تحديث حالة الموظف",
+    "user_updated_successfully": "تم تحديث المستخدم بنجاح!",
+    "failed_to_update_user": "فشل تحديث المستخدم. يرجى المحاولة مرة أخرى.",
     "account_activated_successfully": "تم تفعيل الحساب بنجاح! يمكنك الآن تسجيل الدخول بكلمة المرور الافتراضية.",
     "no_data_to_export": "لا توجد بيانات للتصدير.",
     "download_successful": "تم تحميل الملف '{file}' بنجاح.",
@@ -371,6 +376,8 @@
   "dialog": {
     "invite_user_title": "دعوة مستخدم جديد",
     "invite_user_message": "أدخل معلومات الموظف أدناه. سيتم إرسال بريد إلكتروني للدعوة لتفعيل حسابهم.",
+    "edit_user_title": "تعديل المستخدم: {name}",
+    "edit_user_message": "قم بتحديث معلومات المستخدم أدناه.",
     "reset_password_title": "إعادة تعيين كلمة المرور",
     "reset_password_message": "هل أنت متأكد من أنك تريد إعادة تعيين كلمة مرور هذا الموظف؟",
     "otp_message": "يرجى إدخال رمز التحقق المرسل إلى بريدك الإلكتروني.",

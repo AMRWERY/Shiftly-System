@@ -32,11 +32,15 @@
           :total-pages="totalPages" :total-items="usersStore.filteredUsers.length" :has-view="true" :has-block="true"
           :has-delete="true" :has-deactivate="true" :has-edit="true" :action-conditions="actionConditions"
           @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" @deactivate="handleDeactivateUser"
-          @edit="handleViewUser" @page-change="handlePageChange" @status-toggle="handleBlockUser" />
+          @edit="handleEditUser" @page-change="handlePageChange" @status-toggle="handleBlockUser" />
       </template>
 
       <!-- Invite User Dialog -->
       <invite-user-dialog :is-open="isInviteDialogOpen" @close="isInviteDialogOpen = false" @success="refreshUsers" />
+
+      <!-- Edit User Dialog -->
+      <edit-user-dialog :is-open="isEditDialogOpen" :user="userToEdit" @close="closeEditDialog"
+        @success="refreshUsers" />
 
       <!-- Delete Confirmation Dialog -->
       <delete-dialog :show="isDeleteDialogOpen" :title="t('dialog.delete_user_title')" :message="deleteDialogMessage"
@@ -55,13 +59,15 @@
 </template>
 
 <script lang="ts" setup>
-import type { Column } from '@/layers/base/types/tables'
-import type { UserListItem } from '@/layers/base/types'
+import type { Column } from '../../../../../layers/base/types/tables'
+import type { UserListItem } from '../../../../../layers/base/types'
+import EditUserDialog from '../../components/dialogs/edit-user-dialog.vue'
 
 const { t, n } = useI18n()
 const { triggerToast } = useToast()
 const usersStore = useUsersStore()
 const isInviteDialogOpen = ref(false)
+const isEditDialogOpen = ref(false)
 const isDeleteDialogOpen = ref(false)
 const isBlockDialogOpen = ref(false)
 const isDeactivateDialogOpen = ref(false)
@@ -71,6 +77,7 @@ const isDeactivating = ref(false)
 const userToDelete = ref<UserListItem | null>(null)
 const userToBlock = ref<UserListItem | null>(null)
 const userToDeactivate = ref<UserListItem | null>(null)
+const userToEdit = ref<UserListItem | null>(null)
 const localSearchTerm = ref('')
 
 // Fetch users on mount
@@ -163,6 +170,16 @@ const actionConditions = computed(() => ({
 const handleViewUser = (user: UserListItem) => {
   // Navigate to user details
   navigateTo(`/users/${user.id}`)
+}
+
+const handleEditUser = (user: UserListItem) => {
+  userToEdit.value = user
+  isEditDialogOpen.value = true
+}
+
+const closeEditDialog = () => {
+  isEditDialogOpen.value = false
+  userToEdit.value = null
 }
 
 const handleBlockUser = async (user: UserListItem) => {

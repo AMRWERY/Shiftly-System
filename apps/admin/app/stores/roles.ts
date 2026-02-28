@@ -4,8 +4,8 @@ import type {
 } from "../../../../layers/base/types";
 
 export const useRolesStore = defineStore("roles", () => {
-  const { triggerToast } = useToast();
   const { t } = useI18n();
+  const { triggerToast } = useToast();
 
   // State
   const roles = ref<RoleWithPermissions[]>([]);
@@ -16,7 +16,7 @@ export const useRolesStore = defineStore("roles", () => {
 
   // Pagination
   const currentPage = ref(1);
-  const itemsPerPage = ref(10);
+  const itemsPerPage = ref(8);
   const searchTerm = ref("");
 
   // Getters

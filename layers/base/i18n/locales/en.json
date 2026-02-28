@@ -65,7 +65,10 @@
     "create_role": "Create Role",
     "saving": "Saving...",
     "creating": "Creating...",
-    "delete": "Delete"
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "more_actions": "More Actions"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
@@ -95,6 +98,8 @@
     "user_blocked_successfully": "User blocked successfully",
     "user_unblocked_successfully": "User unblocked successfully",
     "failed_to_update_user_status": "Failed to update user status",
+    "user_updated_successfully": "User updated successfully!",
+    "failed_to_update_user": "Failed to update user. Please try again.",
     "account_activated_successfully": "Account activated successfully! You can now login with the default password.",
     "no_data_to_export": "No data to export.",
     "download_successful": "File '{file}' downloaded successfully.",
@@ -371,6 +376,8 @@
   "dialog": {
     "invite_user_title": "Invite New User",
     "invite_user_message": "Enter the user's information below. An invitation email will be sent to activate their account.",
+    "edit_user_title": "Edit User: {name}",
+    "edit_user_message": "Update the user's information below.",
     "reset_password_title": "Reset Password",
     "reset_password_message": "Are you sure you want to reset this user's password?",
     "otp_message": "Please enter the OTP sent to your email.",

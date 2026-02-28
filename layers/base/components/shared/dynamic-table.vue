@@ -108,26 +108,34 @@
                   <td v-if="hasAnyAction" class="px-6 py-5 text-end pe-8 relative overflow-visible">
                     <div class="flex items-center justify-end gap-2 transition-all">
                       <!-- Primary Actions (Icons) -->
-                      <button v-if="hasView && normalizedActionConditions.view(item)" @click.stop="$emit('view', item)"
-                        class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors tooltip">
-                        <icon name="heroicons-outline:eye" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
-                      </button>
-                      <button v-if="hasEdit && normalizedActionConditions.edit(item)" @click.stop="$emit('edit', item)"
-                        class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors tooltip">
-                        <icon name="heroicons-outline:pencil" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
-                      </button>
+                      <dynamic-tooltip v-if="hasView && normalizedActionConditions.view(item)" :text="t('btn.view')">
+                        <button @click.stop="$emit('view', item)"
+                          class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
+                          <icon name="heroicons-outline:eye" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
+                        </button>
+                      </dynamic-tooltip>
+
+                      <dynamic-tooltip v-if="hasEdit && normalizedActionConditions.edit(item)" :text="t('btn.edit')">
+                        <button @click.stop="$emit('edit', item)"
+                          class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
+                          <icon name="heroicons-outline:pencil" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
+                        </button>
+                      </dynamic-tooltip>
 
                       <!-- Secondary Actions (Dropdown) -->
-                      <div class="relative dropdown-container" :id="`dropdown-${item.id || index}`">
-                        <button @click.stop="toggleDropdown(item.id || index)"
-                          class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-all"
-                          :class="{ 'bg-gray-800 text-white': activeDropdownId === (item.id || index) }">
-                          <icon name="heroicons-outline:dots-vertical" class="w-5 h-5" />
-                        </button>
+                      <div v-if="hasDropdownActions(item)" class="relative dropdown-container"
+                        :id="`dropdown-${item.id || index}`">
+                        <dynamic-tooltip :text="t('btn.more_actions')">
+                          <button @click.stop="toggleDropdown(item.id || index)"
+                            class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-all"
+                            :class="{ 'bg-gray-800 text-white': activeDropdownId === (item.id || index) }">
+                            <icon name="heroicons-outline:dots-vertical" class="w-5 h-5" />
+                          </button>
+                        </dynamic-tooltip>
 
                         <!-- Dropdown Menu -->
                         <div v-if="activeDropdownId === (item.id || index)"
-                          class="absolute right-0 w-48 bg-[#1F2937] border border-gray-700 rounded-xl shadow-2xl z-[1000] overflow-hidden transform transition-all animate-in fade-in zoom-in duration-200"
+                          class="absolute end-0 w-48 bg-[#1F2937] border border-gray-700 rounded-xl shadow-2xl z-[1000] overflow-hidden transform transition-all animate-in fade-in zoom-in duration-200"
                           :class="index >= sortedItems.length - 2 ? 'bottom-full mb-2 origin-bottom-right' : 'top-full mt-2 origin-top-right'">
                           <div class="py-2">
 
@@ -145,7 +153,9 @@
                               {{ t('btn.mark_paid') }}
                             </button>
 
-                            <div class="h-px bg-gray-700/50 my-1"></div>
+                            <div
+                              v-if="hasDelete && normalizedActionConditions.delete(item) && ((hasDeactivate && normalizedActionConditions.deactivate(item)) || (hasMarkPaid && normalizedActionConditions.markPaid(item)))"
+                              class="h-px bg-gray-700/50 my-1"></div>
 
                             <button v-if="hasDelete && normalizedActionConditions.delete(item)"
                               @click.stop="executeAction('delete', item)"
@@ -275,6 +285,14 @@ const toggleSelectAll = () => {
 const hasAnyAction = computed(() =>
   props.hasView || props.hasBlock || props.hasDelete || props.hasEdit || props.hasMarkPaid || props.hasDeactivate
 );
+
+const hasDropdownActions = (item: any) => {
+  return (
+    (props.hasDeactivate && normalizedActionConditions.value.deactivate(item)) ||
+    (props.hasMarkPaid && normalizedActionConditions.value.markPaid(item)) ||
+    (props.hasDelete && normalizedActionConditions.value.delete(item))
+  );
+};
 
 const normalizedActionConditions = computed(() => {
   if (!props.actionConditions) {

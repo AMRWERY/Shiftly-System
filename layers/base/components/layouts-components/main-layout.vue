@@ -24,8 +24,10 @@
               <icon name="material-symbols:shield" class="text-white w-5 h-5" />
             </div>
             <div class="flex flex-col">
-              <span class="text-lg leading-tight">Enterprise Admin</span>
-              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium">Global Operations</span>
+              <span class="text-lg leading-tight">Shiftly</span>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium">
+                {{ currentRole ? t('roles.' + currentRole) : '' }}
+              </span>
             </div>
           </div>
           <nav class="mt-4 flex-1 mb-4 mx-4 space-y-3 overflow-y-auto hide-scrollbar">

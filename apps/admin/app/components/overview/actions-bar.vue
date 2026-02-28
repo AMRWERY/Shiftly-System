@@ -7,7 +7,7 @@
                 </div>
                 <span class="text-brand-primary font-semibold text-sm">Pending Actions Required</span>
 
-                <div class="flex gap-2 ml-4">
+                <div class="flex gap-2 ms-4">
                     <div v-for="action in actions" :key="action.label"
                         class="bg-gray-800/50 px-3 py-1 rounded-full border border-gray-700 flex items-center gap-2">
                         <div :class="['w-2 h-2 rounded-full', action.dot]"></div>

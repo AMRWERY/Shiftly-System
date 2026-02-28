@@ -18,25 +18,22 @@ export const useUsersStore = defineStore("users", () => {
   // Get filtered users (excluding admins and filtered by role/search)
   const filteredUsers = computed(() => {
     let filtered = users.value.filter(
-      (user: UserListItem) => user.role !== "admin"
+      (user: UserListItem) => user.role !== "admin",
     );
-
     if (selectedRole.value !== "all") {
       filtered = filtered.filter(
-        (user: UserListItem) => user.role === selectedRole.value
+        (user: UserListItem) => user.role === selectedRole.value,
       );
     }
-
     if (searchTerm.value) {
       const term = searchTerm.value.toLowerCase();
       filtered = filtered.filter(
         (user: UserListItem) =>
           user.fullName.toLowerCase().includes(term) ||
           user.email.toLowerCase().includes(term) ||
-          user.employeeId?.toLowerCase().includes(term)
+          user.employeeId?.toLowerCase().includes(term),
       );
     }
-
     return filtered;
   });
 
@@ -50,16 +47,15 @@ export const useUsersStore = defineStore("users", () => {
     () =>
       (status: "active" | "pending" | "blocked"): UserListItem[] => {
         return users.value.filter(
-          (user: UserListItem) => user.status === status
+          (user: UserListItem) => user.status === status,
         );
-      }
+      },
   );
 
   // Paginated users
   const paginatedUsers = computed(() => {
     const startIndex = (currentPage.value - 1) * itemsPerPage.value;
     const endIndex = startIndex + itemsPerPage.value;
-
     // Access other computed getters directly via their .value
     return filteredUsers.value.slice(startIndex, endIndex);
   });
@@ -74,7 +70,6 @@ export const useUsersStore = defineStore("users", () => {
   async function fetchUsers() {
     loading.value = true;
     error.value = null;
-
     try {
       const data = await $fetch<UserListItem[]>("/api/admin/users");
       users.value = data || [];
@@ -93,7 +88,7 @@ export const useUsersStore = defineStore("users", () => {
     try {
       // Optimistic update
       const userIndex = users.value.findIndex(
-        (u: UserListItem) => u.id === userId
+        (u: UserListItem) => u.id === userId,
       );
       if (userIndex !== -1) {
         const user = users.value[userIndex];
@@ -123,14 +118,13 @@ export const useUsersStore = defineStore("users", () => {
     try {
       // Optimistic update
       const userIndex = users.value.findIndex(
-        (u: UserListItem) => u.id === userId
+        (u: UserListItem) => u.id === userId,
       );
       if (userIndex !== -1) {
         const user = users.value[userIndex];
         if (user) {
           const previousStatus = user.status;
           user.status = "active";
-
           try {
             await $fetch(`/api/admin/users/${userId}`, {
               method: "PATCH",
@@ -169,14 +163,13 @@ export const useUsersStore = defineStore("users", () => {
     try {
       // Optimistic update
       const userIndex = users.value.findIndex(
-        (u: UserListItem) => u.id === userId
+        (u: UserListItem) => u.id === userId,
       );
       if (userIndex !== -1) {
         const user = users.value[userIndex];
         if (user) {
           const previousStatus = user.status;
           user.status = "deactivated";
-
           try {
             await $fetch(`/api/admin/users/${userId}/deactivate`, {
               method: "PATCH",
@@ -233,7 +226,6 @@ export const useUsersStore = defineStore("users", () => {
   async function fetchUser(id: string) {
     loading.value = true;
     error.value = null;
-
     try {
       const data = await $fetch<UserListItem>(`/api/admin/users/${id}`);
       // Update user in list if exists, otherwise add to list
