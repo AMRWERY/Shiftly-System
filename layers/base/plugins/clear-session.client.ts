@@ -47,7 +47,7 @@ export default defineNuxtPlugin({
       // Update the timestamp to mark this session as active
       sessionTimestamp.value = Date.now().toString();
       // Update timestamp periodically to keep session "alive"
-      setInterval(() => {
+      useIntervalFn(() => {
         sessionTimestamp.value = Date.now().toString();
       }, 30000); // Update every 30 seconds
     }

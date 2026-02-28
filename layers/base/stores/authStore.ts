@@ -96,7 +96,7 @@ export const useAuthStore = defineStore("auth", {
      */
     startTokenRefreshTimer() {
       const REFRESH_INTERVAL = 15 * 60 * 1000; // 15 minutes
-      setInterval(async () => {
+      useIntervalFn(async () => {
         if (!this.session) return;
         const supabase = useSupabaseClient();
         const { data, error } = await supabase.auth.refreshSession();
