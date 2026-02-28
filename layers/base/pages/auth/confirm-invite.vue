@@ -318,10 +318,12 @@ const goToLogin = async () => {
     }
 
     // Small delay to ensure everything is cleared
-    await new Promise(resolve => setTimeout(resolve, 100));
+    const { start: startClearWaitTimer } = useTimeoutFn(() => {
+      // Force full page reload to login with a query param to bypass middleware check
+      window.location.replace('/auth?from=invite');
+    }, 100, { immediate: false });
 
-    // Force full page reload to login with a query param to bypass middleware check
-    window.location.replace('/auth?from=invite');
+    startClearWaitTimer();
   } catch (err) {
     console.error('Error during navigation:', err);
     // Fallback: just navigate

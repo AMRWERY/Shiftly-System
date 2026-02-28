@@ -28,18 +28,17 @@ const emit = defineEmits<{
   (e: 'search', value: string): void; // Emitted on enter or after debounce
 }>();
 
-let debounceTimer: number | undefined;
+const debouncedSearch = useDebounceFn((value: string) => {
+  emit('search', value);
+}, props.debounce || 0);
 
 const onInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
   emit('update:modelValue', target.value);
 
   if (props.debounce && props.debounce > 0) {
-    clearTimeout(debounceTimer);
-    debounceTimer = window.setTimeout(() => {
-      emit('search', target.value);
-    }, props.debounce);
-  } else if (!props.debounce) { // If no debounce, emit search immediately
+    debouncedSearch(target.value);
+  } else {
     emit('search', target.value);
   }
 };

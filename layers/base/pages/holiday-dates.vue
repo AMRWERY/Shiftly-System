@@ -73,7 +73,7 @@ const error = ref(null);
 // --- Holiday Data Loading ---
 function loadHolidays() {
     loading.value = true;
-    setTimeout(() => {
+    const { start: startSimulatedLoading } = useTimeoutFn(() => {
         try {
             allHolidaysData.value = holidaysData;
             error.value = null;
@@ -88,7 +88,9 @@ function loadHolidays() {
         } finally {
             loading.value = false;
         }
-    }, 1000);
+    }, 1000, { immediate: false });
+
+    startSimulatedLoading();
 }
 
 // Load holidays when the component is mounted

@@ -1,11 +1,16 @@
 export function useLoading(duration = 3000) {
   const isLoading = ref(false);
+  const { start: startTimer } = useTimeoutFn(
+    () => {
+      isLoading.value = false;
+    },
+    duration,
+    { immediate: false },
+  );
 
   const startLoading = () => {
     isLoading.value = true;
-    setTimeout(() => {
-      isLoading.value = false;
-    }, duration);
+    startTimer();
   };
 
   return {

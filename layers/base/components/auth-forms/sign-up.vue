@@ -135,7 +135,12 @@ const steps = [
 ];
 const currentStep = ref(0);
 const resendCooldown = ref(0);
-let resendTimer: any = null;
+const { pause: stopResendTimer, resume: resumeResendTimer } = useIntervalFn(() => {
+  resendCooldown.value--;
+  if (resendCooldown.value <= 0) {
+    stopResendTimer();
+  }
+}, 1000, { immediate: false });
 
 const form = ref<UserAuth>({
   firstName: "",
@@ -167,6 +172,11 @@ const rolesOptions = computed(() => [
 // Set up auth state listener to detect email verification
 const supabase = useSupabaseClient();
 let verificationCheckInterval: any = null;
+const { pause: stopVerificationCheck, resume: resumeVerificationCheck } = useIntervalFn(() => {
+  if (currentStep.value === 1 && confirmationEmailSent.value) {
+    checkEmailVerification();
+  }
+}, 3000, { immediate: false });
 
 // Check email verification status
 const checkEmailVerification = async () => {
@@ -187,11 +197,7 @@ onMounted(() => {
   // This prevents duplicate cookie writes
   // The auth store already has a listener set up in initAuth()
   // Also check periodically when on step 2 (in case user verifies in another tab)
-  verificationCheckInterval = setInterval(() => {
-    if (currentStep.value === 1 && confirmationEmailSent.value) {
-      checkEmailVerification();
-    }
-  }, 3000); // Check every 3 seconds
+  resumeVerificationCheck();
 
   // Watch auth store user changes to detect email verification
   watch(() => authStore.user, (user) => {
@@ -235,14 +241,7 @@ const nextStep = async () => {
         });
         // Start cooldown timer for resend
         resendCooldown.value = 60;
-        if (resendTimer) clearInterval(resendTimer);
-        resendTimer = setInterval(() => {
-          resendCooldown.value--;
-          if (resendCooldown.value <= 0) {
-            clearInterval(resendTimer);
-            resendTimer = null;
-          }
-        }, 1000);
+        resumeResendTimer();
         currentStep.value++;
       } else {
         triggerToast({
@@ -283,10 +282,7 @@ const handleVerifyOtp = async () => {
       icon: 'mdi-check-circle',
     });
     // Clear resend timer
-    if (resendTimer) {
-      clearInterval(resendTimer);
-      resendTimer = null;
-    }
+    stopResendTimer();
     resendCooldown.value = 0;
     // Mark email as verified
     isEmailVerified.value = true;
@@ -316,14 +312,7 @@ const resendOtp = async () => {
     });
     // Start cooldown timer (60 seconds)
     resendCooldown.value = 60;
-    if (resendTimer) clearInterval(resendTimer);
-    resendTimer = setInterval(() => {
-      resendCooldown.value--;
-      if (resendCooldown.value <= 0) {
-        clearInterval(resendTimer);
-        resendTimer = null;
-      }
-    }, 1000);
+    resumeResendTimer();
   } else {
     triggerToast({
       message: result.error || t('toast.failed_to_send_otp'),
@@ -433,9 +422,10 @@ const handleSignup = async () => {
       type: "success",
       icon: "mdi-check-circle",
     });
-    setTimeout(() => {
+    const { start: startFinalNavigateTimer } = useTimeoutFn(() => {
       navigateTo("/");
-    }, 3000);
+    }, 3000, { immediate: false });
+    startFinalNavigateTimer();
   } else {
     triggerToast({
       message: t("toast.failed_to_register_new_account"),
@@ -449,14 +439,6 @@ const handleSignup = async () => {
 onUnmounted(() => {
   if (imagePreviewUrl.value) {
     URL.revokeObjectURL(imagePreviewUrl.value);
-  }
-  // Clean up verification check interval
-  if (verificationCheckInterval) {
-    clearInterval(verificationCheckInterval);
-  }
-  // Clean up resend timer
-  if (resendTimer) {
-    clearInterval(resendTimer);
   }
 });
 </script>

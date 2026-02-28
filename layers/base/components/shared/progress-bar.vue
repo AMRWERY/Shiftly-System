@@ -8,27 +8,29 @@
 <script lang="ts" setup>
 const progress = ref(0);
 const isLoading = ref(false);
-let interval: number;
+const { pause: stopInterval, resume: resumeInterval } = useIntervalFn(() => {
+  if (progress.value < 95) {
+    progress.value += Math.random() * 5 + 5;
+  }
+}, 2000, { immediate: false });
+
+const { start: startStopTimer } = useTimeoutFn(() => {
+  isLoading.value = false;
+  progress.value = 0;
+}, 1000, { immediate: false });
 
 const router = useRouter();
 
 const startProgress = (): void => {
   progress.value = 0;
   isLoading.value = true;
-  interval = window.setInterval(() => {
-    if (progress.value < 95) {
-      progress.value += Math.random() * 5 + 5;
-    }
-  }, 2000)
+  resumeInterval();
 };
 
 const stopProgress = (): void => {
-  window.clearInterval(interval);
+  stopInterval();
   progress.value = 100;
-  setTimeout(() => {
-    isLoading.value = false;
-    progress.value = 0;
-  }, 1000);
+  startStopTimer();
 };
 
 onMounted(() => {
@@ -41,7 +43,4 @@ onMounted(() => {
   });
 });
 
-onUnmounted(() => {
-  clearInterval(interval);
-});
 </script>

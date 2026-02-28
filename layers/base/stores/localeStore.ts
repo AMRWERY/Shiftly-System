@@ -56,9 +56,15 @@ export const useLocaleStore = defineStore("locales", () => {
     }
 
     if (import.meta.client) {
-      setTimeout(() => {
-        isOverlayVisible.value = false;
-      }, 500);
+      const { start: startOverlayTimer } = useTimeoutFn(
+        () => {
+          isOverlayVisible.value = false;
+        },
+        500,
+        { immediate: false },
+      );
+
+      startOverlayTimer();
     }
   }
 

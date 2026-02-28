@@ -113,14 +113,17 @@ const closeToast = () => {
   emit("toastClosed");
 };
 
-onMounted(() => {
-  setTimeout(() => {
-    progressWidth.value = 0;
-  }, 50);
+const { start: startProgressTimer } = useTimeoutFn(() => {
+  progressWidth.value = 0;
+}, 50, { immediate: false });
 
-  setTimeout(() => {
-    closeToast();
-  }, props.duration);
+const { start: startCloseTimer } = useTimeoutFn(() => {
+  closeToast();
+}, props.duration, { immediate: false });
+
+onMounted(() => {
+  startProgressTimer();
+  startCloseTimer();
 });
 </script>
 

@@ -9,6 +9,14 @@ export function useToast() {
     duration: 4000,
   }));
 
+  const { start: startDismissTimer } = useTimeoutFn(
+    () => {
+      toastState.value.show = false;
+    },
+    () => toastState.value.duration,
+    { immediate: false },
+  );
+
   const triggerToast = (options: ToastOptions) => {
     toastState.value = {
       show: true,
@@ -18,9 +26,7 @@ export function useToast() {
       duration: options.duration || 3000,
     };
 
-    setTimeout(() => {
-      toastState.value.show = false;
-    }, toastState.value.duration);
+    startDismissTimer();
   };
 
   return {

@@ -89,7 +89,12 @@ const { isLoading: loading, startLoading } = useLoading(3000)
 const steps = [t('stepper.email'), t('stepper.otp'), t('stepper.new_password')]
 const currentStep = ref(0)
 const resendCooldown = ref(0)
-let resendTimer: any = null
+const { pause: stopResendTimer, resume: resumeResendTimer } = useIntervalFn(() => {
+    resendCooldown.value--;
+    if (resendCooldown.value <= 0) {
+        stopResendTimer();
+    }
+}, 1000, { immediate: false });
 
 const form = ref({
     email: "",
@@ -119,14 +124,7 @@ const nextStep = async () => {
         });
         // Start cooldown timer for resend
         resendCooldown.value = 60;
-        if (resendTimer) clearInterval(resendTimer);
-        resendTimer = setInterval(() => {
-            resendCooldown.value--;
-            if (resendCooldown.value <= 0) {
-                clearInterval(resendTimer);
-                resendTimer = null;
-            }
-        }, 1000);
+        resumeResendTimer();
         if (currentStep.value < steps.length - 1) currentStep.value++;
     } else {
         triggerToast({
@@ -163,10 +161,7 @@ const handleSubmitOtp = async () => {
             icon: 'mdi-check-circle',
         });
         // Clear resend timer
-        if (resendTimer) {
-            clearInterval(resendTimer);
-            resendTimer = null;
-        }
+        stopResendTimer();
         resendCooldown.value = 0;
         // Move to step 3 to set new password
         if (currentStep.value < steps.length - 1) {
@@ -193,13 +188,7 @@ const resendOtp = async () => {
         });
         // Start cooldown timer (60 seconds)
         resendCooldown.value = 60;
-        resendTimer = setInterval(() => {
-            resendCooldown.value--;
-            if (resendCooldown.value <= 0) {
-                clearInterval(resendTimer);
-                resendTimer = null;
-            }
-        }, 1000);
+        resumeResendTimer();
     } else {
         triggerToast({
             message: result.error || t('toast.failed_to_send_otp'),
@@ -237,9 +226,10 @@ const handleResetPassword = async () => {
         });
         // Sign out and redirect to login
         await authStore.logout();
-        setTimeout(() => {
+        const { start: startRedirectTimer } = useTimeoutFn(() => {
             navigateTo('/auth');
-        }, 2000);
+        }, 2000, { immediate: false });
+        startRedirectTimer();
     } else {
         triggerToast({
             message: result.error || t('toast.failed_to_reset_password'),
@@ -266,10 +256,4 @@ const handleBackspace = (e: KeyboardEvent, index: number) => {
     }
 };
 
-// Cleanup timer on unmount
-onUnmounted(() => {
-    if (resendTimer) {
-        clearInterval(resendTimer);
-    }
-});
 </script>

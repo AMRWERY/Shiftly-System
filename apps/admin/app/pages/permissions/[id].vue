@@ -80,7 +80,7 @@
                                 <button type="button" @click="permissionsStore.toggleAllModuleActions(module)"
                                     class="text-xs text-blue-400 hover:text-blue-800 font-medium px-3 py-1.5 rounded-md hover:bg-blue-50 transition-colors">
                                     {{ permissionsStore.areAllActionsSelected(module) ? t('permissions.deselect_all') :
-                                    t('permissions.select_all') }}
+                                        t('permissions.select_all') }}
                                 </button>
                             </div>
 
@@ -190,9 +190,10 @@ const handleSave = async () => {
         })
 
         // Navigate back after short delay
-        setTimeout(() => {
+        const { start: startBackTimer } = useTimeoutFn(() => {
             navigateBack()
-        }, 1000)
+        }, 1000, { immediate: false });
+        startBackTimer();
     } else {
         triggerToast({
             message: permissionsStore.error || t('permissions.failed_to_update_permissions'),

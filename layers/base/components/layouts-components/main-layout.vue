@@ -210,12 +210,14 @@ const handleLogout = async () => {
     // ✅ Clear localStorage AFTER navigation
     if (process.client) {
       // Small delay to ensure navigation is complete
-      setTimeout(() => {
+      const { start: startClearTimer } = useTimeoutFn(() => {
         // Use useLocalStorage to clear all keys
         Object.keys(localStorage).forEach(key => {
           useLocalStorage(key, null).value = null;
         });
-      }, 100);
+      }, 100, { immediate: false });
+
+      startClearTimer();
     }
   } else {
     console.error("Logout failed:", result.error);
