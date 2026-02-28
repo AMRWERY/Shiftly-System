@@ -8,7 +8,7 @@ import {
 
 export default defineNuxtRouteMiddleware((to) => {
   const authStore = useAuthStore();
-  const { hasPermission } = usePermission();
+  const { hasPermission } = useAppPermissions();
 
   const pathWithoutLocale = removeLocalePrefix(to.path);
 

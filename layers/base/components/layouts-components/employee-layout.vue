@@ -194,7 +194,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const { isActive } = useIsActive();
-const { hasPermission } = usePermission();
+const { hasPermission } = useAppPermissions();
 
 const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
   my_profile: true,
