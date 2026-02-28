@@ -64,7 +64,8 @@
     "save_changes": "حفظ التغييرات",
     "create_role": "إنشاء الدور",
     "saving": "جاري الحفظ...",
-    "creating": "جاري الإنشاء..."
+    "creating": "جاري الإنشاء...",
+    "delete": "حذف"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",

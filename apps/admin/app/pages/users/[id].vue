@@ -139,7 +139,6 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 const route = useRoute();
-const router = useRouter();
 const usersStore = useUsersStore();
 
 const { getStatusClass, getStatusColor } = useStatusClasses()

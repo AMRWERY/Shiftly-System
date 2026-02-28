@@ -1,31 +1,33 @@
 <template>
-  <div>
-    <ul class="flex border border-gray-700 divide-x divide-gray-700 rounded-lg overflow-hidden w-max my-9 ms-auto">
-      <li class="flex items-center justify-center shrink-0 px-4 py-2 cursor-pointer text-sm text-white font-semibold"
-        :class="{ 'opacity-30 cursor-not-allowed': currentPage === 1 }" @click="changePage(currentPage - 1)">
-        {{ t('btn.previous') }}
-      </li>
+  <div class="flex items-center gap-3">
+    <!-- Prev Button -->
+    <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1"
+      class="p-2 px-3 rounded-lg border border-gray-800 hover:bg-gray-800/50 disabled:opacity-20 disabled:cursor-not-allowed transition-all flex items-center gap-1 text-sm font-semibold text-gray-300">
+      <icon name="heroicons:chevron-left" class="w-4 h-4 rtl:rotate-180" />
+      {{ t('btn.previous') }}
+    </button>
 
+    <!-- Page Numbers -->
+    <div class="flex items-center -space-s-px">
       <template v-for="page in visiblePages" :key="page">
-        <li v-if="page === '...'"
-          class="flex items-center justify-center shrink-0 px-4 py-2 cursor-pointer text-base font-semibold text-gray-300">
-          ...
-        </li>
-
-        <li v-else class="flex items-center justify-center shrink-0 px-4 py-2 cursor-pointer text-base font-semibold"
-          :class="{
-            'bg-brand-systemBg text-white': page === currentPage,
-            'text-gray-400 hover:bg-white/5': page !== currentPage
-          }" @click="changePage(page as number)">
+        <span v-if="page === '...'" class="text-gray-700 px-2 select-none">...</span>
+        <button v-else @click="changePage(page as number)" :class="[
+          'w-10 h-10 flex items-center justify-center text-sm font-bold transition-all border border-transparent',
+          currentPage === page
+            ? 'bg-indigo-600/10 text-indigo-400 border-indigo-500/30 rounded-lg scale-110 z-10'
+            : 'text-gray-500 hover:text-white'
+        ]">
           {{ page }}
-        </li>
+        </button>
       </template>
+    </div>
 
-      <li class="flex items-center justify-center shrink-0 px-4 py-2 cursor-pointer text-sm text-white font-semibold"
-        :class="{ 'opacity-30 cursor-not-allowed': currentPage === totalPages }" @click="changePage(currentPage + 1)">
-        {{ t('btn.next') }}
-      </li>
-    </ul>
+    <!-- Next Button -->
+    <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages"
+      class="p-2 px-3 rounded-lg border border-gray-800 hover:bg-gray-800/50 disabled:opacity-20 disabled:cursor-not-allowed transition-all flex items-center gap-1 text-sm font-semibold text-gray-300">
+      {{ t('btn.next') }}
+      <icon name="heroicons:chevron-right" class="w-4 h-4 rtl:rotate-180" />
+    </button>
   </div>
 </template>
 

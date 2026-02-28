@@ -64,7 +64,8 @@
     "save_changes": "Save Changes",
     "create_role": "Create Role",
     "saving": "Saving...",
-    "creating": "Creating..."
+    "creating": "Creating...",
+    "delete": "Delete"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",

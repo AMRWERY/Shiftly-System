@@ -1,40 +1,39 @@
 <template>
   <div>
     <div class="p-6">
-      <!-- Header + Controls Row -->
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
-        <h1 class="text-2xl font-semibold text-gray-200">{{ t('layouts.users') }}</h1>
-
-        <!-- Controls: Search + Refresh + Add Button -->
-        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-          <!-- search-input component -->
-          <search-input v-model="localSearchTerm" @search="handleSearch"
-            :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
-
-          <!-- refresh-data-btn component -->
-          <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
-
-          <!-- Add New User Button -->
-          <base-button type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
-            @click="isInviteDialogOpen = true">
-            {{ t('btn.add_new_user') }}
-          </base-button>
-        </div>
-      </div>
-
-      <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_users')" />
-
       <!-- Loading State -->
       <table-skeleton-loader v-if="pending" :headers="columns" />
+      <template v-else>
+        <!-- Header + Controls Row -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
+          <h1 class="text-2xl font-semibold text-gray-200">{{ t('layouts.users') }}</h1>
 
-      <!-- Users Table -->
-      <dynamic-table v-else :columns="columns" :items="paginatedUsers" :has-view="true" :has-block="true"
-        :has-delete="true" :has-deactivate="true" :action-conditions="actionConditions" @view="handleViewUser"
-        @block="handleBlockUser" @delete="handleDeleteUser" @deactivate="handleDeactivateUser" />
+          <!-- Controls: Search + Refresh + Add Button -->
+          <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+            <!-- search-input component -->
+            <search-input v-model="localSearchTerm" @search="handleSearch"
+              :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
 
-      <!-- Pagination -->
-      <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
-        @page-change="handlePageChange" />
+            <!-- refresh-data-btn component -->
+            <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
+
+            <!-- Add New User Button -->
+            <base-button type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
+              @click="isInviteDialogOpen = true">
+              {{ t('btn.add_new_user') }}
+            </base-button>
+          </div>
+        </div>
+
+        <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_users')" />
+
+        <!-- Users Table -->
+        <dynamic-table v-else :columns="columns" :items="paginatedUsers" :current-page="currentPage"
+          :total-pages="totalPages" :total-items="usersStore.filteredUsers.length" :has-view="true" :has-block="true"
+          :has-delete="true" :has-deactivate="true" :has-edit="true" :action-conditions="actionConditions"
+          @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" @deactivate="handleDeactivateUser"
+          @edit="handleViewUser" @page-change="handlePageChange" @status-toggle="handleBlockUser" />
+      </template>
 
       <!-- Invite User Dialog -->
       <invite-user-dialog :is-open="isInviteDialogOpen" @close="isInviteDialogOpen = false" @success="refreshUsers" />
@@ -56,12 +55,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { Column } from '../../../../../layers/base/types/tables'
-import type { UserListItem } from '../../../../../layers/base/types'
-
-definePageMeta({
-  layout: 'dashboard'
-})
+import type { Column } from '@/layers/base/types/tables'
+import type { UserListItem } from '@/layers/base/types'
 
 const { t, n } = useI18n()
 const { triggerToast } = useToast()
@@ -86,27 +81,13 @@ onMounted(async () => {
 // Define table columns
 const columns = computed<Column[]>(() => [
   {
-    key: 'avatar',
-    label: t('table.avatar') || 'Avatar',
-    html: true,
-    format: (item: any) => {
-      const src = item.avatarUrl || '/img/dummy-profile-img.jpg';
-      return `<img src="${src}" alt="${item.fullName}" class="w-10 h-10 rounded-full object-cover">`;
-    }
+    key: 'user',
+    label: t('table.users') || 'User',
+    sortable: true
   },
   {
     key: 'employeeId',
     label: t('table.employee_id'),
-    sortable: true
-  },
-  {
-    key: 'fullName',
-    label: t('table.name'),
-    sortable: true
-  },
-  {
-    key: 'email',
-    label: t('table.email'),
     sortable: true
   },
   {
@@ -296,6 +277,10 @@ const confirmDeactivateUser = async () => {
     isDeactivating.value = false
   }
 }
+
+definePageMeta({
+  layout: 'dashboard'
+})
 
 useHead({
   titleTemplate: () => t('meta.users'),

@@ -21,53 +21,81 @@
       </div>
     </div>
 
-    <div class="relative sm:rounded-lg border border-gray-700 overflow-hidden bg-brand-layoutBg">
+    <div class="relative rounded-xl border border-gray-800/40 overflow-hidden bg-[#0B0E14]">
       <div class="scroll-container overflow-x-auto smooth-scroll" @scroll="handleScroll">
-        <table class="w-full text-sm text-gray-400 text-start">
-          <thead class="text-xs text-gray-300 capitalize bg-transparent border-b border-gray-700">
+        <table class="w-full text-sm text-gray-500 text-start sm:min-w-[1000px]">
+          <thead class="bg-[#0B0E14]/95 backdrop-blur-md border-b border-gray-800/60">
             <tr>
-              <th v-for="(header, index) in headers" :key="index" scope="col" class="px-6 py-3">
-                <div class="w-24 h-4 bg-gray-700 rounded-full animate-pulse"></div>
+              <!-- Selection Checkbox Skeleton -->
+              <th scope="col" class="px-6 py-5 w-12">
+                <div class="w-5 h-5 bg-gray-800 rounded animate-pulse"></div>
+              </th>
+
+              <th v-for="(header, index) in headers" :key="index" scope="col" class="px-6 py-5">
+                <div class="w-20 h-3 bg-gray-800 rounded-full animate-pulse opacity-60"></div>
+              </th>
+
+              <!-- Actions Header Skeleton -->
+              <th scope="col" class="px-6 py-5 text-end pe-10">
+                <div class="ms-auto w-16 h-3 bg-gray-800 rounded-full animate-pulse opacity-60"></div>
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr v-for="row in rows" :key="row" class="bg-transparent border-b border-gray-700">
-              <td v-for="(header, index) in headers" :key="index" class="px-6 py-4">
-                <div class="flex items-center space-s-3">
-                  <div v-if="header.type === 'image'" class="w-12 h-12 bg-gray-700 rounded-lg animate-pulse"></div>
-                  <div v-else-if="header.type === 'action'" class="flex gap-3">
-                    <div class="w-12 h-4 bg-gray-700 rounded animate-pulse"></div>
-                    <div class="w-12 h-4 bg-gray-700 rounded animate-pulse"></div>
+          <tbody class="divide-y divide-gray-800/20">
+            <tr v-for="row in rows" :key="row" class="bg-transparent group">
+              <!-- Checkbox Cell -->
+              <td class="px-6 py-5">
+                <div class="w-5 h-5 bg-gray-800/40 rounded animate-pulse"></div>
+              </td>
+
+              <td v-for="(header, index) in headers" :key="index" class="px-6 py-5">
+                <div class="flex items-center gap-4">
+                  <!-- User Avatar Skeleton -->
+                  <div v-if="header.key === 'user' || header.key === 'avatar'"
+                    class="w-11 h-11 bg-gray-800/60 rounded-full animate-pulse flex-shrink-0"></div>
+
+                  <div class="flex flex-col gap-2 flex-1">
+                    <div class="h-3 bg-gray-800 rounded-full animate-pulse" :class="header.loaderWidth || 'w-24'"></div>
+                    <div v-if="header.key === 'user'" class="h-2 bg-gray-800/40 rounded-full w-32 animate-pulse"></div>
                   </div>
-                  <div v-else class="h-4 bg-gray-700 rounded animate-pulse" :class="header.loaderWidth || 'w-24'"></div>
+                </div>
+              </td>
+
+              <!-- Actions Cell Skeleton -->
+              <td class="px-6 py-5 text-end pe-8">
+                <div class="flex justify-end gap-2">
+                  <div class="w-9 h-9 bg-gray-800/40 rounded-lg animate-pulse"></div>
+                  <div class="w-9 h-9 bg-gray-800/40 rounded-lg animate-pulse"></div>
+                  <div class="w-9 h-9 bg-gray-800/40 rounded-lg animate-pulse"></div>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div v-if="showLeftShadow" class="scroll-shadow scroll-shadow-left"></div>
-      <div v-if="showRightShadow" class="scroll-shadow scroll-shadow-right"></div>
     </div>
 
     <!-- Pagination Skeleton -->
     <div
-      class="flex divide-x-2 divide-gray-700 rounded-lg overflow-hidden w-max my-9 ms-auto animate-pulse border border-gray-700">
-      <!-- Previous -->
-      <div class="px-4 py-2 bg-gray-700 w-24 h-10"></div>
-      <!-- Pages -->
-      <div class="px-4 py-2 bg-gray-700 w-10 h-10 border-s border-gray-600"></div>
-      <div class="px-4 py-2 bg-gray-700 w-10 h-10 border-s border-gray-600"></div>
-      <div class="px-4 py-2 bg-gray-700 w-10 h-10 border-s border-gray-600"></div>
-      <!-- Next -->
-      <div class="px-4 py-2 bg-gray-700 w-20 h-10 border-s border-gray-600"></div>
+      class="px-8 py-5 border-t border-gray-800/40 flex flex-col sm:flex-row items-center justify-between bg-[#0D1017] animate-pulse">
+      <div class="h-4 bg-gray-800 rounded-full w-48 mb-4 sm:mb-0"></div>
+
+      <div class="flex items-center gap-3">
+        <!-- Prev Button Skeleton -->
+        <div class="w-24 h-10 bg-gray-800 border border-gray-700/50 rounded-lg"></div>
+        <!-- Page Numbers -->
+        <div class="flex gap-1">
+          <div v-for="i in 3" :key="i" class="w-10 h-10 bg-gray-800/50 rounded-lg"></div>
+        </div>
+        <!-- Next Button Skeleton -->
+        <div class="w-24 h-10 bg-gray-800 border border-gray-700/50 rounded-lg"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { TableHeader } from '../../types/table-header'
+import type { TableHeader } from '@/types/table-header'
 
 defineProps({
   headers: {

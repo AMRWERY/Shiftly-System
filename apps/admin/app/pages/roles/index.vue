@@ -1,41 +1,43 @@
 <template>
   <div>
     <div class="p-6">
-      <!-- Header + Controls Row -->
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
-        <h1 class="text-2xl font-semibold text-gray-400">
-          {{ t("layouts.roles") }}
-        </h1>
-
-        <!-- Controls: Search + Refresh + Add Button -->
-        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-          <!-- search-input component -->
-          <search-input v-model="localSearchTerm" @search="handleSearch" :placeholder="t('form.search_roles')"
-            class="w-full sm:w-[300px]" :debounce="300" />
-
-          <!-- refresh-data-btn component -->
-          <refresh-data-btn @refresh="refreshRoles" :is-loading="pending" />
-
-          <!-- Add New Role Button -->
-          <base-button type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
-            @click="openCreateDialog">
-            {{ t("btn.add_new_role") }}
-          </base-button>
-        </div>
-      </div>
-
-      <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_roles')" />
-
       <!-- Loading State -->
       <table-skeleton-loader v-if="pending" :headers="columns" />
 
-      <!-- Roles Table -->
-      <dynamic-table v-else :columns="columns" :items="paginatedRoles" :has-view="true" :has-edit="false"
-        :has-delete="false" :action-conditions="actionConditions" @view="handleViewRole" />
+      <template v-else>
+        <!-- Header + Controls Row -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
+          <h1 class="text-2xl font-semibold text-gray-400">
+            {{ t("layouts.roles") }}
+          </h1>
 
-      <!-- Pagination -->
-      <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
-        @page-change="handlePageChange" />
+          <!-- Controls: Search + Refresh + Add Button -->
+          <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+            <!-- search-input component -->
+            <search-input v-model="localSearchTerm" @search="handleSearch" :placeholder="t('form.search_roles')"
+              class="w-full sm:w-[300px]" :debounce="300" />
+
+            <!-- refresh-data-btn component -->
+            <refresh-data-btn @refresh="refreshRoles" :is-loading="pending" />
+
+            <!-- Add New Role Button -->
+            <base-button type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
+              @click="openCreateDialog">
+              {{ t("btn.add_new_role") }}
+            </base-button>
+          </div>
+        </div>
+
+        <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_roles')" />
+
+        <!-- Roles Table -->
+        <dynamic-table v-else :columns="columns" :items="paginatedRoles" :has-view="true" :has-edit="false"
+          :has-delete="false" :action-conditions="actionConditions" @view="handleViewRole" />
+
+        <!-- Pagination -->
+        <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
+          @page-change="handlePageChange" class="my-9 ms-auto" />
+      </template>
 
       <!-- Create Role Dialog -->
       <create-update-role-dialog :is-open="isCreateDialogOpen" @close="closeCreateDialog"
@@ -45,8 +47,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { Column } from "../../../../../layers/base/types/tables";
-import type { RoleWithPermissions } from "../../../../../layers/base/types";
+import type { Column } from "@/layers/base/types/tables";
+import type { RoleWithPermissions } from "@/layers/base/types";
 
 const { t } = useI18n();
 const rolesStore = useRolesStore();

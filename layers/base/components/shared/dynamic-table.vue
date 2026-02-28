@@ -1,178 +1,207 @@
 <template>
   <div>
-    <div class="relative sm:rounded-lg border border-gray-400 overflow-hidden bg-brand-layoutBg">
-      <div class="scroll-container overflow-x-auto smooth-scroll" @scroll="handleScroll">
-        <table class="w-full text-sm text-start text-gray-300 whitespace-nowrap bg-transparent table-auto">
-          <thead
-            class="text-sm table-header-bg text-gray-200 sticky top-0 z-10 border-b border-gray-700 bg-brand-layoutBg">
-            <tr>
-              <th scope="col" class="px-6 py-3">#</th>
-              <th v-for="(column, index) in columns" :key="index" scope="col" :class="[
-                'px-6 py-3',
-                column.key === 'avatar' ? '' : 'cursor-pointer select-none',
-              ]" @click="
-                  column.key !== 'avatar' ? sortByColumn(column.key) : null
-                  ">
-                <div class="flex items-center">
-                  {{ column.label }}
-                  <span v-if="sortColumn === column.key && column.key !== 'avatar'" class="ms-1 mt-1.5">
-                    <icon :name="sortDirection === 'asc'
-                        ? 'material-symbols:keyboard-arrow-up'
-                        : 'material-symbols:keyboard-arrow-down'
-                      " class="w-5 h-5 text-white" />
-                  </span>
-                </div>
-              </th>
-              <!-- Changed: Add visible label for actions column -->
-              <th scope="col" class="px-6 py-3 text-center" v-if="
-                hasView ||
-                hasDelete ||
-                hasBlock ||
-                hasEdit ||
-                hasMarkPaid ||
-                hasMarkFailed ||
-                hasDeactivate
-              "></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in sortedItems" :key="index" :class="[
-              'border-b border-gray-700',
-              'bg-transparent hover:bg-white/5 transition-colors',
-            ]">
-              <td class="px-6 py-4 font-medium text-white">{{ index + 1 }}</td>
-              <td v-for="(column, colIndex) in columns" :key="colIndex"
-                :class="['px-6 py-4', column.key === 'avatar' ? 'w-16' : '']">
-                <template v-if="
-                  column.key === 'status' || column.key === 'employeeRate'
-                ">
-                  <span v-if="item.status" :class="[
-                    'px-2.5 py-1 rounded-full text-sm font-medium',
-                    getStatusClass(item.status),
-                  ]">
-                    <template v-if="column.format">
-                      {{ column.format(item) }}
-                    </template>
-                    <template v-else>
-                      {{ item.status }}
-                    </template>
-                  </span>
-                  <span v-else-if="item.employeeRate" :class="[
-                    'px-2.5 py-1 rounded-full text-sm font-medium',
-                    getStatusClass(item.employeeRate),
-                  ]">
-                    {{ t(`status.${item.employeeRate}`) }}
-                    <template v-if="column.format">
-                      {{ column.format(item) }}
-                    </template>
-                    <template v-else>
-                      {{ item.employeeRate }}
-                    </template>
-                  </span>
-                  <template v-else>
-                    <template v-if="column.format">
-                      {{ column.format(item) }}
-                    </template>
-                    <template v-else>
-                      {{ getValue(item, column.key) }}
-                    </template>
-                  </template>
-                </template>
-                <template v-else-if="column.key === 'avatar' && column.format">
-                  <div class="flex items-center">
-                    <span v-html="column.format(item, index)"></span>
-                  </div>
-                </template>
-                <template v-else-if="column.html && column.format">
-                  <div class="flex items-center">
-                    <span v-html="column.format(item, index)"></span>
-                  </div>
-                </template>
-                <template v-else-if="column.format && column.key === 'dates'">
-                  <span v-html="column.format(item, index)"></span>
-                </template>
-                <template v-else-if="
-                  column.format &&
-                  column.key !== 'dates' &&
-                  column.key !== 'avatar'
-                ">
-                  {{ column.format(item, index) }}
-                </template>
-                <template v-else>
-                  {{ getValue(item, column.key) }}
-                </template>
-              </td>
-              <td v-if="
-                hasView ||
-                hasBlock ||
-                hasDelete ||
-                hasEdit ||
-                hasMarkPaid ||
-                hasMarkFailed ||
-                hasDeactivate
-              " class="px-6 py-4 text-end">
-                <div class="flex items-center gap-3.5 justify-end">
-                  <button v-if="hasView && normalizedActionConditions.view(item)"
-                    class="rounded-full text-blue-400 hover:text-blue-500 transition" @click="$emit('view', item)">
-                    <icon name="tabler:eye" class="w-7 h-7 text-blue-400 hover:text-blue-500" />
-                  </button>
-                  <button v-if="hasBlock && normalizedActionConditions.block(item)"
-                    class="rounded-full text-green-500 hover:text-green-700 transition" @click="$emit('block', item)">
-                    <icon name="material-symbols:block" class="w-6 h-6" :class="[
-                      item.status === 'blocked'
-                        ? 'text-green-500 hover:text-green-700'
-                        : 'text-red-400 hover:text-red-300',
-                    ]" />
-                  </button>
-                  <button v-if="hasDelete && normalizedActionConditions.delete(item)"
-                    class="rounded-full text-red-400 hover:text-red-300 transition" @click="$emit('delete', item)">
-                    <icon name="material-symbols:delete-sharp" class="w-6 h-6 text-red-400 hover:text-red-300" />
-                  </button>
-                  <button v-if="hasEdit && normalizedActionConditions.edit(item)"
-                    class="rounded-full text-indigo-500 hover:text-indigo-700 transition" @click="$emit('edit', item)">
-                    <icon name="heroicons-outline:pencil-alt"
-                      class="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 hover:text-indigo-800" />
-                  </button>
-                  <button v-if="
-                    hasMarkPaid && normalizedActionConditions.markPaid(item)
-                  " class="rounded-full text-green-500 hover:text-green-700 transition"
-                    @click="$emit('markPaid', item)">
-                    <icon name="heroicons-outline:check-circle"
-                      class="w-5 h-5 sm:w-6 sm:h-6 text-green-600 hover:text-green-800" />
-                  </button>
-                  <button v-if="
-                    hasDeactivate &&
-                    normalizedActionConditions.deactivate(item)
-                  " class="rounded-full text-gray-500 hover:text-gray-300 transition"
-                    @click="$emit('deactivate', item)">
-                    <icon name="material-symbols:person-off" class="w-6 h-6 text-gray-400 hover:text-gray-500" />
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div ref="tableRef">
+      <div class="flex flex-col h-full bg-[#0B0E14] text-gray-300 rounded-xl overflow-hidden border border-gray-800/40">
+        <!-- Table Container -->
+        <div class="flex-1 relative overflow-hidden flex flex-col">
+          <div class="scroll-container overflow-x-auto flex-1 smooth-scroll" @scroll="handleScroll">
+            <table class="w-full text-sm text-start whitespace-nowrap bg-transparent table-auto min-w-[1000px]">
+              <thead class="sticky top-0 z-20 bg-[#0B0E14]/95 backdrop-blur-md">
+                <tr class="border-b border-gray-800/60">
+                  <!-- Selection Checkbox Header -->
+                  <th scope="col" class="px-6 py-5 w-12">
+                    <div class="flex items-center">
+                      <input type="checkbox" :checked="isAllSelected" @change="toggleSelectAll"
+                        class="w-5 h-5 rounded border-gray-700 bg-transparent text-indigo-600 focus:ring-indigo-500/30 transition-all cursor-pointer accent-indigo-600" />
+                    </div>
+                  </th>
+
+                  <!-- Dynamic Columns -->
+                  <th v-for="(column, index) in columns" :key="index" scope="col"
+                    class="px-6 py-5 text-start font-bold text-[11px] tracking-widest text-gray-400 select-none transition-colors hover:text-gray-200"
+                    :class="[column.key === 'avatar' || column.key === 'user' ? '' : 'cursor-pointer']"
+                    @click="column.key !== 'avatar' && column.key !== 'user' ? sortByColumn(column.key) : null">
+                    <div class="flex items-center gap-2">
+                      {{ column.label }}
+                      <span v-if="sortColumn === column.key && !['avatar', 'user'].includes(column.key)"
+                        class="text-indigo-500">
+                        <icon
+                          :name="sortDirection === 'asc' ? 'heroicons:arrow-small-up' : 'heroicons:arrow-small-down'"
+                          class="w-4 h-4" />
+                      </span>
+                    </div>
+                  </th>
+
+                  <!-- Actions Header -->
+                  <th scope="col" class="px-6 py-5 text-end font-bold text-[11px] tracking-widest text-gray-400 pe-10"
+                    v-if="hasAnyAction">
+                    ACTIONS
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-800/20">
+                <tr v-for="(item, index) in sortedItems" :key="item.id || index"
+                  class="group transition-all hover:bg-white/[0.02]" :class="{ 'bg-indigo-500/5': isSelected(item) }">
+
+                  <!-- Selection Checkbox Cell -->
+                  <td class="px-6 py-5">
+                    <input type="checkbox" :checked="isSelected(item)" @change="toggleSelectItem(item)"
+                      class="w-5 h-5 rounded border-gray-700 bg-transparent text-indigo-600 focus:ring-indigo-500/30 transition-all cursor-pointer accent-indigo-600" />
+                  </td>
+
+                  <!-- Dynamic Data Cells -->
+                  <td v-for="(column, colIndex) in columns" :key="colIndex" class="px-6 py-5">
+                    <!-- User Profile Cell: Avatar + Name + Email (Combined) -->
+                    <div v-if="column.key === 'user' || (column.key === 'avatar' && (item.fullName || item.name))"
+                      class="flex items-center gap-4">
+                      <div class="relative flex-shrink-0 w-11 h-11">
+                        <img :src="item.avatarUrl || '/img/dummy-profile-img.jpg'"
+                          class="w-11 h-11 rounded-full object-cover border-2 border-gray-800 group-hover:border-indigo-500/50 transition-colors flex-shrink-0" />
+                        <!-- Activity indicator -->
+                        <div
+                          class="absolute bottom-0 end-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#0B0E14]">
+                        </div>
+                      </div>
+                      <div class="flex flex-col">
+                        <span
+                          class="text-sm font-bold text-white tracking-tight leading-tight group-hover:text-indigo-100 transition-colors">
+                          {{ item.fullName || item.name }}
+                        </span>
+                        <span class="text-xs text-gray-500 mt-0.5">{{ item.email }}</span>
+                      </div>
+                    </div>
+
+                    <!-- Role Tag Cell -->
+                    <div v-else-if="column.key === 'role'" class="flex">
+                      <span :class="getRoleClass(item.role)"
+                        class="px-3 py-1 text-[10px] font-bold tracking-widest rounded-full border shadow-sm">
+                        {{ formatRole(item.role) }}
+                      </span>
+                    </div>
+
+                    <!-- Status Toggle Cell -->
+                    <div v-else-if="column.key === 'status'" class="flex items-center">
+                      <button @click.stop="$emit('statusToggle', item)"
+                        class="relative inline-flex h-6 w-11 items-center rounded-full transition-all focus:outline-none ring-offset-2 ring-offset-[#0B0E14] focus:ring-2 focus:ring-indigo-500/50"
+                        :class="item.status === 'active' || item.status === 'approved' ? 'bg-indigo-600' : 'bg-gray-700'">
+                        <span
+                          class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 shadow-lg"
+                          :class="item.status === 'active' || item.status === 'approved' ? 'translate-x-6' : 'translate-x-1'" />
+                      </button>
+                    </div>
+
+                    <!-- Default Content Mapping -->
+                    <div v-else class="text-sm font-medium transition-colors" :class="[
+                      ['fullName', 'name'].includes(column.key) ? 'text-white font-semibold' : 'text-gray-400 group-hover:text-gray-300'
+                    ]">
+                      <template v-if="column.format">
+                        <span v-html="column.format(item, index)"></span>
+                      </template>
+                      <template v-else>
+                        {{ getValue(item, column.key) }}
+                      </template>
+                    </div>
+                  </td>
+
+                  <!-- Actions Cell -->
+                  <td v-if="hasAnyAction" class="px-6 py-5 text-end pe-8 relative overflow-visible">
+                    <div class="flex items-center justify-end gap-2 transition-all">
+                      <!-- Primary Actions (Icons) -->
+                      <button v-if="hasView && normalizedActionConditions.view(item)" @click.stop="$emit('view', item)"
+                        class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors tooltip">
+                        <icon name="heroicons-outline:eye" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
+                      </button>
+                      <button v-if="hasEdit && normalizedActionConditions.edit(item)" @click.stop="$emit('edit', item)"
+                        class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors tooltip">
+                        <icon name="heroicons-outline:pencil" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
+                      </button>
+
+                      <!-- Secondary Actions (Dropdown) -->
+                      <div class="relative dropdown-container" :id="`dropdown-${item.id || index}`">
+                        <button @click.stop="toggleDropdown(item.id || index)"
+                          class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-all"
+                          :class="{ 'bg-gray-800 text-white': activeDropdownId === (item.id || index) }">
+                          <icon name="heroicons-outline:dots-vertical" class="w-5 h-5" />
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div v-if="activeDropdownId === (item.id || index)"
+                          class="absolute right-0 w-48 bg-[#1F2937] border border-gray-700 rounded-xl shadow-2xl z-[1000] overflow-hidden transform transition-all animate-in fade-in zoom-in duration-200"
+                          :class="index >= sortedItems.length - 2 ? 'bottom-full mb-2 origin-bottom-right' : 'top-full mt-2 origin-top-right'">
+                          <div class="py-2">
+
+                            <button v-if="hasDeactivate && normalizedActionConditions.deactivate(item)"
+                              @click.stop="executeAction('deactivate', item)"
+                              class="w-full text-start px-4 py-2.5 text-sm font-semibold text-gray-300 hover:bg-white/[0.05] hover:text-rose-400 flex items-center gap-3 transition-colors">
+                              <icon name="material-symbols:person-off" class="w-4 h-4" />
+                              {{ t('btn.deactivate') }}
+                            </button>
+
+                            <button v-if="hasMarkPaid && normalizedActionConditions.markPaid(item)"
+                              @click.stop="executeAction('markPaid', item)"
+                              class="w-full text-start px-4 py-2.5 text-sm font-semibold text-gray-300 hover:bg-white/[0.05] hover:text-emerald-400 flex items-center gap-3 transition-colors">
+                              <icon name="heroicons-outline:check-circle" class="w-4 h-4" />
+                              {{ t('btn.mark_paid') }}
+                            </button>
+
+                            <div class="h-px bg-gray-700/50 my-1"></div>
+
+                            <button v-if="hasDelete && normalizedActionConditions.delete(item)"
+                              @click.stop="executeAction('delete', item)"
+                              class="w-full text-start px-4 py-2.5 text-sm font-semibold text-rose-500 hover:bg-rose-500/10 flex items-center gap-3 transition-colors">
+                              <icon name="material-symbols:delete-outline-sharp" class="w-4 h-4" />
+                              {{ t('btn.delete') }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Pagination Footer -->
+        <div
+          class="px-8 py-5 border-t border-gray-800/40 flex flex-col sm:flex-row items-center justify-between bg-[#0D1017]">
+          <div class="text-sm text-gray-400 font-medium mb-4 sm:mb-0">
+            Showing <span class="text-white font-bold">{{ displayStartIndex + 1 }}</span> to <span
+              class="text-white font-bold">{{
+                displayEndIndex }}</span>
+            of
+            <span class="text-white font-bold">{{ effectiveTotalItems }}</span> entries
+          </div>
+
+          <div class="flex items-center">
+            <pagination :current-page="effectiveCurrentPage" :total-pages="effectiveTotalPages"
+              @page-change="goToPage" />
+          </div>
+        </div>
       </div>
-      <div v-if="showLeftShadow" class="scroll-shadow scroll-shadow-left"></div>
-      <div v-if="showRightShadow" class="scroll-shadow scroll-shadow-right"></div>
     </div>
   </div>
 </template>
 
+
 <script lang="ts" setup>
-import type { Column, TableItem, StatusType } from "../../types/tables";
+import type { Column, TableItem } from "../../types/tables";
 
 const { t } = useI18n();
 
 const props = defineProps<{
   items: readonly any[];
   columns: Column[];
+  currentPage?: number;
+  totalPages?: number;
+  totalItems?: number;
   hasView?: boolean;
   hasDelete?: boolean;
   hasBlock?: boolean;
   hasEdit?: boolean;
   hasMarkPaid?: boolean;
-  hasMarkFailed?: boolean;
   hasDeactivate?: boolean;
   actionsLabel?: string;
   actionConditions?: {
@@ -181,10 +210,71 @@ const props = defineProps<{
     edit?: (item: any) => boolean;
     delete?: (item: any) => boolean;
     markPaid?: (item: any) => boolean;
-    markFailed?: (item: any) => boolean;
     deactivate?: (item: any) => boolean;
   };
 }>();
+
+const emit = defineEmits<{
+  (event: "view", item: any): void;
+  (event: "delete", item: any): void;
+  (event: "block", item: any): void;
+  (event: "edit", item: any): void;
+  (event: "markPaid", item: any): void;
+  (event: "deactivate", item: any): void;
+  (event: "statusToggle", item: any): void;
+  (event: "selectionChange", items: any[]): void;
+  (event: "pageChange", page: number): void;
+}>();
+
+// --- Action Logic ---
+const activeDropdownId = ref<string | number | null>(null);
+
+const toggleDropdown = (id: string | number) => {
+  if (activeDropdownId.value === id) {
+    activeDropdownId.value = null;
+  } else {
+    activeDropdownId.value = id;
+  }
+};
+
+const executeAction = (action: string, item: any) => {
+  emit(action as any, item);
+  activeDropdownId.value = null;
+};
+
+// Close dropdown on click outside
+const tableRef = ref(null);
+onClickOutside(tableRef, () => {
+  activeDropdownId.value = null;
+});
+
+// Selection Logic
+const selectedItems = ref<Set<any>>(new Set());
+const isSelected = (item: any) => selectedItems.value.has(item);
+const isAllSelected = computed(() => props.items.length > 0 && selectedItems.value.size === props.items.length);
+
+const toggleSelectItem = (item: any) => {
+  if (selectedItems.value.has(item)) {
+    selectedItems.value.delete(item);
+  } else {
+    selectedItems.value.add(item);
+  }
+  emit('selectionChange', Array.from(selectedItems.value));
+};
+
+const toggleSelectAll = () => {
+  if (isAllSelected.value) {
+    selectedItems.value.clear();
+  } else {
+    props.items.forEach(item => selectedItems.value.add(item));
+  }
+  emit('selectionChange', Array.from(selectedItems.value));
+};
+
+// Actions Helper
+const hasAnyAction = computed(() =>
+  props.hasView || props.hasBlock || props.hasDelete || props.hasEdit || props.hasMarkPaid || props.hasDeactivate
+);
 
 const normalizedActionConditions = computed(() => {
   if (!props.actionConditions) {
@@ -194,67 +284,22 @@ const normalizedActionConditions = computed(() => {
       edit: () => true,
       delete: () => true,
       markPaid: () => true,
-      markFailed: () => true,
       deactivate: () => true,
     };
   }
   return {
-    view: (item: any) =>
-      props.actionConditions?.view ? props.actionConditions.view(item) : true,
-    block: (item: any) =>
-      props.actionConditions?.block ? props.actionConditions.block(item) : true,
-    edit: (item: any) =>
-      props.actionConditions?.edit ? props.actionConditions.edit(item) : false,
-    delete: (item: any) =>
-      props.actionConditions?.delete
-        ? props.actionConditions.delete(item)
-        : false,
-    markPaid: (item: any) =>
-      props.actionConditions?.markPaid
-        ? props.actionConditions.markPaid(item)
-        : false,
-    markFailed: (item: any) =>
-      props.actionConditions?.markFailed
-        ? props.actionConditions.markFailed(item)
-        : false,
-    deactivate: (item: any) =>
-      props.actionConditions?.deactivate
-        ? props.actionConditions.deactivate(item)
-        : false,
+    view: (item: any) => props.actionConditions?.view ? props.actionConditions.view(item) : true,
+    block: (item: any) => props.actionConditions?.block ? props.actionConditions.block(item) : true,
+    edit: (item: any) => props.actionConditions?.edit ? props.actionConditions.edit(item) : true,
+    delete: (item: any) => props.actionConditions?.delete ? props.actionConditions.delete(item) : true,
+    markPaid: (item: any) => props.actionConditions?.markPaid ? props.actionConditions.markPaid(item) : true,
+    deactivate: (item: any) => props.actionConditions?.deactivate ? props.actionConditions.deactivate(item) : true,
   };
 });
 
-const emit = defineEmits<{
-  <T = any>(event: "view", item: T): void;
-  <T = any>(event: "delete", item: T): void;
-  <T = any>(event: "block", item: T): void;
-  <T = any>(event: "edit", item: T): void;
-  <T = any>(event: "markPaid", item: T): void;
-  <T = any>(event: "deactivate", item: T): void;
-}>();
-
-const { getStatusClass } = useStatusClasses();
-
-const getValue = (item: TableItem, key: string | number | symbol): any => {
-  if (typeof key === "string") {
-    return item[key];
-  }
-  return "";
-};
-
+// Sorting Logic
 const sortColumn = ref<string | null>(null);
 const sortDirection = ref<"asc" | "desc">("asc");
-const showLeftShadow = ref(false);
-const showRightShadow = ref(false);
-
-const handleScroll = (event: Event) => {
-  const target = event.target as HTMLElement;
-  const { scrollLeft, scrollWidth, clientWidth } = target;
-  // Show left shadow if scrolled from the start
-  showLeftShadow.value = scrollLeft > 0;
-  // Show right shadow if not scrolled to the end
-  showRightShadow.value = scrollLeft < scrollWidth - clientWidth - 10;
-};
 
 const sortByColumn = (key: string) => {
   if (sortColumn.value === key) {
@@ -265,91 +310,113 @@ const sortByColumn = (key: string) => {
   }
 };
 
+const getValue = (item: TableItem, key: string | number | symbol): any => {
+  if (typeof key === "string") return item[key];
+  return "";
+};
+
 const sortedItems = computed(() => {
-  if (!sortColumn.value || !props.items) {
-    return props.items;
-  }
+  if (!sortColumn.value || !props.items) return props.items;
   const itemsToSort = [...props.items];
   return itemsToSort.sort((a, b) => {
     const aValue = getValue(a, sortColumn.value!);
     const bValue = getValue(b, sortColumn.value!);
-    if (aValue === null || aValue === undefined)
-      return sortDirection.value === "asc" ? 1 : -1;
-    if (bValue === null || bValue === undefined)
-      return sortDirection.value === "asc" ? -1 : 1;
+    if (aValue === null || aValue === undefined) return sortDirection.value === "asc" ? 1 : -1;
+    if (bValue === null || bValue === undefined) return sortDirection.value === "asc" ? -1 : 1;
     if (typeof aValue === "string" && typeof bValue === "string") {
-      return sortDirection.value === "asc"
-        ? aValue.localeCompare(bValue)
-        : bValue.localeCompare(aValue);
-    } else {
-      const comparison = aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-      return sortDirection.value === "asc" ? comparison : -comparison;
+      return sortDirection.value === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
     }
+    const comparison = aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+    return sortDirection.value === "asc" ? comparison : -comparison;
   });
 });
+
+// Role Tag Styling
+const getRoleClass = (role: string) => {
+  if (!role) return 'bg-gray-500/10 text-gray-400 border-gray-500/20';
+  const r = role.toUpperCase();
+  if (r.includes('ADMIN')) return 'bg-blue-500/10 text-blue-400 border-blue-500/30';
+  if (r.includes('MANAGER')) return 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30';
+  if (r.includes('HR') || r.includes('PERSONNEL')) return 'bg-purple-500/10 text-purple-400 border-purple-500/30';
+  if (r.includes('AUDITOR')) return 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30';
+  if (r.includes('TECHNICIAN') || r.includes('ENGINEER')) return 'bg-amber-500/10 text-amber-400 border-amber-500/30';
+  return 'bg-gray-500/10 text-gray-400 border-gray-500/20';
+};
+
+// Role Formatting Helper
+const formatRole = (role: string) => {
+  if (!role) return '';
+  // Convert snake_case or kebab-case to Title Case (e.g., td_officer -> Td Officer)
+  return role
+    .split(/[_-]/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+};
+
+// Pagination Logic
+const internalCurrentPage = ref(1);
+const internalPageSize = ref(10);
+
+const effectiveCurrentPage = computed(() => props.currentPage || internalCurrentPage.value);
+const effectiveTotalItems = computed(() => props.totalItems !== undefined ? props.totalItems : props.items.length);
+const effectiveTotalPages = computed(() => props.totalPages !== undefined ? props.totalPages : Math.ceil(effectiveTotalItems.value / internalPageSize.value));
+
+// When using server-side pagination (props.totalPages exists), the items are already a slice, so startIndex is managed externally
+const displayStartIndex = computed(() => (effectiveCurrentPage.value - 1) * (props.totalItems ? (props.items.length || 0) : internalPageSize.value));
+const displayEndIndex = computed(() => Math.min(displayStartIndex.value + props.items.length, effectiveTotalItems.value));
+
+const goToPage = (page: number) => {
+  if (props.currentPage !== undefined) {
+    emit('pageChange', page);
+  } else {
+    internalCurrentPage.value = page;
+  }
+};
+
+// Shadow/Scroll Logic
+const handleScroll = (event: Event) => { };
 </script>
 
 <style scoped>
-/* Custom scrollbar styling */
-.scroll-container {
-  scroll-behavior: smooth;
-}
-
-/* Webkit browsers (Chrome, Safari, Edge) */
 .scroll-container::-webkit-scrollbar {
-  height: 8px;
+  height: 6px;
+  width: 6px;
 }
 
 .scroll-container::-webkit-scrollbar-track {
-  background: #2e2e48;
-  border-radius: 10px;
+  background: transparent;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #1F2937;
   border-radius: 10px;
-  transition: all 0.3s ease;
 }
 
 .scroll-container::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-  box-shadow: 0 0 6px rgba(102, 126, 234, 0.4);
+  background: #374151;
 }
 
-/* Firefox */
-.scroll-container {
-  scrollbar-color: #6366f1 #2e2e48;
-  scrollbar-width: thin;
-}
-
-/* Scroll shadows for better visual feedback */
-.scroll-shadow {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 20px;
-  pointer-events: none;
-  z-index: 20;
-  transition: opacity 0.3s ease;
-}
-
-.scroll-shadow-left {
-  left: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.08), transparent);
-}
-
-.scroll-shadow-right {
-  right: 0;
-  background: linear-gradient(270deg, rgba(0, 0, 0, 0.08), transparent);
-}
-
-/* Smooth scroll behavior */
 .smooth-scroll {
   scroll-behavior: smooth;
 }
 
-/* Optional: Add a subtle border effect */
-.scroll-container {
-  border-radius: 0 0 0.5rem 0.5rem;
+button:active {
+  transform: scale(0.96);
+}
+
+.animate-in {
+  animation: animate-in 0.2s ease-out;
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 </style>
