@@ -125,7 +125,7 @@
     "role_details": "Role details"
   },
   "roles": {
-    "admin": "Admin",
+    "admin": "System Administrator",
     "manager": "Manager",
     "accountant": "Accountant",
     "hr": "HR",

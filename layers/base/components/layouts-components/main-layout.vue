@@ -113,8 +113,12 @@
                 <img :src="authStore.currentUser?.user_metadata?.avatarUrl || '/img/dummy-profile-img.jpg'"
                   alt="User Profile" class="w-8 h-8 rounded-lg object-cover" />
                 <div class="hidden lg:block text-start">
-                  <p class="text-[13px] font-semibold text-white leading-none">Alex Sterling</p>
-                  <p class="text-[11px] text-gray-500 mt-0.5">System Administrator</p>
+                  <p class="text-[13px] font-semibold text-white leading-none">
+                    {{ authStore.currentUser?.user_metadata?.fullName || authStore.userEmail || 'User' }}
+                  </p>
+                  <p class="text-[11px] text-gray-500 mt-0.5" v-if="currentRole">
+                    {{ t('roles.' + currentRole) }}
+                  </p>
                 </div>
               </div>
 

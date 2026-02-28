@@ -19,7 +19,6 @@ export const useAuthStore = defineStore("auth", {
      */
     async fetchUserPermissions() {
       if (!this.user?.id) return;
-
       try {
         const data = await $fetch<{ permissions: Permission[]; role?: string }>(
           "/api/user/permissions",
@@ -58,7 +57,6 @@ export const useAuthStore = defineStore("auth", {
         const {
           data: { session },
         } = await supabase.auth.getSession();
-
         if (session) {
           // Check user status from user_metadata
           const userStatus = session.user?.user_metadata?.status;
@@ -76,7 +74,6 @@ export const useAuthStore = defineStore("auth", {
             await this.fetchUserPermissions();
           }
         }
-
         // Listen for auth changes (only once)
         if (!this.authListenerInitialized) {
           supabase.auth.onAuthStateChange((_event, session) => {
@@ -84,7 +81,6 @@ export const useAuthStore = defineStore("auth", {
             this.user = session?.user ?? null;
           });
           this.authListenerInitialized = true;
-
           // Start 15-minute refresh timer
           this.startTokenRefreshTimer();
         }
@@ -100,13 +96,10 @@ export const useAuthStore = defineStore("auth", {
      */
     startTokenRefreshTimer() {
       const REFRESH_INTERVAL = 15 * 60 * 1000; // 15 minutes
-
       setInterval(async () => {
         if (!this.session) return;
-
         const supabase = useSupabaseClient();
         const { data, error } = await supabase.auth.refreshSession();
-
         if (error) {
           console.error("Error refreshing token:", error);
         } else if (data.session) {
