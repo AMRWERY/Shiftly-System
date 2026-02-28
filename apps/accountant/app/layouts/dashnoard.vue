@@ -15,14 +15,14 @@
 const localeStore = useLocaleStore();
 const authStore = useAuthStore();
 const showBirthdayDialog = ref(false);
+const birthdayShown = useSessionStorage("birthdayShown", false);
 
 onMounted(async () => {
   await localeStore.loadLocale();
   // Only show birthday dialog once per session for authenticated users
-  const birthdayShown = sessionStorage.getItem('birthdayShown');
-  if (!birthdayShown && authStore.user) {
+  if (!birthdayShown.value && authStore.user) {
     showBirthdayDialog.value = true;
-    sessionStorage.setItem('birthdayShown', 'true');
+    birthdayShown.value = true;
   }
 });
 
