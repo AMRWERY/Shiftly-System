@@ -95,15 +95,15 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   // Set initial locale and sync with i18n
   if (import.meta.client) {
-    const savedLocale = localStorage.getItem("locale") || "en";
-    setLocale(savedLocale);
+    const localeStore = useLocaleStore();
+    setLocale(localeStore.locale);
 
     // Watch for locale changes
     watch(
       () => i18n.locale.value,
       (newLocale) => {
         setLocale(newLocale);
-      }
+      },
     );
   }
 });

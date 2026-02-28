@@ -3,11 +3,13 @@ type Locale = "en" | "ar";
 export default defineNuxtPlugin((nuxtApp) => {
   const applyStoredLocale = (): void => {
     try {
-      const storedLocale = localStorage.getItem("locale") || "en";
+      const storedLocale = useLocalStorage<Locale>("locale", "en").value;
 
       // Only use valid locales
       const locale =
-        storedLocale === "en" || storedLocale === "ar" ? (storedLocale as Locale) : "en";
+        storedLocale === "en" || storedLocale === "ar"
+          ? (storedLocale as Locale)
+          : "en";
 
       // Get i18n from the Nuxt app
       const i18n = nuxtApp.$i18n as any;

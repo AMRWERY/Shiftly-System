@@ -211,7 +211,10 @@ const handleLogout = async () => {
     if (process.client) {
       // Small delay to ensure navigation is complete
       setTimeout(() => {
-        localStorage.clear();
+        // Use useLocalStorage to clear all keys
+        Object.keys(localStorage).forEach(key => {
+          useLocalStorage(key, null).value = null;
+        });
       }, 100);
     }
   } else {

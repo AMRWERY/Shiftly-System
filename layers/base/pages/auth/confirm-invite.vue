@@ -313,7 +313,8 @@ const goToLogin = async () => {
 
     // Clear local storage to be extra safe
     if (typeof window !== 'undefined') {
-      localStorage.removeItem('sb-' + process.env.SUPABASE_URL?.split('//')[1]?.split('.')[0] + '-auth-token');
+      const key = 'sb-' + (process.env.SUPABASE_URL || '').split('//')[1]?.split('.')[0] + '-auth-token';
+      useLocalStorage(key, null).value = null;
     }
 
     // Small delay to ensure everything is cleared
