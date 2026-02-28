@@ -61,55 +61,46 @@ const handleLogin = async () => {
             const { getAppUrlForRole } = await import('../../config/roleAppMapping');
             const targetAppUrl = getAppUrlForRole(userRole as any);
             const currentUrl = window.location.origin;
-
-            if (userRole) {
-                const { getAppUrlForRole } = await import('../../config/roleAppMapping');
-                const targetAppUrl = getAppUrlForRole(userRole as any);
-                const currentUrl = window.location.origin;
-
-                // If user is in the wrong app, redirect to their role-specific app
-                if (currentUrl !== targetAppUrl) {
-                    const { start: startRedirectTimer } = useTimeoutFn(() => {
-                        window.location.href = targetAppUrl;
-                    }, 2000, { immediate: false });
-                    startRedirectTimer();
-                } else {
-                    // User is already in the correct app, just navigate to home
-                    const { start: startNavigateTimer } = useTimeoutFn(() => {
-                        navigateTo('/');
-                    }, 2000, { immediate: false });
-                    startNavigateTimer();
-                }
+            // If user is in the wrong app, redirect to their role-specific app
+            if (currentUrl !== targetAppUrl) {
+                const { start: startRedirectTimer } = useTimeoutFn(() => {
+                    window.location.href = targetAppUrl;
+                }, 2000, { immediate: false });
+                startRedirectTimer();
             } else {
-                // Fallback to home if role is not found
-                const { start: startFallbackTimer } = useTimeoutFn(() => {
+                // User is already in the correct app, just navigate to home
+                const { start: startNavigateTimer } = useTimeoutFn(() => {
                     navigateTo('/');
                 }, 2000, { immediate: false });
-                startFallbackTimer();
+                startNavigateTimer();
             }
         } else {
-            // Stop loading on error to show toast properly
-            loading.value = false;
-
-            // Show specific error messages for different error types
-            let errorMessage = t('toast.failed_to_login');
-
-            if (result.error?.toLowerCase().includes('deactivated')) {
-                errorMessage = t('toast.account_deactivated') || 'Your account has been deactivated.';
-            } else if (result.error?.toLowerCase().includes('blocked')) {
-                errorMessage = t('toast.account_blocked') || 'Your account has been blocked.';
-            } else if (result.error?.toLowerCase().includes('invalid') ||
-                result.error?.toLowerCase().includes('credentials') ||
-                result.error?.toLowerCase().includes('password')) {
-                errorMessage = t('toast.invalid_credentials');
-            }
-
-            triggerToast({
-                message: errorMessage,
-                type: 'error',
-                icon: 'material-symbols:error-outline-rounded',
-                duration: 5000, // Show error toast for 5 seconds
-            });
+            // Fallback to home if role is not found
+            const { start: startFallbackTimer } = useTimeoutFn(() => {
+                navigateTo('/');
+            }, 2000, { immediate: false });
+            startFallbackTimer();
         }
-    };
+    } else {
+        // Stop loading on error to show toast properly
+        loading.value = false;
+        // Show specific error messages for different error types
+        let errorMessage = t('toast.failed_to_login');
+        if (result.error?.toLowerCase().includes('deactivated')) {
+            errorMessage = t('toast.account_deactivated') || 'Your account has been deactivated.';
+        } else if (result.error?.toLowerCase().includes('blocked')) {
+            errorMessage = t('toast.account_blocked') || 'Your account has been blocked.';
+        } else if (result.error?.toLowerCase().includes('invalid') ||
+            result.error?.toLowerCase().includes('credentials') ||
+            result.error?.toLowerCase().includes('password')) {
+            errorMessage = t('toast.invalid_credentials');
+        }
+        triggerToast({
+            message: errorMessage,
+            type: 'error',
+            icon: 'material-symbols:error-outline-rounded',
+            duration: 5000, // Show error toast for 5 seconds
+        });
+    }
+}
 </script>
