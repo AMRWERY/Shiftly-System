@@ -5,10 +5,10 @@
         <h1 class="text-2xl font-bold tracking-tight text-white">
           {{ t("global_config.title") }}
         </h1>
-        <base-button type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
+        <VButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
           class="rounded-lg transition-colors" @click="save" :disabled="loading">
           {{ t("global_config.save_settings") }}
-        </base-button>
+        </VButton>
       </div>
 
       <!-- Alert Error -->
@@ -128,10 +128,10 @@
           <h3 class="text-base font-medium leading-6 text-white">
             {{ t("global_config.additional_holidays") }}
           </h3>
-          <base-button type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
+          <VButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
             class="rounded-lg transition-colors" @click="addHoliday">
             {{ t("global_config.add_holiday") }}
-          </base-button>
+          </VButton>
         </div>
 
         <div v-if="form.customHolidays.length === 0" class="text-center py-6 text-gray-400 text-sm">
@@ -233,9 +233,9 @@
 </template>
 
 <script lang="ts" setup>
-import arabHolidays from "../../../../layers/base/assets/arab-holidays.json";
-import { supportedCurrencies } from "../../../../layers/base/config/i18n.config";
-import type { DayInfo } from "../../../../layers/base/types/tables";
+import arabHolidays from "@/layers/base/assets/arab-holidays.json";
+import { supportedCurrencies } from "@/layers/base/config/i18n.config";
+import type { DayInfo } from "@/layers/base/types/tables";
 
 const { t } = useI18n();
 const settingsStore = useSettingsStore();

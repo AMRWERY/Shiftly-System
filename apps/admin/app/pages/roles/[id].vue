@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="p-6">
-      <back-button />
+      <VBackButton />
 
       <div v-if="role" class="max-w-6xl mx-auto">
         <!-- Header + Stats -->
@@ -76,14 +76,14 @@
           </h2>
           <role-permission-matrix v-model="rolePermissions" :show-stats="true" />
           <div class="mt-6 pt-6 border-t border-gray-700 flex justify-end">
-            <base-button type="button" :padding-x="'px-4'" :padding-y="'py-2'" @click="submitPermissions"
+            <VButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" @click="submitPermissions"
               :disabled="saving">
               <span v-if="saving" class="flex items-center gap-2">
                 <icon name="svg-spinners:ring-resize" class="w-4 h-4" />
                 {{ t("btn.saving") }}
               </span>
               <span v-else>{{ t("btn.save_changes") }}</span>
-            </base-button>
+            </VButton>
           </div>
         </div>
 
@@ -122,9 +122,9 @@
       <!-- Loading / Not found -->
       <div v-if="!role && !loading" class="max-w-6xl mx-auto mt-4">
         <div class="card-bg text-center p-8 rounded-2xl shadow-xl">
-          <custom-error-message :error-message="t('roles.role_not_found')" />
+          <VErrorMessage :error-message="t('roles.role_not_found')" />
 
-          <no-data-message :message="t('roles.role_not_found')"
+          <VEmptyState :message="t('roles.role_not_found')"
             :icon="'material-symbols:shield-alert-outline-rounded'" />
         </div>
       </div>
@@ -138,7 +138,7 @@
 import type {
   RoleWithPermissions,
   Permission,
-} from "../../../../../layers/base/types";
+} from "@/layers/base/types";
 
 const { t } = useI18n();
 const route = useRoute();

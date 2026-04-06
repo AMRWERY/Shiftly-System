@@ -48,8 +48,8 @@ export default {
         "4xl": "2rem",
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-        montserrat: ["Montserrat", "sans-serif"],
+        sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       fontWeight: {
         thin: "100",

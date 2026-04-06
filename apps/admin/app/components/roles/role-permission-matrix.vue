@@ -79,7 +79,7 @@ import type {
   Permission,
   PermissionModule,
   PermissionAction,
-} from "../../../../../layers/base/types";
+} from "@/layers/base/types";
 
 const { t } = useI18n();
 

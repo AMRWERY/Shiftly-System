@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dynamic-dialog :model-value="show" :title="dialogTitle" :show-default-footer="false"
+    <VDialog :model-value="show" :title="dialogTitle" :show-default-footer="false"
       @update:model-value="closeDialog" @close="closeDialog">
       <template #body>
         <div class="text-center">
@@ -26,12 +26,12 @@
           <span v-else>{{ confirmText }}</span>
         </button>
       </template>
-    </dynamic-dialog>
+    </VDialog>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { UserListItem } from "../../../../../layers/base/types";
+import type { UserListItem } from "@/layers/base/types";
 
 const { t } = useI18n();
 

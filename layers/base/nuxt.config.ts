@@ -80,6 +80,9 @@ export default defineNuxtConfig({
   },
   // Nitro configuration
   nitro: {
+    alias: {
+      "@": rootDir,
+    },
     esbuild: {
       options: {
         target: "node20",
@@ -89,8 +92,10 @@ export default defineNuxtConfig({
   css: [
     join(currentDir, "./assets/css/tailwind.css"),
     join(currentDir, "./assets/css/main.css"),
+    join(currentDir, "./assets/css/transitions.css"),
   ],
   alias: {
+    "@": rootDir,
     "@types": join(currentDir, "types"),
     "@locales": join(currentDir, "locales"),
     "@assets": join(currentDir, "assets"),
@@ -100,18 +105,18 @@ export default defineNuxtConfig({
     {
       path: join(currentDir, "components"),
     },
+    // Shared/reusable components — PascalCase with V prefix (e.g. VButton.vue)
     {
       path: join(currentDir, "components/shared"),
     },
+    // Role-specific layout wrappers
     {
       path: join(currentDir, "components/layouts-components"),
     },
+    // Auth form components
     {
       path: join(currentDir, "components/auth-forms"),
     },
-    // {
-    //   path: join(currentDir, "components/dialogs"),
-    // },
   ],
   app: {
     head: {

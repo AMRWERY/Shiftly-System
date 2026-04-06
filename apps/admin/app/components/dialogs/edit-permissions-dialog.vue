@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dynamic-dialog
+    <VDialog
       :model-value="isOpen"
       :title="t('permissions.edit_permissions')"
       :show-default-footer="false"
@@ -88,7 +88,7 @@
 
           <!-- Footer Buttons -->
           <div class="mt-6 flex justify-end gap-3 pt-4 border-t">
-            <base-button
+            <VButton
               type="button"
               variant="outline"
               bg-color="bg-gray-100"
@@ -99,8 +99,8 @@
               @click="closeModal"
             >
               {{ t("btn.cancel") }}
-            </base-button>
-            <base-button
+            </VButton>
+            <VButton
               type="button"
               :disabled="loading"
               hover-color="hover:bg-blue-700"
@@ -114,11 +114,11 @@
                 Saving...
               </span>
               <span v-else>{{ t("permissions.save_permissions") }}</span>
-            </base-button>
+            </VButton>
           </div>
         </div>
       </template>
-    </dynamic-dialog>
+    </VDialog>
   </div>
 </template>
 
@@ -128,7 +128,7 @@ import type {
   Permission,
   PermissionModule,
   PermissionAction,
-} from "../../../../../layers/base/types";
+} from "@/layers/base/types";
 
 const props = defineProps<{
   isOpen: boolean;

@@ -2,7 +2,7 @@ import type {
   UserListItem,
   UserRole,
   InviteUserData,
-} from "../../../../layers/base/types";
+} from "@/layers/base/types";
 
 export const useUsersStore = defineStore("users", () => {
   // State

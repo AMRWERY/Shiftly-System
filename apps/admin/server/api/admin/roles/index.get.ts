@@ -4,7 +4,7 @@ import type {
   Permission,
   PermissionModule,
   PermissionAction,
-} from "../../../../../../layers/base/types";
+} from "@/layers/base/types";
 
 export default defineEventHandler(async (event) => {
   const supabase = await serverSupabaseServiceRole(event);

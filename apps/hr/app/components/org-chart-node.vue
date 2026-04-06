@@ -1,0 +1,23 @@
+<template>
+  <div class="org-chart-node">
+    <VAvatar :name="node?.name" size="md" />
+    <p class="org-chart-node-name">{{ node?.name }}</p>
+    <p class="org-chart-node-title">{{ node?.title }}</p>
+    <div v-if="node?.children?.length" class="org-chart-node-children">
+      <OrgChartNode v-for="child in node.children" :key="child.id" :node="child" />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+interface OrgNode {
+  id: string
+  name: string
+  title?: string
+  children?: OrgNode[]
+}
+
+defineProps<{
+  node?: OrgNode
+}>()
+</script>

@@ -2,8 +2,8 @@
   <div>
     <ClientOnly>
       <NuxtLayout>
-        <!-- progress-bar component -->
-        <progress-bar />
+        <!-- VProgressBar component -->
+        <VProgressBar />
 
         <!-- overlay component -->
         <overlay :visible="localeStore.isOverlayVisible" />
@@ -12,13 +12,13 @@
       </NuxtLayout>
     </ClientOnly>
 
-    <!-- dynamic-toast component -->
+    <!-- VToast component -->
     <teleport to="body">
       <div
         class="fixed z-[9999] pointer-events-none top-10 left-1/2 -translate-x-1/2 w-full max-w-md"
       >
         <div class="pointer-events-auto flex justify-center">
-          <dynamic-toast
+          <VToast
             v-if="showToast"
             :message="toastMessage"
             :toastType="toastType"

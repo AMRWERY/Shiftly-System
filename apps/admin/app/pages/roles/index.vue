@@ -2,7 +2,7 @@
   <div>
     <div class="p-6">
       <!-- Loading State -->
-      <table-skeleton-loader v-if="pending" :headers="columns" />
+      <VTableSkeletonLoader v-if="pending" :headers="columns" />
 
       <template v-else>
         <!-- Header + Controls Row -->
@@ -13,29 +13,29 @@
 
           <!-- Controls: Search + Refresh + Add Button -->
           <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-            <!-- search-input component -->
-            <search-input v-model="localSearchTerm" @search="handleSearch" :placeholder="t('form.search_roles')"
+            <!-- VSearchInput component -->
+            <VSearchInput v-model="localSearchTerm" @search="handleSearch" :placeholder="t('form.search_roles')"
               class="w-full sm:w-[300px]" :debounce="300" />
 
-            <!-- refresh-data-btn component -->
-            <refresh-data-btn @refresh="refreshRoles" :is-loading="pending" />
+            <!-- VRefreshButton component -->
+            <VRefreshButton @refresh="refreshRoles" :is-loading="pending" />
 
             <!-- Add New Role Button -->
-            <base-button type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
+            <VButton type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
               @click="openCreateDialog">
               {{ t("btn.add_new_role") }}
-            </base-button>
+            </VButton>
           </div>
         </div>
 
-        <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_roles')" />
+        <VErrorMessage v-if="error" :error-message="t('toast.failed_to_load_roles')" />
 
         <!-- Roles Table -->
-        <dynamic-table v-else :columns="columns" :items="paginatedRoles" :has-view="true" :has-edit="false"
+        <VTable v-else :columns="columns" :items="paginatedRoles" :has-view="true" :has-edit="false"
           :has-delete="false" :action-conditions="actionConditions" @view="handleViewRole" />
 
-        <!-- Pagination -->
-        <pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
+        <!-- VPagination -->
+        <VPagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
           @page-change="handlePageChange" class="my-9 ms-auto" />
       </template>
 

@@ -2,7 +2,7 @@
   <div>
     <div class="p-6">
       <!-- Loading State -->
-      <table-skeleton-loader v-if="pending" :headers="columns" />
+      <VTableSkeletonLoader v-if="pending" :headers="columns" />
       <template v-else>
         <!-- Header + Controls Row -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
@@ -10,25 +10,25 @@
 
           <!-- Controls: Search + Refresh + Add Button -->
           <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-            <!-- search-input component -->
-            <search-input v-model="localSearchTerm" @search="handleSearch"
+            <!-- VSearchInput component -->
+            <VSearchInput v-model="localSearchTerm" @search="handleSearch"
               :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
 
-            <!-- refresh-data-btn component -->
-            <refresh-data-btn @refresh="refreshUsers" :is-loading="pending" />
+            <!-- VRefreshButton component -->
+            <VRefreshButton @refresh="refreshUsers" :is-loading="pending" />
 
             <!-- Add New User Button -->
-            <base-button type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
+            <VButton type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
               @click="isInviteDialogOpen = true">
               {{ t('btn.add_new_user') }}
-            </base-button>
+            </VButton>
           </div>
         </div>
 
-        <custom-error-message v-if="error" :error-message="t('toast.failed_to_load_users')" />
+        <VErrorMessage v-if="error" :error-message="t('toast.failed_to_load_users')" />
 
         <!-- Users Table -->
-        <dynamic-table v-else :columns="columns" :items="paginatedUsers" :current-page="currentPage"
+        <VTable v-else :columns="columns" :items="paginatedUsers" :current-page="currentPage"
           :total-pages="totalPages" :total-items="usersStore.filteredUsers.length" :has-view="true" :has-block="true"
           :has-delete="true" :has-deactivate="true" :has-edit="true" :action-conditions="actionConditions"
           @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" @deactivate="handleDeactivateUser"
@@ -43,7 +43,7 @@
         @success="refreshUsers" />
 
       <!-- Delete Confirmation Dialog -->
-      <delete-dialog :show="isDeleteDialogOpen" :title="t('dialog.delete_user_title')" :message="deleteDialogMessage"
+      <VDeleteDialog :show="isDeleteDialogOpen" :title="t('dialog.delete_user_title')" :message="deleteDialogMessage"
         :loading="isDeleting" :confirm-text="'Yes Delete'" :cancel-text="'Cancel'" @close="closeDeleteDialog"
         @confirm="confirmDeleteUser" />
 
@@ -59,8 +59,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { Column } from '../../../../../layers/base/types/tables'
-import type { UserListItem } from '../../../../../layers/base/types'
+import type { Column } from '@/layers/base/types/tables'
+import type { UserListItem } from '@/layers/base/types'
 import EditUserDialog from '../../components/dialogs/edit-user-dialog.vue'
 
 const { t, n } = useI18n()

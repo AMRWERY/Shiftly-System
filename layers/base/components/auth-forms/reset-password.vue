@@ -1,20 +1,20 @@
 <template>
     <div>
         <!-- Stepper -->
-        <stepper :steps="steps" :currentStep="currentStep" @step-change="goToStep" class="mb-8" />
+        <VStepper :steps="steps" :currentStep="currentStep" @step-change="goToStep" class="mb-8" />
 
         <!-- Step 1 -->
         <form v-if="currentStep === 0" @submit.prevent="nextStep" class="space-y-6">
             <div>
-                <dynamic-inputs :label="t('form.email')" placeholder="test@example.com" type="email"
+                <VInput :label="t('form.email')" placeholder="test@example.com" type="email"
                     :name="t('form.email')" :rules="'required|email'" :required="true" v-model="form.email" />
             </div>
             <div class="mt-7 sm:col-span-6 flex justify-end">
-                <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
+                <VButton :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
                     :text-color="'text-white'" :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                     @click="nextStep">{{ t('btn.next')
-                    }}</base-button>
+                    }}</VButton>
             </div>
         </form>
 
@@ -34,12 +34,12 @@
             </div>
 
             <div class="mt-7">
-                <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
+                <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                     :disabled="loading" @click="handleSubmitOtp">
                     <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
                     <span v-else>{{ t('btn.verify_account') }}</span>
-                </base-button>
+                </VButton>
             </div>
 
             <div class="flex items-center justify-center text-sm text-gray-300">
@@ -60,22 +60,22 @@
         <!-- Step 3: Set New Password -->
         <form v-else-if="currentStep === 2" @submit.prevent="handleResetPassword" class="space-y-6">
             <div>
-                <dynamic-inputs :label="t('form.password')" placeholder="••••••••" type="password"
+                <VInput :label="t('form.password')" placeholder="••••••••" type="password"
                     :name="t('form.new_password')" :rules="'required|minLength:7'" :required="true"
                     v-model="form.newPassword" />
             </div>
             <div>
-                <dynamic-inputs :label="t('form.confirm_password')" placeholder="••••••••" type="password"
+                <VInput :label="t('form.confirm_password')" placeholder="••••••••" type="password"
                     :name="t('form.confirm_password')" :rules="'required|confirmed:@new_password'" :required="true"
                     v-model="form.confirmPassword" />
             </div>
             <div class="mt-7">
-                <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
+                <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
                     class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                     :disabled="loading">
                     <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
                     <span v-else>{{ t('btn.reset_password') }}</span>
-                </base-button>
+                </VButton>
             </div>
         </form>
     </div>

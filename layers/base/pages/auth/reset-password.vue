@@ -2,7 +2,7 @@
     <div class="min-h-screen flex items-center justify-center relative p-4 lg:p-8">
         <!-- Back Button positioned absolutely -->
         <div class="absolute top-4 start-4 lg:top-8 lg:start-8 z-50">
-            <back-button />
+            <VBackButton />
         </div>
 
         <!-- RTL Toggle positioned absolutely -->

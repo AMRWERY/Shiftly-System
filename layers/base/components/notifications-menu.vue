@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- OPEN BUTTON -->
-    <base-button :variant="'ghost'" :text-color="'text-gray-400'" class="relative bg-white/5 hover:bg-white/10 p-1.5 rounded-xl transition-all border border-white/10"
+    <VButton :variant="'ghost'" :text-color="'text-gray-400'" class="relative bg-white/5 hover:bg-white/10 p-1.5 rounded-xl transition-all border border-white/10"
       @click.stop="isOpen = !isOpen">
       <icon name="material-symbols:notifications-outline-rounded"
         class="w-7 h-7 bg-gray-200 hover:bg-gray-400 rounded-full p-0.5" />
@@ -9,7 +9,7 @@
         class="absolute -top-0.5 -end-0.5 w-[7px] h-[7px] bg-gradient-to-b from-indigo-300 to-blue-300 rounded-full animate-ping"></span>
       <span
         class="absolute -top-0.5 -end-0.5 w-[7px] h-[7px] bg-gradient-to-b from-indigo-300 to-blue-300 rounded-full"></span>
-    </base-button>
+    </VButton>
 
     <!-- DROPDOWN DIALOG -->
     <Transition name="fade">
@@ -25,10 +25,10 @@
               <h3 class="flex-1 text-sm font-medium">
                 Notifications
               </h3>
-              <base-button :variant="'ghost'" :text-color="'text-gray-400'" class="ms-2 hover:text-white"
+              <VButton :variant="'ghost'" :text-color="'text-gray-400'" class="ms-2 hover:text-white"
                 @click="closeDialog">
                 Close
-              </base-button>
+              </VButton>
             </div>
 
             <!-- OPTIONS -->

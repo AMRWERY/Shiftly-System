@@ -38,10 +38,10 @@
                 <h3 class="text-white font-bold">30-Day Attendance Trend</h3>
                 <p class="text-xs text-gray-500">Tracking aggregate attendance across all departments</p>
               </div>
-              <base-button :variant="'ghost'" :text-color="'text-gray-400'"
+              <VButton :variant="'ghost'" :text-color="'text-gray-400'"
                 class="bg-white/5 text-[10px] px-3 py-1 rounded-lg hover:bg-white/10">
                 Last 30 Days
-              </base-button>
+              </VButton>
             </div>
 
             <!-- Decorative SVG Wave -->

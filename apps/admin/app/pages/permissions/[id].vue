@@ -1,20 +1,20 @@
 <template>
     <div>
         <div class="p-6">
-            <back-button />
+            <VBackButton />
 
             <!-- Loading State -->
             <div v-if="loading && !user" class="flex justify-center items-center h-[60vh]">
-                <loading-spinner />
+                <VLoadingSpinner />
             </div>
 
             <!-- Error State -->
             <div v-else-if="error && !user" class="flex flex-col justify-center items-center h-[60vh] animate-fade-in">
                 <div class="text-center p-8 bg-white max-w-md rounded-2xl shadow-xl border border-gray-100">
-                    <custom-error-message :error-message="error" />
-                    <base-button @click="loadUserData" class="mt-4">
+                    <VErrorMessage :error-message="error" />
+                    <VButton @click="loadUserData" class="mt-4">
                         {{ t('btn.retry') }}
-                    </base-button>
+                    </VButton>
                 </div>
             </div>
 
@@ -57,15 +57,15 @@
 
                     <!-- Loading Permissions -->
                     <div v-if="permissionsStore.loading" class="flex justify-center py-12">
-                        <loading-spinner />
+                        <VLoadingSpinner />
                     </div>
 
                     <!-- Permissions Error -->
                     <div v-else-if="permissionsStore.error" class="py-8 text-center">
-                        <custom-error-message :error-message="permissionsStore.error" />
-                        <base-button @click="permissionsStore.fetchUserPermissions(userId)" class="mt-4">
+                        <VErrorMessage :error-message="permissionsStore.error" />
+                        <VButton @click="permissionsStore.fetchUserPermissions(userId)" class="mt-4">
                             {{ t('btn.retry') }}
-                        </base-button>
+                        </VButton>
                     </div>
 
                     <!-- Permissions Grid -->
@@ -101,12 +101,12 @@
 
                     <!-- Action Buttons -->
                     <div class="mt-8 flex justify-end gap-3 pt-6 border-t border-gray-200">
-                        <base-button type="button" variant="outline" bg-color="bg-gray-100"
+                        <VButton type="button" variant="outline" bg-color="bg-gray-100"
                             hover-color="hover:bg-gray-200" text-color="text-gray-300" padding-x="px-6"
                             padding-y="py-2.5" @click="navigateBack" :disabled="permissionsStore.saving">
                             {{ t('btn.cancel') }}
-                        </base-button>
-                        <base-button type="button" :disabled="permissionsStore.saving || permissionsStore.loading"
+                        </VButton>
+                        <VButton type="button" :disabled="permissionsStore.saving || permissionsStore.loading"
                             hover-color="hover:bg-blue-700" padding-x="px-6" padding-y="py-2.5"
                             class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             @click="handleSave">
@@ -117,7 +117,7 @@
                             <span v-else class="flex items-center gap-2">
                                 {{ t('permissions.save_permissions') }}
                             </span>
-                        </base-button>
+                        </VButton>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { UserListItem } from '../../../../../layers/base/types'
+import type { UserListItem } from '@/layers/base/types'
 
 const { t } = useI18n()
 const route = useRoute()

@@ -15,10 +15,10 @@
                     </div>
                 </div>
             </div>
-            <base-button :variant="'ghost'" :text-color="'text-brand-primary'" :type="'button'"
+            <VButton :variant="'ghost'" :text-color="'text-brand-primary'" :type="'button'"
                 class="text-xs hover:underline decoration-brand-primary/30 underline-offset-4">
                 View All Action Items
-            </base-button>
+            </VButton>
         </div>
     </div>
 </template>

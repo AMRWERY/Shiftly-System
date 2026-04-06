@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="p-6">
-      <back-button />
+      <VBackButton />
 
       <div v-if="user" class="max-w-4xl mx-auto animate-fade-in">
         <!-- Header with Avatar and Basic Info -->
@@ -129,9 +129,9 @@
         <user-profile-skeleton-loader v-if="loading" />
 
         <div v-else class="text-center p-8 bg-[#0B0E14] max-w-md rounded-2xl shadow-xl border border-gray-800/40">
-          <custom-error-message :error-message="t('users.user_not_found')" />
+          <VErrorMessage :error-message="t('users.user_not_found')" />
 
-          <no-data-message :message="t('users.user_not_found')"
+          <VEmptyState :message="t('users.user_not_found')"
             :icon="'material-symbols:person-alert-outline-rounded'" />
         </div>
       </div>

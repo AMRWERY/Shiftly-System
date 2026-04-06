@@ -85,10 +85,10 @@
 
           <!-- Logout Button -->
           <div class="p-4 border-t border-white/5">
-            <base-button :variant="'solid'" :block="true" :route="true" :to="'/auth'" @click="handleLogout"
+            <VButton :variant="'solid'" :block="true" :route="true" :to="'/auth'" @click="handleLogout"
               padding-x="px-6" padding-y="py-2.5">
               {{ t("btn.logout") }}
-            </base-button>
+            </VButton>
           </div>
         </aside>
 
@@ -98,14 +98,14 @@
           <header
             class="p-4 flex justify-between items-center z-20 bg-brand-systemBg/80 backdrop-blur-md border-b border-white/5">
             <!-- Hamburger menu for small screens -->
-            <base-button :variant="'ghost'" :text-color="'text-gray-400'" @click="isSidebarOpen = !isSidebarOpen"
+            <VButton :variant="'ghost'" :text-color="'text-gray-400'" @click="isSidebarOpen = !isSidebarOpen"
               class="lg:hidden bg-white/5 hover:bg-white/10 p-1.5 rounded-xl transition-all border border-white/10 flex items-center justify-center">
               <icon name="material-symbols:menu" class="h-6 w-6" />
-            </base-button>
+            </VButton>
 
             <div class="flex items-center justify-end ms-auto space-s-4">
               <!-- Search Input Component -->
-              <search-input v-model="searchQuery" :placeholder="'Search system resources...'"
+              <VSearchInput v-model="searchQuery" :placeholder="'Search system resources...'"
                 class="hidden md:block w-72" />
 
               <!-- Profile Image -->
@@ -125,7 +125,7 @@
               </div>
 
               <!-- RTL Toggle -->
-              <base-button :variant="'ghost'" :text-color="'text-gray-100'" :type="'button'"
+              <VButton :variant="'ghost'" :text-color="'text-gray-100'" :type="'button'"
                 class="relative cursor-pointer flex items-center space-s-3 bg-white/5 hover:bg-white/10 p-1.5 rounded-xl transition-all border border-white/10 me-1"
                 padding-x="px-2" padding-y="py-1.5" @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
                 <span v-if="localeStore.isRTL" class="flex items-center">
@@ -136,7 +136,7 @@
                   <icon name="heroicons:language" class="w-4 h-4 me-1.5" />
                   العربية
                 </span>
-              </base-button>
+              </VButton>
 
               <!-- notifications-menu component -->
               <notifications-menu :is-open="isNotificationsMenuOpen" @toggle="toggleNotificationsMenu" />

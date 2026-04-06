@@ -5,13 +5,13 @@
             {{ formattedUserRole }}</p>
 
         <div class="p-6 mt-16">
-            <base-button :type="'button'" :no-border="true" :block="false" :padding-x="'px-4'" :padding-y="'py-2.5'"
+            <VButton :type="'button'" :no-border="true" :block="false" :padding-x="'px-4'" :padding-y="'py-2.5'"
                 class="flex items-center justify-center rounded-lg transition-colors group" @click="showDialog = true">
                 <span>{{ t('btn.open_dialog') }}</span>
-            </base-button>
+            </VButton>
 
             <!-- Reusable Dialog -->
-            <dynamic-dialog v-model="showDialog" :title="t('dialog.reset_password_title')"
+            <VDialog v-model="showDialog" :title="t('dialog.reset_password_title')"
                 :message="t('dialog.reset_password_message')" :confirm-text="t('btn.confirm')">
                 <template #body>
                     <!-- dialog body will be here -->
@@ -24,13 +24,13 @@
                 </template>
 
                 <template #footer>
-                    <base-button :type="'button'" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
+                    <VButton :type="'button'" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
                         :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
                         class="rounded-lg border-2 transition-colors group" @click="handleConfirm">
                         {{ t('btn.verify_otp') }}
-                    </base-button>
+                    </VButton>
                 </template>
-            </dynamic-dialog>
+            </VDialog>
         </div>
     </div>
 </template>

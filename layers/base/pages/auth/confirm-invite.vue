@@ -42,10 +42,10 @@
             <icon name="material-symbols:error-outline-rounded" class="w-12 h-12 mx-auto text-red-300" />
             <h2 class="text-xl font-semibold text-white">{{ t('form.activation_failed') }}</h2>
             <p class="text-gray-300">{{ errorMessage }}</p>
-            <base-button @click="retry" variant="outline" class="mt-4 flex items-center justify-center"
+            <VButton @click="retry" variant="outline" class="mt-4 flex items-center justify-center"
               :padding-x="'px-3'" :padding-y="'py-2'">
               {{ t('btn.retry') }}
-            </base-button>
+            </VButton>
           </div>
 
           <div v-else-if="success" class="space-y-4">
@@ -58,10 +58,10 @@
               </p>
               <p class="text-xs text-indigo-400 mt-2">{{ t('form.change_password_later') }}</p>
             </div>
-            <base-button @click="goToLogin" class="mt-4 flex items-center justify-center" :padding-x="'px-3'"
+            <VButton @click="goToLogin" class="mt-4 flex items-center justify-center" :padding-x="'px-3'"
               :padding-y="'py-2'">
               {{ t('btn.go_to_login') }}
-            </base-button>
+            </VButton>
           </div>
         </div>
       </div>

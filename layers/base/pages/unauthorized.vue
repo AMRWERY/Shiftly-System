@@ -15,10 +15,10 @@
                 </div>
 
                 <div class="mt-6">
-                    <base-button :type="'button'" :variant="'outline'" :inline="true" :route="true" to="/"
+                    <VButton :type="'button'" :variant="'outline'" :inline="true" :route="true" to="/"
                         :padding-x="'px-4'" :padding-y="'py-2'">
                         {{ t('btn.go_back_home') }}
-                    </base-button>
+                    </VButton>
                 </div>
             </div>
         </div>

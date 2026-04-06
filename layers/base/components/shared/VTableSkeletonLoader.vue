@@ -75,7 +75,7 @@
       </div>
     </div>
 
-    <!-- Pagination Skeleton -->
+    <!-- VPagination Skeleton -->
     <div
       class="px-8 py-5 border-t border-gray-800/40 flex flex-col sm:flex-row items-center justify-between bg-[#0D1017] animate-pulse">
       <div class="h-4 bg-gray-800 rounded-full w-48 mb-4 sm:mb-0"></div>

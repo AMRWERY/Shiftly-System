@@ -63,53 +63,53 @@
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
                 <div class="sm:col-span-3">
-                  <dynamic-inputs v-model="formData.firstName" type="text" :label="t('profile.first_name')"
+                  <VInput v-model="formData.firstName" type="text" :label="t('profile.first_name')"
                     name="First Name" :label-class="'text-gray-100'" />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <dynamic-inputs v-model="formData.middleName" type="text" :label="t('profile.middle_name')"
+                  <VInput v-model="formData.middleName" type="text" :label="t('profile.middle_name')"
                     name="Middle Name" :label-class="'text-gray-100'" />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <dynamic-inputs v-model="formData.lastName" type="text" :label="t('profile.last_name')"
+                  <VInput v-model="formData.lastName" type="text" :label="t('profile.last_name')"
                     name="Last Name" :label-class="'text-gray-100'" />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <dynamic-inputs v-model="formData.email" type="email" name="Email" :label="t('profile.email')"
+                  <VInput v-model="formData.email" type="email" name="Email" :label="t('profile.email')"
                     :label-class="'text-gray-100'" />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <dynamic-inputs v-model="formData.phoneNumber" type="tel" name="Phone Number"
+                  <VInput v-model="formData.phoneNumber" type="tel" name="Phone Number"
                     :label="t('profile.phone_number')" placeholder="+1234567890" :label-class="'text-gray-100'" />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <dynamic-inputs v-model="formData.employeeId" type="text" name="Employee ID"
+                  <VInput v-model="formData.employeeId" type="text" name="Employee ID"
                     :label="t('profile.employee_id')" :readonly="true" :label-class="'text-gray-100'" />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <dynamic-inputs v-model="formData.baseSalary" type="text" name="Base Salary"
+                  <VInput v-model="formData.baseSalary" type="text" name="Base Salary"
                     :label="t('profile.base_salary')" :label-class="'text-gray-100'" />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <dynamic-inputs v-model="formData.createdAt" type="text" name="Created At"
+                  <VInput v-model="formData.createdAt" type="text" name="Created At"
                     :label="t('profile.created_at')" :readonly="true" :label-class="'text-gray-100'" />
                 </div>
               </div>
 
               <div class="pt-4">
-                <base-button :block="true" type="submit" @click="updatePersonalInfo" :class="{
+                <VButton :block="true" type="submit" @click="updatePersonalInfo" :class="{
                   'opacity-50 cursor-not-allowed': isUpdatingPersonalInfo,
                 }" :padding-y="'py-2.5'">
                   <icon name="svg-spinners:90-ring-with-bg" v-if="isUpdatingPersonalInfo" />
                   <span v-else>{{ t("btn.update_personal_information") }}</span>
-                </base-button>
+                </VButton>
               </div>
             </div>
           </div>
@@ -121,22 +121,22 @@
                 {{ t("profile.change_password") }}
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <dynamic-inputs :label="t('profile.new_password')" placeholder="••••••••" type="password"
+                <VInput :label="t('profile.new_password')" placeholder="••••••••" type="password"
                   name="New Password" :rules="'required|minLength:7'" :required="true" :label-class="'text-gray-100'"
                   v-model="passwordForm.newPassword" />
 
-                <dynamic-inputs :label="t('profile.confirm_password')" placeholder="••••••••" type="password"
+                <VInput :label="t('profile.confirm_password')" placeholder="••••••••" type="password"
                   name="Confirm Password" :rules="'required|minLength:7'" :required="true"
                   :label-class="'text-gray-100'" v-model="passwordForm.confirmPassword" />
               </div>
 
               <div class="pt-4">
-                <base-button :block="true" type="submit" @click="updatePassword" :class="{
+                <VButton :block="true" type="submit" @click="updatePassword" :class="{
                   'opacity-50 cursor-not-allowed': isUpdatingPassword,
                 }" :padding-y="'py-2.5'">
                   <icon name="svg-spinners:90-ring-with-bg" v-if="isUpdatingPassword" />
                   <span v-else>{{ t("btn.update_password") }}</span>
-                </base-button>
+                </VButton>
               </div>
             </div>
           </div>

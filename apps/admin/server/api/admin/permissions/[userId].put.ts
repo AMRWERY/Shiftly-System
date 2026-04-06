@@ -1,5 +1,5 @@
 import { serverSupabaseServiceRole } from '#supabase/server'
-import type { Permission } from '../../../../../../layers/base/types'
+import type { Permission } from '@/layers/base/types'
 
 export default defineEventHandler(async (event) => {
   const client = await serverSupabaseServiceRole(event)

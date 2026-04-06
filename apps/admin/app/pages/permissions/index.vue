@@ -11,10 +11,10 @@
       </div>
 
       <!-- Loading State -->
-      <table-skeleton-loader v-if="pending" :headers="columns" />
+      <VTableSkeletonLoader v-if="pending" :headers="columns" />
 
       <!-- Users Table -->
-      <dynamic-table v-else :columns="columns" :items="nonAdminUsers" :has-view="false" :has-block="false"
+      <VTable v-else :columns="columns" :items="nonAdminUsers" :has-view="false" :has-block="false"
         :has-edit="true" :action-conditions="{ edit: () => true }" @edit="handleEditPermissions" />
 
       <!-- Edit Permissions Dialog -->
@@ -25,8 +25,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { Column } from '../../../../../layers/base/types/tables'
-import type { UserListItem } from '../../../../../layers/base/types'
+import type { Column } from '@/layers/base/types/tables'
+import type { UserListItem } from '@/layers/base/types'
 
 definePageMeta({
   layout: 'dashboard'

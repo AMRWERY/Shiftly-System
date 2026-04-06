@@ -1,30 +1,30 @@
 <template>
   <div>
     <!-- Stepper -->
-    <stepper :steps="steps" :currentStep="currentStep" @step-change="goToStep" class="mb-8" />
+    <VStepper :steps="steps" :currentStep="currentStep" @step-change="goToStep" class="mb-8" />
 
     <ClientOnly>
       <!-- step 1 -->
       <form class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4" v-if="currentStep === 0" @submit.prevent="nextStep">
         <div class="sm:col-span-3">
-          <dynamic-inputs :label="t('form.first_name')" :placeholder="t('form.enter_your_first_name')" type="text"
+          <VInput :label="t('form.first_name')" :placeholder="t('form.enter_your_first_name')" type="text"
             :name="t('form.first_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.firstName" />
         </div>
 
         <div class="sm:col-span-3">
-          <dynamic-inputs :label="t('form.middle_name')" :placeholder="t('form.enter_your_middle_name')" type="text"
+          <VInput :label="t('form.middle_name')" :placeholder="t('form.enter_your_middle_name')" type="text"
             :name="t('form.last_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.middleName" />
         </div>
 
         <div class="sm:col-span-full">
-          <dynamic-inputs :label="t('form.last_name')" :placeholder="t('form.enter_your_last_name')" type="text"
+          <VInput :label="t('form.last_name')" :placeholder="t('form.enter_your_last_name')" type="text"
             :name="t('form.last_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.lastName" />
         </div>
         <div class="mt-7 sm:col-span-6 flex justify-end">
-          <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
+          <VButton :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
             :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group" @click="nextStep">{{
-              t("btn.next") }}</base-button>
+              t("btn.next") }}</VButton>
         </div>
       </form>
 
@@ -32,25 +32,25 @@
       <form class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4" v-else-if="currentStep === 1"
         @submit.prevent="nextStep">
         <div class="sm:col-span-full">
-          <dynamic-inputs :label="t('form.email')" placeholder="example@test.com" type="email" :name="t('form.email')"
+          <VInput :label="t('form.email')" placeholder="example@test.com" type="email" :name="t('form.email')"
             :rules="'required|email'" :required="true" v-model="form.email" />
         </div>
 
         <div class="col-span-full">
-          <dynamic-inputs :label="t('form.password')" placeholder="••••••••" type="password" :name="t('form.password')"
+          <VInput :label="t('form.password')" placeholder="••••••••" type="password" :name="t('form.password')"
             :rules="'required|minLength:7'" :required="true" v-model="form.password" />
         </div>
 
         <div class="sm:col-span-full">
-          <dynamic-inputs :label="t('form.role')" type="select" :options="rolesOptions" :name="t('form.role')"
+          <VInput :label="t('form.role')" type="select" :options="rolesOptions" :name="t('form.role')"
             :rules="'required'" :required="true" :placeholder="t('form.select_role')" v-model="form.role" />
         </div>
 
         <div class="mt-7 sm:col-span-6 flex justify-end">
-          <base-button :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
+          <VButton :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
             :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group" @click="nextStep">{{
-              t("btn.next") }}</base-button>
+              t("btn.next") }}</VButton>
         </div>
       </form>
 
@@ -70,11 +70,11 @@
         </div>
 
         <div class="mt-7">
-          <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
+          <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group" :disabled="loading">
             <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
             <span v-else>{{ t('btn.verify_account') }}</span>
-          </base-button>
+          </VButton>
         </div>
 
         <div class="flex items-center justify-center text-sm text-gray-300">
@@ -109,11 +109,11 @@
         </div>
 
         <div class="mt-7">
-          <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
+          <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
             class="flex items-center justify-center rounded-lg border-2 transition-colors group" :disabled="loading">
             <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
             <span v-else>{{ t("btn.create_account_button") }}</span>
-          </base-button>
+          </VButton>
         </div>
       </form>
     </ClientOnly>

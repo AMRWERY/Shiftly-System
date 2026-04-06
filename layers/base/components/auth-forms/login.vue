@@ -3,12 +3,12 @@
         <Form @submit="handleLogin" v-slot="{ meta }">
             <div class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4">
                 <div class="col-span-full">
-                    <dynamic-inputs :label="t('form.email')" placeholder="example@test.com" type="email" name="email"
+                    <VInput :label="t('form.email')" placeholder="example@test.com" type="email" name="email"
                         :rules="'required|email'" :required="true" v-model="email" />
                 </div>
 
                 <div class="col-span-full">
-                    <dynamic-inputs :label="t('form.password')" placeholder="••••••••" type="password" name="password"
+                    <VInput :label="t('form.password')" placeholder="••••••••" type="password" name="password"
                         :rules="'required'" :required="true" v-model="password" />
                 </div>
 
@@ -22,13 +22,13 @@
                 </div>
 
                 <div class="col-span-full">
-                    <base-button :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
+                    <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
                         :padding-y="'py-2.5'"
                         class="flex items-center justify-center rounded-lg border-2 transition-colors group"
                         :disabled="loading || !meta.valid">
                         <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
                         <span v-else>{{ t('btn.log_in') }}</span>
-                    </base-button>
+                    </VButton>
                 </div>
             </div>
         </Form>

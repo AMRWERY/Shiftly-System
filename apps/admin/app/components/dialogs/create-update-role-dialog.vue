@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dynamic-dialog :model-value="isOpen" :title="dialogTitle" :show-default-footer="false"
+    <VDialog :model-value="isOpen" :title="dialogTitle" :show-default-footer="false"
       @update:model-value="handleClose" @close="handleClose">
       <!-- Loading State -->
       <template #body>
@@ -21,24 +21,24 @@
       <!-- Footer -->
       <template #footer>
         <div v-if="!loading" class="flex items-center justify-end gap-3">
-          <base-button type="button" variant="outline" :padding-x="'px-3'" :border-color="'border-gray-100'" :text-color="'text-gray-100'" :padding-y="'py-2'" @click="handleClose" :disabled="saving">
+          <VButton type="button" variant="outline" :padding-x="'px-3'" :border-color="'border-gray-100'" :text-color="'text-gray-100'" :padding-y="'py-2'" @click="handleClose" :disabled="saving">
             {{ t("btn.cancel") }}
-          </base-button>
-          <base-button type="button" :padding-x="'px-3'" :padding-y="'py-2'" @click="handleSubmit" :disabled="saving">
+          </VButton>
+          <VButton type="button" :padding-x="'px-3'" :padding-y="'py-2'" @click="handleSubmit" :disabled="saving">
             <span v-if="saving" class="flex items-center gap-2">
               <icon name="svg-spinners:ring-resize" class="w-4 h-4" />
               {{ savingText }}
             </span>
             <span v-else>{{ submitButtonText }}</span>
-          </base-button>
+          </VButton>
         </div>
       </template>
-    </dynamic-dialog>
+    </VDialog>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { Permission } from "../../../../../layers/base/types";
+import type { Permission } from "@/layers/base/types";
 
 const { t } = useI18n();
 const rolesStore = useRolesStore();

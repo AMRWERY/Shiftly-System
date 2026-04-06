@@ -108,30 +108,30 @@
                   <td v-if="hasAnyAction" class="px-6 py-5 text-end pe-8 relative overflow-visible">
                     <div class="flex items-center justify-end gap-2 transition-all">
                       <!-- Primary Actions (Icons) -->
-                      <dynamic-tooltip v-if="hasView && normalizedActionConditions.view(item)" :text="t('btn.view')">
+                      <VTooltip v-if="hasView && normalizedActionConditions.view(item)" :text="t('btn.view')">
                         <button @click.stop="$emit('view', item)"
                           class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
                           <icon name="heroicons-outline:eye" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
                         </button>
-                      </dynamic-tooltip>
+                      </VTooltip>
 
-                      <dynamic-tooltip v-if="hasEdit && normalizedActionConditions.edit(item)" :text="t('btn.edit')">
+                      <VTooltip v-if="hasEdit && normalizedActionConditions.edit(item)" :text="t('btn.edit')">
                         <button @click.stop="$emit('edit', item)"
                           class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
                           <icon name="heroicons-outline:pencil" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
                         </button>
-                      </dynamic-tooltip>
+                      </VTooltip>
 
                       <!-- Secondary Actions (Dropdown) -->
                       <div v-if="hasDropdownActions(item)" class="relative dropdown-container"
                         :id="`dropdown-${item.id || index}`">
-                        <dynamic-tooltip :text="t('btn.more_actions')">
+                        <VTooltip :text="t('btn.more_actions')">
                           <button @click.stop="toggleDropdown(item.id || index)"
                             class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-all"
                             :class="{ 'bg-gray-800 text-white': activeDropdownId === (item.id || index) }">
                             <icon name="heroicons-outline:dots-vertical" class="w-5 h-5" />
                           </button>
-                        </dynamic-tooltip>
+                        </VTooltip>
 
                         <!-- Dropdown Menu -->
                         <div v-if="activeDropdownId === (item.id || index)"
@@ -174,7 +174,7 @@
           </div>
         </div>
 
-        <!-- Pagination Footer -->
+        <!-- VPagination Footer -->
         <div
           class="px-8 py-5 border-t border-gray-800/40 flex flex-col sm:flex-row items-center justify-between bg-[#0D1017]">
           <div class="text-sm text-gray-400 font-medium mb-4 sm:mb-0">
@@ -186,7 +186,7 @@
           </div>
 
           <div class="flex items-center">
-            <pagination :current-page="effectiveCurrentPage" :total-pages="effectiveTotalPages"
+            <VPagination :current-page="effectiveCurrentPage" :total-pages="effectiveTotalPages"
               @page-change="goToPage" />
           </div>
         </div>
@@ -371,7 +371,7 @@ const formatRole = (role: string) => {
     .join(' ');
 };
 
-// Pagination Logic
+// VPagination Logic
 const internalCurrentPage = ref(1);
 const internalPageSize = ref(10);
 
@@ -379,7 +379,7 @@ const effectiveCurrentPage = computed(() => props.currentPage || internalCurrent
 const effectiveTotalItems = computed(() => props.totalItems !== undefined ? props.totalItems : props.items.length);
 const effectiveTotalPages = computed(() => props.totalPages !== undefined ? props.totalPages : Math.ceil(effectiveTotalItems.value / internalPageSize.value));
 
-// When using server-side pagination (props.totalPages exists), the items are already a slice, so startIndex is managed externally
+// When using server-side VPagination (props.totalPages exists), the items are already a slice, so startIndex is managed externally
 const displayStartIndex = computed(() => (effectiveCurrentPage.value - 1) * (props.totalItems ? (props.items.length || 0) : internalPageSize.value));
 const displayEndIndex = computed(() => Math.min(displayStartIndex.value + props.items.length, effectiveTotalItems.value));
 
