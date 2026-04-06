@@ -3,13 +3,13 @@
         <div class="max-w-7xl mx-auto p-4">
             <div class="card-bg shadow-lg rounded-lg overflow-hidden">
                 <div class="flex items-center justify-between px-6 py-4 bg-brand-systemBg text-white rounded-t-lg">
-                    <button @click="prevMonth" class="p-2 rounded-full transition-colors">
+                    <VButton type="button" variant="ghost" padding-x="px-2" padding-y="py-2" hover-color="hover:bg-white/5" class="rounded-full" @click="prevMonth">
                         <icon name="material-symbols:chevron-left" class="w-6 h-6 rtl:rotate-180" />
-                    </button>
+                    </VButton>
                     <h2 class="text-xl font-semibold">{{ monthName }} {{ currentYear }}</h2>
-                    <button @click="nextMonth" class="p-2 rounded-full transition-colors">
+                    <VButton type="button" variant="ghost" padding-x="px-2" padding-y="py-2" hover-color="hover:bg-white/5" class="rounded-full" @click="nextMonth">
                         <icon name="material-symbols:chevron-right" class="w-6 h-6 rtl:rotate-180" />
-                    </button>
+                    </VButton>
                 </div>
 
                 <div class="grid grid-cols-7 gap-px bg-gray-700" v-if="!loading">

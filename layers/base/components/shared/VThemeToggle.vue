@@ -1,10 +1,9 @@
 <template>
-  <button class="app-theme-toggle" type="button" @click="toggleTheme">
-    <!-- Dark/light switch -->
+  <VButton class="app-theme-toggle" type="button" variant="ghost" padding-x="px-2" padding-y="py-2" @click="toggleTheme">
     <slot />
-  </button>
+  </VButton>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 function toggleTheme() {}
 </script>

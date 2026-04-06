@@ -7,9 +7,9 @@
             <slot name="header">
               <h2 v-if="title" class="v-drawer-title">{{ title }}</h2>
             </slot>
-            <button class="v-drawer-close" type="button" @click="$emit('update:modelValue', false)">
-              <Icon name="heroicons:x-mark" />
-            </button>
+            <VButton class="v-drawer-close" type="button" variant="ghost" padding-x="px-1" padding-y="py-1" @click="$emit('update:modelValue', false)">
+              <icon name="heroicons:x-mark" />
+            </VButton>
           </div>
           <div class="v-drawer-body">
             <slot />
@@ -23,7 +23,7 @@
   </Teleport>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps<{
   modelValue: boolean
   title?: string

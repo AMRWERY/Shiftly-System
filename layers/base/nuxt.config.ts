@@ -111,7 +111,7 @@ export default defineNuxtConfig({
     },
     // Role-specific layout wrappers
     {
-      path: join(currentDir, "components/layouts-components"),
+      path: join(currentDir, "components/layouts"),
     },
     // Auth form components
     {

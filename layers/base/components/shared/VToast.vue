@@ -17,10 +17,17 @@
         </div>
 
         <!-- Close button -->
-        <button type="button" aria-label="close" class="active:scale-90 transition-all me-3 shrink-0"
-          @click="closeToast">
+        <VButton
+          type="button"
+          variant="ghost"
+          padding-x="px-1"
+          padding-y="py-1"
+          class="active:scale-90 me-3 shrink-0"
+          aria-label="close"
+          @click="closeToast"
+        >
           <icon name="material-symbols:close-small-outline-rounded" />
-        </button>
+        </VButton>
 
         <!-- Progress bar -->
         <div class="absolute bottom-0 w-full h-1 bg-gray-800 start-0">

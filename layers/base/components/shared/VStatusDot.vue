@@ -5,7 +5,7 @@
   </span>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps<{
   status: 'active' | 'inactive' | 'pending' | 'warning' | 'error'
   label?: string

@@ -51,17 +51,17 @@
                 <label class="text-sm font-medium text-gray-400">
                   {{ t(`permissions.modules.${module}`) }}
                 </label>
-                <button
+                <VButton
                   type="button"
+                  variant="ghost"
+                  text-color="text-blue-400"
+                  hover-color="hover:text-blue-300"
+                  padding-x="px-2"
+                  padding-y="py-1"
                   @click="toggleAllActions(module)"
-                  class="text-xs text-blue-400 hover:text-blue-800 font-medium"
                 >
-                  {{
-                    areAllActionsSelected(module)
-                      ? "Deselect All"
-                      : "Select All"
-                  }}
-                </button>
+                  {{ areAllActionsSelected(module) ? "Deselect All" : "Select All" }}
+                </VButton>
               </div>
 
               <div class="flex flex-wrap gap-2">

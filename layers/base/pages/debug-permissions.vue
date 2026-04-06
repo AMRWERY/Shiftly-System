@@ -30,9 +30,16 @@
             </div>
 
             <div class="col-span-2">
-                <button @click="authStore.fetchUserPermissions()" class="bg-blue-600 px-4 py-2 rounded">
+                <VButton
+                    type="button"
+                    bg-color="bg-blue-600"
+                    hover-color="hover:bg-blue-700"
+                    padding-x="px-4"
+                    padding-y="py-2"
+                    @click="authStore.fetchUserPermissions()"
+                >
                     Force Refresh Permissions
-                </button>
+                </VButton>
             </div>
         </div>
     </div>

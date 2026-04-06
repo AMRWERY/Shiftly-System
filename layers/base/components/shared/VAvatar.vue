@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps<{
   src?: string
   alt?: string

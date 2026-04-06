@@ -2,9 +2,17 @@
   <div class="min-h-screen flex items-center justify-center relative p-4 lg:p-8">
     <!-- RTL Toggle positioned absolutely -->
     <div class="absolute top-4 end-4 lg:top-8 lg:end-8 z-50">
-      <button
-        class="text-gray-100 hover:text-white me-1 border border-gray-200/20 hover:border-gray-300/40 py-1.5 px-3 rounded-lg transition-all bg-white/5 backdrop-blur-sm"
-        @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
+      <VButton
+        type="button"
+        variant="outline"
+        border-color="border-gray-200/20"
+        text-color="text-gray-100"
+        hover-color="hover:bg-white/10"
+        padding-x="px-3"
+        padding-y="py-1.5"
+        class="me-1 rounded-lg hover:border-gray-300/40 bg-white/5 backdrop-blur-sm hover:text-white"
+        @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')"
+      >
         <span v-if="localeStore.isRTL" class="flex items-center">
           <icon name="heroicons:language" class="w-4 h-4 me-2" />
           En
@@ -13,7 +21,7 @@
           <icon name="heroicons:language" class="w-4 h-4 me-2" />
           العربية
         </span>
-      </button>
+      </VButton>
     </div>
 
     <!-- Main Card Container -->

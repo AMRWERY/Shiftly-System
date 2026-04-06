@@ -2,17 +2,17 @@
   <div>
     <ul class="space-y-3">
       <li v-if="hasPermission('tasks', 'view')">
-        <button @click="toggleDropdown('service_requests')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('service_requests')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.service_requests")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.service_requests }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.service_requests" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.service_requests" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/pending-tasks" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/pending-tasks') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
@@ -41,17 +41,17 @@
       </li>
 
       <li v-if="hasPermission('maintenance', 'view')">
-        <button @click="toggleDropdown('preventive_maint')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('preventive_maint')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.preventive_maint")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.preventive_maint }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.preventive_maint" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.preventive_maint" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/scheduled-tasks" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/scheduled-tasks') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
@@ -72,17 +72,17 @@
       </li>
 
       <li v-if="hasPermission('assets', 'view')">
-        <button @click="toggleDropdown('asset_maintenance_log')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('asset_maintenance_log')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.asset_maintenance_log")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.asset_maintenance_log }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.asset_maintenance_log" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.asset_maintenance_log" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/asset-list" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/asset-list') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
@@ -111,17 +111,17 @@
       </li>
 
       <li v-if="hasPermission('stock', 'view')">
-        <button @click="toggleDropdown('spare_parts')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('spare_parts')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.spare_parts")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.spare_parts }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.spare_parts" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.spare_parts" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/parts-usage" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/parts-usage') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
@@ -145,6 +145,7 @@
 </template>
 
 <script lang="ts" setup>
+defineProps<{ collapsed?: boolean }>()
 const { t } = useI18n();
 const { isActive } = useIsActive();
 const { hasPermission } = useAppPermissions();

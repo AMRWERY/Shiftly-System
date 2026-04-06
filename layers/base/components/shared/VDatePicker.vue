@@ -17,13 +17,13 @@
           class="absolute z-10 w-[303px] mt-2 bg-brand-cardBg border border-gray-700 rounded-xl shadow-2xl">
           <!-- Calendar header -->
           <div class="flex items-center justify-between p-2 border-b border-gray-700">
-            <button @click="previousMonth" class="p-1 rounded-full hover:bg-white/5 transition-colors">
+            <VButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5" class="rounded-full" @click="previousMonth">
               <icon name="material-symbols:chevron-left" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
-            </button>
+            </VButton>
             <span class="font-semibold text-white">{{ currentMonthYear }}</span>
-            <button @click="nextMonth" class="p-1 rounded-full hover:bg-white/5 transition-colors">
+            <VButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5" class="rounded-full" @click="nextMonth">
               <icon name="material-symbols:chevron-right" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
-            </button>
+            </VButton>
           </div>
 
           <!-- Days of week -->
@@ -35,16 +35,25 @@
 
           <!-- Calendar days -->
           <div class="grid grid-cols-7 gap-1 p-2">
-            <button v-for="{ date, isCurrentMonth, isToday } in calendarDays" :key="date.toISOString()"
-              @click="selectDate(date)" :disabled="isDateDisabled(date)" :class="[
-                'w-8 h-8 text-sm rounded-full flex items-center justify-center transition-colors',
-                isDateDisabled(date) ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer',
+            <VButton
+              v-for="{ date, isCurrentMonth, isToday } in calendarDays"
+              :key="date.toISOString()"
+              type="button"
+              variant="ghost"
+              padding-x="px-0"
+              padding-y="py-0"
+              :disabled="isDateDisabled(date)"
+              :hover-color="isSelected(date) ? 'hover:bg-indigo-700' : 'hover:bg-white/5'"
+              :class="[
+                'w-8 h-8 text-sm rounded-full',
                 isCurrentMonth ? 'text-gray-200' : 'text-gray-500',
                 isToday ? 'bg-indigo-500/20 text-indigo-400' : '',
-                isSelected(date) ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'hover:bg-white/5',
-              ]">
+                isSelected(date) ? 'bg-indigo-600 text-white' : '',
+              ]"
+              @click="selectDate(date)"
+            >
               {{ date.getDate() }}
-            </button>
+            </VButton>
           </div>
         </div>
       </div>

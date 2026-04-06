@@ -1,17 +1,19 @@
 <template>
   <div class="v-tabs">
     <div class="v-tabs-nav" role="tablist">
-      <button
+      <VButton
         v-for="tab in tabs"
         :key="tab.key"
-        role="tab"
-        :aria-selected="modelValue === tab.key"
-        :class="['ui-tabs-tab', { 'ui-tabs-tab--active': modelValue === tab.key }]"
         type="button"
+        variant="ghost"
+        :text-color="modelValue === tab.key ? '' : 'text-gray-400'"
+        padding-x="px-4"
+        padding-y="py-2"
+        :class="['ui-tabs-tab', { 'ui-tabs-tab--active': modelValue === tab.key }]"
         @click="$emit('update:modelValue', tab.key)"
       >
         {{ tab.label }}
-      </button>
+      </VButton>
     </div>
     <div class="v-tabs-content">
       <slot :active="modelValue" />
@@ -19,7 +21,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps<{
   tabs: { key: string; label: string }[]
   modelValue: string

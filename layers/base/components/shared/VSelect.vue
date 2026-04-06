@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps<{
   id?: string
   label?: string

@@ -1,11 +1,19 @@
 <template>
   <div>
     <div class="relative w-max mx-auto" ref="dropdownContainer">
-      <button type="button" @click="isOpen = !isOpen"
-        class="px-5 py-2.5 rounded text-sm font-medium border border-gray-700 cursor-pointer outline-0 bg-brand-systemBg hover:bg-white/10 text-white transition-colors flex items-center">
+      <VButton
+        type="button"
+        variant="outline"
+        border-color="border-gray-700"
+        text-color="text-white"
+        hover-color="hover:bg-white/10"
+        padding-x="px-5"
+        padding-y="py-2.5"
+        @click="isOpen = !isOpen"
+      >
         {{ t('menu.download') }}
         <icon name="ic:sharp-keyboard-arrow-down" class="w-5 h-5 ms-3 text-gray-400" />
-      </button>
+      </VButton>
       <ul v-show="isOpen"
         class="absolute block shadow-2xl bg-brand-cardBg border border-gray-700 py-2 px-2 z-[1000] min-w-full w-max rounded-lg max-h-96 overflow-auto mt-2">
         <li @click="downloadData('pdf')"

@@ -5,7 +5,7 @@
   </form>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps<{
   loading?: boolean
   mode?: 'create' | 'edit'

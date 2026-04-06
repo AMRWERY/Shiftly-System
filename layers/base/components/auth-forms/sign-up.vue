@@ -78,10 +78,20 @@
         </div>
 
         <div class="flex items-center justify-center text-sm text-gray-300">
-          <p>{{ t('form.didnt_recieve_code') }} <button type="button" @click="resendOtp" :disabled="resendCooldown > 0"
-              class="text-indigo-400 hover:text-indigo-300 hover:underline font-semibold disabled:text-gray-300 disabled:cursor-not-allowed">
+          <p>{{ t('form.didnt_recieve_code') }}
+            <VButton
+              type="button"
+              variant="ghost"
+              :link="true"
+              :disabled="resendCooldown > 0"
+              padding-x="px-0"
+              padding-y="py-0"
+              class="inline-flex"
+              @click="resendOtp"
+            >
               {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
-            </button></p>
+            </VButton>
+          </p>
         </div>
       </form>
 
@@ -91,10 +101,18 @@
           <div v-if="imagePreviewUrl"
             class="rounded-full object-cover xl:w-[9rem] xl:h-[9rem] lg:w-[8rem] lg:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-yellow-500 shadow-xl relative">
             <img :src="imagePreviewUrl" class="object-cover w-full h-full rounded-full" />
-            <button type="button" v-if="imagePreviewUrl" @click="removeImagePreview"
-              class="absolute p-0.5 text-white bg-red-400 rounded-full -top-0 -end-0 hover:bg-red-400 flex items-center">
-              <icon name="material-symbols:close-small-rounded"></icon>
-            </button>
+            <VButton
+              v-if="imagePreviewUrl"
+              type="button"
+              bg-color="bg-red-400"
+              hover-color="hover:bg-red-500"
+              padding-x="px-0.5"
+              padding-y="py-0.5"
+              class="absolute rounded-full -top-0 -end-0"
+              @click="removeImagePreview"
+            >
+              <icon name="material-symbols:close-small-rounded" />
+            </VButton>
           </div>
           <div v-else
             class="p-4 border border-gray-700 rounded-full shadow-md object-cover xl:w-[9rem] xl:h-[9rem] lg:w-[8rem] lg:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-indigo-500 bg-brand-systemBg">

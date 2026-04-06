@@ -82,13 +82,19 @@
 
                     <!-- Status Toggle Cell -->
                     <div v-else-if="column.key === 'status'" class="flex items-center">
-                      <button @click.stop="$emit('statusToggle', item)"
-                        class="relative inline-flex h-6 w-11 items-center rounded-full transition-all focus:outline-none ring-offset-2 ring-offset-[#0B0E14] focus:ring-2 focus:ring-indigo-500/50"
-                        :class="item.status === 'active' || item.status === 'approved' ? 'bg-indigo-600' : 'bg-gray-700'">
+                      <VButton
+                        type="button"
+                        variant="ghost"
+                        padding-x="px-0"
+                        padding-y="py-0"
+                        :class="['relative inline-flex h-6 w-11 items-center rounded-full transition-all focus:outline-none ring-offset-2 ring-offset-[#0B0E14] focus:ring-2 focus:ring-indigo-500/50', item.status === 'active' || item.status === 'approved' ? 'bg-indigo-600' : 'bg-gray-700']"
+                        @click.stop="$emit('statusToggle', item)"
+                      >
                         <span
                           class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 shadow-lg"
-                          :class="item.status === 'active' || item.status === 'approved' ? 'translate-x-6' : 'translate-x-1'" />
-                      </button>
+                          :class="item.status === 'active' || item.status === 'approved' ? 'translate-x-6' : 'translate-x-1'"
+                        />
+                      </VButton>
                     </div>
 
                     <!-- Default Content Mapping -->
@@ -109,28 +115,26 @@
                     <div class="flex items-center justify-end gap-2 transition-all">
                       <!-- Primary Actions (Icons) -->
                       <VTooltip v-if="hasView && normalizedActionConditions.view(item)" :text="t('btn.view')">
-                        <button @click.stop="$emit('view', item)"
-                          class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
-                          <icon name="heroicons-outline:eye" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
-                        </button>
+                        <VButton type="button" variant="ghost" text-color="text-gray-400" hover-color="hover:bg-gray-800" padding-x="px-2" padding-y="py-2" class="rounded-lg hover:text-white" @click.stop="$emit('view', item)">
+                          <icon name="heroicons-outline:eye" class="w-5 h-5" />
+                        </VButton>
                       </VTooltip>
 
                       <VTooltip v-if="hasEdit && normalizedActionConditions.edit(item)" :text="t('btn.edit')">
-                        <button @click.stop="$emit('edit', item)"
-                          class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
-                          <icon name="heroicons-outline:pencil" class="w-5 h-5 focus:ring-2 ring-indigo-500" />
-                        </button>
+                        <VButton type="button" variant="ghost" text-color="text-gray-400" hover-color="hover:bg-gray-800" padding-x="px-2" padding-y="py-2" class="rounded-lg hover:text-white" @click.stop="$emit('edit', item)">
+                          <icon name="heroicons-outline:pencil" class="w-5 h-5" />
+                        </VButton>
                       </VTooltip>
 
                       <!-- Secondary Actions (Dropdown) -->
                       <div v-if="hasDropdownActions(item)" class="relative dropdown-container"
                         :id="`dropdown-${item.id || index}`">
                         <VTooltip :text="t('btn.more_actions')">
-                          <button @click.stop="toggleDropdown(item.id || index)"
-                            class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-all"
-                            :class="{ 'bg-gray-800 text-white': activeDropdownId === (item.id || index) }">
+                          <VButton type="button" variant="ghost" text-color="text-gray-400" hover-color="hover:bg-gray-800" padding-x="px-2" padding-y="py-2"
+                            :class="['rounded-lg hover:text-white', { 'bg-gray-800 text-white': activeDropdownId === (item.id || index) }]"
+                            @click.stop="toggleDropdown(item.id || index)">
                             <icon name="heroicons-outline:dots-vertical" class="w-5 h-5" />
-                          </button>
+                          </VButton>
                         </VTooltip>
 
                         <!-- Dropdown Menu -->
@@ -139,30 +143,36 @@
                           :class="index >= sortedItems.length - 2 ? 'bottom-full mb-2 origin-bottom-right' : 'top-full mt-2 origin-top-right'">
                           <div class="py-2">
 
-                            <button v-if="hasDeactivate && normalizedActionConditions.deactivate(item)"
-                              @click.stop="executeAction('deactivate', item)"
-                              class="w-full text-start px-4 py-2.5 text-sm font-semibold text-gray-300 hover:bg-white/[0.05] hover:text-rose-400 flex items-center gap-3 transition-colors">
+                            <VButton v-if="hasDeactivate && normalizedActionConditions.deactivate(item)"
+                              type="button" variant="ghost" :block="true" text-color="text-gray-300"
+                              hover-color="hover:bg-white/[0.05]" padding-x="px-4" padding-y="py-2.5"
+                              class="text-start hover:text-rose-400 gap-3"
+                              @click.stop="executeAction('deactivate', item)">
                               <icon name="material-symbols:person-off" class="w-4 h-4" />
                               {{ t('btn.deactivate') }}
-                            </button>
+                            </VButton>
 
-                            <button v-if="hasMarkPaid && normalizedActionConditions.markPaid(item)"
-                              @click.stop="executeAction('markPaid', item)"
-                              class="w-full text-start px-4 py-2.5 text-sm font-semibold text-gray-300 hover:bg-white/[0.05] hover:text-emerald-400 flex items-center gap-3 transition-colors">
+                            <VButton v-if="hasMarkPaid && normalizedActionConditions.markPaid(item)"
+                              type="button" variant="ghost" :block="true" text-color="text-gray-300"
+                              hover-color="hover:bg-white/[0.05]" padding-x="px-4" padding-y="py-2.5"
+                              class="text-start hover:text-emerald-400 gap-3"
+                              @click.stop="executeAction('markPaid', item)">
                               <icon name="heroicons-outline:check-circle" class="w-4 h-4" />
                               {{ t('btn.mark_paid') }}
-                            </button>
+                            </VButton>
 
                             <div
                               v-if="hasDelete && normalizedActionConditions.delete(item) && ((hasDeactivate && normalizedActionConditions.deactivate(item)) || (hasMarkPaid && normalizedActionConditions.markPaid(item)))"
                               class="h-px bg-gray-700/50 my-1"></div>
 
-                            <button v-if="hasDelete && normalizedActionConditions.delete(item)"
-                              @click.stop="executeAction('delete', item)"
-                              class="w-full text-start px-4 py-2.5 text-sm font-semibold text-rose-500 hover:bg-rose-500/10 flex items-center gap-3 transition-colors">
+                            <VButton v-if="hasDelete && normalizedActionConditions.delete(item)"
+                              type="button" variant="ghost" :block="true" text-color="text-rose-500"
+                              hover-color="hover:bg-rose-500/10" padding-x="px-4" padding-y="py-2.5"
+                              class="text-start gap-3"
+                              @click.stop="executeAction('delete', item)">
                               <icon name="material-symbols:delete-outline-sharp" class="w-4 h-4" />
                               {{ t('btn.delete') }}
-                            </button>
+                            </VButton>
                           </div>
                         </div>
                       </div>

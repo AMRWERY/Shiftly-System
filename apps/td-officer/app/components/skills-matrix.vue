@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps<{
   skills?: string[]
   matrix?: { employeeId: string; employeeName: string; levels: Record<string, number> }[]

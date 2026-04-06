@@ -91,3 +91,28 @@ select::-ms-expand {
 .modal-leave-to {
   opacity: 0;
 }
+
+/* Sidebar link styles */
+.sidebar-link-active {
+  @apply bg-brand-primary/15 text-white;
+}
+
+.sidebar-link-hover {
+  @apply hover:bg-white/5;
+}
+
+/* Mobile sidebar slide-in */
+.slide-sidebar-enter-active,
+.slide-sidebar-leave-active {
+  transition: transform 0.25s ease;
+}
+
+.slide-sidebar-enter-from,
+.slide-sidebar-leave-to {
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .slide-sidebar-enter-from,
+[dir="rtl"] .slide-sidebar-leave-to {
+  transform: translateX(100%);
+}

@@ -15,23 +15,31 @@
         </div>
       </template>
       <template #footer>
-        <button @click="closeDialog" type="button"
-          class="px-5 py-2.5 rounded-lg text-white text-sm font-medium bg-gray-700 hover:bg-gray-600 active:bg-gray-700 transition-colors">
+        <VButton
+          type="button"
+          variant="outline"
+          border-color="border-gray-600"
+          text-color="text-white"
+          hover-color="hover:bg-gray-700"
+          padding-x="px-5"
+          padding-y="py-2.5"
+          @click="closeDialog"
+        >
           {{ cancelText }}
-        </button>
-        <button @click="confirmAction" type="button" :class="[
-          'px-5 py-2.5 rounded-lg text-white text-sm font-medium ms-4',
-          loading
-            ? isBlocked
-              ? 'bg-green-400 cursor-not-allowed'
-              : 'bg-orange-400 cursor-not-allowed'
-            : isBlocked
-              ? 'bg-green-600 hover:bg-green-700 active:bg-green-600'
-              : 'bg-orange-600 hover:bg-orange-700 active:bg-orange-600',
-        ]" :disabled="loading">
-          <icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5 inline" />
+        </VButton>
+        <VButton
+          type="button"
+          :disabled="loading"
+          :hover-color="isBlocked ? 'hover:bg-green-700' : 'hover:bg-orange-700'"
+          :bg-color="isBlocked ? 'bg-green-600' : 'bg-orange-600'"
+          padding-x="px-5"
+          padding-y="py-2.5"
+          class="ms-4"
+          @click="confirmAction"
+        >
+          <icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
           <span v-else>{{ confirmText }}</span>
-        </button>
+        </VButton>
       </template>
     </VDialog>
   </div>

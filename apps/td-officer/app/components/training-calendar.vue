@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps<{
   month?: string
   sessions?: { id: string; title: string; date: string; courseId: string }[]

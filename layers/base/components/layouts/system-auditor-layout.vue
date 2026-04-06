@@ -2,17 +2,17 @@
   <div>
     <ul class="space-y-3">
       <li v-if="hasPermission('reports', 'view')">
-        <button @click="toggleDropdown('compliance_overview')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('compliance_overview')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.compliance_overview")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.compliance_overview }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.compliance_overview" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.compliance_overview" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/status-summary" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/status-summary') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
@@ -33,17 +33,17 @@
       </li>
 
       <li v-if="hasPermission('reports', 'view')">
-        <button @click="toggleDropdown('audit_logs')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('audit_logs')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="clarity:employee-group-solid"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.audit_logs")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.audit_logs }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.audit_logs" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.audit_logs" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/all-system-activity" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/all-system-activity') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
@@ -72,17 +72,17 @@
       </li>
 
       <li v-if="hasPermission('payroll', 'view')">
-        <button @click="toggleDropdown('payroll_finance_review')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('payroll_finance_review')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="clarity:employee-group-solid"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.payroll_finance_review")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.payroll_finance_review }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.payroll_finance_review" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.payroll_finance_review" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/payroll-reports" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/payroll-reports') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
@@ -111,17 +111,17 @@
       </li>
 
       <li v-if="hasPermission('stock', 'view')">
-        <button @click="toggleDropdown('inventory_audit')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('inventory_audit')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="clarity:employee-group-solid"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.inventory_audit")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.inventory_audit }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.inventory_audit" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.inventory_audit" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/stock-take-discrepancies" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/stock-take-discrepancies') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
@@ -153,6 +153,7 @@
 </template>
 
 <script lang="ts" setup>
+defineProps<{ collapsed?: boolean }>()
 const { t } = useI18n();
 const { isActive } = useIsActive();
 const { hasPermission } = useAppPermissions();

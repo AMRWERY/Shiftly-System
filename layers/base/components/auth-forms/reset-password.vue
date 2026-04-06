@@ -43,11 +43,20 @@
             </div>
 
             <div class="flex items-center justify-center text-sm text-gray-300">
-                <p>{{ t('form.didnt_recieve_code') }} <button type="button" @click="resendOtp"
-                        :disabled="resendCooldown > 0"
-                        class="text-indigo-400 hover:text-indigo-300 hover:underline font-semibold disabled:text-gray-300 disabled:cursor-not-allowed">
-                        {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
-                    </button></p>
+                <p>{{ t('form.didnt_recieve_code') }}
+                <VButton
+                    type="button"
+                    variant="ghost"
+                    :link="true"
+                    :disabled="resendCooldown > 0"
+                    padding-x="px-0"
+                    padding-y="py-0"
+                    class="inline-flex"
+                    @click="resendOtp"
+                >
+                    {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
+                </VButton>
+            </p>
             </div>
 
             <div class="flex items-center justify-center text-sm">

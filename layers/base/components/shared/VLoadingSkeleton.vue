@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps<{
   variant?: 'text' | 'rect' | 'circle'
   height?: string

@@ -2,17 +2,17 @@
   <div>
     <ul class="space-y-3">
       <li v-if="hasPermission('profile', 'view')">
-        <button @click="toggleDropdown('my_profile')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('my_profile')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.my_profile")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.my_profile }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.my_profile" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.my_profile" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/personal-info" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/personal-info') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
@@ -41,17 +41,17 @@
       </li>
 
       <li v-if="hasPermission('leave', 'create') || hasPermission('payroll', 'create')">
-        <button @click="toggleDropdown('my_requests')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('my_requests')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.my_requests")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.my_requests }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.my_requests" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.my_requests" class="py-2 space-y-2">
           <li v-if="hasPermission('leave', 'create')">
             <nuxt-link-locale to="/leave-request" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/leave-request') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
@@ -88,17 +88,17 @@
       </li>
 
       <li v-if="hasPermission('payroll', 'view')">
-        <button @click="toggleDropdown('payroll_docs')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('payroll_docs')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.payroll_docs")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.payroll_docs }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.payroll_docs" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.payroll_docs" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/payslips" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/payslips') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
@@ -127,17 +127,17 @@
       </li>
 
       <li v-if="hasPermission('attendance', 'view')">
-        <button @click="toggleDropdown('t_a_my_logs')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('t_a_my_logs')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.t_a_my_logs")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.t_a_my_logs }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.t_a_my_logs" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.t_a_my_logs" class="py-2 space-y-2">
           <li v-if="hasPermission('attendance', 'create')">
             <nuxt-link-locale to="/clock-in-out" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/clock-in-out') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
@@ -158,17 +158,17 @@
       </li>
 
       <li v-if="hasPermission('assets', 'view')">
-        <button @click="toggleDropdown('company_assets')" type="button"
-          class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group">
+        <VButton @click="toggleDropdown('company_assets')" type="button"
+          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
           <icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
-          <span class="flex-1 ms-3 text-start whitespace-nowrap">{{
+          <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.company_assets")
           }}</span>
-          <icon name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.company_assets }" aria-hidden="true" />
-        </button>
-        <ul v-if="dropdownStates.company_assets" class="py-2 space-y-2">
+        </VButton>
+        <ul v-if="!collapsed && dropdownStates.company_assets" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/assigned-list" class="flex items-center p-2 rounded-lg group ps-7"
               :class="isActive('/assigned-list') ? 'bg-gray-400 text-white hover:bg-gray-500' : 'text-white hover:bg-gray-700'">
@@ -192,6 +192,7 @@
 </template>
 
 <script lang="ts" setup>
+defineProps<{ collapsed?: boolean }>()
 const { t } = useI18n();
 const { isActive } = useIsActive();
 const { hasPermission } = useAppPermissions();

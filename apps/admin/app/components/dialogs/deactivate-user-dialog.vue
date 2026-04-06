@@ -12,19 +12,31 @@
         </div>
       </template>
       <template #footer>
-        <button @click="closeDialog" type="button"
-          class="px-5 py-2.5 rounded-lg text-white text-sm font-medium bg-gray-700 hover:bg-gray-600 active:bg-gray-700 transition-colors">
+        <VButton
+          type="button"
+          variant="outline"
+          border-color="border-gray-600"
+          text-color="text-white"
+          hover-color="hover:bg-gray-700"
+          padding-x="px-5"
+          padding-y="py-2.5"
+          @click="closeDialog"
+        >
           {{ cancelText }}
-        </button>
-        <button @click="confirmAction" type="button" :class="[
-          'px-5 py-2.5 rounded-lg text-white text-sm font-medium ms-4',
-          loading
-            ? 'bg-red-400 cursor-not-allowed'
-            : 'bg-red-400 hover:bg-red-500 active:bg-red-400',
-        ]" :disabled="loading">
-          <icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5 inline" />
+        </VButton>
+        <VButton
+          type="button"
+          bg-color="bg-red-500"
+          hover-color="hover:bg-red-600"
+          :disabled="loading"
+          padding-x="px-5"
+          padding-y="py-2.5"
+          class="ms-4"
+          @click="confirmAction"
+        >
+          <icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
           <span v-else>{{ confirmText }}</span>
-        </button>
+        </VButton>
       </template>
     </VDialog>
   </div>

@@ -77,11 +77,18 @@
                                     <icon :name="getModuleIcon(module)" class="w-5 h-5 text-blue-400" />
                                     {{ t(`permissions.modules.${module}`) }}
                                 </label>
-                                <button type="button" @click="permissionsStore.toggleAllModuleActions(module)"
-                                    class="text-xs text-blue-400 hover:text-blue-800 font-medium px-3 py-1.5 rounded-md hover:bg-blue-50 transition-colors">
-                                    {{ permissionsStore.areAllActionsSelected(module) ? t('permissions.deselect_all') :
-                                        t('permissions.select_all') }}
-                                </button>
+                                <VButton
+                                    type="button"
+                                    variant="ghost"
+                                    text-color="text-blue-400"
+                                    hover-color="hover:bg-blue-50/10"
+                                    padding-x="px-3"
+                                    padding-y="py-1.5"
+                                    class="rounded-md"
+                                    @click="permissionsStore.toggleAllModuleActions(module)"
+                                >
+                                    {{ permissionsStore.areAllActionsSelected(module) ? t('permissions.deselect_all') : t('permissions.select_all') }}
+                                </VButton>
                             </div>
 
                             <div class="flex flex-wrap gap-3">

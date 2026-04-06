@@ -1,6 +1,13 @@
 <template>
-  <div>
-    <nuxt-link-locale v-if="route && to" :to="to" :class="buttonClasses" :title="title" :type="type">
+  <div :class="$attrs.class">
+    <nuxt-link-locale
+      v-if="route && to"
+      :to="to"
+      :class="buttonClasses"
+      :title="title"
+      :type="type"
+      v-bind="filteredAttrs"
+    >
       <slot></slot>
       <slot name="icon">
         <icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="w-5 h-5 ms-2" />
@@ -8,7 +15,14 @@
       </slot>
     </nuxt-link-locale>
 
-    <button v-else :class="buttonClasses" :title="title" :type="type">
+    <button
+      v-else
+      :class="buttonClasses"
+      :title="title"
+      :type="type"
+      :disabled="disabled"
+      v-bind="filteredAttrs"
+    >
       <slot></slot>
       <slot name="icon">
         <icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="ms-2 w-5 h-5" />
@@ -19,14 +33,28 @@
 </template>
 
 <script lang="ts" setup>
+defineOptions({ inheritAttrs: false })
+
+const attrs = useAttrs()
+
+/** Forward every attr except class/style to the inner button/link */
+const filteredAttrs = computed(() => {
+  const { class: _c, style: _s, ...rest } = attrs as Record<string, any>
+  return rest
+})
+
 const props = defineProps({
   type: {
     type: String as PropType<'button' | 'submit' | 'reset'>,
     default: 'button',
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   defaultIcon: {
     type: String,
-    default: ''
+    default: '',
   },
   appendIcon: {
     type: String,
@@ -34,15 +62,15 @@ const props = defineProps({
   },
   block: {
     type: Boolean,
-    default: false
+    default: false,
   },
   inline: {
     type: Boolean,
-    default: false
+    default: false,
   },
-  title: { // for tooltip
+  title: {
     type: String,
-    default: ''
+    default: '',
   },
   bgColor: {
     type: String,
@@ -50,53 +78,53 @@ const props = defineProps({
   },
   bgHoverColor: {
     type: String,
-    default: 'base-btn-bg:hover'
+    default: 'base-btn-bg:hover',
   },
   hoverColor: {
     type: String,
-    default: 'hover:bg-[#3b5998]/90'
+    default: 'hover:bg-[#3b5998]/90',
   },
   borderColor: {
     type: String,
-    default: 'border-current'
+    default: 'border-current',
   },
   textColor: {
     type: String,
-    default: 'text-current'
+    default: 'text-current',
   },
   noBorder: {
     type: Boolean,
-    default: false
+    default: false,
   },
   paddingX: {
     type: String,
-    default: ''
+    default: '',
   },
   paddingY: {
     type: String,
-    default: ''
+    default: '',
   },
   variant: {
     type: String,
-    default: 'solid', // options: 'solid' | 'outline' | 'ghost'
-    validator: (val: string) => ['solid', 'outline', 'ghost'].includes(val)
+    default: 'solid',
+    validator: (val: string) => ['solid', 'outline', 'ghost'].includes(val),
   },
   link: {
     type: Boolean,
-    default: false
+    default: false,
   },
   to: {
     type: String,
-    default: ''
+    default: '',
   },
   route: {
     type: Boolean,
-    default: false
+    default: false,
   },
-});
+})
 
 const buttonClasses = computed(() => {
-  const inlineClass = props.inline ? 'inline-flex' : 'flex';
+  const inlineClass = props.inline ? 'inline-flex' : 'flex'
 
   if (props.link) {
     return [
@@ -105,16 +133,18 @@ const buttonClasses = computed(() => {
       inlineClass,
       'items-center justify-center',
       'text-blue-400 hover:underline',
-      props.block ? 'w-full' : ''
+      props.block ? 'w-full' : '',
+      props.disabled ? 'opacity-50 cursor-not-allowed' : '',
     ]
   }
 
   const base = [
     'font-medium rounded-xl text-sm text-center flex items-center justify-center transition-all',
-    props.paddingX, props.paddingY
+    props.paddingX, props.paddingY,
   ]
 
   const block = props.block ? 'w-full' : ''
+  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
 
   const variantClass =
     props.variant === 'outline'
@@ -123,6 +153,6 @@ const buttonClasses = computed(() => {
         ? ['bg-transparent', props.textColor]
         : ['text-white', props.bgColor, props.bgHoverColor, props.hoverColor]
 
-  return [...base, block, ...variantClass]
+  return [...base, block, disabledClass, ...variantClass]
 })
 </script>

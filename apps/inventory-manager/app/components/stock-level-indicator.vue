@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps<{
   current: number
   minimum: number
