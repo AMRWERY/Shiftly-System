@@ -1,57 +1,47 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center relative p-4 lg:p-8">
-        <!-- RTL Toggle positioned absolutely -->
+    <div class="min-h-screen w-full flex items-center justify-center relative">
+        <div class="absolute top-4 start-4 lg:top-8 lg:start-8 z-50">
+            <LazyVBackButton to="/" label-key="btn.back" />
+        </div>
+        <!-- RTL Toggle -->
         <div class="absolute top-4 end-4 lg:top-8 lg:end-8 z-50">
-            <VButton
-                type="button"
-                variant="outline"
-                border-color="border-gray-200/20"
-                text-color="text-gray-100"
-                hover-color="hover:bg-white/10"
-                padding-x="px-3"
-                padding-y="py-1.5"
+            <LazyVButton type="button" variant="outline" border-color="border-gray-200/20" text-color="text-gray-100"
+                hover-color="hover:bg-white/10" padding-x="px-3" padding-y="py-1.5"
                 class="me-1 rounded-lg hover:border-gray-300/40 bg-white/5 backdrop-blur-sm hover:text-white"
-                @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')"
-            >
+                @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
                 <span v-if="localeStore.isRTL" class="flex items-center">
-                    <icon name="heroicons:language" class="w-4 h-4 me-2" />
+                    <Icon name="heroicons:language" class="w-4 h-4 me-2" />
                     En
                 </span>
                 <span v-else class="flex items-center">
-                    <icon name="heroicons:language" class="w-4 h-4 me-2" />
+                    <Icon name="heroicons:language" class="w-4 h-4 me-2" />
                     العربية
                 </span>
-            </VButton>
+            </LazyVButton>
         </div>
 
-        <!-- Main Card Container -->
-        <div
-            class="w-full max-w-4xl h-[600px] md:h-[550px] lg:h-[500px] rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-700/50 relative z-10 transition-all">
-            <!-- Left Side - Dark Background with Information -->
+        <!-- Card -->
+        <LazyVCard flat
+            class="w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/[0.06] z-10">
+            <!-- Col 1 — Branding -->
             <div
-                class="hidden md:flex md:w-4/12 bg-gradient-to-br from-indigo-900 via-brand-systemBg to-brand-layoutBg text-white p-10 flex-col justify-center border-e border-gray-700">
-                <div class="max-w-md mx-auto">
-                    <h1 class="text-3xl font-bold mb-4">{{ t('btn.log_in') }}</h1>
-                    <p class="text-gray-400 mb-10">
-                        {{ t('form.welcome_message') }}
-                    </p>
-
-                    <h2 class="text-2xl font-bold mb-4">{{ t('form.simple_secure') }}</h2>
-                    <p class="text-gray-300">
-                        {{ t('form.security_message') }}
-                    </p>
+                class="hidden md:flex md:w-1/3 flex-col items-center justify-center p-10 bg-[#0e1322] border-r border-white/5 text-white">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black tracking-wider leading-tight mb-4">
+                        NEXUS<br />ERP
+                    </h1>
+                    <p class="text-slate-400 text-base font-light">Manage everything. From one place.</p>
+                    <div class="w-10 h-0.5 bg-indigo-500/40 mx-auto mt-8"></div>
                 </div>
             </div>
 
-            <!-- Right Side - Form -->
-            <!-- Added overflow-y-auto to handle content overflow -->
-            <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-brand-systemBg overflow-y-auto">
-                <div class="w-full max-w-lg">
-                    <!-- login component -->
+            <!-- Col 2 — Login form -->
+            <div class="w-full md:w-2/3 bg-[#0b0f1a] flex items-center justify-center p-6 sm:p-10 overflow-y-auto">
+                <div class="w-full max-w-xs">
                     <login />
                 </div>
             </div>
-        </div>
+        </LazyVCard>
     </div>
 </template>
 
@@ -65,7 +55,6 @@ watch(() => localeStore.isRTL, (isRTL) => {
 
 const switchLocale = async (value: SupportedLocale) => {
     localeStore.updateLocale(value);
-    // Get i18n instance and ensure messages are loaded
     if (value === 'ar') {
         const arMessages = await import('../../i18n/locales/ar.json');
         setLocaleMessage('ar', arMessages.default || arMessages);
@@ -73,11 +62,9 @@ const switchLocale = async (value: SupportedLocale) => {
         const enMessages = await import('../../i18n/locales/en.json');
         setLocaleMessage('en', enMessages.default || enMessages);
     }
-    // Now set the locale
     setLocale(value);
 };
 
-// Initialize direction on component mount
 onMounted(() => {
     document.documentElement.dir = localeStore.isRTL ? 'rtl' : 'ltr';
 });
@@ -87,6 +74,6 @@ definePageMeta({
 });
 
 useHead({
-    titleTemplate: () => t('meta.auth'),
+    titleTemplate: () => t('meta.login'),
 });
 </script>

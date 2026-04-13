@@ -7,9 +7,10 @@
             <slot name="header">
               <h2 v-if="title" class="v-drawer-title">{{ title }}</h2>
             </slot>
-            <VButton class="v-drawer-close" type="button" variant="ghost" padding-x="px-1" padding-y="py-1" @click="$emit('update:modelValue', false)">
-              <icon name="heroicons:x-mark" />
-            </VButton>
+            <LazyVButton class="v-drawer-close" type="button" variant="ghost" padding-x="px-1" padding-y="py-1"
+              @click="$emit('update:modelValue', false)">
+              <Icon name="heroicons:x-mark" />
+            </LazyVButton>
           </div>
           <div class="v-drawer-body">
             <slot />

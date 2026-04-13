@@ -1,7 +1,4 @@
-import type {
-  RoleWithPermissions,
-  Permission
-} from "@/layers/base/types";
+import type { RoleWithPermissions, Permission } from "@/layers/base/types";
 
 export const useRolesStore = defineStore("roles", () => {
   const { t } = useI18n();
@@ -14,7 +11,7 @@ export const useRolesStore = defineStore("roles", () => {
   const error = ref<string | null>(null);
   const saving = ref(false);
 
-  // VPagination
+  // LazyVPagination
   const currentPage = ref(1);
   const itemsPerPage = ref(8);
   const searchTerm = ref("");
@@ -224,6 +221,7 @@ export const useRolesStore = defineStore("roles", () => {
     error,
     saving,
     currentPage,
+    itemsPerPage,
     searchTerm,
 
     // Getters

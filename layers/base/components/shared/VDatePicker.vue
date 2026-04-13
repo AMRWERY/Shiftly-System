@@ -8,7 +8,7 @@
             :placeholder="t('form.select_date')"
             class="w-full px-3 py-2 transition duration-300 border border-gray-700 bg-brand-systemBg rounded-md shadow-sm placeholder:text-gray-500 text-white focus:outline-none focus:border-indigo-500 hover:border-gray-600 focus:shadow" />
           <div class="absolute inset-y-0 flex items-center pointer-events-none end-0 pe-3">
-            <icon name="material-symbols:calendar-month" class="w-5 h-5 text-gray-500" />
+            <Icon name="material-symbols:calendar-month" class="w-5 h-5 text-gray-500" />
           </div>
         </div>
 
@@ -17,13 +17,15 @@
           class="absolute z-10 w-[303px] mt-2 bg-brand-cardBg border border-gray-700 rounded-xl shadow-2xl">
           <!-- Calendar header -->
           <div class="flex items-center justify-between p-2 border-b border-gray-700">
-            <VButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5" class="rounded-full" @click="previousMonth">
-              <icon name="material-symbols:chevron-left" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
-            </VButton>
+            <LazyVButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5"
+              class="rounded-full" @click="previousMonth">
+              <Icon name="material-symbols:chevron-left" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
+            </LazyVButton>
             <span class="font-semibold text-white">{{ currentMonthYear }}</span>
-            <VButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5" class="rounded-full" @click="nextMonth">
-              <icon name="material-symbols:chevron-right" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
-            </VButton>
+            <LazyVButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5"
+              class="rounded-full" @click="nextMonth">
+              <Icon name="material-symbols:chevron-right" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
+            </LazyVButton>
           </div>
 
           <!-- Days of week -->
@@ -35,25 +37,16 @@
 
           <!-- Calendar days -->
           <div class="grid grid-cols-7 gap-1 p-2">
-            <VButton
-              v-for="{ date, isCurrentMonth, isToday } in calendarDays"
-              :key="date.toISOString()"
-              type="button"
-              variant="ghost"
-              padding-x="px-0"
-              padding-y="py-0"
-              :disabled="isDateDisabled(date)"
-              :hover-color="isSelected(date) ? 'hover:bg-indigo-700' : 'hover:bg-white/5'"
-              :class="[
+            <LazyVButton v-for="{ date, isCurrentMonth, isToday } in calendarDays" :key="date.toISOString()"
+              type="button" variant="ghost" padding-x="px-0" padding-y="py-0" :disabled="isDateDisabled(date)"
+              :hover-color="isSelected(date) ? 'hover:bg-indigo-700' : 'hover:bg-white/5'" :class="[
                 'w-8 h-8 text-sm rounded-full',
                 isCurrentMonth ? 'text-gray-200' : 'text-gray-500',
                 isToday ? 'bg-indigo-500/20 text-indigo-400' : '',
                 isSelected(date) ? 'bg-indigo-600 text-white' : '',
-              ]"
-              @click="selectDate(date)"
-            >
+              ]" @click="selectDate(date)">
               {{ date.getDate() }}
-            </VButton>
+            </LazyVButton>
           </div>
         </div>
       </div>

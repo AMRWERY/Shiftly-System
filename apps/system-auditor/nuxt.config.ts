@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: "%s - Shiftly System Auditor",
+      titleTemplate: "%s - Nexux System Auditor",
     },
   },
 });

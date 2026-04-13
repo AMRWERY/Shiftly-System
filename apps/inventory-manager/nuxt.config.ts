@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: "%s - Shiftly Inventory Manager",
+      titleTemplate: "%s - Nexux Inventory Manager",
     },
   },
 });

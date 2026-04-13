@@ -1,11 +1,11 @@
 <template>
-  <VCard class="course-card">
+  <LazyVCard class="course-card">
     <img v-if="course?.thumbnail" :src="course.thumbnail" :alt="course.title" class="course-card-thumbnail" />
     <p class="course-card-title">{{ course?.title }}</p>
     <p class="course-card-category">{{ course?.category }}</p>
     <p class="course-card-duration">{{ course?.duration }}</p>
     <slot />
-  </VCard>
+  </LazyVCard>
 </template>
 
 <script lang="ts" setup>

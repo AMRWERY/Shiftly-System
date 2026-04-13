@@ -1,11 +1,11 @@
 <template>
-  <form class="leave-request-form" @submit.prevent="$emit('submit', formData)">
-    <VSelect v-model="formData.type" label="Leave Type" :options="leaveTypes" />
-    <VDatePicker v-model="formData.startDate" label="Start Date" />
-    <VDatePicker v-model="formData.endDate" label="End Date" />
-    <VInput v-model="formData.reason" label="Reason" />
-    <VButton type="submit" variant="primary" :loading="loading">Submit</VButton>
-  </form>
+  <LazyVFormWrapper class="leave-request-form" @submit="$emit('submit', formData)">
+    <LazyVSelectInput v-model="formData.type" label="Leave Type" :options="leaveTypes" />
+    <LazyVDatePicker v-model="formData.startDate" label="Start Date" />
+    <LazyVDatePicker v-model="formData.endDate" label="End Date" />
+    <LazyVInput v-model="formData.reason" label="Reason" />
+    <LazyVButton type="submit" variant="primary" :loading="loading">Submit</LazyVButton>
+  </LazyVFormWrapper>
 </template>
 
 <script lang="ts" setup>

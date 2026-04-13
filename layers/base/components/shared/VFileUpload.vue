@@ -1,7 +1,7 @@
 <template>
   <div class="v-file-upload" :class="{ 'ui-file-upload--dragging': isDragging }">
     <label :for="id" class="v-file-upload-label">
-      <icon name="heroicons:cloud-arrow-up" class="v-file-upload-icon" />
+      <Icon name="heroicons:cloud-arrow-up" class="v-file-upload-icon" />
       <span>{{ label || 'Click or drag files to upload' }}</span>
       <span v-if="accept" class="v-file-upload-hint">{{ accept }}</span>
     </label>

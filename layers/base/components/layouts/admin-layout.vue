@@ -4,7 +4,7 @@
       <li>
         <nuxt-link-locale to="/" class="flex items-center p-2 rounded-lg group transition-colors"
           :class="isActive('/') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'" :exact="true">
-          <icon name="mdi:desktop-mac-dashboard" class="w-5 h-5 transition duration-75 group-hover:text-white"
+          <Icon name="mdi:desktop-mac-dashboard" class="w-5 h-5 transition duration-75 group-hover:text-white"
             :class="isActive('/') ? 'text-white' : 'text-gray-300'" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{
             t("layouts.overview")
@@ -13,16 +13,16 @@
       </li>
 
       <li v-if="hasPermission('users', 'view') || hasPermission('roles', 'view')">
-        <VButton @click="toggleDropdown('user_roles_mgt')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('user_roles_mgt')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-300" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.user_roles_mgt")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.user_roles_mgt }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.user_roles_mgt" class="py-2 space-y-2">
           <li v-if="hasPermission('users', 'view')">
             <nuxt-link-locale to="/users" class="flex items-center p-2 rounded-lg group ps-7 transition-colors"
@@ -61,16 +61,16 @@
       </li>
 
       <li v-if="hasPermission('settings', 'view')">
-        <VButton @click="toggleDropdown('system_settings')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="clarity:employee-group-solid"
+        <LazyVButton @click="toggleDropdown('system_settings')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="clarity:employee-group-solid"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.system_settings")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.system_settings }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.system_settings" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/company-structure"

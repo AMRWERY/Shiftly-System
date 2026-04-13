@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="p-6">
-      <VBackButton />
+      <LazyVBackButton />
 
       <div v-if="user" class="max-w-4xl mx-auto animate-fade-in">
         <!-- Header with Avatar and Basic Info -->
@@ -23,17 +23,17 @@
                 <div v-if="user.createdAt" class="text-sm text-gray-400">
                   {{ t("users.member_since") }}:
                   <span class="font-semibold text-gray-300 underline">{{ new Date(user.createdAt).toLocaleDateString()
-                    }}</span>
+                  }}</span>
                 </div>
               </div>
 
               <div class="flex flex-wrap justify-center md:justify-start gap-4 text-gray-400 mb-6">
                 <div class="flex items-center gap-2 px-3 py-1.5 bg-gray-800/50 rounded-lg">
-                  <icon name="heroicons:envelope" class="w-4 h-4 text-gray-400" />
+                  <Icon name="heroicons:envelope" class="w-4 h-4 text-gray-400" />
                   <span class="text-sm">{{ user.email }}</span>
                 </div>
                 <div class="flex items-center gap-2 px-3 py-1.5 bg-gray-800/50 rounded-lg" v-if="user.phoneNumber">
-                  <icon name="heroicons:phone" class="w-4 h-4 text-gray-400" />
+                  <Icon name="heroicons:phone" class="w-4 h-4 text-gray-400" />
                   <span class="text-sm">{{ user.phoneNumber }}</span>
                 </div>
               </div>
@@ -59,7 +59,7 @@
             <h2
               class="text-lg font-semibold text-gray-200 mb-6 flex items-center gap-2 pb-2 border-b border-gray-800/40">
               <div class="p-2 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                <icon name="heroicons:briefcase" class="w-5 h-5 text-blue-400" />
+                <Icon name="heroicons:briefcase" class="w-5 h-5 text-blue-400" />
               </div>
               {{ t("users.employment_details") }}
             </h2>
@@ -93,7 +93,7 @@
             <h2
               class="text-lg font-semibold text-gray-200 mb-6 flex items-center gap-2 pb-2 border-b border-gray-800/40">
               <div class="p-2 bg-purple-500/10 rounded-lg flex items-center justify-center">
-                <icon name="heroicons:user-circle" class="w-5 h-5 text-purple-400" />
+                <Icon name="heroicons:user-circle" class="w-5 h-5 text-purple-400" />
               </div>
               {{ t("users.personal_info") }}
             </h2>
@@ -129,9 +129,9 @@
         <user-profile-skeleton-loader v-if="loading" />
 
         <div v-else class="text-center p-8 bg-[#0B0E14] max-w-md rounded-2xl shadow-xl border border-gray-800/40">
-          <VErrorMessage :error-message="t('users.user_not_found')" />
+          <LazyVErrorMessage :error-message="t('users.user_not_found')" />
 
-          <VEmptyState :message="t('users.user_not_found')"
+          <LazyVEmptyState :message="t('users.user_not_found')"
             :icon="'material-symbols:person-alert-outline-rounded'" />
         </div>
       </div>

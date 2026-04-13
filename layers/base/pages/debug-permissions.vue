@@ -30,16 +30,10 @@
             </div>
 
             <div class="col-span-2">
-                <VButton
-                    type="button"
-                    bg-color="bg-blue-600"
-                    hover-color="hover:bg-blue-700"
-                    padding-x="px-4"
-                    padding-y="py-2"
-                    @click="authStore.fetchUserPermissions()"
-                >
+                <LazyVButton type="button" bg-color="bg-blue-600" hover-color="hover:bg-blue-700" padding-x="px-4"
+                    padding-y="py-2" @click="authStore.fetchUserPermissions()">
                     Force Refresh Permissions
-                </VButton>
+                </LazyVButton>
             </div>
         </div>
     </div>

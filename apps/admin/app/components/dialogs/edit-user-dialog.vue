@@ -1,6 +1,6 @@
 <template>
     <div>
-        <VDialog :model-value="isOpen" :title="t('dialog.edit_user_title', { name: user?.fullName || '' })"
+        <LazyVDialog :model-value="isOpen" :title="t('dialog.edit_user_title', { name: user?.fullName || '' })"
             :show-default-footer="false" @update:model-value="closeModal" @close="closeModal">
             <template #body>
                 <div class="mt-2">
@@ -8,72 +8,72 @@
                         {{ t('dialog.edit_user_message') }}
                     </p>
 
-                    <form @submit.prevent="submitEdit">
+                    <LazyVFormWrapper @submit="submitEdit">
                         <div class="space-y-4 overflow-y-auto max-h-[350px] hide-scrollbar" v-if="form">
                             <!-- Name Fields -->
                             <div class="grid grid-cols-1 gap-4">
                                 <div>
-                                    <VInput :label="t('form.first_name')" :name="t('form.first_name')"
-                                        type="text" rules="required" :required="true" v-model="form.firstName" />
+                                    <LazyVInput :label="t('form.first_name')" :name="t('form.first_name')" type="text"
+                                        rules="required" :required="true" v-model="form.firstName" />
                                 </div>
 
                                 <div>
-                                    <VInput :label="t('form.middle_name')" :name="t('form.middle_name')"
-                                        type="text" v-model="form.middleName" />
+                                    <LazyVInput :label="t('form.middle_name')" :name="t('form.middle_name')" type="text"
+                                        v-model="form.middleName" />
                                 </div>
 
                                 <div>
-                                    <VInput :label="t('form.last_name')" :name="t('form.last_name')" type="text"
+                                    <LazyVInput :label="t('form.last_name')" :name="t('form.last_name')" type="text"
                                         :required="true" rules="required" v-model="form.lastName" />
                                 </div>
 
                                 <!-- Email (Optional: Make readonly if email cannot be changed) -->
                                 <div>
-                                    <VInput :label="t('form.email')" :name="t('form.email')" type="email"
+                                    <LazyVInput :label="t('form.email')" :name="t('form.email')" type="email"
                                         :required="true" rules="required|email" v-model="form.email" />
                                 </div>
 
                                 <!-- Phone Number -->
                                 <div>
-                                    <VInput :label="t('form.phone_number')" :name="t('form.phone_number')"
+                                    <LazyVInput :label="t('form.phone_number')" :name="t('form.phone_number')"
                                         type="tel" v-model="form.phoneNumber" />
                                 </div>
 
                                 <!-- Role -->
                                 <div>
-                                    <VInput :label="t('form.role')" :name="t('form.role')" type="select"
+                                    <LazyVInput :label="t('form.role')" :name="t('form.role')" type="select"
                                         :required="true" rules="required" :placeholder="t('form.select_role')"
                                         :options="roles" v-model="form.role" />
                                 </div>
 
                                 <!-- Base Salary -->
                                 <div>
-                                    <VInput :label="t('form.base_salary')" :name="t('form.base_salary')"
+                                    <LazyVInput :label="t('form.base_salary')" :name="t('form.base_salary')"
                                         type="number" v-model="form.baseSalary" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="mt-6 flex justify-end gap-3">
-                            <VButton type="button" variant="outline" :border-color="'border-gray-700'"
+                            <LazyVButton type="button" variant="outline" :border-color="'border-gray-700'"
                                 :text-color="'text-white'" padding-x="px-4" padding-y="py-2" @click="closeModal"
                                 class="hover:bg-gray-700 transition-colors">
                                 {{ t('btn.cancel') }}
-                            </VButton>
-                            <VButton type="submit" :disabled="loading" hover-color="hover:bg-blue-700"
+                            </LazyVButton>
+                            <LazyVButton type="submit" :disabled="loading" hover-color="hover:bg-blue-700"
                                 padding-x="px-4" padding-y="py-2"
                                 class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <span v-if="loading" class="flex items-center gap-2">
-                                    <icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
+                                    <Icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
                                     Saving...
                                 </span>
                                 <span v-else>{{ t('btn.save_changes') }}</span>
-                            </VButton>
+                            </LazyVButton>
                         </div>
-                    </form>
+                    </LazyVFormWrapper>
                 </div>
             </template>
-        </VDialog>
+        </LazyVDialog>
     </div>
 </template>
 

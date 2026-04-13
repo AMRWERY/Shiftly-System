@@ -1,11 +1,11 @@
-# Shiftly ERP System
+# Nexux ERP System
 
 A modern ERP system built with Nuxt 4, Supabase, and Tailwind CSS v3.4.17, designed to support multiple user roles with role-based access control.
 
 ## 🏗️ Project Structure
 
 ```
-Shiftly/
+Nexux/
 ├── apps/                    # Individual user applications
 │   ├── admin/              # Admin portal (Port 3000)
 │   ├── hr/                 # HR portal (Port 3001)
@@ -193,7 +193,7 @@ To create a new app for a different user role (e.g., HR):
 2. **Create `package.json`:**
    ```json
    {
-     "name": "@shiftly/hr",
+     "name": "@Nexux/hr",
      "version": "1.0.0",
      "type": "module",
      "scripts": {
@@ -213,7 +213,7 @@ To create a new app for a different user role (e.g., HR):
      compatibilityDate: '2024-11-01',
      app: {
        head: {
-         title: 'Shiftly - HR Portal'
+         title: 'Nexux - HR Portal'
        }
      }
    })

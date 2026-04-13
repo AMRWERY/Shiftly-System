@@ -1,139 +1,124 @@
 <template>
   <div>
     <!-- Stepper -->
-    <VStepper :steps="steps" :currentStep="currentStep" @step-change="goToStep" class="mb-8" />
+    <LazyVStepper :steps="steps" :currentStep="currentStep" @step-change="goToStep" class="mb-8" />
 
     <ClientOnly>
-      <!-- step 1 -->
-      <form class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4" v-if="currentStep === 0" @submit.prevent="nextStep">
+      <!-- step 1: Name -->
+      <LazyVFormWrapper class="grid grid-cols-1 sm:grid-cols-6 gap-x-6 gap-y-5" v-if="currentStep === 0"
+        @submit="nextStep">
         <div class="sm:col-span-3">
-          <VInput :label="t('form.first_name')" :placeholder="t('form.enter_your_first_name')" type="text"
-            :name="t('form.first_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.firstName" />
+          <LazyVInput :label="t('form.first_name')" :placeholder="t('form.enter_your_first_name')" type="text"
+            :name="t('form.first_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.firstName"
+            prefix-icon="ph:user" label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
         </div>
 
         <div class="sm:col-span-3">
-          <VInput :label="t('form.middle_name')" :placeholder="t('form.enter_your_middle_name')" type="text"
-            :name="t('form.last_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.middleName" />
+          <LazyVInput :label="t('form.middle_name')" :placeholder="t('form.enter_your_middle_name')" type="text"
+            :name="t('form.middle_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.middleName"
+            prefix-icon="ph:user" label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
         </div>
 
         <div class="sm:col-span-full">
-          <VInput :label="t('form.last_name')" :placeholder="t('form.enter_your_last_name')" type="text"
-            :name="t('form.last_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.lastName" />
-        </div>
-        <div class="mt-7 sm:col-span-6 flex justify-end">
-          <VButton :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
-            :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
-            class="flex items-center justify-center rounded-lg border-2 transition-colors group" @click="nextStep">{{
-              t("btn.next") }}</VButton>
-        </div>
-      </form>
-
-      <!-- step 2 -->
-      <form class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4" v-else-if="currentStep === 1"
-        @submit.prevent="nextStep">
-        <div class="sm:col-span-full">
-          <VInput :label="t('form.email')" placeholder="example@test.com" type="email" :name="t('form.email')"
-            :rules="'required|email'" :required="true" v-model="form.email" />
-        </div>
-
-        <div class="col-span-full">
-          <VInput :label="t('form.password')" placeholder="••••••••" type="password" :name="t('form.password')"
-            :rules="'required|minLength:7'" :required="true" v-model="form.password" />
+          <LazyVInput :label="t('form.last_name')" :placeholder="t('form.enter_your_last_name')" type="text"
+            :name="t('form.last_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.lastName"
+            prefix-icon="ph:user" label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
         </div>
 
         <div class="sm:col-span-full">
-          <VInput :label="t('form.role')" type="select" :options="rolesOptions" :name="t('form.role')"
-            :rules="'required'" :required="true" :placeholder="t('form.select_role')" v-model="form.role" />
+          <button type="submit"
+            class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+            <Icon name="ph:arrow-right" class="opacity-80" />
+            {{ t('btn.next') }}
+          </button>
         </div>
+      </LazyVFormWrapper>
 
-        <div class="mt-7 sm:col-span-6 flex justify-end">
-          <VButton :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
-            :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
-            class="flex items-center justify-center rounded-lg border-2 transition-colors group" @click="nextStep">{{
-              t("btn.next") }}</VButton>
-        </div>
-      </form>
+      <!-- step 2: Credentials -->
+      <LazyVFormWrapper class="space-y-5" v-else-if="currentStep === 1" @submit="nextStep">
+        <LazyVInput :label="t('form.email')" placeholder="name@company.com" type="email" :name="t('form.email')"
+          :rules="'required|email'" :required="true" v-model="form.email" prefix-icon="ph:envelope-simple"
+          label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+
+        <LazyVInput :label="t('form.password')" placeholder="••••••••" type="password" :name="t('form.password')"
+          :rules="'required|minLength:7'" :required="true" v-model="form.password" prefix-icon="ph:lock-simple"
+          label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+
+        <LazyVInput :label="t('form.role')" type="select" :options="rolesOptions" :name="t('form.role')"
+          :rules="'required'" :required="true" :placeholder="t('form.select_role')" v-model="form.role"
+          prefix-icon="ph:identification-badge"
+          label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+
+        <button type="submit"
+          class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+          <Icon name="ph:arrow-right" class="opacity-80" />
+          {{ t('btn.next') }}
+        </button>
+      </LazyVFormWrapper>
 
       <!-- step 3: OTP Verification -->
-      <form v-else-if="currentStep === 2" @submit.prevent="handleVerifyOtp" class="space-y-6">
-        <div class="text-center mb-4">
-          <p class="text-sm text-gray-300 mb-2">{{ t('form.otp_instruction') }}</p>
-          <p class="text-xs text-gray-400">{{ t('form.check_email_for_code_or_link') }}</p>
+      <LazyVFormWrapper v-else-if="currentStep === 2" @submit="handleVerifyOtp" class="space-y-8">
+        <div class="text-center">
+          <p class="text-sm text-gray-300 mb-1">{{ t('form.otp_instruction') }}</p>
+          <p class="text-xs text-slate-500">{{ t('form.check_email_for_code_or_link') }}</p>
         </div>
 
-        <div class="flex flex-col space-y-16">
-          <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
-            <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
-              class="w-16 h-16 text-lg text-center bg-brand-systemBg border border-gray-700 outline-none rounded-xl focus:bg-white/5 focus:ring-2 ring-indigo-500 text-white"
-              @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
-          </div>
+        <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
+          <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
+            class="w-12 h-12 text-lg text-center bg-[#13192a] border border-white/5 outline-none rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-white"
+            @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
         </div>
 
-        <div class="mt-7">
-          <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
-            class="flex items-center justify-center rounded-lg border-2 transition-colors group" :disabled="loading">
-            <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
-            <span v-else>{{ t('btn.verify_account') }}</span>
-          </VButton>
-        </div>
+        <button type="submit" :disabled="loading"
+          class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+          <Icon v-if="loading" name="svg-spinners:ring-resize" />
+          <template v-else>
+            <Icon name="ph:check-circle" class="opacity-80" />
+            {{ t('btn.verify_account') }}
+          </template>
+        </button>
 
-        <div class="flex items-center justify-center text-sm text-gray-300">
-          <p>{{ t('form.didnt_recieve_code') }}
-            <VButton
-              type="button"
-              variant="ghost"
-              :link="true"
-              :disabled="resendCooldown > 0"
-              padding-x="px-0"
-              padding-y="py-0"
-              class="inline-flex"
-              @click="resendOtp"
-            >
-              {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
-            </VButton>
-          </p>
-        </div>
-      </form>
+        <p class="text-center text-xs text-slate-500">
+          {{ t('form.didnt_recieve_code') }}
+          <button type="button" :disabled="resendCooldown > 0" @click="resendOtp"
+            class="text-indigo-400 hover:text-indigo-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors font-medium">
+            {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
+          </button>
+        </p>
+      </LazyVFormWrapper>
 
-      <!-- step 4: Image Selection -->
-      <form v-else-if="currentStep === 3" @submit.prevent="handleSignup" class="gap-y-4">
-        <div class="flex flex-col items-center justify-center">
+      <!-- step 4: Profile Image -->
+      <LazyVFormWrapper v-else-if="currentStep === 3" @submit="handleSignup" class="space-y-8">
+        <div class="flex flex-col items-center justify-center gap-4">
           <div v-if="imagePreviewUrl"
-            class="rounded-full object-cover xl:w-[9rem] xl:h-[9rem] lg:w-[8rem] lg:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-yellow-500 shadow-xl relative">
-            <img :src="imagePreviewUrl" class="object-cover w-full h-full rounded-full" />
-            <VButton
-              v-if="imagePreviewUrl"
-              type="button"
-              bg-color="bg-red-400"
-              hover-color="hover:bg-red-500"
-              padding-x="px-0.5"
-              padding-y="py-0.5"
-              class="absolute rounded-full -top-0 -end-0"
-              @click="removeImagePreview"
-            >
-              <icon name="material-symbols:close-small-rounded" />
-            </VButton>
+            class="relative rounded-full overflow-hidden w-32 h-32 outline outline-2 outline-offset-2 outline-indigo-500 shadow-xl">
+            <img :src="imagePreviewUrl" class="object-cover w-full h-full" />
+            <button type="button" @click="removeImagePreview"
+              class="absolute top-1 end-1 bg-red-500 hover:bg-red-600 rounded-full p-0.5 text-white transition-colors">
+              <Icon name="ph:x-bold" class="w-3 h-3" />
+            </button>
           </div>
-          <div v-else
-            class="p-4 border border-gray-700 rounded-full shadow-md object-cover xl:w-[9rem] xl:h-[9rem] lg:w-[8rem] lg:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-indigo-500 bg-brand-systemBg">
-            <label for="profile-img" class="flex flex-col items-center justify-center h-full gap-2 cursor-pointer">
-              <icon name="material-symbols:photo" class="text-indigo-400 w-12 h-12"></icon>
-              <p class="font-medium text-center text-gray-300">
-                {{ t("form.chose_your_img") }}
-              </p>
-            </label>
-          </div>
+
+          <label v-else for="profile-img"
+            class="flex flex-col items-center justify-center w-32 h-32 rounded-full border-2 border-dashed border-white/10 hover:border-indigo-500/50 bg-[#13192a] cursor-pointer transition-all gap-2">
+            <Icon name="ph:camera-plus" class="text-indigo-400 w-8 h-8" />
+            <span class="text-[10px] font-bold tracking-widest text-slate-500 text-center px-2">
+              {{ t('form.chose_your_img') }}
+            </span>
+          </label>
+
           <input id="profile-img" type="file" class="hidden" accept="image/*" @change="onFileChange" />
         </div>
 
-        <div class="mt-7">
-          <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
-            class="flex items-center justify-center rounded-lg border-2 transition-colors group" :disabled="loading">
-            <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
-            <span v-else>{{ t("btn.create_account_button") }}</span>
-          </VButton>
-        </div>
-      </form>
+        <button type="submit" :disabled="loading"
+          class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+          <Icon v-if="loading" name="svg-spinners:ring-resize" />
+          <template v-else>
+            <Icon name="ph:user-plus" class="opacity-80" />
+            {{ t('btn.create_account_button') }}
+          </template>
+        </button>
+      </LazyVFormWrapper>
     </ClientOnly>
   </div>
 </template>
@@ -209,12 +194,6 @@ const checkEmailVerification = async () => {
 };
 
 onMounted(() => {
-  // Check initial email verification status
-  checkEmailVerification();
-  // Use the auth store's listener instead of creating a new one
-  // This prevents duplicate cookie writes
-  // The auth store already has a listener set up in initAuth()
-  // Also check periodically when on step 2 (in case user verifies in another tab)
   resumeVerificationCheck();
 
   // Watch auth store user changes to detect email verification
@@ -281,7 +260,6 @@ const goToStep = (index: number) => {
 const handleVerifyOtp = async () => {
   // Collect OTP from inputs
   const otpValue = otpInputs.value.map(input => input?.value || '').join('');
-
   if (otpValue.length !== 6) {
     triggerToast({
       message: t('toast.please_enter_valid_otp'),
@@ -319,7 +297,6 @@ const handleVerifyOtp = async () => {
 
 const resendOtp = async () => {
   if (resendCooldown.value > 0) return;
-
   startLoading();
   const result = await authStore.sendSignUpOtp(form.value.email);
   if (result.success) {

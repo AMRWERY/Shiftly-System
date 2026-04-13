@@ -1,8 +1,8 @@
 <template>
-  <form class="performance-review-form" @submit.prevent="$emit('submit', formData)">
+  <LazyVFormWrapper class="performance-review-form" @submit="$emit('submit', formData)">
     <slot :form-data="formData" />
-    <VButton type="submit" variant="primary" :loading="loading">Submit Review</VButton>
-  </form>
+    <LazyVButton type="submit" variant="primary" :loading="loading">Submit Review</LazyVButton>
+  </LazyVFormWrapper>
 </template>
 
 <script lang="ts" setup>

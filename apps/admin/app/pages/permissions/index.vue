@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="p-6">
+  <div class="h-full flex flex-col">
+    <div class="p-6 flex-1 flex flex-col">
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-semibold text-gray-400">{{ t('permissions.title') }}</h1>
       </div>
@@ -11,11 +11,12 @@
       </div>
 
       <!-- Loading State -->
-      <VTableSkeletonLoader v-if="pending" :headers="columns" />
+      <LazyVTableSkeletonLoader v-if="pending" :headers="columns" />
 
       <!-- Users Table -->
-      <VTable v-else :columns="columns" :items="nonAdminUsers" :has-view="false" :has-block="false"
-        :has-edit="true" :action-conditions="{ edit: () => true }" @edit="handleEditPermissions" />
+      <LazyVTable v-else :columns="columns" :items="nonAdminUsers" :current-page="1" :total-pages="1"
+        :total-items="nonAdminUsers.length" :has-view="false" :has-block="false" :has-edit="true"
+        :action-conditions="{ edit: () => true }" class="flex-1" @edit="handleEditPermissions" />
 
       <!-- Edit Permissions Dialog -->
       <edit-permissions-dialog :is-open="isEditDialogOpen" :user="selectedUser" @close="closeEditDialog"
@@ -108,6 +109,6 @@ const closeEditDialog = () => {
 }
 
 useHead({
-    titleTemplate: () => t('meta.permissions'),
+  titleTemplate: () => t('meta.permissions'),
 });
 </script>

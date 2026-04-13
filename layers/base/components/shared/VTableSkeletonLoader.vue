@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="flex min-h-0 flex-1 flex-col">
     <!-- Controls Skeleton -->
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
+    <div class="mb-6 flex shrink-0 flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
       <!-- Title Skeleton -->
       <div class="h-8 bg-gray-700 rounded-md w-32 animate-pulse"></div>
 
@@ -21,8 +21,9 @@
       </div>
     </div>
 
-    <div class="relative rounded-xl border border-gray-800/40 overflow-hidden bg-[#0B0E14]">
-      <div class="scroll-container overflow-x-auto smooth-scroll" @scroll="handleScroll">
+    <div
+      class="relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-gray-800/40 bg-[#0B0E14]">
+      <div class="scroll-container min-h-0 flex-1 overflow-x-auto overflow-y-auto smooth-scroll" @scroll="handleScroll">
         <table class="w-full text-sm text-gray-500 text-start sm:min-w-[1000px]">
           <thead class="bg-[#0B0E14]/95 backdrop-blur-md border-b border-gray-800/60">
             <tr>
@@ -75,9 +76,9 @@
       </div>
     </div>
 
-    <!-- VPagination Skeleton -->
+    <!-- LazyVPagination Skeleton -->
     <div
-      class="px-8 py-5 border-t border-gray-800/40 flex flex-col sm:flex-row items-center justify-between bg-[#0D1017] animate-pulse">
+      class="flex shrink-0 flex-col items-center justify-between border-t border-gray-800/40 bg-[#0D1017] px-8 py-5 animate-pulse sm:flex-row">
       <div class="h-4 bg-gray-800 rounded-full w-48 mb-4 sm:mb-0"></div>
 
       <div class="flex items-center gap-3">

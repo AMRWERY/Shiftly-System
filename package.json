@@ -1,7 +1,7 @@
 {
-  "name": "Shiftly",
+  "name": "Nexux",
   "version": "1.0.0",
-  "description": "Shiftly ERP System - Multi-tenant Nuxt 4 Monorepo",
+  "description": "Nexux ERP System - Multi-tenant Nuxt 4 Monorepo",
   "private": true,
   "scripts": {
     "dev": "pnpm --filter admin dev",

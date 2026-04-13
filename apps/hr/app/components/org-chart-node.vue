@@ -1,6 +1,7 @@
 <template>
   <div class="org-chart-node">
-    <VAvatar :name="node?.name" size="md" />
+    <LazyVAvatar :name="node?.name" size="md" />
+
     <p class="org-chart-node-name">{{ node?.name }}</p>
     <p class="org-chart-node-title">{{ node?.title }}</p>
     <div v-if="node?.children?.length" class="org-chart-node-children">

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="p-6">
-      <VBackButton />
+      <LazyVBackButton />
 
       <div v-if="role" class="max-w-6xl mx-auto">
         <!-- Header + Stats -->
@@ -29,7 +29,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-700">
             <div class="flex items-center gap-3 p-4 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
               <div class="p-3 bg-brand-systemBg rounded-lg flex items-center justify-center">
-                <icon name="heroicons:users" class="w-6 h-6 text-indigo-400" />
+                <Icon name="heroicons:users" class="w-6 h-6 text-indigo-400" />
               </div>
               <div>
                 <p class="text-sm text-gray-400">
@@ -43,7 +43,7 @@
 
             <div class="flex items-center gap-3 p-4 bg-green-500/10 rounded-lg border border-green-500/20">
               <div class="p-3 bg-brand-systemBg rounded-lg">
-                <icon name="heroicons:shield-check" class="w-6 h-6 text-green-500 flex items-center justify-center" />
+                <Icon name="heroicons:shield-check" class="w-6 h-6 text-green-500 flex items-center justify-center" />
               </div>
               <div>
                 <p class="text-sm text-gray-400">
@@ -57,7 +57,7 @@
 
             <div class="flex items-center gap-3 p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
               <div class="p-3 bg-brand-systemBg rounded-lg">
-                <icon name="heroicons:calendar" class="w-6 h-6 text-purple-500 flex items-center justify-center" />
+                <Icon name="heroicons:calendar" class="w-6 h-6 text-purple-500 flex items-center justify-center" />
               </div>
               <div>
                 <p class="text-sm text-gray-400">{{ t("roles.created_on") }}</p>
@@ -76,14 +76,14 @@
           </h2>
           <role-permission-matrix v-model="rolePermissions" :show-stats="true" />
           <div class="mt-6 pt-6 border-t border-gray-700 flex justify-end">
-            <VButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" @click="submitPermissions"
+            <LazyVButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" @click="submitPermissions"
               :disabled="saving">
               <span v-if="saving" class="flex items-center gap-2">
-                <icon name="svg-spinners:ring-resize" class="w-4 h-4" />
+                <Icon name="svg-spinners:ring-resize" class="w-4 h-4" />
                 {{ t("btn.saving") }}
               </span>
               <span v-else>{{ t("btn.save_changes") }}</span>
-            </VButton>
+            </LazyVButton>
           </div>
         </div>
 
@@ -114,7 +114,7 @@
         </div>
 
         <div v-else class="card-bg rounded-xl p-12 text-center shadow-lg">
-          <icon name="heroicons:users" class="w-16 h-16 text-gray-500 mx-auto mb-4" />
+          <Icon name="heroicons:users" class="w-16 h-16 text-gray-500 mx-auto mb-4" />
           <p class="text-gray-400">{{ t("roles.no_users_assigned") }}</p>
         </div>
       </div>
@@ -122,9 +122,9 @@
       <!-- Loading / Not found -->
       <div v-if="!role && !loading" class="max-w-6xl mx-auto mt-4">
         <div class="card-bg text-center p-8 rounded-2xl shadow-xl">
-          <VErrorMessage :error-message="t('roles.role_not_found')" />
+          <LazyVErrorMessage :error-message="t('roles.role_not_found')" />
 
-          <VEmptyState :message="t('roles.role_not_found')"
+          <LazyVEmptyState :message="t('roles.role_not_found')"
             :icon="'material-symbols:shield-alert-outline-rounded'" />
         </div>
       </div>

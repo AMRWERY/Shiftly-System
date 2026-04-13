@@ -157,12 +157,12 @@ export const useAuthStore = defineStore("auth", {
     },
 
     /**
-     * Generate unique employee ID in format: shiftly-XXXX
+     * Generate unique employee ID in format: Nexux-XXXX
      */
     generateEmployeeId(): string {
       // Generate random 4-digit number between 1000-9999
       const randomNum = Math.floor(Math.random() * 9000) + 1000;
-      return `shiftly-${randomNum}`;
+      return `Nexux-${randomNum}`;
     },
 
     /**

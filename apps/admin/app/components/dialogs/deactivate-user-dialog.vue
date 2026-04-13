@@ -1,10 +1,10 @@
 <template>
   <div>
-    <VDialog :model-value="show" :title="dialogTitle" :show-default-footer="false"
-      @update:model-value="closeDialog" @close="closeDialog">
+    <LazyVDialog :model-value="show" :title="dialogTitle" :show-default-footer="false" @update:model-value="closeDialog"
+      @close="closeDialog">
       <template #body>
         <div class="text-center">
-          <icon name="material-symbols:warning-outline" class="w-20 h-20 mx-auto text-red-300" />
+          <Icon name="material-symbols:warning-outline" class="w-20 h-20 mx-auto text-red-300" />
           <p class="text-gray-300 mt-4">{{ dialogMessage }}</p>
           <p class="text-red-400 font-semibold mt-3">
             {{ t("dialog.deactivate_warning") }}
@@ -12,33 +12,17 @@
         </div>
       </template>
       <template #footer>
-        <VButton
-          type="button"
-          variant="outline"
-          border-color="border-gray-600"
-          text-color="text-white"
-          hover-color="hover:bg-gray-700"
-          padding-x="px-5"
-          padding-y="py-2.5"
-          @click="closeDialog"
-        >
+        <LazyVButton type="button" variant="outline" border-color="border-gray-600" text-color="text-white"
+          hover-color="hover:bg-gray-700" padding-x="px-5" padding-y="py-2.5" @click="closeDialog">
           {{ cancelText }}
-        </VButton>
-        <VButton
-          type="button"
-          bg-color="bg-red-500"
-          hover-color="hover:bg-red-600"
-          :disabled="loading"
-          padding-x="px-5"
-          padding-y="py-2.5"
-          class="ms-4"
-          @click="confirmAction"
-        >
-          <icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
+        </LazyVButton>
+        <LazyVButton type="button" bg-color="bg-red-500" hover-color="hover:bg-red-600" :disabled="loading"
+          padding-x="px-5" padding-y="py-2.5" class="ms-4" @click="confirmAction">
+          <Icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
           <span v-else>{{ confirmText }}</span>
-        </VButton>
+        </LazyVButton>
       </template>
-    </VDialog>
+    </LazyVDialog>
   </div>
 </template>
 

@@ -2,16 +2,16 @@
   <div>
     <ul class="space-y-3">
       <li v-if="hasPermission('stock', 'view')">
-        <VButton @click="toggleDropdown('inventory_overview')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('inventory_overview')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.inventory_overview")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.inventory_overview }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.inventory_overview" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/stock-levels" class="flex items-center p-2 rounded-lg group ps-7"
@@ -41,16 +41,16 @@
       </li>
 
       <li v-if="hasPermission('items', 'view')">
-        <VButton @click="toggleDropdown('item_master_data')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('item_master_data')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.item_master_data")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.item_master_data }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.item_master_data" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/product-list" class="flex items-center p-2 rounded-lg group ps-7"
@@ -80,16 +80,16 @@
       </li>
 
       <li v-if="hasPermission('stock', 'move')">
-        <VButton @click="toggleDropdown('stock_movement')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('stock_movement')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.stock_movement")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.stock_movement }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.stock_movement" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/goods-receipt-in" class="flex items-center p-2 rounded-lg group ps-7"
@@ -119,16 +119,16 @@
       </li>
 
       <li v-if="hasPermission('stock', 'adjust')">
-        <VButton @click="toggleDropdown('stock_take_qc')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('stock_take_qc')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.stock_take_qc")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.stock_take_qc }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.stock_take_qc" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/physical-count-records" class="flex items-center p-2 rounded-lg group ps-7"
@@ -158,16 +158,16 @@
       </li>
 
       <li v-if="hasPermission('procurements', 'view')">
-        <VButton @click="toggleDropdown('procurement_mgt')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('procurement_mgt')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.procurement_mgt")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.procurement_mgt }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.procurement_mgt" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/purchase-requests-pr" class="flex items-center p-2 rounded-lg group ps-7"

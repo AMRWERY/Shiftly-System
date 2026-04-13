@@ -2,7 +2,6 @@
   <div>
     <div class="min-h-screen bg-brand-systemBg text-gray-300 p-8 font-sans">
       <div class="max-w-7xl mx-auto space-y-6">
-
         <!-- Top Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <stat-card label="Total Employees" value="1,248" trend="1.2%" :trendUp="true" iconBg="bg-blue-900/30"
@@ -38,10 +37,10 @@
                 <h3 class="text-white font-bold">30-Day Attendance Trend</h3>
                 <p class="text-xs text-gray-500">Tracking aggregate attendance across all departments</p>
               </div>
-              <VButton :variant="'ghost'" :text-color="'text-gray-400'"
+              <LazyVButton :variant="'ghost'" :text-color="'text-gray-400'"
                 class="bg-white/5 text-[10px] px-3 py-1 rounded-lg hover:bg-white/10">
                 Last 30 Days
-              </VButton>
+              </LazyVButton>
             </div>
 
             <!-- Decorative SVG Wave -->
@@ -57,8 +56,7 @@
                   </linearGradient>
                 </defs>
               </svg>
-              <div
-                class="absolute bottom-0 w-full flex justify-between text-[10px] text-gray-600 px-2 uppercase font-bold">
+              <div class="absolute bottom-0 w-full flex justify-between text-[10px] text-gray-600 px-2 font-bold">
                 <span>01 Oct</span><span>08 Oct</span><span>15 Oct</span><span>22 Oct</span><span>31 Oct</span>
               </div>
             </div>

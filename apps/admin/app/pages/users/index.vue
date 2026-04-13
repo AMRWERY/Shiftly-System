@@ -1,38 +1,46 @@
 <template>
-  <div>
-    <div class="p-6">
+  <div class="flex min-h-0 flex-1 flex-col">
+    <div class="flex min-h-0 flex-1 flex-col p-6">
       <!-- Loading State -->
-      <VTableSkeletonLoader v-if="pending" :headers="columns" />
+      <LazyVTableSkeletonLoader v-if="pending" :headers="columns" />
+
       <template v-else>
-        <!-- Header + Controls Row -->
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
-          <h1 class="text-2xl font-semibold text-gray-200">{{ t('layouts.users') }}</h1>
+        <div class="flex flex-1 min-h-0 flex-col">
+          <!-- Header + Controls Row -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6 shrink-0">
+            <h1 class="text-2xl font-semibold text-gray-200">{{ t('layouts.users') }}</h1>
 
-          <!-- Controls: Search + Refresh + Add Button -->
-          <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-            <!-- VSearchInput component -->
-            <VSearchInput v-model="localSearchTerm" @search="handleSearch"
-              :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
+            <!-- Controls: Download + Search + Refresh + Add Button -->
+            <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+              <div class="shrink-0">
+                <LazyVDownloadFilesMenu :all-items="usersStore.filteredUsers" :columns="columns"
+                  file-name-base="users" />
+              </div>
+              <LazyVSearchInput v-model="localSearchTerm" @search="handleSearch"
+                :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
 
-            <!-- VRefreshButton component -->
-            <VRefreshButton @refresh="refreshUsers" :is-loading="pending" />
+              <!-- LazyVRefreshButton component -->
+              <LazyVRefreshButton @refresh="refreshUsers" :is-loading="pending" />
 
-            <!-- Add New User Button -->
-            <VButton type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
-              @click="isInviteDialogOpen = true">
-              {{ t('btn.add_new_user') }}
-            </VButton>
+              <!-- Add New User Button -->
+              <LazyVButton type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
+                @click="isInviteDialogOpen = true">
+                {{ t('btn.add_new_user') }}
+              </LazyVButton>
+            </div>
           </div>
+
+          <LazyVErrorMessage v-if="error" :error-message="t('toast.failed_to_load_users')" />
+
+          <!-- Users Table -->
+          <LazyVTable v-else :columns="columns" :items="paginatedUsers" :current-page="currentPage"
+            :total-pages="totalPages" :total-items="usersStore.filteredUsers.length"
+            :page-size="usersStore.itemsPerPage" :has-view="true" :has-block="true" :has-delete="true"
+            :has-deactivate="true" :has-edit="true" :action-conditions="actionConditions" class="min-h-0 flex-1"
+            @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser"
+            @deactivate="handleDeactivateUser" @edit="handleEditUser" @page-change="handlePageChange"
+            @status-toggle="handleBlockUser" />
         </div>
-
-        <VErrorMessage v-if="error" :error-message="t('toast.failed_to_load_users')" />
-
-        <!-- Users Table -->
-        <VTable v-else :columns="columns" :items="paginatedUsers" :current-page="currentPage"
-          :total-pages="totalPages" :total-items="usersStore.filteredUsers.length" :has-view="true" :has-block="true"
-          :has-delete="true" :has-deactivate="true" :has-edit="true" :action-conditions="actionConditions"
-          @view="handleViewUser" @block="handleBlockUser" @delete="handleDeleteUser" @deactivate="handleDeactivateUser"
-          @edit="handleEditUser" @page-change="handlePageChange" @status-toggle="handleBlockUser" />
       </template>
 
       <!-- Invite User Dialog -->
@@ -43,9 +51,9 @@
         @success="refreshUsers" />
 
       <!-- Delete Confirmation Dialog -->
-      <VDeleteDialog :show="isDeleteDialogOpen" :title="t('dialog.delete_user_title')" :message="deleteDialogMessage"
-        :loading="isDeleting" :confirm-text="'Yes Delete'" :cancel-text="'Cancel'" @close="closeDeleteDialog"
-        @confirm="confirmDeleteUser" />
+      <LazyVDeleteDialog :show="isDeleteDialogOpen" :title="t('dialog.delete_user_title')"
+        :message="deleteDialogMessage" :loading="isDeleting" :confirm-text="'Yes Delete'" :cancel-text="'Cancel'"
+        @close="closeDeleteDialog" @confirm="confirmDeleteUser" />
 
       <!-- Block/Unblock Confirmation Dialog -->
       <block-user-dialog :show="isBlockDialogOpen" :user="userToBlock" :loading="isBlocking" @close="closeBlockDialog"

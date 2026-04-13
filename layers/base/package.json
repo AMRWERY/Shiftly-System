@@ -1,5 +1,5 @@
 {
-  "name": "@shiftly/base",
+  "name": "@nexux/base",
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
@@ -13,7 +13,8 @@
     "@vee-validate/rules": "^4.15.1",
     "@vueuse/nuxt": "^14.1.0",
     "dotenv": "^17.2.3",
-    "html2pdf.js": "^0.12.1",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.7",
     "nuxt": "^4.2.1",
     "pinia": "^2.3.1",
     "tailwindcss-rtl": "^0.9.0",

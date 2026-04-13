@@ -1,36 +1,26 @@
 <template>
   <div>
-    <transition name="bounce" mode="out-in">
+    <transition name="toast-slide" mode="out-in">
       <div v-if="visible"
-        :class="`relative flex items-center justify-between w-full shadow-lg bg-brand-cardBg border border-gray-700 h-[50px] rounded-lg overflow-hidden ${textColorClass}`"
+        class="relative flex items-center gap-3 w-full rounded-lg overflow-hidden shadow-xl border border-white/5 border-s-4 px-4 py-3"
+        :class="[bgTintClass, accentBorderClass]"
         role="alert">
-        <!-- Left color bar -->
-        <div class="h-full w-1.5" :class="borderColorClass"></div>
 
-        <!-- Content -->
-        <div class="flex items-center flex-1 px-3">
-          <!-- Icon -->
-          <icon :name="toastIconName" class="w-5 h-5 shrink-0" />
+        <!-- Icon -->
+        <Icon :name="toastIconName" class="w-5 h-5 shrink-0" :class="iconColorClass" />
 
-          <!-- Message -->
-          <p class="text-sm ms-2 flex-1">{{ message }}</p>
-        </div>
+        <!-- Message -->
+        <p class="text-sm text-slate-200 flex-1 leading-snug">{{ message }}</p>
 
         <!-- Close button -->
-        <VButton
-          type="button"
-          variant="ghost"
-          padding-x="px-1"
-          padding-y="py-1"
-          class="active:scale-90 me-3 shrink-0"
-          aria-label="close"
-          @click="closeToast"
-        >
-          <icon name="material-symbols:close-small-outline-rounded" />
-        </VButton>
+        <button type="button" aria-label="close"
+          class="text-slate-500 hover:text-slate-300 transition-colors shrink-0 active:scale-90"
+          @click="closeToast">
+          <Icon name="ph:x" class="w-4 h-4" />
+        </button>
 
         <!-- Progress bar -->
-        <div class="absolute bottom-0 w-full h-1 bg-gray-800 start-0">
+        <div class="absolute bottom-0 start-0 w-full h-0.5 bg-white/5">
           <div class="h-full transition-all ease-linear" :class="progressBarColorClass" :style="progressBarStyle" />
         </div>
       </div>
@@ -58,55 +48,48 @@ const visible = ref(true);
 const progressWidth = ref(100);
 const emit = defineEmits(["toastClosed"]);
 
-const textColorClass = computed(() => {
+const bgTintClass = computed(() => {
   switch (props.toastType) {
-    case "success":
-      return "text-emerald-400";
-    case "error":
-      return "text-red-400";
-    case "warning":
-      return "text-amber-400";
-    default:
-      return "text-indigo-400";
+    case "success": return "bg-emerald-950/60";
+    case "error":   return "bg-red-950/60";
+    case "warning": return "bg-amber-950/60";
+    default:        return "bg-indigo-950/60";
   }
 });
 
-const borderColorClass = computed(() => {
+const accentBorderClass = computed(() => {
   switch (props.toastType) {
-    case "success":
-      return "bg-emerald-500";
-    case "error":
-      return "bg-red-400";
-    case "warning":
-      return "bg-amber-500";
-    default:
-      return "bg-indigo-500";
+    case "success": return "border-s-emerald-500";
+    case "error":   return "border-s-red-500";
+    case "warning": return "border-s-amber-500";
+    default:        return "border-s-indigo-500";
+  }
+});
+
+const iconColorClass = computed(() => {
+  switch (props.toastType) {
+    case "success": return "text-emerald-400";
+    case "error":   return "text-red-400";
+    case "warning": return "text-amber-400";
+    default:        return "text-indigo-400";
   }
 });
 
 const progressBarColorClass = computed(() => {
   switch (props.toastType) {
-    case "success":
-      return "bg-emerald-500";
-    case "error":
-      return "bg-red-400";
-    case "warning":
-      return "bg-amber-500";
-    default:
-      return "bg-indigo-500";
+    case "success": return "bg-emerald-500";
+    case "error":   return "bg-red-500";
+    case "warning": return "bg-amber-500";
+    default:        return "bg-indigo-500";
   }
 });
 
 const toastIconName = computed(() => {
   switch (props.toastType) {
-    case "success":
-      return "heroicons:check-circle";
-    case "error":
-      return "heroicons:x-circle";
-    case "warning":
-      return "heroicons:exclamation-triangle";
-    default:
-      return "heroicons:information-circle";
+    case "success": return "ph:check-circle";
+    case "error":   return "ph:warning-circle";
+    case "warning": return "ph:warning";
+    default:        return "ph:info";
   }
 });
 
@@ -135,14 +118,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.bounce-enter-from,
-.bounce-leave-to {
+.toast-slide-enter-from,
+.toast-slide-leave-to {
   opacity: 0;
-  transform: translateY(-30px) scale(0.8);
+  transform: translateY(-12px) scale(0.96);
 }
 
-.bounce-enter-active,
-.bounce-leave-active {
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+.toast-slide-enter-active,
+.toast-slide-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

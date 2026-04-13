@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: "%s - Shiftly HR",
+      titleTemplate: "%s - Nexux HR",
     },
   },
 });

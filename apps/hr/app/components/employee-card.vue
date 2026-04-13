@@ -1,7 +1,8 @@
 <template>
-  <VCard class="employee-card">
+  <LazyVCard class="employee-card">
     <div class="employee-card-inner">
-      <VAvatar :name="employee?.name" :src="employee?.avatarUrl" size="lg" />
+      <LazyVAvatar :name="employee?.name" :src="employee?.avatarUrl" size="lg" />
+
       <div class="employee-card-info">
         <p class="employee-card-name">{{ employee?.name }}</p>
         <p class="employee-card-title">{{ employee?.jobTitle }}</p>
@@ -9,7 +10,7 @@
       </div>
     </div>
     <slot />
-  </VCard>
+  </LazyVCard>
 </template>
 
 <script lang="ts" setup>

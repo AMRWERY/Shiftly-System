@@ -11,9 +11,9 @@
                 </div>
 
                 <div class="mt-6">
-                    <VButton :type="'button'" :variant="'outline'" :inline="true" :border-color="'border-gray-100'"
+                    <LazyVButton :type="'button'" :variant="'outline'" :inline="true" :border-color="'border-gray-100'"
                         :text-color="'text-gray-100'" :route="true" to="/" :padding-x="'px-4'" :padding-y="'py-2'">{{
-                            t('btn.go_back_home') }}</VButton>
+                            t('btn.go_back_home') }}</LazyVButton>
                 </div>
             </div>
         </div>

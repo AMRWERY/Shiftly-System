@@ -1,4 +1,4 @@
-# Shiftly Design System & Style Guide
+# Nexux Design System & Style Guide
 
 This document serves as a reference for the "Enterprise Admin" premium dark theme. Use these tokens and patterns when creating new components to ensure visual consistency.
 

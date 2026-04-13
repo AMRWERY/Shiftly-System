@@ -10,8 +10,8 @@
     >
       <slot></slot>
       <slot name="icon">
-        <icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="w-5 h-5 ms-2" />
-        <icon v-else-if="appendIcon" :name="appendIcon" class="w-5 h-5 ms-2" />
+        <Icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="w-5 h-5 ms-2" />
+        <Icon v-else-if="appendIcon" :name="appendIcon" class="w-5 h-5 ms-2" />
       </slot>
     </nuxt-link-locale>
 
@@ -25,8 +25,8 @@
     >
       <slot></slot>
       <slot name="icon">
-        <icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="ms-2 w-5 h-5" />
-        <icon v-else-if="appendIcon" :name="appendIcon" class="ms-2 w-5 h-5" />
+        <Icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="ms-2 w-5 h-5" />
+        <Icon v-else-if="appendIcon" :name="appendIcon" class="ms-2 w-5 h-5" />
       </slot>
     </button>
   </div>
@@ -138,8 +138,10 @@ const buttonClasses = computed(() => {
     ]
   }
 
+  const radius =
+    props.variant === 'outline' || props.variant === 'ghost' ? 'rounded-lg' : 'rounded-xl'
   const base = [
-    'font-medium rounded-xl text-sm text-center flex items-center justify-center transition-all',
+    `font-medium ${radius} text-sm text-center flex items-center justify-center transition-all`,
     props.paddingX, props.paddingY,
   ]
 

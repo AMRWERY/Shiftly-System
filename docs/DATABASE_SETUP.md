@@ -1,4 +1,4 @@
-# Database Setup for Shiftly
+# Database Setup for Nexux
 
 ## Dynamic RBAC (recommended)
 

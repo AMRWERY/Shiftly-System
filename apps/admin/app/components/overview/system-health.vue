@@ -22,7 +22,7 @@
                 <!-- Database Status Row -->
                 <div class="flex justify-between items-end">
                     <div class="space-y-1">
-                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Database Status</p>
+                        <p class="text-[10px] font-bold text-gray-500 tracking-widest">Database Status</p>
                         <p class="text-white font-bold text-lg leading-tight">{{ databaseStatus }}</p>
                     </div>
                     <div class="flex items-center gap-2 mb-1">
@@ -38,7 +38,7 @@
                 <!-- Active Sessions Row -->
                 <div class="flex justify-between items-end">
                     <div class="space-y-1">
-                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Active Sessions</p>
+                        <p class="text-[10px] font-bold text-gray-500 tracking-widest">Active Sessions</p>
                         <p class="text-white font-bold text-lg leading-tight">{{ sessions }} Concurrent Users</p>
                     </div>
                     <div class="bg-white/5 px-3 py-1 rounded-lg mb-1 border border-white/5 backdrop-blur-sm">

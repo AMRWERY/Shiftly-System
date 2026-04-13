@@ -1,17 +1,17 @@
 <template>
-  <VModal v-model="modelValue" :title="title" size="sm" @update:model-value="$emit('update:modelValue', $event)">
+  <LazyVModal v-model="modelValue" :title="title" size="sm" @update:model-value="$emit('update:modelValue', $event)">
     <p class="v-confirm-message">{{ message }}</p>
     <template #footer>
       <div class="v-confirm-actions">
-        <VButton variant="ghost" @click="$emit('update:modelValue', false)">
+        <LazyVButton variant="ghost" @click="$emit('update:modelValue', false)">
           {{ cancelLabel }}
-        </VButton>
-        <VButton :variant="dangerous ? 'danger' : 'primary'" :loading="loading" @click="$emit('confirm')">
+        </LazyVButton>
+        <LazyVButton :variant="dangerous ? 'danger' : 'primary'" :loading="loading" @click="$emit('confirm')">
           {{ confirmLabel }}
-        </VButton>
+        </LazyVButton>
       </div>
     </template>
-  </VModal>
+  </LazyVModal>
 </template>
 
 <script lang="ts" setup>

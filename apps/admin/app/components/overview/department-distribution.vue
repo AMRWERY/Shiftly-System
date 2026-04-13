@@ -24,7 +24,7 @@
                 <!-- Center Text -->
                 <div class="absolute inset-0 flex flex-col items-center justify-center">
                     <span class="text-3xl font-bold text-white leading-none">1,248</span>
-                    <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase mt-1">Employees</span>
+                    <span class="text-[10px] text-gray-500 font-bold tracking-widest mt-1">Employees</span>
                 </div>
             </div>
 

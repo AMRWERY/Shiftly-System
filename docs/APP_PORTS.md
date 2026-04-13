@@ -1,6 +1,6 @@
 # App Port Assignments
 
-This document outlines the port assignments for each role-specific application in the Shiftly ERP system.
+This document outlines the port assignments for each role-specific application in the Nexux ERP system.
 
 ## Port Configuration
 
@@ -49,9 +49,9 @@ npm run dev:employee
 
 In production, each app should be deployed separately with its own domain or subdomain:
 
-- Admin: https://admin.shiftly.com
-- HR: https://hr.shiftly.com
-- Employee: https://employee.shiftly.com
+- Admin: https://admin.nexux.com
+- HR: https://hr.nexux.com
+- Employee: https://employee.nexux.com
 - etc.
 
 Update the environment variables accordingly for production deployments.

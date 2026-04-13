@@ -1,11 +1,11 @@
 <template>
   <div>
-    <VDialog :model-value="isOpen" :title="dialogTitle" :show-default-footer="false"
+    <LazyVDialog :model-value="isOpen" :title="dialogTitle" :show-default-footer="false"
       @update:model-value="handleClose" @close="handleClose">
       <!-- Loading State -->
       <template #body>
         <div v-if="loading" class="flex items-center justify-center p-12">
-          <icon name="svg-spinners:ring-resize" class="w-8 h-8 text-indigo-400" />
+          <Icon name="svg-spinners:ring-resize" class="w-8 h-8 text-indigo-400" />
         </div>
 
         <!-- Content -->
@@ -21,19 +21,20 @@
       <!-- Footer -->
       <template #footer>
         <div v-if="!loading" class="flex items-center justify-end gap-3">
-          <VButton type="button" variant="outline" :padding-x="'px-3'" :border-color="'border-gray-100'" :text-color="'text-gray-100'" :padding-y="'py-2'" @click="handleClose" :disabled="saving">
+          <LazyVButton type="button" variant="outline" :padding-x="'px-3'" :border-color="'border-gray-100'"
+            :text-color="'text-gray-100'" :padding-y="'py-2'" @click="handleClose" :disabled="saving">
             {{ t("btn.cancel") }}
-          </VButton>
-          <VButton type="button" :padding-x="'px-3'" :padding-y="'py-2'" @click="handleSubmit" :disabled="saving">
+          </LazyVButton>
+          <LazyVButton type="button" :padding-x="'px-3'" :padding-y="'py-2'" @click="handleSubmit" :disabled="saving">
             <span v-if="saving" class="flex items-center gap-2">
-              <icon name="svg-spinners:ring-resize" class="w-4 h-4" />
+              <Icon name="svg-spinners:ring-resize" class="w-4 h-4" />
               {{ savingText }}
             </span>
             <span v-else>{{ submitButtonText }}</span>
-          </VButton>
+          </LazyVButton>
         </div>
       </template>
-    </VDialog>
+    </LazyVDialog>
   </div>
 </template>
 

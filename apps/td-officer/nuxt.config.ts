@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: "%s - Shiftly T&D Officer",
+      titleTemplate: "%s - Nexux T&D Officer",
     },
   },
 });

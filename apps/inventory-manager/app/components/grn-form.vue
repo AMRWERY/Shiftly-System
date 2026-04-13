@@ -1,9 +1,9 @@
 <template>
-  <form class="grn-form" @submit.prevent="$emit('submit', formData)">
+  <LazyVFormWrapper class="grn-form" @submit="$emit('submit', formData)">
     <!-- Goods Receipt Note form -->
     <slot :form-data="formData" />
-    <VButton type="submit" variant="primary" :loading="loading">Confirm Receipt</VButton>
-  </form>
+    <LazyVButton type="submit" variant="primary" :loading="loading">Confirm Receipt</LazyVButton>
+  </LazyVFormWrapper>
 </template>
 
 <script lang="ts" setup>

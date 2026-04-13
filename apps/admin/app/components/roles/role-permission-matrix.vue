@@ -44,7 +44,7 @@
               class="border-b border-gray-700 hover:bg-brand-systemBg/30 transition-colors">
               <td class="py-3 px-4 font-medium text-gray-300">
                 <div class="flex items-center gap-2">
-                  <icon :name="getModuleIcon(module)" class="w-5 h-5 text-indigo-500" />
+                  <Icon :name="getModuleIcon(module)" class="w-5 h-5 text-indigo-500" />
                   <span>{{ t(`permissions.modules.${module}`) }}</span>
                 </div>
               </td>

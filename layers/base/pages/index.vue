@@ -5,13 +5,13 @@
             {{ formattedUserRole }}</p>
 
         <div class="p-6 mt-16">
-            <VButton :type="'button'" :no-border="true" :block="false" :padding-x="'px-4'" :padding-y="'py-2.5'"
+            <LazyVButton :type="'button'" :no-border="true" :block="false" :padding-x="'px-4'" :padding-y="'py-2.5'"
                 class="flex items-center justify-center rounded-lg transition-colors group" @click="showDialog = true">
                 <span>{{ t('btn.open_dialog') }}</span>
-            </VButton>
+            </LazyVButton>
 
             <!-- Reusable Dialog -->
-            <VDialog v-model="showDialog" :title="t('dialog.reset_password_title')"
+            <LazyVDialog v-model="showDialog" :title="t('dialog.reset_password_title')"
                 :message="t('dialog.reset_password_message')" :confirm-text="t('btn.confirm')">
                 <template #body>
                     <!-- dialog body will be here -->
@@ -24,13 +24,13 @@
                 </template>
 
                 <template #footer>
-                    <VButton :type="'button'" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
+                    <LazyVButton :type="'button'" :hover-color="'hover:bg-gray-800'" :text-color="'text-white'"
                         :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
                         class="rounded-lg border-2 transition-colors group" @click="handleConfirm">
                         {{ t('btn.verify_otp') }}
-                    </VButton>
+                    </LazyVButton>
                 </template>
-            </VDialog>
+            </LazyVDialog>
         </div>
     </div>
 </template>

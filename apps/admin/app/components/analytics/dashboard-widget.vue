@@ -1,7 +1,7 @@
 <template>
-  <VCard class="dashboard-widget" :title="title">
+  <LazyVCard class="dashboard-widget" :title="title">
     <slot />
-  </VCard>
+  </LazyVCard>
 </template>
 
 <script lang="ts" setup>

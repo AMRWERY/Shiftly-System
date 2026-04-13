@@ -1,12 +1,12 @@
 <template>
   <div>
-    <VDialog :model-value="show" :title="dialogTitle" :show-default-footer="false"
-      @update:model-value="closeDialog" @close="closeDialog">
+    <LazyVDialog :model-value="show" :title="dialogTitle" :show-default-footer="false" @update:model-value="closeDialog"
+      @close="closeDialog">
       <template #body>
         <div class="text-center">
-          <icon :name="isBlocked
-              ? 'mdi:account-check-outline'
-              : 'mdi:account-cancel-outline'
+          <Icon :name="isBlocked
+            ? 'mdi:account-check-outline'
+            : 'mdi:account-cancel-outline'
             " :class="[
               'w-20 h-20 mx-auto',
               isBlocked ? 'text-green-500' : 'text-orange-500',
@@ -15,33 +15,19 @@
         </div>
       </template>
       <template #footer>
-        <VButton
-          type="button"
-          variant="outline"
-          border-color="border-gray-600"
-          text-color="text-white"
-          hover-color="hover:bg-gray-700"
-          padding-x="px-5"
-          padding-y="py-2.5"
-          @click="closeDialog"
-        >
+        <LazyVButton type="button" variant="outline" border-color="border-gray-600" text-color="text-white"
+          hover-color="hover:bg-gray-700" padding-x="px-5" padding-y="py-2.5" @click="closeDialog">
           {{ cancelText }}
-        </VButton>
-        <VButton
-          type="button"
-          :disabled="loading"
+        </LazyVButton>
+        <LazyVButton type="button" :disabled="loading"
           :hover-color="isBlocked ? 'hover:bg-green-700' : 'hover:bg-orange-700'"
-          :bg-color="isBlocked ? 'bg-green-600' : 'bg-orange-600'"
-          padding-x="px-5"
-          padding-y="py-2.5"
-          class="ms-4"
-          @click="confirmAction"
-        >
-          <icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
+          :bg-color="isBlocked ? 'bg-green-600' : 'bg-orange-600'" padding-x="px-5" padding-y="py-2.5" class="ms-4"
+          @click="confirmAction">
+          <Icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
           <span v-else>{{ confirmText }}</span>
-        </VButton>
+        </LazyVButton>
       </template>
-    </VDialog>
+    </LazyVDialog>
   </div>
 </template>
 

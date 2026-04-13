@@ -3,16 +3,16 @@
     <ul class="space-y-3">
       <!-- User & Roles Management: show when manager has users/roles permission (e.g. from admin dashboard) -->
       <li v-if="hasPermission('users', 'view') || hasPermission('roles', 'view')">
-        <VButton @click="toggleDropdown('user_roles_mgt')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('user_roles_mgt')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.user_roles_mgt")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.user_roles_mgt }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.user_roles_mgt" class="py-2 space-y-2">
           <li v-if="hasPermission('users', 'view')">
             <nuxt-link-locale to="/users" class="flex items-center p-2 rounded-lg group ps-7"
@@ -36,16 +36,16 @@
       </li>
 
       <li v-if="hasPermission('employees', 'view')">
-        <VButton @click="toggleDropdown('my_team_dashboard')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('my_team_dashboard')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.my_team_dashboard")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.my_team_dashboard }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.my_team_dashboard" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/team-overview" class="flex items-center p-2 rounded-lg group ps-7"
@@ -67,16 +67,16 @@
       </li>
 
       <li v-if="hasPermission('leave', 'approve') || hasPermission('payroll', 'approve')">
-        <VButton @click="toggleDropdown('approvals_center')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('approvals_center')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.approvals_center")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.approvals_center }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.approvals_center" class="py-2 space-y-2">
           <li v-if="hasPermission('leave', 'approve')">
             <nuxt-link-locale to="/pending-leave" class="flex items-center p-2 rounded-lg group ps-7"
@@ -106,16 +106,16 @@
       </li>
 
       <li v-if="hasPermission('reports', 'view')">
-        <VButton @click="toggleDropdown('team_reports')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('team_reports')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.team_reports")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.team_reports }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.team_reports" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/t-a-logs" class="flex items-center p-2 rounded-lg group ps-7"
@@ -145,16 +145,16 @@
       </li>
 
       <li v-if="hasPermission('performance', 'view')">
-        <VButton @click="toggleDropdown('team_goals')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('team_goals')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.team_goals")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.team_goals }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.team_goals" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/goal-setting" class="flex items-center p-2 rounded-lg group ps-7"

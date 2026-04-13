@@ -1,42 +1,45 @@
 <template>
-  <div>
-    <div class="p-6">
+  <div class="flex min-h-0 flex-1 flex-col">
+    <div class="flex min-h-0 flex-1 flex-col p-6">
       <!-- Loading State -->
-      <VTableSkeletonLoader v-if="pending" :headers="columns" />
+      <LazyVTableSkeletonLoader v-if="pending" :headers="columns" />
 
       <template v-else>
-        <!-- Header + Controls Row -->
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
-          <h1 class="text-2xl font-semibold text-gray-400">
-            {{ t("layouts.roles") }}
-          </h1>
+        <div class="flex flex-1 min-h-0 flex-col">
+          <!-- Header + Controls Row -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6 shrink-0">
+            <h1 class="text-2xl font-semibold text-gray-400">
+              {{ t("layouts.roles") }}
+            </h1>
 
-          <!-- Controls: Search + Refresh + Add Button -->
-          <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-            <!-- VSearchInput component -->
-            <VSearchInput v-model="localSearchTerm" @search="handleSearch" :placeholder="t('form.search_roles')"
-              class="w-full sm:w-[300px]" :debounce="300" />
+            <!-- Controls: Search + Refresh + Add Button -->
+            <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+              <!-- LazyVSearchInput component -->
+              <LazyVSearchInput v-model="localSearchTerm" @search="handleSearch" :placeholder="t('form.search_roles')"
+                class="w-full sm:w-[300px]" :debounce="300" />
 
-            <!-- VRefreshButton component -->
-            <VRefreshButton @refresh="refreshRoles" :is-loading="pending" />
+              <!-- LazyVRefreshButton component -->
+              <LazyVRefreshButton @refresh="refreshRoles" :is-loading="pending" />
 
-            <!-- Add New Role Button -->
-            <VButton type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
-              @click="openCreateDialog">
-              {{ t("btn.add_new_role") }}
-            </VButton>
+              <!-- Add New Role Button -->
+              <LazyVButton type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
+                @click="openCreateDialog">
+                {{ t("btn.add_new_role") }}
+              </LazyVButton>
+            </div>
           </div>
+
+          <LazyVErrorMessage v-if="error" :error-message="t('toast.failed_to_load_roles')" />
+
+          <!-- Roles Table -->
+          <LazyVTable v-else :columns="columns" :items="paginatedRoles" :current-page="currentPage"
+            :total-pages="totalPages" :total-items="rolesStore.filteredRoles.length"
+            :page-size="rolesStore.itemsPerPage" show-download-menu
+            :download-items="rolesStore.filteredRoles" export-file-name="roles"
+            :has-view="true" :has-edit="false" :has-delete="false"
+            :action-conditions="actionConditions" class="min-h-0 flex-1" @view="handleViewRole"
+            @page-change="handlePageChange" />
         </div>
-
-        <VErrorMessage v-if="error" :error-message="t('toast.failed_to_load_roles')" />
-
-        <!-- Roles Table -->
-        <VTable v-else :columns="columns" :items="paginatedRoles" :has-view="true" :has-edit="false"
-          :has-delete="false" :action-conditions="actionConditions" @view="handleViewRole" />
-
-        <!-- VPagination -->
-        <VPagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages"
-          @page-change="handlePageChange" class="my-9 ms-auto" />
       </template>
 
       <!-- Create Role Dialog -->

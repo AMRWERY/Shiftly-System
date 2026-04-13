@@ -14,7 +14,7 @@
                         <div class="w-8 h-8 rounded-full flex items-center justify-center ring-2 ring-offset-2 ring-offset-brand-layoutBg transition-all"
                             :class="circleClasses(i)">
                             <span v-if="currentStep > i">
-                                <icon name="material-symbols:check-rounded"
+                                <Icon name="material-symbols:check-rounded"
                                     class="w-4 h-4 text-white flex items-center justify-center" />
                             </span>
                             <span v-else class="text-sm font-medium">

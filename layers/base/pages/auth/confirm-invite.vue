@@ -1,27 +1,23 @@
 <template>
   <div class="min-h-screen flex items-center justify-center relative p-4 lg:p-8">
+    <div class="absolute top-4 start-4 lg:top-8 lg:start-8 z-50">
+      <LazyVBackButton to="/auth" label-key="form.back_to_login" />
+    </div>
     <!-- RTL Toggle positioned absolutely -->
     <div class="absolute top-4 end-4 lg:top-8 lg:end-8 z-50">
-      <VButton
-        type="button"
-        variant="outline"
-        border-color="border-gray-200/20"
-        text-color="text-gray-100"
-        hover-color="hover:bg-white/10"
-        padding-x="px-3"
-        padding-y="py-1.5"
+      <LazyVButton type="button" variant="outline" border-color="border-gray-200/20" text-color="text-gray-100"
+        hover-color="hover:bg-white/10" padding-x="px-3" padding-y="py-1.5"
         class="me-1 rounded-lg hover:border-gray-300/40 bg-white/5 backdrop-blur-sm hover:text-white"
-        @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')"
-      >
+        @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
         <span v-if="localeStore.isRTL" class="flex items-center">
-          <icon name="heroicons:language" class="w-4 h-4 me-2" />
+          <Icon name="heroicons:language" class="w-4 h-4 me-2" />
           En
         </span>
         <span v-else class="flex items-center">
-          <icon name="heroicons:language" class="w-4 h-4 me-2" />
+          <Icon name="heroicons:language" class="w-4 h-4 me-2" />
           العربية
         </span>
-      </VButton>
+      </LazyVButton>
     </div>
 
     <!-- Main Card Container -->
@@ -42,22 +38,22 @@
       <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-brand-systemBg">
         <div class="w-full max-w-lg text-center">
           <div v-if="loading" class="space-y-4">
-            <icon name="svg-spinners:180-ring-with-bg" class="w-12 h-12 mx-auto text-indigo-500" />
+            <Icon name="svg-spinners:180-ring-with-bg" class="w-12 h-12 mx-auto text-indigo-500" />
             <p class="text-gray-300">{{ t('form.setting_up_account') }}</p>
           </div>
 
           <div v-else-if="error" class="space-y-4">
-            <icon name="material-symbols:error-outline-rounded" class="w-12 h-12 mx-auto text-red-300" />
+            <Icon name="material-symbols:error-outline-rounded" class="w-12 h-12 mx-auto text-red-300" />
             <h2 class="text-xl font-semibold text-white">{{ t('form.activation_failed') }}</h2>
             <p class="text-gray-300">{{ errorMessage }}</p>
-            <VButton @click="retry" variant="outline" class="mt-4 flex items-center justify-center"
+            <LazyVButton @click="retry" variant="outline" class="mt-4 flex items-center justify-center"
               :padding-x="'px-3'" :padding-y="'py-2'">
               {{ t('btn.retry') }}
-            </VButton>
+            </LazyVButton>
           </div>
 
           <div v-else-if="success" class="space-y-4">
-            <icon name="mdi-check-circle" class="w-12 h-12 mx-auto text-emerald-500" />
+            <Icon name="mdi-check-circle" class="w-12 h-12 mx-auto text-emerald-500" />
             <h2 class="text-xl font-semibold text-white">{{ t('form.account_activated') }}</h2>
             <p class="text-gray-300">{{ t('form.default_password_set') }}</p>
             <div class="bg-indigo-900/30 border border-indigo-500/30 rounded-lg p-4 mt-4">
@@ -66,10 +62,10 @@
               </p>
               <p class="text-xs text-indigo-400 mt-2">{{ t('form.change_password_later') }}</p>
             </div>
-            <VButton @click="goToLogin" class="mt-4 flex items-center justify-center" :padding-x="'px-3'"
+            <LazyVButton @click="goToLogin" class="mt-4 flex items-center justify-center" :padding-x="'px-3'"
               :padding-y="'py-2'">
               {{ t('btn.go_to_login') }}
-            </VButton>
+            </LazyVButton>
           </div>
         </div>
       </div>

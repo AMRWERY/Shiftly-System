@@ -13,6 +13,9 @@
     "welcome_message": "انضم إلينا اليوم وابدأ في إدارة نوباتك بكفاءة.",
     "simple_secure": "بسيط وآمن",
     "security_message": "بياناتك محمية بإجراءات أمان متوافقة مع معايير الصناعة.",
+    "no_account": "ليس لديك حساب؟",
+    "already_have_account": "لديك حساب بالفعل؟",
+    "send_reset_link": "إرسال رابط إعادة التعيين",
     "forgot_your_password": "هل نسيت كلمة المرور؟",
     "forgot_your_password_title": "إعادة تعيين كلمة المرور",
     "forgot_your_password_desc": "أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.",
@@ -37,8 +40,19 @@
     "search_by_email_or_name": "ابحث باستخدام البريد الإلكتروني أو الاسم",
     "search_roles": "ابحث باسم الدور"
   },
+  "pagination": {
+    "showing": "عرض",
+    "entries": "سجلات",
+    "range": "عرض {start} – {end} من {total} سجلات"
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "sample_title": "مرشحون!",
+    "sample_body": "تقدم عمرو محمد لمنصب القبطان."
+  },
   "btn": {
     "log_in": "تسجيل الدخول",
+    "sign_up": "إنشاء حساب",
     "create_account_button": "إنشاء الحساب",
     "logout": "تسجيل الخروج",
     "verify_account": "التحقق من الحساب",
@@ -46,6 +60,7 @@
     "reset_password": "إعادة تعيين كلمة المرور",
     "add_new_user": "إضافة مستخدم جديد",
     "invite_user": "دعوة مستخدم",
+    "close": "إغلاق",
     "cancel": "إلغاء",
     "confirm": "تأكيد",
     "verify_otp": "التحقق من الرمز",
@@ -121,6 +136,8 @@
     "users": "الموظففين",
     "dashboard": "لوحة التحكم",
     "auth": "التسجيل",
+    "login": "تسجيل الدخول",
+    "sign_up": "إنشاء حساب",
     "reset_password": "إعادة تعيين كلمة المرور",
     "my_profile": "ملفي الشخصي",
     "confirm_invite": "تأكيد الدعوة",

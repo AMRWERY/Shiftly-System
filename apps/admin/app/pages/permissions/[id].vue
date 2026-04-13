@@ -1,20 +1,20 @@
 <template>
     <div>
         <div class="p-6">
-            <VBackButton />
+            <LazyVBackButton />
 
             <!-- Loading State -->
             <div v-if="loading && !user" class="flex justify-center items-center h-[60vh]">
-                <VLoadingSpinner />
+                <LazyVLoadingSpinner />
             </div>
 
             <!-- Error State -->
             <div v-else-if="error && !user" class="flex flex-col justify-center items-center h-[60vh] animate-fade-in">
                 <div class="text-center p-8 bg-white max-w-md rounded-2xl shadow-xl border border-gray-100">
-                    <VErrorMessage :error-message="error" />
-                    <VButton @click="loadUserData" class="mt-4">
+                    <LazyVErrorMessage :error-message="error" />
+                    <LazyVButton @click="loadUserData" class="mt-4">
                         {{ t('btn.retry') }}
-                    </VButton>
+                    </LazyVButton>
                 </div>
             </div>
 
@@ -57,15 +57,15 @@
 
                     <!-- Loading Permissions -->
                     <div v-if="permissionsStore.loading" class="flex justify-center py-12">
-                        <VLoadingSpinner />
+                        <LazyVLoadingSpinner />
                     </div>
 
                     <!-- Permissions Error -->
                     <div v-else-if="permissionsStore.error" class="py-8 text-center">
-                        <VErrorMessage :error-message="permissionsStore.error" />
-                        <VButton @click="permissionsStore.fetchUserPermissions(userId)" class="mt-4">
+                        <LazyVErrorMessage :error-message="permissionsStore.error" />
+                        <LazyVButton @click="permissionsStore.fetchUserPermissions(userId)" class="mt-4">
                             {{ t('btn.retry') }}
-                        </VButton>
+                        </LazyVButton>
                     </div>
 
                     <!-- Permissions Grid -->
@@ -74,21 +74,15 @@
                             class="border border-gray-200 rounded-lg p-5 hover:border-blue-300 transition-all duration-200 hover:shadow-md">
                             <div class="flex items-center justify-between mb-4">
                                 <label class="text-base font-semibold text-gray-400 flex items-center gap-2">
-                                    <icon :name="getModuleIcon(module)" class="w-5 h-5 text-blue-400" />
+                                    <Icon :name="getModuleIcon(module)" class="w-5 h-5 text-blue-400" />
                                     {{ t(`permissions.modules.${module}`) }}
                                 </label>
-                                <VButton
-                                    type="button"
-                                    variant="ghost"
-                                    text-color="text-blue-400"
-                                    hover-color="hover:bg-blue-50/10"
-                                    padding-x="px-3"
-                                    padding-y="py-1.5"
-                                    class="rounded-md"
-                                    @click="permissionsStore.toggleAllModuleActions(module)"
-                                >
-                                    {{ permissionsStore.areAllActionsSelected(module) ? t('permissions.deselect_all') : t('permissions.select_all') }}
-                                </VButton>
+                                <LazyVButton type="button" variant="ghost" text-color="text-blue-400"
+                                    hover-color="hover:bg-blue-50/10" padding-x="px-3" padding-y="py-1.5"
+                                    class="rounded-md" @click="permissionsStore.toggleAllModuleActions(module)">
+                                    {{ permissionsStore.areAllActionsSelected(module) ? t('permissions.deselect_all') :
+                                        t('permissions.select_all') }}
+                                </LazyVButton>
                             </div>
 
                             <div class="flex flex-wrap gap-3">
@@ -108,23 +102,23 @@
 
                     <!-- Action Buttons -->
                     <div class="mt-8 flex justify-end gap-3 pt-6 border-t border-gray-200">
-                        <VButton type="button" variant="outline" bg-color="bg-gray-100"
+                        <LazyVButton type="button" variant="outline" bg-color="bg-gray-100"
                             hover-color="hover:bg-gray-200" text-color="text-gray-300" padding-x="px-6"
                             padding-y="py-2.5" @click="navigateBack" :disabled="permissionsStore.saving">
                             {{ t('btn.cancel') }}
-                        </VButton>
-                        <VButton type="button" :disabled="permissionsStore.saving || permissionsStore.loading"
+                        </LazyVButton>
+                        <LazyVButton type="button" :disabled="permissionsStore.saving || permissionsStore.loading"
                             hover-color="hover:bg-blue-700" padding-x="px-6" padding-y="py-2.5"
                             class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             @click="handleSave">
                             <span v-if="permissionsStore.saving" class="flex items-center gap-2">
-                                <icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
+                                <Icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
                                 {{ t('permissions.saving') }}
                             </span>
                             <span v-else class="flex items-center gap-2">
                                 {{ t('permissions.save_permissions') }}
                             </span>
-                        </VButton>
+                        </LazyVButton>
                     </div>
                 </div>
             </div>

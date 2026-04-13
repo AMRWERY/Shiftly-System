@@ -60,7 +60,7 @@ export const useLocaleStore = defineStore("locales", () => {
         () => {
           isOverlayVisible.value = false;
         },
-        500,
+        2000,
         { immediate: false },
       );
 

@@ -1,92 +1,109 @@
 <template>
-    <div>
-        <!-- Stepper -->
-        <VStepper :steps="steps" :currentStep="currentStep" @step-change="goToStep" class="mb-8" />
+    <div class="space-y-6">
 
-        <!-- Step 1 -->
-        <form v-if="currentStep === 0" @submit.prevent="nextStep" class="space-y-6">
+        <!-- Step 1: Email -->
+        <LazyVFormWrapper v-if="currentStep === 0" @submit="nextStep" class="space-y-6">
+            <!-- Icon + heading -->
             <div>
-                <VInput :label="t('form.email')" placeholder="test@example.com" type="email"
-                    :name="t('form.email')" :rules="'required|email'" :required="true" v-model="form.email" />
-            </div>
-            <div class="mt-7 sm:col-span-6 flex justify-end">
-                <VButton :type="'button'" :block="true" :hover-color="'hover:bg-gray-800'"
-                    :text-color="'text-white'" :variant="'solid'" :padding-x="'px-4'" :padding-y="'py-2.5'"
-                    class="flex items-center justify-center rounded-lg border-2 transition-colors group"
-                    @click="nextStep">{{ t('btn.next')
-                    }}</VButton>
-            </div>
-        </form>
-
-        <!-- Step 2 -->
-        <form v-else-if="currentStep === 1" @submit.prevent="handleSubmitOtp" class="space-y-6">
-            <div class="text-center mb-4">
-                <p class="text-sm text-gray-300 mb-2">{{ t('form.otp_instruction') }}</p>
-                <p class="text-xs text-gray-400">{{ t('form.check_email_for_code_or_link') }}</p>
+                <div
+                    class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-5">
+                    <Icon name="ph:envelope-simple" class="text-indigo-400 text-2xl" />
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-1">{{ t('form.forgot_your_password_title') }}</h2>
+                <p class="text-slate-500 text-sm">{{ t('form.forgot_your_password_desc') }}</p>
             </div>
 
-            <div class="flex flex-col space-y-16">
-                <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
-                    <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
-                        class="w-16 h-16 text-lg text-center bg-brand-systemBg border border-gray-700 outline-none rounded-xl focus:bg-white/5 focus:ring-2 ring-indigo-500 text-white"
-                        @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
+            <!-- Email field -->
+            <div>
+                <label class="block mb-1.5 text-[10px] font-bold tracking-widest text-slate-500">
+                    {{ t('form.email') }}
+                </label>
+                <div class="relative">
+                    <input v-model="form.email" type="email" :name="t('form.email')"
+                        placeholder="operator@nexus-erp.com"
+                        class="w-full bg-[#13192a] border border-white/5 rounded-lg py-3 pl-4 pr-11 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-sm placeholder:text-slate-600 text-white" />
+                    <div class="absolute inset-y-0 end-0 flex items-center pe-4 text-slate-500 pointer-events-none">
+                        <Icon name="ph:at" />
+                    </div>
                 </div>
             </div>
 
-            <div class="mt-7">
-                <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
-                    class="flex items-center justify-center rounded-lg border-2 transition-colors group"
-                    :disabled="loading" @click="handleSubmitOtp">
-                    <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
-                    <span v-else>{{ t('btn.verify_account') }}</span>
-                </VButton>
+            <!-- Submit -->
+            <button type="submit" :disabled="loading"
+                class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+                <Icon v-if="loading" name="svg-spinners:ring-resize" />
+                <template v-else>
+                    {{ t('form.send_reset_link') }}
+                    <Icon name="ph:arrow-right" class="opacity-80" />
+                </template>
+            </button>
+        </LazyVFormWrapper>
+
+        <!-- Step 2: OTP -->
+        <LazyVFormWrapper v-else-if="currentStep === 1" @submit="handleSubmitOtp" class="space-y-6">
+            <div>
+                <div
+                    class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-5">
+                    <Icon name="ph:device-mobile" class="text-indigo-400 text-2xl" />
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-1">{{ t('form.enter_otp') }}</h2>
+                <p class="text-slate-500 text-sm">{{ t('form.otp_instruction') }}</p>
             </div>
 
-            <div class="flex items-center justify-center text-sm text-gray-300">
-                <p>{{ t('form.didnt_recieve_code') }}
-                <VButton
-                    type="button"
-                    variant="ghost"
-                    :link="true"
-                    :disabled="resendCooldown > 0"
-                    padding-x="px-0"
-                    padding-y="py-0"
-                    class="inline-flex"
-                    @click="resendOtp"
-                >
+            <div class="flex items-center justify-center gap-3">
+                <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
+                    class="w-11 h-11 text-base text-center bg-[#13192a] border border-white/5 outline-none rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-white"
+                    @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
+            </div>
+
+            <button type="submit" :disabled="loading"
+                class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+                <Icon v-if="loading" name="svg-spinners:ring-resize" />
+                <template v-else>
+                    <Icon name="ph:check-circle" class="opacity-80" />
+                    {{ t('btn.verify_account') }}
+                </template>
+            </button>
+
+            <p class="text-center text-xs text-slate-500">
+                {{ t('form.didnt_recieve_code') }}
+                <button type="button" :disabled="resendCooldown > 0" @click="resendOtp"
+                    class="text-indigo-400 hover:text-indigo-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors font-medium">
                     {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
-                </VButton>
+                </button>
             </p>
+        </LazyVFormWrapper>
+
+        <!-- Step 3: New Password -->
+        <LazyVFormWrapper v-else-if="currentStep === 2" @submit="handleResetPassword" class="space-y-5">
+            <div>
+                <div
+                    class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-5">
+                    <Icon name="ph:lock-key" class="text-indigo-400 text-2xl" />
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-1">{{ t('btn.reset_password') }}</h2>
+                <p class="text-slate-500 text-sm">{{ t('form.forgot_your_password_desc') }}</p>
             </div>
 
-            <div class="flex items-center justify-center text-sm">
-                <nuxt-link-locale to="/auth" class="text-indigo-400 hover:text-indigo-300 hover:underline">{{
-                    t('form.back_to_login')
-                    }}</nuxt-link-locale>
-            </div>
-        </form>
+            <LazyVInput :label="t('form.password')" placeholder="••••••••" type="password"
+                :name="t('form.new_password')" :rules="'required|minLength:7'" :required="true"
+                v-model="form.newPassword" prefix-icon="ph:lock-simple"
+                label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
 
-        <!-- Step 3: Set New Password -->
-        <form v-else-if="currentStep === 2" @submit.prevent="handleResetPassword" class="space-y-6">
-            <div>
-                <VInput :label="t('form.password')" placeholder="••••••••" type="password"
-                    :name="t('form.new_password')" :rules="'required|minLength:7'" :required="true"
-                    v-model="form.newPassword" />
-            </div>
-            <div>
-                <VInput :label="t('form.confirm_password')" placeholder="••••••••" type="password"
-                    :name="t('form.confirm_password')" :rules="'required|confirmed:@new_password'" :required="true"
-                    v-model="form.confirmPassword" />
-            </div>
-            <div class="mt-7">
-                <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'" :padding-y="'py-2.5'"
-                    class="flex items-center justify-center rounded-lg border-2 transition-colors group"
-                    :disabled="loading">
-                    <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
-                    <span v-else>{{ t('btn.reset_password') }}</span>
-                </VButton>
-            </div>
-        </form>
+            <LazyVInput :label="t('form.confirm_password')" placeholder="••••••••" type="password"
+                :name="t('form.confirm_password')" :rules="'required|confirmed:@new_password'" :required="true"
+                v-model="form.confirmPassword" prefix-icon="ph:lock-simple"
+                label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+
+            <button type="submit" :disabled="loading"
+                class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+                <Icon v-if="loading" name="svg-spinners:ring-resize" />
+                <template v-else>
+                    <Icon name="ph:lock-key-open" class="opacity-80" />
+                    {{ t('btn.reset_password') }}
+                </template>
+            </button>
+        </LazyVFormWrapper>
     </div>
 </template>
 
@@ -121,9 +138,6 @@ const nextStep = async () => {
         return;
     }
     startLoading();
-    // Send OTP to email using Supabase passwordless authentication
-    // Note: This uses signInWithOtp which sends OTP if email template includes {{ .Token }}
-    // If email template doesn't include token, it will send a magic link instead
     const result = await authStore.sendPasswordResetOtp(form.value.email);
     if (result.success) {
         triggerToast({
@@ -142,10 +156,6 @@ const nextStep = async () => {
             icon: 'material-symbols:error-outline-rounded',
         });
     }
-}
-
-const goToStep = (index: number) => {
-    currentStep.value = index
 }
 
 const handleSubmitOtp = async () => {
@@ -264,5 +274,4 @@ const handleBackspace = (e: KeyboardEvent, index: number) => {
         nextTick(() => otpInputs.value[index - 1]?.focus());
     }
 };
-
 </script>

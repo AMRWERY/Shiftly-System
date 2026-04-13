@@ -1,35 +1,23 @@
 <template>
   <div>
-    <VDialog
-      :model-value="isOpen"
-      :title="t('permissions.edit_permissions')"
-      :show-default-footer="false"
-      @update:model-value="closeModal"
-      @close="closeModal"
-      max-width="max-w-4xl"
-    >
+    <LazyVDialog :model-value="isOpen" :title="t('permissions.edit_permissions')" :show-default-footer="false"
+      @update:model-value="closeModal" @close="closeModal" max-width="max-w-4xl">
       <template #body>
         <div class="mt-2">
           <!-- User Info -->
           <div class="mb-6 p-4 bg-gray-50 rounded-lg">
             <div class="flex items-center gap-4">
-              <img
-                :src="
-                  user?.avatarUrl ||
-                  user?.avatar_url ||
-                  '/img/dummy-profile-img.jpg'
-                "
-                :alt="user?.fullName"
-                class="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
-              />
+              <img :src="user?.avatarUrl ||
+                user?.avatar_url ||
+                '/img/dummy-profile-img.jpg'
+                " :alt="user?.fullName" class="w-16 h-16 rounded-full object-cover border-2 border-gray-200" />
               <div>
                 <h3 class="text-lg font-semibold text-gray-400">
                   {{ user?.fullName }}
                 </h3>
                 <p class="text-sm text-gray-300">{{ user?.email }}</p>
                 <span
-                  class="inline-block mt-1 px-2 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800"
-                >
+                  class="inline-block mt-1 px-2 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800">
                   {{ t(`roles.${user?.role}`) }}
                 </span>
               </div>
@@ -42,43 +30,25 @@
 
           <!-- Permissions Grid -->
           <div class="space-y-4 max-h-[450px] overflow-y-auto pe-2">
-            <div
-              v-for="module in permissionModules"
-              :key="module"
-              class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors"
-            >
+            <div v-for="module in permissionModules" :key="module"
+              class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
               <div class="flex items-center justify-between mb-3">
                 <label class="text-sm font-medium text-gray-400">
                   {{ t(`permissions.modules.${module}`) }}
                 </label>
-                <VButton
-                  type="button"
-                  variant="ghost"
-                  text-color="text-blue-400"
-                  hover-color="hover:text-blue-300"
-                  padding-x="px-2"
-                  padding-y="py-1"
-                  @click="toggleAllActions(module)"
-                >
+                <LazyVButton type="button" variant="ghost" text-color="text-blue-400" hover-color="hover:text-blue-300"
+                  padding-x="px-2" padding-y="py-1" @click="toggleAllActions(module)">
                   {{ areAllActionsSelected(module) ? "Deselect All" : "Select All" }}
-                </VButton>
+                </LazyVButton>
               </div>
 
               <div class="flex flex-wrap gap-2">
-                <label
-                  v-for="action in permissionActions"
-                  :key="action"
-                  class="inline-flex items-center cursor-pointer group"
-                >
-                  <input
-                    type="checkbox"
-                    :checked="hasPermission(module, action)"
+                <label v-for="action in permissionActions" :key="action"
+                  class="inline-flex items-center cursor-pointer group">
+                  <input type="checkbox" :checked="hasPermission(module, action)"
                     @change="togglePermission(module, action)"
-                    class="w-4 h-4 text-blue-400 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <span
-                    class="ms-2 text-sm text-gray-300 group-hover:text-gray-400"
-                  >
+                    class="w-4 h-4 text-blue-400 border-gray-300 rounded focus:ring-blue-500" />
+                  <span class="ms-2 text-sm text-gray-300 group-hover:text-gray-400">
                     {{ t(`permissions.actions.${action}`) }}
                   </span>
                 </label>
@@ -88,37 +58,24 @@
 
           <!-- Footer Buttons -->
           <div class="mt-6 flex justify-end gap-3 pt-4 border-t">
-            <VButton
-              type="button"
-              variant="outline"
-              bg-color="bg-gray-100"
-              hover-color="hover:bg-gray-200"
-              text-color="text-gray-300"
-              padding-x="px-4"
-              padding-y="py-2"
-              @click="closeModal"
-            >
+            <LazyVButton type="button" variant="outline" bg-color="bg-gray-100" hover-color="hover:bg-gray-200"
+              text-color="text-gray-300" padding-x="px-4" padding-y="py-2" @click="closeModal">
               {{ t("btn.cancel") }}
-            </VButton>
-            <VButton
-              type="button"
-              :disabled="loading"
-              hover-color="hover:bg-blue-700"
-              padding-x="px-4"
+            </LazyVButton>
+            <LazyVButton type="button" :disabled="loading" hover-color="hover:bg-blue-700" padding-x="px-4"
               padding-y="py-2"
               class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              @click="savePermissions"
-            >
+              @click="savePermissions">
               <span v-if="loading" class="flex items-center gap-2">
-                <icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
+                <Icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
                 Saving...
               </span>
               <span v-else>{{ t("permissions.save_permissions") }}</span>
-            </VButton>
+            </LazyVButton>
           </div>
         </div>
       </template>
-    </VDialog>
+    </LazyVDialog>
   </div>
 </template>
 

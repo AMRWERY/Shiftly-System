@@ -2,16 +2,16 @@
   <div>
     <ul class="space-y-3">
       <li v-if="hasPermission('tasks', 'view')">
-        <VButton @click="toggleDropdown('service_requests')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('service_requests')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.service_requests")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.service_requests }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.service_requests" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/pending-tasks" class="flex items-center p-2 rounded-lg group ps-7"
@@ -41,16 +41,16 @@
       </li>
 
       <li v-if="hasPermission('maintenance', 'view')">
-        <VButton @click="toggleDropdown('preventive_maint')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('preventive_maint')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.preventive_maint")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.preventive_maint }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.preventive_maint" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/scheduled-tasks" class="flex items-center p-2 rounded-lg group ps-7"
@@ -72,16 +72,16 @@
       </li>
 
       <li v-if="hasPermission('assets', 'view')">
-        <VButton @click="toggleDropdown('asset_maintenance_log')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('asset_maintenance_log')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.asset_maintenance_log")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.asset_maintenance_log }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.asset_maintenance_log" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/asset-list" class="flex items-center p-2 rounded-lg group ps-7"
@@ -111,16 +111,16 @@
       </li>
 
       <li v-if="hasPermission('stock', 'view')">
-        <VButton @click="toggleDropdown('spare_parts')" type="button"
-          variant="ghost" :block="true" text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <icon name="eos-icons:cluster-management"
+        <LazyVButton @click="toggleDropdown('spare_parts')" type="button" variant="ghost" :block="true"
+          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
+          <Icon name="eos-icons:cluster-management"
             class="w-5 h-5 transition duration-75 group-hover:text-white text-gray-400" aria-hidden="true" />
           <span v-if="!collapsed" class="flex-1 ms-3 text-start whitespace-nowrap">{{
             t("layouts.spare_parts")
           }}</span>
-          <icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
+          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="w-5 h-5"
             :class="{ 'rotate-180': dropdownStates.spare_parts }" aria-hidden="true" />
-        </VButton>
+        </LazyVButton>
         <ul v-if="!collapsed && dropdownStates.spare_parts" class="py-2 space-y-2">
           <li>
             <nuxt-link-locale to="/parts-usage" class="flex items-center p-2 rounded-lg group ps-7"

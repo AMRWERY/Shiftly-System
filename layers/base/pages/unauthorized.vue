@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div class="relative min-h-screen">
+        <div class="absolute top-4 start-4 lg:top-8 lg:start-8 z-50">
+            <LazyVBackButton to="/" label-key="btn.back" />
+        </div>
         <div class="justify-center">
             <div class="flex flex-col items-center justify-center mt-24">
                 <img src="/svg/error-403.svg" alt="unauthorized" class="emoji-403" />
@@ -15,10 +18,10 @@
                 </div>
 
                 <div class="mt-6">
-                    <VButton :type="'button'" :variant="'outline'" :inline="true" :route="true" to="/"
+                    <LazyVButton :type="'button'" :variant="'outline'" :inline="true" :route="true" to="/"
                         :padding-x="'px-4'" :padding-y="'py-2'">
                         {{ t('btn.go_back_home') }}
-                    </VButton>
+                    </LazyVButton>
                 </div>
             </div>
         </div>

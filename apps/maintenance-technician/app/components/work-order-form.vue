@@ -1,8 +1,8 @@
 <template>
-  <form class="work-order-form" @submit.prevent="$emit('submit', formData)">
+  <LazyVFormWrapper class="work-order-form" @submit="$emit('submit', formData)">
     <slot :form-data="formData" />
-    <VButton type="submit" variant="primary" :loading="loading">Save Work Order</VButton>
-  </form>
+    <LazyVButton type="submit" variant="primary" :loading="loading">Save Work Order</LazyVButton>
+  </LazyVFormWrapper>
 </template>
 
 <script lang="ts" setup>

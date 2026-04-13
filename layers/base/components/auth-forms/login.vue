@@ -1,106 +1,131 @@
 <template>
-    <div>
-        <Form @submit="handleLogin" v-slot="{ meta }">
-            <div class="grid col-span-1 sm:grid-cols-6 gap-x-6 gap-y-4">
-                <div class="col-span-full">
-                    <VInput :label="t('form.email')" placeholder="example@test.com" type="email" name="email"
-                        :rules="'required|email'" :required="true" v-model="email" />
-                </div>
+  <div>
+    <div class="w-full text-slate-200 space-y-6">
+      <!-- Header -->
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-white">Welcome back</h2>
+        <p class="text-slate-500 mt-1 text-sm">Sign in to your workspace</p>
+      </div>
 
-                <div class="col-span-full">
-                    <VInput :label="t('form.password')" placeholder="••••••••" type="password" name="password"
-                        :rules="'required'" :required="true" v-model="password" />
-                </div>
+      <!-- Error Alert -->
+      <Transition name="fade">
+        <div v-if="showError"
+          class="flex items-center gap-2 p-3 rounded-lg bg-[#2d161a] border border-red-500/30 text-red-400 text-xs">
+          <Icon name="ph:x-circle-fill" class="flex-shrink-0" />
+          <span>{{ loginError }}</span>
+        </div>
+      </Transition>
 
-                <div class="col-span-full flex flex-wrap items-center justify-between gap-4">
-                    <div class="text-sm ms-auto">
-                        <nuxt-link-locale to="/auth/reset-password"
-                            class="text-indigo-400 hover:text-indigo-300 font-medium">
-                            {{ t('form.forgot_your_password') }}
-                        </nuxt-link-locale>
-                    </div>
-                </div>
+      <!-- Form -->
+      <LazyVFormWrapper @submit="handleLogin" class="space-y-4">
+        <!-- Email -->
+        <LazyVInput type="email" name="email" v-model="email" label="Email Address"
+          label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" placeholder="name@company.com"
+          prefix-icon="ph:envelope-simple" :rules="'required|email'" />
 
-                <div class="col-span-full">
-                    <VButton :block="true" :type="'submit'" :no-border="true" :padding-x="'px-4'"
-                        :padding-y="'py-2.5'"
-                        class="flex items-center justify-center rounded-lg border-2 transition-colors group"
-                        :disabled="loading || !meta.valid">
-                        <icon name="svg-spinners:270-ring-with-bg" v-if="loading" />
-                        <span v-else>{{ t('btn.log_in') }}</span>
-                    </VButton>
-                </div>
-            </div>
-        </Form>
+        <!-- Password -->
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-[10px] font-bold tracking-widest text-slate-500">Password</span>
+            <nuxt-link-locale to="/auth/reset-password"
+              class="text-[10px] text-slate-500 hover:text-indigo-400 transition-colors">
+              Forgot password?
+            </nuxt-link-locale>
+          </div>
+          <LazyVInput type="password" name="password" v-model="password" label="" label-class="hidden"
+            prefix-icon="ph:lock-simple" :rules="'required'" />
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" :disabled="loading"
+          class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+          <Icon v-if="loading" name="svg-spinners:ring-resize" />
+          <template v-else>
+            <Icon name="ph:sign-in" class="opacity-80" />
+            <span>Sign In</span>
+          </template>
+        </button>
+      </LazyVFormWrapper>
+
+      <!-- Sign-up prompt -->
+      <p class="text-center text-[12px] text-slate-500">
+        {{ t('form.no_account') }}
+        <nuxt-link-locale to="/auth/sign-up"
+          class="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+          {{ t('btn.sign_up') }}
+        </nuxt-link-locale>
+      </p>
+
+      <!-- Footer -->
+      <div class="text-center space-y-3 pt-1">
+        <div class="flex items-center justify-center gap-1.5 text-[9px] text-slate-600 tracking-widest">
+          <Icon name="ph:shield-check-fill" />
+          <span>Protected by Supabase Auth</span>
+        </div>
+        <div class="flex justify-center gap-5 text-[11px] text-slate-500">
+          <nuxt-link-locale to="" class="hover:text-slate-300 transition-colors">Privacy Policy</nuxt-link-locale>
+          <nuxt-link-locale to="" class="hover:text-slate-300 transition-colors">Terms of Service</nuxt-link-locale>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
-<script lang="ts" setup>
-import { Form } from 'vee-validate'
-
+<script setup lang="ts">
 const { t } = useI18n()
-const authStore = useAuthStore();
-const { triggerToast } = useToast();
+const authStore = useAuthStore()
+const { triggerToast } = useToast()
 const { isLoading: loading, startLoading } = useLoading(3000)
 
 const email = ref('')
 const password = ref('')
+const showError = ref(false)
+const loginError = ref('')
 
 const handleLogin = async () => {
-    startLoading()
-    const result = await authStore.login({ email: email.value, password: password.value });
-    if (result.success) {
-        triggerToast({
-            message: t('toast.login_successful'),
-            type: 'success',
-            icon: 'mdi-check-circle',
-        });
-        // Get user role and redirect to appropriate app
-        const userRole = authStore.currentUserRole;
-        if (userRole) {
-            const { getAppUrlForRole } = await import('../../config/roleAppMapping');
-            const targetAppUrl = getAppUrlForRole(userRole as any);
-            const currentUrl = window.location.origin;
-            // If user is in the wrong app, redirect to their role-specific app
-            if (currentUrl !== targetAppUrl) {
-                const { start: startRedirectTimer } = useTimeoutFn(() => {
-                    window.location.href = targetAppUrl;
-                }, 2000, { immediate: false });
-                startRedirectTimer();
-            } else {
-                // User is already in the correct app, just navigate to home
-                const { start: startNavigateTimer } = useTimeoutFn(() => {
-                    navigateTo('/');
-                }, 2000, { immediate: false });
-                startNavigateTimer();
-            }
-        } else {
-            // Fallback to home if role is not found
-            const { start: startFallbackTimer } = useTimeoutFn(() => {
-                navigateTo('/');
-            }, 2000, { immediate: false });
-            startFallbackTimer();
-        }
+  showError.value = false
+  startLoading()
+  const result = await authStore.login({ email: email.value, password: password.value })
+  if (result.success) {
+    triggerToast({ message: t('toast.login_successful'), type: 'success', icon: 'mdi-check-circle' })
+    const userRole = authStore.currentUserRole
+    if (userRole) {
+      const { getAppUrlForRole } = await import('../../config/roleAppMapping')
+      const targetAppUrl = getAppUrlForRole(userRole as any)
+      if (window.location.origin !== targetAppUrl) {
+        useTimeoutFn(() => { window.location.href = targetAppUrl }, 2000, { immediate: false }).start()
+      } else {
+        useTimeoutFn(() => { navigateTo('/') }, 2000, { immediate: false }).start()
+      }
     } else {
-        // Stop loading on error to show toast properly
-        loading.value = false;
-        // Show specific error messages for different error types
-        let errorMessage = t('toast.failed_to_login');
-        if (result.error?.toLowerCase().includes('deactivated')) {
-            errorMessage = t('toast.account_deactivated') || 'Your account has been deactivated.';
-        } else if (result.error?.toLowerCase().includes('blocked')) {
-            errorMessage = t('toast.account_blocked') || 'Your account has been blocked.';
-        } else if (result.error?.toLowerCase().includes('invalid') ||
-            result.error?.toLowerCase().includes('credentials') ||
-            result.error?.toLowerCase().includes('password')) {
-            errorMessage = t('toast.invalid_credentials');
-        }
-        triggerToast({
-            message: errorMessage,
-            type: 'error',
-            icon: 'material-symbols:error-outline-rounded',
-            duration: 5000, // Show error toast for 5 seconds
-        });
+      useTimeoutFn(() => { navigateTo('/') }, 2000, { immediate: false }).start()
     }
+  } else {
+    loading.value = false
+    let msg = t('toast.failed_to_login')
+    const err = result.error?.toLowerCase() ?? ''
+    if (err.includes('deactivated')) {
+      msg = t('toast.account_deactivated') || 'Your account has been deactivated.'
+    } else if (err.includes('blocked')) {
+      msg = t('toast.account_blocked') || 'Your account has been blocked.'
+    } else if (err.includes('invalid') || err.includes('credentials') || err.includes('password')) {
+      msg = t('toast.invalid_credentials')
+    }
+    loginError.value = msg
+    showError.value = true
+  }
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+</style>

@@ -105,7 +105,10 @@ export default defineNuxtConfig({
     {
       path: join(currentDir, "components"),
     },
-    // Shared/reusable components — PascalCase with V prefix (e.g. VButton.vue)
+    {
+      path: join(currentDir, "components/skeleton-loaders"),
+    },
+    // Shared/reusable components — PascalCase with V prefix (e.g. LazyVButton.vue)
     {
       path: join(currentDir, "components/shared"),
     },
@@ -120,7 +123,7 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      title: "Shiftly",
+      title: "Nexux ERP",
       script: [{}],
       noscript: [],
       link: [{}],

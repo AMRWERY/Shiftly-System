@@ -13,6 +13,9 @@
     "welcome_message": "Join us today and start managing your shifts efficiently.",
     "simple_secure": "Simple & Secure",
     "security_message": "Your data is protected with industry-standard security measures.",
+    "no_account": "Don't have an account?",
+    "already_have_account": "Already have an account?",
+    "send_reset_link": "Send Reset Link",
     "forgot_your_password": "Forgot your password?",
     "forgot_your_password_title": "Reset Your Password",
     "forgot_your_password_desc": "Enter your email address and we'll send you a link to reset your password.",
@@ -37,8 +40,19 @@
     "search_by_email_or_name": "Search by email or name",
     "search_roles": "Search by role name"
   },
+  "pagination": {
+    "showing": "Showing",
+    "entries": "entries",
+    "range": "Showing {start} – {end} of {total} entries"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "sample_title": "Candidates!",
+    "sample_body": "Amr Mohamed applied for the captain position."
+  },
   "btn": {
     "log_in": "Log In",
+    "sign_up": "Sign up",
     "create_account_button": "Create Account",
     "logout": "Logout",
     "verify_account": "Verify Account",
@@ -46,6 +60,7 @@
     "reset_password": "Reset Password",
     "add_new_user": "Add New User",
     "invite_user": "Invite User",
+    "close": "Close",
     "cancel": "Cancel",
     "confirm": "Confirm",
     "verify_otp": "Verify OTP",
@@ -121,6 +136,8 @@
     "users": "Users",
     "dashboard": "Dashboard",
     "auth": "Authentication",
+    "login": "Sign In",
+    "sign_up": "Create Account",
     "reset_password": "Reset Password",
     "my_profile": "My Profile",
     "confirm_invite": "Confirm Invitation",

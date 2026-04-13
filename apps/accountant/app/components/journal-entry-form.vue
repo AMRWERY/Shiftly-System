@@ -1,8 +1,8 @@
 <template>
-  <form class="journal-entry-form" @submit.prevent="$emit('submit', formData)">
+  <LazyVFormWrapper class="journal-entry-form" @submit="$emit('submit', formData)">
     <slot :form-data="formData" />
-    <VButton type="submit" variant="primary" :loading="loading">Post Entry</VButton>
-  </form>
+    <LazyVButton type="submit" variant="primary" :loading="loading">Post Entry</LazyVButton>
+  </LazyVFormWrapper>
 </template>
 
 <script lang="ts" setup>

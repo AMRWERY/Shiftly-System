@@ -2,29 +2,22 @@
   <div>
     <ClientOnly>
       <NuxtLayout>
-        <!-- VProgressBar component -->
-        <VProgressBar />
+        <!-- LazyVProgressBar component -->
+        <LazyVProgressBar />
 
         <!-- overlay component -->
-        <overlay :visible="localeStore.isOverlayVisible" />
+        <LazyVOverlay :visible="localeStore.isOverlayVisible" />
 
         <NuxtPage />
       </NuxtLayout>
     </ClientOnly>
 
-    <!-- VToast component -->
+    <!-- LazyVToast component -->
     <teleport to="body">
-      <div
-        class="fixed z-[9999] pointer-events-none top-10 left-1/2 -translate-x-1/2 w-full max-w-md"
-      >
+      <div class="fixed z-[9999] pointer-events-none top-10 left-1/2 -translate-x-1/2 w-full max-w-md">
         <div class="pointer-events-auto flex justify-center">
-          <VToast
-            v-if="showToast"
-            :message="toastMessage"
-            :toastType="toastType"
-            :duration="toastDuration"
-            :toastIcon="toastIcon"
-          />
+          <LazyVToast v-if="showToast" :message="toastMessage" :toastType="toastType" :duration="toastDuration"
+            :toastIcon="toastIcon" />
         </div>
       </div>
     </teleport>

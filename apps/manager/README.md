@@ -1,6 +1,6 @@
 # Manager App
 
-Manager application for the Shiftly ERP system.
+Manager application for the Nexux ERP system.
 
 ## Features
 

@@ -5,10 +5,10 @@
         <h1 class="text-2xl font-bold tracking-tight text-white">
           {{ t("global_config.title") }}
         </h1>
-        <VButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
+        <LazyVButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
           class="rounded-lg transition-colors" @click="save" :disabled="loading">
           {{ t("global_config.save_settings") }}
-        </VButton>
+        </LazyVButton>
       </div>
 
       <!-- Alert Error -->
@@ -16,7 +16,7 @@
       <div v-if="error" class="rounded-lg bg-red-500/10 border border-red-500/30 p-4">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <icon name="material-symbols:error-outline-rounded" class="h-5 w-5 text-red-400" />
+            <Icon name="material-symbols:error-outline-rounded" class="h-5 w-5 text-red-400" />
           </div>
           <div class="ms-3">
             <h3 class="text-sm font-medium text-red-300">{{ error }}</h3>
@@ -128,10 +128,10 @@
           <h3 class="text-base font-medium leading-6 text-white">
             {{ t("global_config.additional_holidays") }}
           </h3>
-          <VButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
+          <LazyVButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" :no-border="true"
             class="rounded-lg transition-colors" @click="addHoliday">
             {{ t("global_config.add_holiday") }}
-          </VButton>
+          </LazyVButton>
         </div>
 
         <div v-if="form.customHolidays.length === 0" class="text-center py-6 text-gray-400 text-sm">
@@ -155,18 +155,10 @@
               <input type="date" v-model="holiday.date"
                 class="mt-1 block w-full rounded-md border border-gray-700 py-1.5 text-white bg-brand-systemBg shadow-sm placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
-            <VButton
-              type="button"
-              variant="ghost"
-              text-color="text-red-500"
-              hover-color="hover:bg-red-500/20"
-              padding-x="px-2"
-              padding-y="py-2"
-              class="rounded bg-red-500/10"
-              @click="removeHoliday(index)"
-            >
-              <icon name="material-symbols:delete-outline" class="w-5 h-5" />
-            </VButton>
+            <LazyVButton type="button" variant="ghost" text-color="text-red-500" hover-color="hover:bg-red-500/20"
+              padding-x="px-2" padding-y="py-2" class="rounded bg-red-500/10" @click="removeHoliday(index)">
+              <Icon name="material-symbols:delete-outline" class="w-5 h-5" />
+            </LazyVButton>
           </div>
         </div>
       </div>
@@ -185,15 +177,17 @@
         <div class="p-6">
           <div class="card-bg shadow-lg rounded-lg overflow-hidden">
             <div class="flex items-center justify-between px-6 py-4 bg-brand-systemBg text-white rounded-t-lg">
-              <VButton type="button" variant="ghost" padding-x="px-2" padding-y="py-2" hover-color="hover:bg-white/5" class="rounded-full" @click="prevMonth">
-                <icon name="material-symbols:chevron-left" class="w-6 h-6 rtl:rotate-180" />
-              </VButton>
+              <LazyVButton type="button" variant="ghost" padding-x="px-2" padding-y="py-2"
+                hover-color="hover:bg-white/5" class="rounded-full" @click="prevMonth">
+                <Icon name="material-symbols:chevron-left" class="w-6 h-6 rtl:rotate-180" />
+              </LazyVButton>
               <h2 class="text-xl font-semibold">
                 {{ monthName }} {{ currentYear }}
               </h2>
-              <VButton type="button" variant="ghost" padding-x="px-2" padding-y="py-2" hover-color="hover:bg-white/5" class="rounded-full" @click="nextMonth">
-                <icon name="material-symbols:chevron-right" class="w-6 h-6 rtl:rotate-180" />
-              </VButton>
+              <LazyVButton type="button" variant="ghost" padding-x="px-2" padding-y="py-2"
+                hover-color="hover:bg-white/5" class="rounded-full" @click="nextMonth">
+                <Icon name="material-symbols:chevron-right" class="w-6 h-6 rtl:rotate-180" />
+              </LazyVButton>
             </div>
 
             <div class="grid grid-cols-7 gap-px bg-gray-700">

@@ -1,9 +1,10 @@
 <template>
-  <VButton class="app-theme-toggle" type="button" variant="ghost" padding-x="px-2" padding-y="py-2" @click="toggleTheme">
+  <LazyVButton class="app-theme-toggle" type="button" variant="ghost" padding-x="px-2" padding-y="py-2"
+    @click="toggleTheme">
     <slot />
-  </VButton>
+  </LazyVButton>
 </template>
 
 <script lang="ts" setup>
-function toggleTheme() {}
+function toggleTheme() { }
 </script>

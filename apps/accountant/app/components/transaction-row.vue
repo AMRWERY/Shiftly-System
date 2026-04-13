@@ -6,7 +6,9 @@
     <td :class="transaction?.amount >= 0 ? 'text-green-600' : 'text-red-600'">
       {{ transaction?.amount }}
     </td>
-    <td><VStatusDot :status="transaction?.status" :label="transaction?.status" show-label /></td>
+    <td>
+      <LazyVStatusDot :status="transaction?.status" :label="transaction?.status" show-label />
+    </td>
     <slot />
   </tr>
 </template>

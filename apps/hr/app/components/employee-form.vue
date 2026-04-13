@@ -1,12 +1,12 @@
 <template>
-  <form class="employee-form" @submit.prevent="$emit('submit', formData)">
+  <LazyVFormWrapper class="employee-form" @submit="$emit('submit', formData)">
     <slot :form-data="formData" />
     <div class="employee-form-actions">
-      <VButton type="submit" variant="primary" :loading="loading">
+      <LazyVButton type="submit" variant="primary" :loading="loading">
         {{ submitLabel }}
-      </VButton>
+      </LazyVButton>
     </div>
-  </form>
+  </LazyVFormWrapper>
 </template>
 
 <script lang="ts" setup>

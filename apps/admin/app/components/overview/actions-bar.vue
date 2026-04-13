@@ -15,10 +15,10 @@
                     </div>
                 </div>
             </div>
-            <VButton :variant="'ghost'" :text-color="'text-brand-primary'" :type="'button'"
+            <LazyVButton :variant="'ghost'" :text-color="'text-brand-primary'" :type="'button'"
                 class="text-xs hover:underline decoration-brand-primary/30 underline-offset-4">
                 View All Action Items
-            </VButton>
+            </LazyVButton>
         </div>
     </div>
 </template>

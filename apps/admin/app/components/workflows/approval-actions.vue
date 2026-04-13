@@ -1,7 +1,7 @@
 <template>
   <div class="approval-actions">
-    <VButton variant="primary" :loading="loading" @click="$emit('approve')">Approve</VButton>
-    <VButton variant="danger" :loading="loading" @click="$emit('reject')">Reject</VButton>
+    <LazyVButton variant="primary" :loading="loading" @click="$emit('approve')">Approve</LazyVButton>
+    <LazyVButton variant="danger" :loading="loading" @click="$emit('reject')">Reject</LazyVButton>
     <slot />
   </div>
 </template>

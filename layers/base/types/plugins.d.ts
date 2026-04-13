@@ -1,25 +1,21 @@
-import type * as XLSX from 'xlsx'
-
-interface Html2PdfInstance {
-  from: (element: HTMLElement) => Html2PdfInstance
-  set: (options: any) => Html2PdfInstance
-  save: () => Promise<void>
-  output: (type: string) => any
-  then: (callback: (pdf: any) => void) => Html2PdfInstance
-}
+import type * as XLSX from 'xlsx';
+import type jsPDF from 'jspdf';
+import type autoTable from 'jspdf-autotable';
 
 declare module '#app' {
   interface NuxtApp {
-    $xlsx: typeof XLSX
-    $html2pdf: () => Html2PdfInstance
+    $xlsx: typeof XLSX;
+    $jsPDF: typeof jsPDF;
+    $jsPdfAutoTable: typeof autoTable;
   }
 }
 
 declare module 'vue' {
   interface ComponentCustomProperties {
-    $xlsx: typeof XLSX
-    $html2pdf: () => Html2PdfInstance
+    $xlsx: typeof XLSX;
+    $jsPDF: typeof jsPDF;
+    $jsPdfAutoTable: typeof autoTable;
   }
 }
 
-export {}
+export {};

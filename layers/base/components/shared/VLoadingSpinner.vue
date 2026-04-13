@@ -1,7 +1,7 @@
 <template>
   <div>
     <div role="status" class="flex justify-center items-center">
-      <icon name="svg-spinners:270-ring-with-bg" :class="[sizeClass, color]" />
+      <Icon name="svg-spinners:270-ring-with-bg" :class="[sizeClass, color]" />
       <span class="sr-only">Loading...</span>
     </div>
   </div>

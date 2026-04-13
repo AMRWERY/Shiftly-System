@@ -1,14 +1,14 @@
 <template>
-  <VCard class="work-order-card">
+  <LazyVCard class="work-order-card">
     <div class="work-order-card-header">
       <span class="work-order-card-id">#{{ workOrder?.id }}</span>
-      <VStatusDot :status="statusMap[workOrder?.status ?? 'pending']" :label="workOrder?.status" show-label />
+      <LazyVStatusDot :status="statusMap[workOrder?.status ?? 'pending']" :label="workOrder?.status" show-label />
     </div>
     <p class="work-order-card-title">{{ workOrder?.title }}</p>
     <p class="work-order-card-asset">{{ workOrder?.assetName }}</p>
     <p class="work-order-card-date">Due: {{ workOrder?.dueDate }}</p>
     <slot />
-  </VCard>
+  </LazyVCard>
 </template>
 
 <script lang="ts" setup>

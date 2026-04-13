@@ -1,8 +1,8 @@
 <template>
-  <form class="purchase-order-form" @submit.prevent="$emit('submit', formData)">
+  <LazyVFormWrapper class="purchase-order-form" @submit="$emit('submit', formData)">
     <slot :form-data="formData" />
-    <VButton type="submit" variant="primary" :loading="loading">Save PO</VButton>
-  </form>
+    <LazyVButton type="submit" variant="primary" :loading="loading">Save PO</LazyVButton>
+  </LazyVFormWrapper>
 </template>
 
 <script lang="ts" setup>

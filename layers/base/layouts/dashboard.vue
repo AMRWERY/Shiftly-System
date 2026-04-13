@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen w-full bg-brand-systemBg relative">
+    <div class="min-h-screen w-full bg-brand-layoutBg relative">
         <!-- Content layer -->
         <div class="relative">
             <main-layout>
