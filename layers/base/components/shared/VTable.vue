@@ -490,33 +490,4 @@ const handleScroll = (_event: Event) => { };
   scroll-behavior: smooth;
 }
 
-/* Floating toolbar transition */
-.toolbar-slide-enter-active,
-.toolbar-slide-leave-active {
-  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.toolbar-slide-enter-from,
-.toolbar-slide-leave-to {
-  opacity: 0;
-  transform: translateX(-50%) translateY(14px) scale(0.97);
-}
-
-.toolbar-slide-enter-to,
-.toolbar-slide-leave-from {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1);
-}
-
-/* Dropdown animation */
-.dropdown-enter-active,
-.dropdown-leave-active {
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-.dropdown-enter-from,
-.dropdown-leave-to {
-  opacity: 0;
-  transform: scale(0.95) translateY(-6px);
-}
 </style>

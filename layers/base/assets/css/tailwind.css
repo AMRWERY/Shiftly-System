@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer utilities {
+  body {
+    @apply bg-brand-systemBg text-darkText-primary antialiased;
+  }
+
   .layout-bg {
     @apply bg-brand-layoutBg;
   }
@@ -38,7 +42,7 @@
 
   /* Sidebar link hover state */
   .sidebar-link-hover {
-    @apply hover:bg-white hover:bg-opacity-5;
+    @apply hover:bg-white/5;
   }
 
   /* Card/Dialog background - Glassmorphism */
@@ -48,5 +52,126 @@
 
   .glow-blue {
     @apply shadow-[0_0_20px_rgba(59,130,246,0.3)];
+  }
+
+  /* ─── Auth Form Utilities ─────────────────────────────── */
+
+  /* Primary auth submit/CTA button */
+  .auth-btn-primary {
+    @apply w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed
+           text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20
+           transition-all flex items-center justify-center gap-2 active:scale-[0.98];
+  }
+
+  /* Auth form field micro-label */
+  .auth-label {
+    @apply block mb-1 text-[10px] font-bold tracking-widest text-slate-500;
+  }
+
+  /* Auth inline text link (e.g. "Sign up", "Forgot password?") */
+  .auth-link {
+    @apply text-indigo-400 hover:text-indigo-300 font-medium transition-colors;
+  }
+
+  /* Auth resend / secondary button with disabled state */
+  .auth-resend-btn {
+    @apply text-indigo-400 hover:text-indigo-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors font-medium;
+  }
+
+  /* Auth OTP digit input box */
+  .auth-otp-input {
+    @apply text-center bg-[#13192a] border border-white/5 outline-none rounded-lg
+           focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-white;
+  }
+
+  /* ─── Sidebar Navigation Utilities ───────────────────── */
+
+  /* Top-level sidebar navigation link */
+  .sidebar-nav-link {
+    @apply flex items-center p-2 rounded-lg transition-colors;
+  }
+
+  /* Nested (child) sidebar navigation link */
+  .sidebar-nav-child-link {
+    @apply flex items-center p-2 rounded-lg ps-7 transition-colors;
+  }
+
+  /* Sidebar link label text */
+  .sidebar-nav-label {
+    @apply flex-1 whitespace-nowrap;
+  }
+
+  /* Expandable section header label */
+  .sidebar-section-label {
+    @apply flex-1 ms-3 text-start whitespace-nowrap;
+  }
+
+  /* Section/link leading icon */
+  .sidebar-section-icon {
+    @apply w-5 h-5 transition duration-75 group-hover:text-white;
+  }
+
+  /* Expandable section chevron icon */
+  .sidebar-chevron {
+    @apply w-5 h-5;
+  }
+
+  /* Expandable section child list */
+  .sidebar-section-list {
+    @apply py-2 space-y-2;
+  }
+
+  /* ─── Custom Animation Utilities ──────────────────────── */
+
+  /* Entrance fade-in (used on page-level cards in admin) */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  /* Slow pulsing glow (used in loading overlay) */
+  .animate-pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Horizontal loading bar sweep (used in loading overlay) */
+  .animate-loading-bar {
+    animation: loading-bar 2s ease-in-out infinite;
+  }
+}
+
+/* ─── Keyframe Definitions ────────────────────────────────── */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

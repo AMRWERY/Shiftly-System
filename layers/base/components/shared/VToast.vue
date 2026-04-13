@@ -117,15 +117,3 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.toast-slide-enter-from,
-.toast-slide-leave-to {
-  opacity: 0;
-  transform: translateY(-12px) scale(0.96);
-}
-
-.toast-slide-enter-active,
-.toast-slide-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-</style>

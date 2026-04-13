@@ -1,7 +1,9 @@
-/* Page transitions */
+/* ─── Page Transitions ─────────────────────────────────────── */
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .page-enter-from {
@@ -14,7 +16,7 @@
   transform: translateY(-8px);
 }
 
-/* Layout transitions */
+/* ─── Layout Transitions ───────────────────────────────────── */
 .layout-enter-active,
 .layout-leave-active {
   transition: opacity 0.15s ease;
@@ -25,7 +27,21 @@
   opacity: 0;
 }
 
-/* Modal transitions */
+/* ─── Fade Transition (global) ─────────────────────────────── */
+.fade-enter-active,
+.fade-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* ─── Modal Transitions ────────────────────────────────────── */
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.2s ease;
@@ -33,7 +49,9 @@
 
 .modal-enter-active .ui-modal,
 .modal-leave-active .ui-modal {
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .modal-enter-from,
@@ -47,7 +65,7 @@
   opacity: 0;
 }
 
-/* Drawer transitions */
+/* ─── Drawer Transitions ───────────────────────────────────── */
 .drawer-enter-active,
 .drawer-leave-active {
   transition: opacity 0.25s ease;
@@ -83,10 +101,12 @@
   transform: translateY(-100%);
 }
 
-/* Toast transitions */
+/* ─── Toast Transitions ────────────────────────────────────── */
 .toast-enter-active,
 .toast-leave-active {
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 }
 
 .toast-enter-from,
@@ -95,14 +115,94 @@
   opacity: 0;
 }
 
-/* Dropdown transitions */
+/* ─── Toast Slide Transitions (VToast component) ───────────── */
+.toast-slide-enter-active,
+.toast-slide-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toast-slide-enter-from,
+.toast-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.96);
+}
+
+/* ─── Dropdown Transitions ─────────────────────────────────── */
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 .dropdown-enter-from,
 .dropdown-leave-to {
   transform: translateY(-4px);
   opacity: 0;
+}
+
+/* ─── Dropdown Fade Transitions (VDropdownMenu component) ──── */
+.dropdown-fade-enter-active,
+.dropdown-fade-leave-active {
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.dropdown-fade-enter-from,
+.dropdown-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+}
+
+/* ─── Toolbar Slide Transitions (VTable floating toolbar) ───── */
+.toolbar-slide-enter-active,
+.toolbar-slide-leave-active {
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toolbar-slide-enter-from,
+.toolbar-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(14px) scale(0.97);
+}
+
+.toolbar-slide-enter-to,
+.toolbar-slide-leave-from {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* ─── Overlay Fade Transitions (VOverlay component) ─────────── */
+.overlay-fade-enter-active,
+.overlay-fade-leave-active {
+  transition: opacity 1s ease;
+}
+
+.overlay-fade-enter-from,
+.overlay-fade-leave-to {
+  opacity: 0;
+}
+
+.overlay-fade-enter-to,
+.overlay-fade-leave-from {
+  opacity: 1;
+}
+
+/* ─── Sidebar Slide Transitions (mobile sidebar) ─────────────── */
+.slide-sidebar-enter-active,
+.slide-sidebar-leave-active {
+  transition: transform 0.25s ease;
+}
+
+.slide-sidebar-enter-from,
+.slide-sidebar-leave-to {
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .slide-sidebar-enter-from,
+[dir="rtl"] .slide-sidebar-leave-to {
+  transform: translateX(100%);
 }

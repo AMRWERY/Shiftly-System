@@ -10,24 +10,23 @@
         <div class="sm:col-span-3">
           <LazyVInput :label="t('form.first_name')" :placeholder="t('form.enter_your_first_name')" type="text"
             :name="t('form.first_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.firstName"
-            prefix-icon="ph:user" label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+            prefix-icon="ph:user"           label-class="auth-label" />
         </div>
 
         <div class="sm:col-span-3">
           <LazyVInput :label="t('form.middle_name')" :placeholder="t('form.enter_your_middle_name')" type="text"
             :name="t('form.middle_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.middleName"
-            prefix-icon="ph:user" label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+            prefix-icon="ph:user" label-class="auth-label" />
         </div>
 
         <div class="sm:col-span-full">
           <LazyVInput :label="t('form.last_name')" :placeholder="t('form.enter_your_last_name')" type="text"
             :name="t('form.last_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.lastName"
-            prefix-icon="ph:user" label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+            prefix-icon="ph:user" label-class="auth-label" />
         </div>
 
         <div class="sm:col-span-full">
-          <button type="submit"
-            class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+          <button type="submit" class="auth-btn-primary">
             <Icon name="ph:arrow-right" class="opacity-80" />
             {{ t('btn.next') }}
           </button>
@@ -38,19 +37,18 @@
       <LazyVFormWrapper class="space-y-5" v-else-if="currentStep === 1" @submit="nextStep">
         <LazyVInput :label="t('form.email')" placeholder="name@company.com" type="email" :name="t('form.email')"
           :rules="'required|email'" :required="true" v-model="form.email" prefix-icon="ph:envelope-simple"
-          label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+          label-class="auth-label" />
 
         <LazyVInput :label="t('form.password')" placeholder="••••••••" type="password" :name="t('form.password')"
           :rules="'required|minLength:7'" :required="true" v-model="form.password" prefix-icon="ph:lock-simple"
-          label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+          label-class="auth-label" />
 
         <LazyVInput :label="t('form.role')" type="select" :options="rolesOptions" :name="t('form.role')"
           :rules="'required'" :required="true" :placeholder="t('form.select_role')" v-model="form.role"
           prefix-icon="ph:identification-badge"
-          label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+          label-class="auth-label" />
 
-        <button type="submit"
-          class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+        <button type="submit" class="auth-btn-primary">
           <Icon name="ph:arrow-right" class="opacity-80" />
           {{ t('btn.next') }}
         </button>
@@ -65,12 +63,11 @@
 
         <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
           <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
-            class="w-12 h-12 text-lg text-center bg-[#13192a] border border-white/5 outline-none rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-white"
+            class="auth-otp-input w-12 h-12 text-lg"
             @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
         </div>
 
-        <button type="submit" :disabled="loading"
-          class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+        <button type="submit" :disabled="loading" class="auth-btn-primary">
           <Icon v-if="loading" name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:check-circle" class="opacity-80" />
@@ -80,8 +77,7 @@
 
         <p class="text-center text-xs text-slate-500">
           {{ t('form.didnt_recieve_code') }}
-          <button type="button" :disabled="resendCooldown > 0" @click="resendOtp"
-            class="text-indigo-400 hover:text-indigo-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors font-medium">
+          <button type="button" :disabled="resendCooldown > 0" @click="resendOtp" class="auth-resend-btn">
             {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
           </button>
         </p>
@@ -110,8 +106,7 @@
           <input id="profile-img" type="file" class="hidden" accept="image/*" @change="onFileChange" />
         </div>
 
-        <button type="submit" :disabled="loading"
-          class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+        <button type="submit" :disabled="loading" class="auth-btn-primary">
           <Icon v-if="loading" name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:user-plus" class="opacity-80" />

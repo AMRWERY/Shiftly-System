@@ -29,8 +29,7 @@
             </div>
 
             <!-- Submit -->
-            <button type="submit" :disabled="loading"
-                class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+            <button type="submit" :disabled="loading" class="auth-btn-primary">
                 <Icon v-if="loading" name="svg-spinners:ring-resize" />
                 <template v-else>
                     {{ t('form.send_reset_link') }}
@@ -52,12 +51,11 @@
 
             <div class="flex items-center justify-center gap-3">
                 <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
-                    class="w-11 h-11 text-base text-center bg-[#13192a] border border-white/5 outline-none rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-white"
+                    class="auth-otp-input w-11 h-11 text-base"
                     @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
             </div>
 
-            <button type="submit" :disabled="loading"
-                class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+            <button type="submit" :disabled="loading" class="auth-btn-primary">
                 <Icon v-if="loading" name="svg-spinners:ring-resize" />
                 <template v-else>
                     <Icon name="ph:check-circle" class="opacity-80" />
@@ -67,8 +65,7 @@
 
             <p class="text-center text-xs text-slate-500">
                 {{ t('form.didnt_recieve_code') }}
-                <button type="button" :disabled="resendCooldown > 0" @click="resendOtp"
-                    class="text-indigo-400 hover:text-indigo-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors font-medium">
+                <button type="button" :disabled="resendCooldown > 0" @click="resendOtp" class="auth-resend-btn">
                     {{ resendCooldown > 0 ? `${t('btn.resend')} (${resendCooldown}s)` : t('btn.resend') }}
                 </button>
             </p>
@@ -88,15 +85,14 @@
             <LazyVInput :label="t('form.password')" placeholder="••••••••" type="password"
                 :name="t('form.new_password')" :rules="'required|minLength:7'" :required="true"
                 v-model="form.newPassword" prefix-icon="ph:lock-simple"
-                label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+                label-class="auth-label" />
 
             <LazyVInput :label="t('form.confirm_password')" placeholder="••••••••" type="password"
                 :name="t('form.confirm_password')" :rules="'required|confirmed:@new_password'" :required="true"
                 v-model="form.confirmPassword" prefix-icon="ph:lock-simple"
-                label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" />
+                label-class="auth-label" />
 
-            <button type="submit" :disabled="loading"
-                class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+            <button type="submit" :disabled="loading" class="auth-btn-primary">
                 <Icon v-if="loading" name="svg-spinners:ring-resize" />
                 <template v-else>
                     <Icon name="ph:lock-key-open" class="opacity-80" />

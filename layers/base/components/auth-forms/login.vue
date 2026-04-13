@@ -20,13 +20,13 @@
       <LazyVFormWrapper @submit="handleLogin" class="space-y-4">
         <!-- Email -->
         <LazyVInput type="email" name="email" v-model="email" label="Email Address"
-          label-class="block mb-1 text-[10px] font-bold tracking-widest text-slate-500" placeholder="name@company.com"
+          label-class="auth-label" placeholder="name@company.com"
           prefix-icon="ph:envelope-simple" :rules="'required|email'" />
 
         <!-- Password -->
         <div>
           <div class="flex justify-between items-center mb-1">
-            <span class="text-[10px] font-bold tracking-widest text-slate-500">Password</span>
+            <span class="auth-label">Password</span>
             <nuxt-link-locale to="/auth/reset-password"
               class="text-[10px] text-slate-500 hover:text-indigo-400 transition-colors">
               Forgot password?
@@ -37,8 +37,7 @@
         </div>
 
         <!-- Submit -->
-        <button type="submit" :disabled="loading"
-          class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+        <button type="submit" :disabled="loading" class="auth-btn-primary">
           <Icon v-if="loading" name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:sign-in" class="opacity-80" />
@@ -50,8 +49,7 @@
       <!-- Sign-up prompt -->
       <p class="text-center text-[12px] text-slate-500">
         {{ t('form.no_account') }}
-        <nuxt-link-locale to="/auth/sign-up"
-          class="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+        <nuxt-link-locale to="/auth/sign-up" class="auth-link">
           {{ t('btn.sign_up') }}
         </nuxt-link-locale>
       </p>
@@ -116,16 +114,3 @@ const handleLogin = async () => {
   }
 }
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(-4px);
-}
-</style>

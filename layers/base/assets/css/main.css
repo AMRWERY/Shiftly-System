@@ -4,115 +4,49 @@
 /* Poppins font */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-body {
-  @apply bg-brand-systemBg text-darkText-primary antialiased;
-}
+/* ─── Scrollbar Utilities ─────────────────────────────────── */
 
-/* hide dialog scroll */
 .hide-scrollbar {
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;
-  /* Chrome/Safari/Webkit */
+  display: none; /* Chrome/Safari/Webkit */
 }
 
 .colored-scrollbar {
-  scrollbar-width: thin; /* Firefox - makes it thinner */
-  scrollbar-color: #3b82f6 #0b0f19; /* Firefox - thumb color, track color */
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #0b0f19; /* thumb color, track color */
 }
 
-/* Chrome/Safari/Webkit */
 .colored-scrollbar::-webkit-scrollbar {
-  width: 6px; /* Width of vertical scrollbar */
-  height: 6px; /* Height of horizontal scrollbar */
+  width: 6px;
+  height: 6px;
 }
 
 .colored-scrollbar::-webkit-scrollbar-track {
-  background: #0b0f19; /* Track color (layout Bg) */
+  background: #0b0f19;
 }
 
 .colored-scrollbar::-webkit-scrollbar-thumb {
-  background: #3b82f6; /* Thumb color (primary blue) */
+  background: #3b82f6;
   border-radius: 10px;
 }
 
 .colored-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #2563eb; /* Darker blue on hover */
+  background: #2563eb;
 }
+
+/* ─── Form Resets ─────────────────────────────────────────── */
 
 select {
-  -webkit-appearance: none; /* Chrome, Safari, Edge */
-  -moz-appearance: none; /* Firefox */
-  appearance: none; /* Standard */
-  background-image: none !important; /* Hide background arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none !important;
 }
 
-/* For IE/Edge old versions */
 select::-ms-expand {
   display: none;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-active,
-.modal-leave-active {
-  transition: all 0.4s ease;
-}
-
-.modal-enter-from {
-  opacity: 0;
-}
-
-.modal-card {
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.modal-enter-from .modal-card {
-  transform: translateY(-100%);
-}
-
-.modal-leave-to .modal-card {
-  transform: translateY(-100%);
-}
-
-.modal-leave-to {
-  opacity: 0;
-}
-
-/* Sidebar link styles */
-.sidebar-link-active {
-  @apply bg-brand-primary/15 text-white;
-}
-
-.sidebar-link-hover {
-  @apply hover:bg-white/5;
-}
-
-/* Mobile sidebar slide-in */
-.slide-sidebar-enter-active,
-.slide-sidebar-leave-active {
-  transition: transform 0.25s ease;
-}
-
-.slide-sidebar-enter-from,
-.slide-sidebar-leave-to {
-  transform: translateX(-100%);
-}
-
-[dir="rtl"] .slide-sidebar-enter-from,
-[dir="rtl"] .slide-sidebar-leave-to {
-  transform: translateX(100%);
 }

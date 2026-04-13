@@ -46,17 +46,6 @@ onClickOutside(container, close)
 </script>
 
 <style scoped>
-.dropdown-fade-enter-active,
-.dropdown-fade-leave-active {
-  transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.dropdown-fade-enter-from,
-.dropdown-fade-leave-to {
-  opacity: 0;
-  transform: translateY(-8px) scale(0.98);
-}
-
 .scroll-container::-webkit-scrollbar {
   width: 4px;
 }
