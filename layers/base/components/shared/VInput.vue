@@ -15,24 +15,21 @@
       <!-- input -->
       <template v-if="type === 'textarea'">
         <Field as="textarea" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" :options="options"
-          v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }"
-          rows="4">
+          v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }" rows="4">
           <textarea :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" v-model="internalValue"
             :class="[
               'w-full bg-[#13192a] border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-sm placeholder:text-slate-600 text-white',
-              prefixIcon ? 'pl-11' : 'pl-4',
+              prefixIcon ? 'ps-11' : 'ps-4',
               fieldError ? 'border-red-500/50' : 'border-white/5'
-            ]"
-            rows="4" />
+            ]" rows="4" />
         </Field>
       </template>
 
       <template v-else-if="type === 'select'">
         <Field as="select" :name="name" :placeholder="placeholder" :id="id" :readonly="readonly" v-model="internalValue"
-          :rules="rules"
-          :class="[
+          :rules="rules" :class="[
             'w-full bg-[#13192a] border rounded-lg py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-sm text-white',
-            prefixIcon ? 'pl-11 pr-4' : 'px-4',
+            prefixIcon ? 'ps-11 pe-4' : 'px-4',
             'border-white/5'
           ]">
           <option value="" disabled selected class="text-slate-600">{{ placeholder }}</option>
@@ -47,8 +44,8 @@
           :readonly="readonly" v-model="internalValue" :rules="rules" v-slot="{ errorMessage: fieldError }">
           <input :type="showPassword ? 'text' : type" :name="name" :placeholder="placeholder" :id="id"
             :readonly="readonly" v-model="internalValue" :class="[
-              'w-full bg-[#13192a] border rounded-lg py-3 pr-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-sm placeholder:text-slate-600 text-white',
-              prefixIcon ? 'pl-11' : 'pl-4',
+              'w-full bg-[#13192a] border rounded-lg py-3 pe-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-sm placeholder:text-slate-600 text-white',
+              prefixIcon ? 'ps-11' : 'ps-4',
               fieldError ? 'border-red-500/50' : 'border-white/5'
             ]" />
         </Field>

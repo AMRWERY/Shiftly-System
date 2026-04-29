@@ -5,7 +5,7 @@
     <!-- Left accent bar (opt-in) -->
     <div
       v-if="accentBorder"
-      class="absolute left-0 top-0 h-full w-[3px] rounded-l-2xl"
+      class="absolute start-0 top-0 h-full w-[3px] rounded-s-2xl"
       :class="accentBarClass"
     />
 

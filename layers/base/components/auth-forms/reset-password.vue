@@ -21,7 +21,7 @@
                 <div class="relative">
                     <input v-model="form.email" type="email" :name="t('form.email')"
                         placeholder="operator@nexus-erp.com"
-                        class="w-full bg-[#13192a] border border-white/5 rounded-lg py-3 pl-4 pr-11 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-sm placeholder:text-slate-600 text-white" />
+                        class="w-full bg-[#13192a] border border-white/5 rounded-lg py-3 ps-4 pe-11 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-sm placeholder:text-slate-600 text-white" />
                     <div class="absolute inset-y-0 end-0 flex items-center pe-4 text-slate-500 pointer-events-none">
                         <Icon name="ph:at" />
                     </div>
@@ -51,8 +51,8 @@
 
             <div class="flex items-center justify-center gap-3">
                 <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
-                    class="auth-otp-input w-11 h-11 text-base"
-                    @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
+                    class="auth-otp-input w-11 h-11 text-base" @input="handleInput($event, i)"
+                    @keydown.backspace="handleBackspace($event, i)" />
             </div>
 
             <button type="submit" :disabled="loading" class="auth-btn-primary">
@@ -84,13 +84,11 @@
 
             <LazyVInput :label="t('form.password')" placeholder="••••••••" type="password"
                 :name="t('form.new_password')" :rules="'required|minLength:7'" :required="true"
-                v-model="form.newPassword" prefix-icon="ph:lock-simple"
-                label-class="auth-label" />
+                v-model="form.newPassword" prefix-icon="ph:lock-simple" label-class="auth-label" />
 
             <LazyVInput :label="t('form.confirm_password')" placeholder="••••••••" type="password"
                 :name="t('form.confirm_password')" :rules="'required|confirmed:@new_password'" :required="true"
-                v-model="form.confirmPassword" prefix-icon="ph:lock-simple"
-                label-class="auth-label" />
+                v-model="form.confirmPassword" prefix-icon="ph:lock-simple" label-class="auth-label" />
 
             <button type="submit" :disabled="loading" class="auth-btn-primary">
                 <Icon v-if="loading" name="svg-spinners:ring-resize" />

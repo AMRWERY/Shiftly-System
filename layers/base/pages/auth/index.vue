@@ -25,7 +25,7 @@
             class="w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/[0.06] z-10">
             <!-- Col 1 — Branding -->
             <div
-                class="hidden md:flex md:w-1/3 flex-col items-center justify-center p-10 bg-[#0e1322] border-r border-white/5 text-white">
+                class="hidden md:flex md:w-1/3 flex-col items-center justify-center p-10 bg-[#0e1322] border-e border-white/5 text-white">
                 <div class="text-center">
                     <h1 class="text-5xl font-black tracking-wider leading-tight mb-4">
                         NEXUS<br />ERP
