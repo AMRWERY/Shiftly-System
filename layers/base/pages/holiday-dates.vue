@@ -211,7 +211,9 @@ definePageMeta({
     layout: 'dashboard',
 });
 
-useHead({
-    titleTemplate: () => t('meta.holiday_dates'),
+useSeoPage({
+    title: () => t("meta.holiday_dates"),
+    description: () => t("meta.holiday_dates_description"),
+    private: true,
 });
 </script>

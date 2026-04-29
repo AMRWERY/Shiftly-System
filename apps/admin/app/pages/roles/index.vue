@@ -162,7 +162,9 @@ definePageMeta({
   layout: "dashboard",
 });
 
-useHead({
-  titleTemplate: () => t("meta.roles"),
+useSeoPage({
+  title: () => t("meta.roles"),
+  description: () => t("meta.roles_description"),
+  private: true,
 });
 </script>

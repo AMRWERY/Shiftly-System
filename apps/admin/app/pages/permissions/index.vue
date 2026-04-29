@@ -108,7 +108,9 @@ const closeEditDialog = () => {
   selectedUser.value = null
 }
 
-useHead({
-  titleTemplate: () => t('meta.permissions'),
+useSeoPage({
+  title: () => t("meta.permissions"),
+  description: () => t("meta.permissions_description"),
+  private: true,
 });
 </script>

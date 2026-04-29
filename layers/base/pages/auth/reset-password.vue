@@ -55,7 +55,9 @@ definePageMeta({
     layout: 'auth'
 });
 
-useHead({
-    titleTemplate: () => t('meta.reset_password'),
+useSeoPage({
+    title: () => t("meta.reset_password"),
+    description: () => t("meta.reset_password_description"),
+    private: true,
 });
 </script>

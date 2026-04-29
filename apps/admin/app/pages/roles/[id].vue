@@ -220,15 +220,15 @@ async function submitPermissions() {
   }
 }
 
-useHead({
+definePageMeta({
+  layout: "dashboard",
+});
+
+useSeoPage({
   title: computed(() =>
     role.value
       ? `${role.value.displayName} | ${t("meta.role_details")}`
       : t("meta.roles")
   ),
-});
-
-definePageMeta({
-  layout: "dashboard",
 });
 </script>

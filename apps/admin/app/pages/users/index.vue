@@ -307,7 +307,9 @@ definePageMeta({
   layout: 'dashboard'
 })
 
-useHead({
-  titleTemplate: () => t('meta.users'),
+useSeoPage({
+  title: () => t("meta.users"),
+  description: () => t("meta.users_description"),
+  private: true,
 });
 </script>

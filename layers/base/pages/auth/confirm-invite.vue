@@ -345,7 +345,8 @@ definePageMeta({
   layout: 'auth'
 });
 
-useHead({
-  titleTemplate: () => t('meta.confirm_invite'),
+useSeoMeta({
+  title: () => t("meta.confirm_invite"),
+  description: () => t("meta.confirm_invite_description"),
 });
 </script>

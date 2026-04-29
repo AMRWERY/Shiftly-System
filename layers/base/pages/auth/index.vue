@@ -73,7 +73,8 @@ definePageMeta({
     layout: 'auth'
 });
 
-useHead({
-    titleTemplate: () => t('meta.login'),
+useSeoMeta({
+    title: () => t("meta.login"),
+    description: () => t("meta.login_description"),
 });
 </script>

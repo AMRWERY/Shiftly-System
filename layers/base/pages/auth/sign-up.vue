@@ -80,7 +80,9 @@ definePageMeta({
     layout: 'auth'
 });
 
-useHead({
-    titleTemplate: () => t('meta.sign_up'),
+useSeoPage({
+    title: () => t("meta.sign_up"),
+    description: () => t("meta.sign_up_description"),
+    private: true,
 });
 </script>

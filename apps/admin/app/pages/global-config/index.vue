@@ -431,7 +431,9 @@ definePageMeta({
   layout: "dashboard",
 });
 
-useHead({
-  title: t("meta.global_config"),
+useSeoPage({
+  title: () => t("meta.users"),
+  description: () => t("meta.users_description"),
+  private: true,
 });
 </script>

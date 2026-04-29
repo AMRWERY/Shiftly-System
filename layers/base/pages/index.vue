@@ -58,7 +58,9 @@ definePageMeta({
     layout: 'dashboard',
 });
 
-useHead({
-    titleTemplate: () => t('meta.dashboard'),
+useSeoPage({
+    title: () => t("meta.dashboard"),
+    description: () => t("meta.dashboard_description"),
+    private: true,
 });
 </script>

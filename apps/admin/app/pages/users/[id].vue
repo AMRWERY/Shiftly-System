@@ -161,15 +161,16 @@ onMounted(async () => {
   }
 });
 
-useHead({
+definePageMeta({
+  layout: "dashboard",
+});
+
+useSeoPage({
   title: computed(() =>
     user.value
       ? `${user.value.fullName} | ${t("users.employment_details")}`
       : t("meta.users")
   ),
-});
-
-definePageMeta({
-  layout: "dashboard",
+  private: true,
 });
 </script>

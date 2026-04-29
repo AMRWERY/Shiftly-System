@@ -245,17 +245,18 @@ const getModuleIcon = (module: string): string => {
     return icons[module] || 'heroicons:document'
 }
 
+definePageMeta({
+    layout: 'dashboard'
+})
+
 // Set page title
-useHead({
+useSeoPage({
     title: computed(() =>
         user.value
             ? `${t('permissions.edit_permissions')} - ${user.value.fullName}`
             : t('permissions.edit_permissions')
-    )
-})
-
-definePageMeta({
-    layout: 'dashboard'
+    ),
+    private: true,
 })
 </script>
 
