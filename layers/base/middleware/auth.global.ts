@@ -10,6 +10,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
     "/forgot-password",
     "/reset-password",
     "/confirm-invite",
+    "/privacy-policy",
+    "/terms-of-service",
   ];
 
   // Remove locale prefix from path for checking (e.g., /ar/auth/reset-password -> /auth/reset-password)

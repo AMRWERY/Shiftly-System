@@ -3,21 +3,10 @@
     <div class="absolute top-4 start-4 lg:top-8 lg:start-8 z-50">
       <LazyVBackButton to="/auth" label-key="form.back_to_login" />
     </div>
-    <!-- RTL Toggle positioned absolutely -->
+
+    <!-- RTL Toggle -->
     <div class="absolute top-4 end-4 lg:top-8 lg:end-8 z-50">
-      <LazyVButton type="button" variant="outline" border-color="border-gray-200/20" text-color="text-gray-100"
-        hover-color="hover:bg-white/10" padding-x="px-3" padding-y="py-1.5"
-        class="me-1 rounded-lg hover:border-gray-300/40 bg-white/5 backdrop-blur-sm hover:text-white"
-        @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
-        <span v-if="localeStore.isRTL" class="flex items-center">
-          <Icon name="heroicons:language" class="w-4 h-4 me-2" />
-          En
-        </span>
-        <span v-else class="flex items-center">
-          <Icon name="heroicons:language" class="w-4 h-4 me-2" />
-          العربية
-        </span>
-      </LazyVButton>
+      <VToggleLocales />
     </div>
 
     <!-- Main Card Container -->
@@ -38,7 +27,8 @@
       <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-brand-systemBg">
         <div class="w-full max-w-lg text-center">
           <div v-if="loading" class="space-y-4">
-            <LazyVLoadingSpinner size="xl" color="text-indigo-500" icon-name="svg-spinners:180-ring-with-bg" class="mx-auto" />
+            <LazyVLoadingSpinner size="xl" color="text-indigo-500" icon-name="svg-spinners:180-ring-with-bg"
+              class="mx-auto" />
             <p class="text-gray-300">{{ t('form.setting_up_account') }}</p>
           </div>
 
@@ -74,7 +64,7 @@
 </template>
 
 <script lang="ts" setup>
-const { setLocale, setLocaleMessage, t } = useI18n();
+const { t } = useI18n();
 const localeStore = useLocaleStore();
 const authStore = useAuthStore();
 const { triggerToast } = useToast();
@@ -84,22 +74,6 @@ const loading = ref(true);
 const success = ref(false);
 const error = ref(false);
 const errorMessage = ref('');
-
-watch(() => localeStore.isRTL, (isRTL) => {
-  document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-}, { immediate: true });
-
-const switchLocale = async (value: any) => {
-  localeStore.updateLocale(value);
-  if (value === 'ar') {
-    const arMessages = await import('../../i18n/locales/ar.json');
-    setLocaleMessage('ar', arMessages.default || arMessages);
-  } else {
-    const enMessages = await import('../../i18n/locales/en.json');
-    setLocaleMessage('en', enMessages.default || enMessages);
-  }
-  setLocale(value);
-};
 
 const setDefaultPassword = async (userId: string) => {
   try {

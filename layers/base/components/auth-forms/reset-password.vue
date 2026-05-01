@@ -1,6 +1,5 @@
 <template>
     <div class="space-y-6">
-
         <!-- Step 1: Email -->
         <LazyVFormWrapper v-if="currentStep === 0" @submit="nextStep" class="space-y-6">
             <!-- Icon + heading -->
@@ -30,7 +29,8 @@
 
             <!-- Submit -->
             <button type="submit" :disabled="loading" class="auth-btn-primary">
-                <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Sending..." icon-name="svg-spinners:ring-resize" />
+                <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white"
+                    text="Sending..." icon-name="svg-spinners:ring-resize" />
                 <template v-else>
                     {{ t('form.send_reset_link') }}
                     <Icon name="ph:arrow-right" class="opacity-80" />
@@ -56,7 +56,8 @@
             </div>
 
             <button type="submit" :disabled="loading" class="auth-btn-primary">
-                <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Verifying..." icon-name="svg-spinners:ring-resize" />
+                <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white"
+                    text="Verifying..." icon-name="svg-spinners:ring-resize" />
                 <template v-else>
                     <Icon name="ph:check-circle" class="opacity-80" />
                     {{ t('btn.verify_account') }}
@@ -91,7 +92,8 @@
                 v-model="form.confirmPassword" prefix-icon="ph:lock-simple" label-class="auth-label" />
 
             <button type="submit" :disabled="loading" class="auth-btn-primary">
-                <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Resetting..." icon-name="svg-spinners:ring-resize" />
+                <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white"
+                    text="Resetting..." icon-name="svg-spinners:ring-resize" />
                 <template v-else>
                     <Icon name="ph:lock-key-open" class="opacity-80" />
                     {{ t('btn.reset_password') }}

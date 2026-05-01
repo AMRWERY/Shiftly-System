@@ -1,3 +1,5 @@
+import { title } from 'process'
+
 <template>
   <div>
     <div class="w-full text-slate-200 space-y-6">
@@ -19,9 +21,8 @@
       <!-- Form -->
       <LazyVFormWrapper @submit="handleLogin" class="space-y-4">
         <!-- Email -->
-        <LazyVInput type="email" name="email" v-model="email" label="Email Address"
-          label-class="auth-label" placeholder="name@company.com"
-          prefix-icon="ph:envelope-simple" :rules="'required|email'" />
+        <LazyVInput type="email" name="email" v-model="email" label="Email Address" label-class="auth-label"
+          placeholder="name@company.com" prefix-icon="ph:envelope-simple" :rules="'required|email'" />
 
         <!-- Password -->
         <div>
@@ -38,7 +39,8 @@
 
         <!-- Submit -->
         <button type="submit" :disabled="loading" class="auth-btn-primary">
-          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Signing in..." icon-name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Signing in..."
+            icon-name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:sign-in" class="opacity-80" />
             <span>Sign In</span>
@@ -61,8 +63,10 @@
           <span>Protected by Supabase Auth</span>
         </div>
         <div class="flex justify-center gap-5 text-[11px] text-slate-500">
-          <nuxt-link-locale to="" class="hover:text-slate-300 transition-colors">Privacy Policy</nuxt-link-locale>
-          <nuxt-link-locale to="" class="hover:text-slate-300 transition-colors">Terms of Service</nuxt-link-locale>
+          <nuxt-link-locale to="/privacy-policy" class="hover:text-slate-300 transition-colors">Privacy
+            Policy</nuxt-link-locale>
+          <nuxt-link-locale to="/terms-of-service" class="hover:text-slate-300 transition-colors">Terms of
+            Service</nuxt-link-locale>
         </div>
       </div>
     </div>

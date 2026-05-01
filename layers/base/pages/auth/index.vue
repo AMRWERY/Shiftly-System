@@ -1,23 +1,8 @@
 <template>
     <div class="min-h-screen w-full flex items-center justify-center relative">
-        <div class="absolute top-4 start-4 lg:top-8 lg:start-8 z-50">
-            <LazyVBackButton to="/" label-key="btn.back" />
-        </div>
         <!-- RTL Toggle -->
-        <div class="absolute top-4 end-4 lg:top-8 lg:end-8 z-50">
-            <LazyVButton type="button" variant="outline" border-color="border-gray-200/20" text-color="text-gray-100"
-                hover-color="hover:bg-white/10" padding-x="px-3" padding-y="py-1.5"
-                class="me-1 rounded-lg hover:border-gray-300/40 bg-white/5 backdrop-blur-sm hover:text-white"
-                @click="switchLocale(localeStore.isRTL ? 'en' : 'ar')">
-                <span v-if="localeStore.isRTL" class="flex items-center">
-                    <Icon name="heroicons:language" class="w-4 h-4 me-2" />
-                    En
-                </span>
-                <span v-else class="flex items-center">
-                    <Icon name="heroicons:language" class="w-4 h-4 me-2" />
-                    العربية
-                </span>
-            </LazyVButton>
+        <div class="absolute top-4 end-4 z-50">
+            <LazyVToggleLocales />
         </div>
 
         <!-- Card -->
@@ -38,7 +23,7 @@
             <!-- Col 2 — Login form -->
             <div class="w-full md:w-2/3 bg-[#0b0f1a] flex items-center justify-center p-6 sm:p-10 overflow-y-auto">
                 <div class="w-full max-w-xs">
-                    <login />
+                    <lazy-login />
                 </div>
             </div>
         </LazyVCard>
@@ -46,28 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-const { setLocale, setLocaleMessage, t } = useI18n();
-const localeStore = useLocaleStore();
-
-watch(() => localeStore.isRTL, (isRTL) => {
-    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-}, { immediate: true });
-
-const switchLocale = async (value: SupportedLocale) => {
-    localeStore.updateLocale(value);
-    if (value === 'ar') {
-        const arMessages = await import('../../i18n/locales/ar.json');
-        setLocaleMessage('ar', arMessages.default || arMessages);
-    } else {
-        const enMessages = await import('../../i18n/locales/en.json');
-        setLocaleMessage('en', enMessages.default || enMessages);
-    }
-    setLocale(value);
-};
-
-onMounted(() => {
-    document.documentElement.dir = localeStore.isRTL ? 'rtl' : 'ltr';
-});
+const { t } = useI18n();
 
 definePageMeta({
     layout: 'auth'

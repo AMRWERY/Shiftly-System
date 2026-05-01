@@ -10,7 +10,7 @@
         <div class="sm:col-span-3">
           <LazyVInput :label="t('form.first_name')" :placeholder="t('form.enter_your_first_name')" type="text"
             :name="t('form.first_name')" :rules="'required|alpha_spaces'" :required="true" v-model="form.firstName"
-            prefix-icon="ph:user"           label-class="auth-label" />
+            prefix-icon="ph:user" label-class="auth-label" />
         </div>
 
         <div class="sm:col-span-3">
@@ -45,8 +45,7 @@
 
         <LazyVInput :label="t('form.role')" type="select" :options="rolesOptions" :name="t('form.role')"
           :rules="'required'" :required="true" :placeholder="t('form.select_role')" v-model="form.role"
-          prefix-icon="ph:identification-badge"
-          label-class="auth-label" />
+          prefix-icon="ph:identification-badge" label-class="auth-label" />
 
         <button type="submit" class="auth-btn-primary">
           <Icon name="ph:arrow-right" class="opacity-80" />
@@ -63,12 +62,13 @@
 
         <div class="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
           <input v-for="(digit, i) in 6" :key="i" ref="otpInputs" maxlength="1" type="text"
-            class="auth-otp-input w-12 h-12 text-lg"
-            @input="handleInput($event, i)" @keydown.backspace="handleBackspace($event, i)" />
+            class="auth-otp-input w-12 h-12 text-lg" @input="handleInput($event, i)"
+            @keydown.backspace="handleBackspace($event, i)" />
         </div>
 
         <button type="submit" :disabled="loading" class="auth-btn-primary">
-          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Verifying..." icon-name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Verifying..."
+            icon-name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:check-circle" class="opacity-80" />
             {{ t('btn.verify_account') }}
@@ -107,7 +107,8 @@
         </div>
 
         <button type="submit" :disabled="loading" class="auth-btn-primary">
-          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Creating account..." icon-name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white"
+            text="Creating account..." icon-name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:user-plus" class="opacity-80" />
             {{ t('btn.create_account_button') }}

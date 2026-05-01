@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: "%s - Nexux Manager",
+      titleTemplate: "%s - Manager",
     },
   },
 });
