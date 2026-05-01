@@ -5,7 +5,15 @@
 </template>
 
 <script lang="ts" setup>
-  definePageMeta({
+const { t } = useI18n();
+
+useSeoPage({
+  title: () => t("meta.cost_center_analysis"),
+  description: () => t("meta.cost_center_analysis_description"),
+  private: true,
+});
+
+definePageMeta({
   layout: 'dashboard'
 })
 </script>

@@ -1,144 +1,94 @@
 <template>
   <div>
-    <ul class="space-y-3">
+    <ul class="space-y-1">
       <li v-if="hasPermission('training', 'view')">
-        <LazyVButton @click="toggleDropdown('training_catalog')" type="button" variant="ghost" :block="true"
-          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <Icon name="eos-icons:cluster-management"
-            class="sidebar-section-icon text-gray-400" aria-hidden="true" />
-          <span v-if="!collapsed" class="sidebar-section-label">{{
-            t("layouts.training_catalog")
-          }}</span>
-          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="sidebar-chevron"
-            :class="{ 'rotate-180': dropdownStates.training_catalog }" aria-hidden="true" />
-        </LazyVButton>
-        <ul v-if="!collapsed && dropdownStates.training_catalog" class="sidebar-section-list">
-          <li>
-            <nuxt-link-locale to="/course-creation" class="sidebar-nav-child-link group"
-              :class="isActive('/course-creation') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.course_creation")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/scheduling" class="sidebar-nav-child-link group"
-              :class="isActive('/scheduling') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.scheduling")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/resource-mgt" class="sidebar-nav-child-link group"
-              :class="isActive('/resource-mgt') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.resource_mgt")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-        </ul>
+        <nuxt-link-locale to="/course-creation" class="sidebar-nav-link group"
+          :class="isActive('/course-creation') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:add-circle-outline-rounded" class="sidebar-section-icon"
+            :class="isActive('/course-creation') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.course_creation") }}</span>
+        </nuxt-link-locale>
       </li>
 
       <li v-if="hasPermission('training', 'view')">
-        <LazyVButton @click="toggleDropdown('employee_development')" type="button" variant="ghost" :block="true"
-          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <Icon name="eos-icons:cluster-management"
-            class="sidebar-section-icon text-gray-400" aria-hidden="true" />
-          <span v-if="!collapsed" class="sidebar-section-label">{{
-            t("layouts.employee_development")
-          }}</span>
-          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="sidebar-chevron"
-            :class="{ 'rotate-180': dropdownStates.employee_development }" aria-hidden="true" />
-        </LazyVButton>
-        <ul v-if="!collapsed && dropdownStates.employee_development" class="sidebar-section-list">
-          <li>
-            <nuxt-link-locale to="/training-records" class="sidebar-nav-child-link group"
-              :class="isActive('/training-records') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.training_records")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/certifications" class="sidebar-nav-child-link group"
-              :class="isActive('/certifications') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.certifications")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/career-path-mapping" class="sidebar-nav-child-link group"
-              :class="isActive('/career-path-mapping') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.career_path_mapping")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-        </ul>
+        <nuxt-link-locale to="/scheduling" class="sidebar-nav-link group"
+          :class="isActive('/scheduling') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:event-rounded" class="sidebar-section-icon"
+            :class="isActive('/scheduling') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.scheduling") }}</span>
+        </nuxt-link-locale>
+      </li>
+
+      <li v-if="hasPermission('training', 'view')">
+        <nuxt-link-locale to="/resource-mgt" class="sidebar-nav-link group"
+          :class="isActive('/resource-mgt') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:folder-open-rounded" class="sidebar-section-icon"
+            :class="isActive('/resource-mgt') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.resource_mgt") }}</span>
+        </nuxt-link-locale>
+      </li>
+
+      <li v-if="hasPermission('training', 'view')">
+        <nuxt-link-locale to="/training-records" class="sidebar-nav-link group"
+          :class="isActive('/training-records') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:school-rounded" class="sidebar-section-icon"
+            :class="isActive('/training-records') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.training_records") }}</span>
+        </nuxt-link-locale>
+      </li>
+
+      <li v-if="hasPermission('training', 'view')">
+        <nuxt-link-locale to="/certifications" class="sidebar-nav-link group"
+          :class="isActive('/certifications') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:military-tech-rounded" class="sidebar-section-icon"
+            :class="isActive('/certifications') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.certifications") }}</span>
+        </nuxt-link-locale>
+      </li>
+
+      <li v-if="hasPermission('training', 'view')">
+        <nuxt-link-locale to="/career-path-mapping" class="sidebar-nav-link group"
+          :class="isActive('/career-path-mapping') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:trending-up-rounded" class="sidebar-section-icon"
+            :class="isActive('/career-path-mapping') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.career_path_mapping") }}</span>
+        </nuxt-link-locale>
       </li>
 
       <li v-if="hasPermission('training', 'approve')">
-        <LazyVButton @click="toggleDropdown('request_approval')" type="button" variant="ghost" :block="true"
-          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <Icon name="eos-icons:cluster-management"
-            class="sidebar-section-icon text-gray-400" aria-hidden="true" />
-          <span v-if="!collapsed" class="sidebar-section-label">{{
-            t("layouts.request_approval")
-          }}</span>
-          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="sidebar-chevron"
-            :class="{ 'rotate-180': dropdownStates.request_approval }" aria-hidden="true" />
-        </LazyVButton>
-        <ul v-if="!collapsed && dropdownStates.request_approval" class="sidebar-section-list">
-          <li>
-            <nuxt-link-locale to="/enrollment-requests" class="sidebar-nav-child-link group"
-              :class="isActive('/enrollment-requests') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.enrollment_requests")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/budget-approvals" class="sidebar-nav-child-link group"
-              :class="isActive('/budget-approvals') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.budget_approvals")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-        </ul>
+        <nuxt-link-locale to="/enrollment-requests" class="sidebar-nav-link group"
+          :class="isActive('/enrollment-requests') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:how-to-reg-rounded" class="sidebar-section-icon"
+            :class="isActive('/enrollment-requests') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.enrollment_requests") }}</span>
+        </nuxt-link-locale>
+      </li>
+
+      <li v-if="hasPermission('training', 'approve')">
+        <nuxt-link-locale to="/budget-approvals" class="sidebar-nav-link group"
+          :class="isActive('/budget-approvals') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:account-balance-wallet-rounded" class="sidebar-section-icon"
+            :class="isActive('/budget-approvals') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.budget_approvals") }}</span>
+        </nuxt-link-locale>
       </li>
 
       <li v-if="hasPermission('reports', 'view')">
-        <LazyVButton @click="toggleDropdown('skills_gaps_report')" type="button" variant="ghost" :block="true"
-          text-color="text-white" padding-x="px-2" padding-y="py-2" class="group">
-          <Icon name="eos-icons:cluster-management"
-            class="sidebar-section-icon text-gray-400" aria-hidden="true" />
-          <span v-if="!collapsed" class="sidebar-section-label">{{
-            t("layouts.skills_gaps_report")
-          }}</span>
-          <Icon v-if="!collapsed" name="material-symbols:keyboard-arrow-down-rounded" class="sidebar-chevron"
-            :class="{ 'rotate-180': dropdownStates.skills_gaps_report }" aria-hidden="true" />
-        </LazyVButton>
-        <ul v-if="!collapsed && dropdownStates.skills_gaps_report" class="sidebar-section-list">
-          <li>
-            <nuxt-link-locale to="/skill-matrix" class="sidebar-nav-child-link group"
-              :class="isActive('/skill-matrix') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.skill_matrix")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-          <li>
-            <nuxt-link-locale to="/stock-adjustment" class="sidebar-nav-child-link group"
-              :class="isActive('/stock-adjustment') ? 'sidebar-link-active' : 'text-gray-300 sidebar-link-hover'">
-              <span class="sidebar-nav-label">{{
-                t("layouts.required_training_analysis")
-              }}</span>
-            </nuxt-link-locale>
-          </li>
-        </ul>
+        <nuxt-link-locale to="/skill-matrix" class="sidebar-nav-link group"
+          :class="isActive('/skill-matrix') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:grid-view-rounded" class="sidebar-section-icon"
+            :class="isActive('/skill-matrix') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.skill_matrix") }}</span>
+        </nuxt-link-locale>
+      </li>
+
+      <li v-if="hasPermission('reports', 'view')">
+        <nuxt-link-locale to="/stock-adjustment" class="sidebar-nav-link group"
+          :class="isActive('/stock-adjustment') ? 'sidebar-link-active' : 'sidebar-link-hover text-white'">
+          <Icon name="material-symbols:analytics-rounded" class="sidebar-section-icon"
+            :class="isActive('/stock-adjustment') ? 'text-white' : 'text-gray-400'" />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{ t("layouts.required_training_analysis") }}</span>
+        </nuxt-link-locale>
       </li>
     </ul>
   </div>
@@ -146,14 +96,7 @@
 
 <script lang="ts" setup>
 defineProps<{ collapsed?: boolean }>()
-const { t } = useI18n();
-const { isActive } = useIsActive();
-const { hasPermission } = useAppPermissions();
-
-const { dropdownStates, toggleDropdown } = useSidebarDropdowns({
-  training_catalog: true,
-  employee_development: false,
-  request_approval: false,
-  skills_gaps_report: false,
-});
+const { t } = useI18n()
+const { isActive } = useIsActive()
+const { hasPermission } = useAppPermissions()
 </script>

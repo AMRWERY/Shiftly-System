@@ -1,13 +1,7 @@
 <template>
   <div :class="$attrs.class">
-    <nuxt-link-locale
-      v-if="route && to"
-      :to="to"
-      :class="buttonClasses"
-      :title="title"
-      :type="type"
-      v-bind="filteredAttrs"
-    >
+    <nuxt-link-locale v-if="route && to" :to="to" :class="buttonClasses" :title="title" :type="type"
+      v-bind="filteredAttrs">
       <slot></slot>
       <slot name="icon">
         <Icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="w-5 h-5 ms-2" />
@@ -15,14 +9,7 @@
       </slot>
     </nuxt-link-locale>
 
-    <button
-      v-else
-      :class="buttonClasses"
-      :title="title"
-      :type="type"
-      :disabled="disabled"
-      v-bind="filteredAttrs"
-    >
+    <button v-else :class="buttonClasses" :title="title" :type="type" :disabled="disabled" v-bind="filteredAttrs">
       <slot></slot>
       <slot name="icon">
         <Icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="ms-2 w-5 h-5" />

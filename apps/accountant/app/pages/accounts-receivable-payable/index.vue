@@ -5,6 +5,14 @@
 </template>
 
 <script lang="ts" setup>
+const { t } = useI18n();
+
+useSeoPage({
+  title: () => t("meta.accounts_receivable_payable"),
+  description: () => t("meta.accounts_receivable_payable_description"),
+  private: true,
+});
+
 definePageMeta({
   layout: "dashboard",
 });

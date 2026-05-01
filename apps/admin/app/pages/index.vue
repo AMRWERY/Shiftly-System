@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="min-h-screen bg-brand-systemBg text-gray-300 p-8 font-sans">
+    <div class="min-h-screen bg-brand-systemBg text-gray-300 p-4">
       <div class="max-w-7xl mx-auto space-y-6">
         <!-- Top Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

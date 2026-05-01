@@ -37,12 +37,13 @@
 
   /* Sidebar link active state */
   .sidebar-link-active {
-    @apply bg-brand-primary text-white shadow-[0_0_15px_rgba(59,130,246,0.5)];
+    @apply bg-white/5 text-white border-s-4 border-[#6366F1] rounded-none !important;
+    box-shadow: none !important;
   }
 
   /* Sidebar link hover state */
   .sidebar-link-hover {
-    @apply hover:bg-white/5;
+    @apply hover:bg-white/5 border-s-4 border-transparent rounded-none !important;
   }
 
   /* Card/Dialog background - Glassmorphism */
@@ -86,14 +87,13 @@
 
   /* ─── Sidebar Navigation Utilities ───────────────────── */
 
-  /* Top-level sidebar navigation link */
-  .sidebar-nav-link {
-    @apply flex items-center p-2 rounded-lg transition-colors;
+  .sidebar-nav-container button {
+    @apply !py-3 !px-4 !rounded-none border-s-4 border-transparent !important;
   }
 
-  /* Nested (child) sidebar navigation link */
-  .sidebar-nav-child-link {
-    @apply flex items-center p-2 rounded-lg ps-7 transition-colors;
+  /* Top-level sidebar navigation link */
+  .sidebar-nav-link {
+    @apply flex items-center py-3 px-4 transition-colors border-s-4 border-transparent rounded-none;
   }
 
   /* Sidebar link label text */
