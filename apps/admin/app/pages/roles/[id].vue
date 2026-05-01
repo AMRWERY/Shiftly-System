@@ -78,7 +78,7 @@
           <div class="mt-6 pt-6 border-t border-[var(--border-default)] flex justify-end">
             <LazyVButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" @click="submitPermissions"
               :disabled="saving">
-              <LazyVLoadingSpinner v-if="saving" size="sm" color="text-white" text-color="text-white" :text="t('btn.saving')" icon-name="svg-spinners:ring-resize" />
+              <LazyVLoadingSpinner v-if="saving" size="sm" color="text-white" text-color="text-white" :text="t('btn.saving')" />
               <span v-else>{{ t("btn.save_changes") }}</span>
             </LazyVButton>
           </div>

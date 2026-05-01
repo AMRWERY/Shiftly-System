@@ -5,7 +5,7 @@
       <!-- Loading State -->
       <template #body>
         <div v-if="loading" class="flex items-center justify-center p-12">
-          <LazyVLoadingSpinner size="md" color="text-indigo-400" icon-name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner size="md" color="text-indigo-400" />
         </div>
 
         <!-- Content -->
@@ -26,7 +26,7 @@
             {{ t("btn.cancel") }}
           </LazyVButton>
           <LazyVButton type="button" :padding-x="'px-3'" :padding-y="'py-2'" @click="handleSubmit" :disabled="saving">
-            <LazyVLoadingSpinner v-if="saving" size="sm" color="text-white" text-color="text-white" :text="savingText" icon-name="svg-spinners:ring-resize" />
+            <LazyVLoadingSpinner v-if="saving" size="sm" color="text-white" text-color="text-white" :text="savingText" />
             <span v-else>{{ submitButtonText }}</span>
           </LazyVButton>
         </div>

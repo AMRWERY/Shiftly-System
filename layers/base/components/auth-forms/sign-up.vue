@@ -27,7 +27,6 @@
 
         <div class="sm:col-span-full">
           <button type="submit" class="auth-btn-primary">
-            <Icon name="ph:arrow-right" class="opacity-80" />
             {{ t('btn.next') }}
           </button>
         </div>
@@ -48,7 +47,6 @@
           prefix-icon="ph:identification-badge" label-class="auth-label" />
 
         <button type="submit" class="auth-btn-primary">
-          <Icon name="ph:arrow-right" class="opacity-80" />
           {{ t('btn.next') }}
         </button>
       </LazyVFormWrapper>
@@ -67,8 +65,7 @@
         </div>
 
         <button type="submit" :disabled="loading" class="auth-btn-primary">
-          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Verifying..."
-            icon-name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" :text="t('btn.verifying')" />
           <template v-else>
             <Icon name="ph:check-circle" class="opacity-80" />
             {{ t('btn.verify_account') }}
@@ -108,9 +105,8 @@
 
         <button type="submit" :disabled="loading" class="auth-btn-primary">
           <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white"
-            text="Creating account..." icon-name="svg-spinners:ring-resize" />
+            :text="t('btn.creating_account')" />
           <template v-else>
-            <Icon name="ph:user-plus" class="opacity-80" />
             {{ t('btn.create_account_button') }}
           </template>
         </button>

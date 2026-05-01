@@ -1,12 +1,10 @@
-import { title } from 'process'
-
 <template>
   <div>
     <div class="w-full text-slate-200 space-y-6">
       <!-- Header -->
       <div class="text-center">
-        <h2 class="text-2xl font-bold text-white">Welcome back</h2>
-        <p class="text-slate-500 mt-1 text-sm">Sign in to your workspace</p>
+        <h2 class="text-2xl font-bold text-white">{{ t('form.welcome_back') }}</h2>
+        <p class="text-slate-500 mt-1 text-sm">{{ t('form.sign_in_to_workspace') }}</p>
       </div>
 
       <!-- Error Alert -->
@@ -21,16 +19,16 @@ import { title } from 'process'
       <!-- Form -->
       <LazyVFormWrapper @submit="handleLogin" class="space-y-4">
         <!-- Email -->
-        <LazyVInput type="email" name="email" v-model="email" label="Email Address" label-class="auth-label"
+        <LazyVInput type="email" name="email" v-model="email" :label="t('form.email')" label-class="auth-label"
           placeholder="name@company.com" prefix-icon="ph:envelope-simple" :rules="'required|email'" />
 
         <!-- Password -->
         <div>
           <div class="flex justify-between items-center mb-1">
-            <span class="auth-label">Password</span>
+            <span class="auth-label">{{ t('form.password') }}</span>
             <nuxt-link-locale to="/auth/reset-password"
               class="text-[10px] text-slate-500 hover:text-indigo-400 transition-colors">
-              Forgot password?
+              {{ t('form.forgot_your_password') }}
             </nuxt-link-locale>
           </div>
           <LazyVInput type="password" name="password" v-model="password" label="" label-class="hidden"
@@ -39,11 +37,9 @@ import { title } from 'process'
 
         <!-- Submit -->
         <button type="submit" :disabled="loading" class="auth-btn-primary">
-          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Signing in..."
-            icon-name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" :text="t('btn.signing_in')" />
           <template v-else>
-            <Icon name="ph:sign-in" class="opacity-80" />
-            <span>Sign In</span>
+            <span>{{ t('btn.sign_in') }}</span>
           </template>
         </button>
       </LazyVFormWrapper>
@@ -60,13 +56,11 @@ import { title } from 'process'
       <div class="text-center space-y-3 pt-1">
         <div class="flex items-center justify-center gap-1.5 text-[9px] text-slate-600 tracking-widest">
           <Icon name="ph:shield-check-fill" />
-          <span>Protected by Supabase Auth</span>
+          <span>{{ t('form.protected_by_supabase') }}</span>
         </div>
         <div class="flex justify-center gap-5 text-[11px] text-slate-500">
-          <nuxt-link-locale to="/privacy-policy" class="hover:text-slate-300 transition-colors">Privacy
-            Policy</nuxt-link-locale>
-          <nuxt-link-locale to="/terms-of-service" class="hover:text-slate-300 transition-colors">Terms of
-            Service</nuxt-link-locale>
+          <nuxt-link-locale to="/privacy-policy" class="hover:text-slate-300 transition-colors">{{ t('meta.privacy_policy') }}</nuxt-link-locale>
+          <nuxt-link-locale to="/terms-of-service" class="hover:text-slate-300 transition-colors">{{ t('meta.terms_of_service') }}</nuxt-link-locale>
         </div>
       </div>
     </div>

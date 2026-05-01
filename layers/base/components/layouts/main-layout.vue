@@ -161,7 +161,6 @@
 
               <VToggleLocales />
 
-
               <LazyVAppNotifications />
 
               <div class="flex items-center gap-3 cursor-pointer" @click="navigateTo(localePath('/profile'))">

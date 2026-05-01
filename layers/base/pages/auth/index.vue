@@ -15,7 +15,7 @@
                     <h1 class="text-5xl font-black tracking-wider leading-tight mb-4">
                         NEXUS<br />ERP
                     </h1>
-                    <p class="text-slate-400 text-base font-light">Manage everything. From one place.</p>
+                    <p class="text-slate-400 text-base font-light">{{ t("meta.tagline") }}</p>
                     <div class="w-10 h-0.5 bg-indigo-500/40 mx-auto mt-8"></div>
                 </div>
             </div>
