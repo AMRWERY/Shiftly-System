@@ -1,6 +1,6 @@
-<template>
+﻿<template>
   <div>
-    <div class="min-h-screen bg-brand-systemBg text-gray-300 p-4">
+    <div class="min-h-screen bg-brand-systemBg text-tx-secondary p-4">
       <div class="max-w-7xl mx-auto space-y-6">
         <!-- Top Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -34,11 +34,11 @@
           <div class="lg:col-span-2 card-bg p-6">
             <div class="flex justify-between items-center mb-12">
               <div>
-                <h3 class="text-white font-bold">30-Day Attendance Trend</h3>
+                <h3 class="text-tx-primary font-bold">30-Day Attendance Trend</h3>
                 <p class="text-xs text-gray-500">Tracking aggregate attendance across all departments</p>
               </div>
               <LazyVButton :variant="'ghost'" :text-color="'text-gray-400'"
-                class="bg-white/5 text-[10px] px-3 py-1 rounded-lg hover:bg-white/10">
+                class="bg-[var(--bg-hover)] text-[10px] px-3 py-1 rounded-lg hover:bg-[var(--bg-hover-strong)]">
                 Last 30 Days
               </LazyVButton>
             </div>

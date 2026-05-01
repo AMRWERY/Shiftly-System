@@ -34,9 +34,8 @@
           <!-- Roles Table -->
           <LazyVTable v-else :columns="columns" :items="paginatedRoles" :current-page="currentPage"
             :total-pages="totalPages" :total-items="rolesStore.filteredRoles.length"
-            :page-size="rolesStore.itemsPerPage" show-download-menu
-            :download-items="rolesStore.filteredRoles" export-file-name="roles"
-            :has-view="true" :has-edit="false" :has-delete="false"
+            :page-size="rolesStore.itemsPerPage" show-download-menu :download-items="rolesStore.filteredRoles"
+            export-file-name="roles" :has-view="true" :has-edit="false" :has-delete="false"
             :action-conditions="actionConditions" class="min-h-0 flex-1" @view="handleViewRole"
             @page-change="handlePageChange" />
         </div>
@@ -158,13 +157,13 @@ const handleViewRole = (role: RoleWithPermissions) => {
   navigateTo(`/roles/${role.id}`);
 };
 
-definePageMeta({
-  layout: "dashboard",
-});
-
 useSeoPage({
   title: () => t("meta.roles"),
   description: () => t("meta.roles_description"),
   private: true,
+});
+
+definePageMeta({
+  layout: "dashboard",
 });
 </script>

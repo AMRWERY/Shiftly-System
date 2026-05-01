@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import type { BreadcrumbItem } from '@/layers/base/components/shared/LazyVBreadcrumb.vue'
 
-definePageMeta({ layout: 'dashboard' })
+const { t } = useI18n();
 
 const shortCrumbs: BreadcrumbItem[] = [
   { label: 'Home', href: '/' },
@@ -29,4 +29,14 @@ const longCrumbs: BreadcrumbItem[] = [
   { label: 'Project', href: '' },
   { label: 'Task Details' },
 ]
+
+useSeoPage({
+  title: () => t("meta.tax_documents"),
+  description: () => t("meta.tax_documents_description"),
+  private: true,
+});
+
+definePageMeta({
+  layout: 'dashboard'
+})
 </script>

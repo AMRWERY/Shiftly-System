@@ -1,8 +1,8 @@
-<template>
+﻿<template>
   <div>
     <div class="card-bg rounded-xl p-4 shadow-lg">
       <div class="mb-6">
-        <h3 class="text-lg font-semibold text-white mb-2">
+        <h3 class="text-lg font-semibold text-tx-primary mb-2">
           {{ t("roles.permissions_matrix") }}
         </h3>
         <p class="text-sm text-gray-400">
@@ -13,13 +13,13 @@
       <div class="overflow-x-auto colored-scrollbar">
         <table class="w-full text-sm">
           <thead>
-            <tr class="border-b-2 border-gray-700">
-              <th class="text-start py-3 px-4 font-semibold text-white">
+            <tr class="border-b-2 border-[var(--border-default)]">
+              <th class="text-start py-3 px-4 font-semibold text-tx-primary">
                 {{ t("roles.module") }}
               </th>
               <th v-for="action in permissionActions" :key="action" class="text-center py-3 px-4">
                 <div class="flex flex-col items-center gap-1">
-                  <span class="font-semibold text-white capitalize">{{
+                  <span class="font-semibold text-tx-primary capitalize">{{
                     t(`permissions.actions.${action}`)
                   }}</span>
                   <input type="checkbox" :checked="areAllModulesSelectedForAction(action)"
@@ -29,7 +29,7 @@
               </th>
               <th class="text-center py-3 px-4">
                 <div class="flex flex-col items-center gap-1">
-                  <span class="font-semibold text-white">{{
+                  <span class="font-semibold text-tx-primary">{{
                     t("roles.all")
                   }}</span>
                   <input type="checkbox" :checked="areAllPermissionsSelected" :indeterminate="isSomePermissionsSelected"
@@ -41,8 +41,8 @@
           </thead>
           <tbody>
             <tr v-for="module in permissionModules" :key="module"
-              class="border-b border-gray-700 hover:bg-brand-systemBg/30 transition-colors">
-              <td class="py-3 px-4 font-medium text-gray-300">
+              class="border-b border-[var(--border-default)] hover:bg-brand-systemBg/30 transition-colors">
+              <td class="py-3 px-4 font-medium text-tx-secondary">
                 <div class="flex items-center gap-2">
                   <Icon :name="getModuleIcon(module)" class="w-5 h-5 text-indigo-500" />
                   <span>{{ t(`permissions.modules.${module}`) }}</span>
@@ -63,7 +63,7 @@
         </table>
       </div>
 
-      <div v-if="showStats" class="mt-6 pt-6 border-t border-gray-700">
+      <div v-if="showStats" class="mt-6 pt-6 border-t border-[var(--border-default)]">
         <div class="flex items-center justify-between text-sm">
           <span class="text-gray-400">{{ t("roles.total_permissions") }}:</span>
           <span class="font-semibold text-indigo-400">{{ selectedPermissionsCount }} /

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div>
     <div class="p-6">
       <LazyVBackButton />
@@ -9,7 +9,7 @@
           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-2">
-                <h1 class="text-3xl font-bold text-white">
+                <h1 class="text-3xl font-bold text-tx-primary">
                   {{ role.displayName }}
                 </h1>
                 <span v-if="role.isSystemRole"
@@ -26,7 +26,7 @@
           </div>
 
           <!-- Stats -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-700">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-[var(--border-default)]">
             <div class="flex items-center gap-3 p-4 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
               <div class="p-3 bg-brand-systemBg rounded-lg flex items-center justify-center">
                 <Icon name="heroicons:users" class="w-6 h-6 text-indigo-400" />
@@ -35,7 +35,7 @@
                 <p class="text-sm text-gray-400">
                   {{ t("roles.total_users") }}
                 </p>
-                <p class="text-2xl font-bold text-white">
+                <p class="text-2xl font-bold text-tx-primary">
                   {{ role.userCount || 0 }}
                 </p>
               </div>
@@ -49,7 +49,7 @@
                 <p class="text-sm text-gray-400">
                   {{ t("roles.permissions_granted") }}
                 </p>
-                <p class="text-2xl font-bold text-white">
+                <p class="text-2xl font-bold text-tx-primary">
                   {{ permissionsCount }}
                 </p>
               </div>
@@ -61,7 +61,7 @@
               </div>
               <div>
                 <p class="text-sm text-gray-400">{{ t("roles.created_on") }}</p>
-                <p class="text-lg font-semibold text-white">
+                <p class="text-lg font-semibold text-tx-primary">
                   {{ formatDate(role.createdAt) }}
                 </p>
               </div>
@@ -71,11 +71,11 @@
 
         <!-- Permissions Matrix + Submit -->
         <div class="card-bg rounded-xl p-6 mb-6 shadow-lg">
-          <h2 class="text-xl font-semibold text-white mb-6">
+          <h2 class="text-xl font-semibold text-tx-primary mb-6">
             {{ t("roles.role_permissions") }}
           </h2>
           <role-permission-matrix v-model="rolePermissions" :show-stats="true" />
-          <div class="mt-6 pt-6 border-t border-gray-700 flex justify-end">
+          <div class="mt-6 pt-6 border-t border-[var(--border-default)] flex justify-end">
             <LazyVButton type="button" :padding-x="'px-4'" :padding-y="'py-2'" @click="submitPermissions"
               :disabled="saving">
               <span v-if="saving" class="flex items-center gap-2">
@@ -89,19 +89,19 @@
 
         <!-- Users with this Role -->
         <div v-if="users && users.length > 0" class="card-bg rounded-xl p-6 shadow-lg">
-          <h2 class="text-xl font-semibold text-white mb-6">
+          <h2 class="text-xl font-semibold text-tx-primary mb-6">
             {{ t("roles.users_with_role") }} ({{ users.length }})
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div v-for="user in users" :key="user.id"
-              class="flex items-center gap-3 p-4 border border-gray-700 rounded-lg hover:border-indigo-500 hover:shadow-lg transition-all cursor-pointer"
+              class="flex items-center gap-3 p-4 border border-[var(--border-default)] rounded-lg hover:border-indigo-500 hover:shadow-lg transition-all cursor-pointer"
               @click="navigateTo(`/users/${user.id}`)">
               <div
                 class="w-10 h-10 bg-brand-systemBg text-indigo-400 rounded-full flex items-center justify-center font-semibold">
                 {{ getInitials(user.first_name, user.last_name) }}
               </div>
               <div class="flex-1 min-w-0">
-                <p class="font-medium text-white truncate">
+                <p class="font-medium text-tx-primary truncate">
                   {{ user.first_name }} {{ user.last_name }}
                 </p>
                 <p class="text-sm text-gray-400 truncate">{{ user.email }}</p>
@@ -220,15 +220,15 @@ async function submitPermissions() {
   }
 }
 
-definePageMeta({
-  layout: "dashboard",
-});
-
 useSeoPage({
   title: computed(() =>
     role.value
       ? `${role.value.displayName} | ${t("meta.role_details")}`
       : t("meta.roles")
   ),
+});
+
+definePageMeta({
+  layout: "dashboard",
 });
 </script>

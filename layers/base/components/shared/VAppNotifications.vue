@@ -1,30 +1,29 @@
 <template>
-  <div>
+  <div class="relative" ref="wrapperRef">
     <!-- OPEN BUTTON -->
-    <LazyVButton type="button" variant="ghost" text-color="text-gray-400"
-      class="relative rounded-xl border border-white/10 bg-white/5 p-1.5 transition-all hover:bg-white/10"
+    <LazyVButton type="button" variant="ghost" padding-x="px-0" padding-y="py-0"
+      class="w-8 h-8 flex items-center justify-center rounded-lg border border-[var(--border-default)] bg-[var(--bg-hover)] hover:bg-[var(--bg-hover-strong)] text-tx-secondary hover:text-tx-primary transition-colors flex-shrink-0"
       @click.stop="isOpen = !isOpen">
-      <Icon name="material-symbols:notifications-outline-rounded"
-        class="h-7 w-7 rounded-full bg-gray-200 p-0.5 hover:bg-gray-400" />
+      <Icon name="material-symbols:notifications-outline-rounded" class="h-4 w-4" />
       <span
-        class="absolute -end-0.5 -top-0.5 h-[7px] w-[7px] rounded-full bg-gradient-to-b from-indigo-300 to-blue-300 animate-ping" />
+        class="absolute end-0.5 top-0.5 h-[7px] w-[7px] rounded-full bg-gradient-to-b from-indigo-300 to-blue-300 animate-ping pointer-events-none" />
       <span
-        class="absolute -end-0.5 -top-0.5 h-[7px] w-[7px] rounded-full bg-gradient-to-b from-indigo-300 to-blue-300" />
+        class="absolute end-0.5 top-0.5 h-[7px] w-[7px] rounded-full bg-gradient-to-b from-indigo-300 to-blue-300 pointer-events-none" />
     </LazyVButton>
 
     <!-- DROPDOWN DIALOG -->
     <Transition name="fade">
-      <div v-if="isOpen" ref="dropdownRef" class="fixed inset-0 z-[1000] flex justify-end font-sans">
+      <div v-if="isOpen" class="fixed inset-0 z-[1000] flex justify-end font-sans">
         <!-- BACKDROP -->
         <div class="absolute inset-0 bg-black/50" @click="closeDialog" />
 
         <!-- SIDEPANEL -->
         <div
-          class="relative z-[1001] h-screen w-full max-w-md border-s border-white/5 bg-brand-layoutBg shadow-2xl flex flex-col">
+          class="relative z-[1001] h-screen w-full max-w-md border-s border-[var(--border-subtle)] bg-bg-primary shadow-2xl flex flex-col">
 
           <!-- HEADER -->
           <div class="flex items-center justify-between px-6 pt-6 pb-4">
-            <h3 class="text-base font-semibold text-gray-100">
+            <h3 class="text-base font-semibold text-tx-primary">
               Notifications
             </h3>
             <div class="flex items-center gap-4">
@@ -32,24 +31,24 @@
                 Mark all as read
               </button>
               <button @click="closeDialog"
-                class="text-gray-500 hover:text-gray-300 transition-colors flex items-center justify-center">
+                class="text-tx-muted hover:text-tx-primary transition-colors flex items-center justify-center">
                 <Icon name="material-symbols:close-rounded" class="w-5 h-5" />
               </button>
             </div>
           </div>
 
           <!-- TABS -->
-          <div class="flex items-center gap-6 px-6 border-b border-white/5">
+          <div class="flex items-center gap-6 px-6 border-b border-[var(--border-subtle)]">
             <button class="pb-3 text-sm font-medium text-indigo-400 border-b-2 border-indigo-500 relative -mb-[1px]">
               All
             </button>
             <button
-              class="pb-3 text-sm font-medium text-gray-400 hover:text-gray-300 flex items-center gap-1.5 relative -mb-[1px]">
+              class="pb-3 text-sm font-medium text-tx-secondary hover:text-tx-primary flex items-center gap-1.5 relative -mb-[1px]">
               Unread <span
                 class="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500/20 text-[11px] text-indigo-400">2</span>
             </button>
             <button
-              class="pb-3 text-sm font-medium text-gray-400 hover:text-gray-300 flex items-center gap-1.5 relative -mb-[1px]">
+              class="pb-3 text-sm font-medium text-tx-secondary hover:text-tx-primary flex items-center gap-1.5 relative -mb-[1px]">
               Approvals <span
                 class="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500/20 text-[11px] text-indigo-400">1</span>
             </button>
@@ -59,32 +58,31 @@
           <div class="flex-1 overflow-y-auto hide-scrollbar">
             <ul class="flex flex-col">
               <li v-for="(item, index) in mockNotifications" :key="index"
-                class="relative flex items-start gap-4 p-5 hover:bg-white/[0.04] transition-colors border-t border-white/5 first:border-t-0"
-                :class="item.unread ? 'border-s-[3px] border-s-indigo-500 bg-white/[0.02]' : 'border-s-[3px] border-s-transparent bg-transparent'">
+                class="relative flex items-start gap-4 p-5 hover:bg-[var(--bg-hover)] transition-colors border-t border-[var(--border-subtle)] first:border-t-0"
+                :class="item.unread ? 'border-s-[3px] border-s-indigo-500 bg-[var(--bg-hover)]' : 'border-s-[3px] border-s-transparent'">
                 <div class="flex-shrink-0 mt-0.5 flex h-11 w-11 items-center justify-center rounded-xl"
                   :class="item.iconBg">
                   <Icon :name="item.icon" class="w-6 h-6" :class="item.iconColor" />
                 </div>
                 <div class="flex-grow">
                   <div class="flex items-center justify-between mb-1.5">
-                    <p class="text-sm font-medium text-gray-200">{{ item.title }}</p>
-                    <span class="text-[11px] font-medium tracking-wider text-gray-500 uppercase">{{ item.time }}</span>
+                    <p class="text-sm font-medium text-tx-primary">{{ item.title }}</p>
+                    <span class="text-[11px] font-medium tracking-wider text-tx-muted uppercase">{{ item.time }}</span>
                   </div>
-                  <p class="text-sm text-gray-400 leading-snug">{{ item.description }}</p>
+                  <p class="text-sm text-tx-secondary leading-snug">{{ item.description }}</p>
                 </div>
               </li>
             </ul>
           </div>
 
           <!-- FOOTER -->
-          <div class="p-4 text-center border-t border-white/5 bg-black/10">
+          <div class="p-4 text-center border-t border-[var(--border-subtle)] bg-[var(--bg-hover)]">
             <NuxtLink to="/notifications"
               class="text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors flex items-center justify-center gap-1.5">
               View all notifications
               <Icon name="material-symbols:arrow-forward-rounded" class="w-4 h-4" />
             </NuxtLink>
           </div>
-
         </div>
       </div>
     </Transition>
@@ -92,10 +90,8 @@
 </template>
 
 <script lang="ts" setup>
-const { t } = useI18n()
-
 const isOpen = ref(false)
-const dropdownRef = ref<HTMLElement | null>(null)
+const wrapperRef = ref<HTMLElement | null>(null)
 
 const mockNotifications = [
   {
@@ -141,7 +137,7 @@ const closeDialog = () => {
 }
 
 const handleClickOutside = (e: MouseEvent) => {
-  if (dropdownRef.value && !dropdownRef.value.contains(e.target as Node)) {
+  if (wrapperRef.value && !wrapperRef.value.contains(e.target as Node)) {
     closeDialog()
   }
 }

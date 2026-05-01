@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">request-status</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">request-status</p>
 
     <div class="p-10">
       <LazyVBackButton />
@@ -9,6 +9,14 @@
 </template>
 
 <script lang="ts" setup>
+const { t } = useI18n();
+
+useSeoPage({
+  title: () => t("meta.request_status"),
+  description: () => t("meta.request_status_description"),
+  private: true,
+});
+
 definePageMeta({
   layout: 'dashboard'
 })

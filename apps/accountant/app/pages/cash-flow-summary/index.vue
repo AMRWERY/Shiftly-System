@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">cash-flow-summary</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">cash-flow-summary</p>
   </div>
 </template>
 

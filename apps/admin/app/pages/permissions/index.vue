@@ -29,12 +29,7 @@
 import type { Column } from '@/layers/base/types/tables'
 import type { UserListItem } from '@/layers/base/types'
 
-definePageMeta({
-  layout: 'dashboard'
-})
-
 const { t } = useI18n()
-const { triggerToast } = useToast()
 const usersStore = useUsersStore()
 const isEditDialogOpen = ref(false)
 const selectedUser = ref<UserListItem | null>(null)
@@ -113,4 +108,8 @@ useSeoPage({
   description: () => t("meta.permissions_description"),
   private: true,
 });
+
+definePageMeta({
+  layout: 'dashboard'
+})
 </script>

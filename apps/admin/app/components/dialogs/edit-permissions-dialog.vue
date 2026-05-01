@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div>
     <LazyVDialog :model-value="isOpen" :title="t('permissions.edit_permissions')" :show-default-footer="false"
       @update:model-value="closeModal" @close="closeModal" max-width="max-w-4xl">
@@ -15,7 +15,7 @@
                 <h3 class="text-lg font-semibold text-gray-400">
                   {{ user?.fullName }}
                 </h3>
-                <p class="text-sm text-gray-300">{{ user?.email }}</p>
+                <p class="text-sm text-tx-secondary">{{ user?.email }}</p>
                 <span
                   class="inline-block mt-1 px-2 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800">
                   {{ t(`roles.${user?.role}`) }}
@@ -24,7 +24,7 @@
             </div>
           </div>
 
-          <p class="text-sm text-gray-300 mb-4">
+          <p class="text-sm text-tx-secondary mb-4">
             {{ t("permissions.select_permissions") }}
           </p>
 
@@ -48,7 +48,7 @@
                   <input type="checkbox" :checked="hasPermission(module, action)"
                     @change="togglePermission(module, action)"
                     class="w-4 h-4 text-blue-400 border-gray-300 rounded focus:ring-blue-500" />
-                  <span class="ms-2 text-sm text-gray-300 group-hover:text-gray-400">
+                  <span class="ms-2 text-sm text-tx-secondary group-hover:text-gray-400">
                     {{ t(`permissions.actions.${action}`) }}
                   </span>
                 </label>
@@ -59,7 +59,7 @@
           <!-- Footer Buttons -->
           <div class="mt-6 flex justify-end gap-3 pt-4 border-t">
             <LazyVButton type="button" variant="outline" bg-color="bg-gray-100" hover-color="hover:bg-gray-200"
-              text-color="text-gray-300" padding-x="px-4" padding-y="py-2" @click="closeModal">
+              text-color="text-tx-secondary" padding-x="px-4" padding-y="py-2" @click="closeModal">
               {{ t("btn.cancel") }}
             </LazyVButton>
             <LazyVButton type="button" :disabled="loading" hover-color="hover:bg-blue-700" padding-x="px-4"

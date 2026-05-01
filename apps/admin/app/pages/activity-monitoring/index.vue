@@ -1,11 +1,19 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-gray-100">activity-monitoring</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">activity-monitoring</p>
   </div>
 </template>
 
 <script lang="ts" setup>
-  definePageMeta({
+const { t } = useI18n();
+
+useSeoPage({
+  title: () => t("meta.activity_monitoring"),
+  description: () => t("meta.activity_monitoring_description"),
+  private: true,
+});
+
+definePageMeta({
   layout: 'dashboard'
 })
 </script>

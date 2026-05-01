@@ -8,7 +8,7 @@
         <div class="flex flex-1 min-h-0 flex-col">
           <!-- Header + Controls Row -->
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6 shrink-0">
-            <h1 class="text-2xl font-semibold text-gray-200">{{ t('layouts.users') }}</h1>
+            <h1 class="text-2xl font-semibold text-tx-secondary">{{ t('layouts.users') }}</h1>
 
             <!-- Controls: Download + Search + Refresh + Add Button -->
             <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
@@ -303,13 +303,13 @@ const confirmDeactivateUser = async () => {
   }
 }
 
-definePageMeta({
-  layout: 'dashboard'
-})
-
 useSeoPage({
   title: () => t("meta.users"),
   description: () => t("meta.users_description"),
   private: true,
 });
+
+definePageMeta({
+  layout: 'dashboard'
+})
 </script>

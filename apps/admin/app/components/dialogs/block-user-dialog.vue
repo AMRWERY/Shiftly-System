@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div>
     <LazyVDialog :model-value="show" :title="dialogTitle" :show-default-footer="false" @update:model-value="closeDialog"
       @close="closeDialog">
@@ -11,11 +11,11 @@
               'w-20 h-20 mx-auto',
               isBlocked ? 'text-green-500' : 'text-orange-500',
             ]" />
-          <p class="text-gray-300 mt-4">{{ dialogMessage }}</p>
+          <p class="text-tx-secondary mt-4">{{ dialogMessage }}</p>
         </div>
       </template>
       <template #footer>
-        <LazyVButton type="button" variant="outline" border-color="border-gray-600" text-color="text-white"
+        <LazyVButton type="button" variant="outline" border-color="border-gray-600" text-color="text-tx-primary"
           hover-color="hover:bg-gray-700" padding-x="px-5" padding-y="py-2.5" @click="closeDialog">
           {{ cancelText }}
         </LazyVButton>

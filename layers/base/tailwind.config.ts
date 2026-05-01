@@ -14,21 +14,34 @@ export default {
     extend: {
       colors: {
         brand: {
-          systemBg: "#060818", // Deep navy black
-          layoutBg: "#0B0F19", // Slightly lighter navy
-          cardBg: "rgba(17, 24, 39, 0.7)", // Translucent navy for glassmorphism
-          primary: "#3b82f6", // Vibrant blue
-          secondary: "#1d4ed8", // Deep blue
-          accent: "#10b981", // Emerald green for success/positive trends
-          danger: "#ef4444", // Red for warnings/negative trends
-          warning: "#f59e0b", // Amber for pending actions
+          systemBg: "rgb(var(--bg-base-rgb) / <alpha-value>)",
+          layoutBg: "rgb(var(--bg-primary-rgb) / <alpha-value>)",
+          cardBg: "rgb(var(--bg-elevated-rgb) / 0.7)",
+          primary: "rgb(var(--brand-rgb) / <alpha-value>)",
+          secondary: "rgb(var(--brand-secondary-rgb) / <alpha-value>)",
+          accent: "rgb(var(--success-rgb) / <alpha-value>)",
+          danger: "rgb(var(--danger-rgb) / <alpha-value>)",
+          warning: "rgb(var(--warning-rgb) / <alpha-value>)",
+        },
+        // Semantic background tokens
+        bg: {
+          base: "rgb(var(--bg-base-rgb) / <alpha-value>)",
+          primary: "rgb(var(--bg-primary-rgb) / <alpha-value>)",
+          elevated: "rgb(var(--bg-elevated-rgb) / <alpha-value>)",
+          overlay: "rgb(var(--bg-overlay-rgb) / <alpha-value>)",
+        },
+        // Semantic text tokens
+        tx: {
+          primary: "rgb(var(--text-primary-rgb) / <alpha-value>)",
+          secondary: "rgb(var(--text-secondary-rgb) / <alpha-value>)",
+          muted: "rgb(var(--text-muted-rgb) / <alpha-value>)",
         },
         // Light grays for backgrounds or cards
         lightsmoke: "#F5F5F5",
         gainsboro: "#DCDCDC",
         cultured: "#F3F4F6", // softer gray
         silversand: "#C4C4C4",
-        // Custom semantic text colors (optional)
+        // Legacy text colors kept for backwards compat
         lightText: {
           primary: "#1a1a1a",
           secondary: "#4b4b4b",

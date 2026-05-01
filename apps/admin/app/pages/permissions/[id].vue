@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <div class="p-6">
             <LazyVBackButton />
@@ -29,7 +29,7 @@
                             <h1 class="text-2xl font-bold text-gray-400 mb-1">
                                 {{ t('permissions.edit_permissions_for') }}: {{ user.fullName }}
                             </h1>
-                            <p class="text-sm text-gray-300 mb-2">{{ user.email }}</p>
+                            <p class="text-sm text-tx-secondary mb-2">{{ user.email }}</p>
                             <div class="flex gap-2">
                                 <span
                                     class="inline-block px-3 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800">
@@ -50,7 +50,7 @@
                         <h2 class="text-xl font-semibold text-gray-400 mb-2">
                             {{ t('permissions.manage_permissions') }}
                         </h2>
-                        <p class="text-sm text-gray-300">
+                        <p class="text-sm text-tx-secondary">
                             {{ t('permissions.select_permissions_description') }}
                         </p>
                     </div>
@@ -92,7 +92,7 @@
                                         @change="permissionsStore.togglePermission(module, action)"
                                         :disabled="permissionsStore.saving"
                                         class="w-4 h-4 text-blue-400 border-gray-300 rounded focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" />
-                                    <span class="ms-2 text-sm text-gray-300 group-hover:text-gray-400 font-medium">
+                                    <span class="ms-2 text-sm text-tx-secondary group-hover:text-gray-400 font-medium">
                                         {{ t(`permissions.actions.${action}`) }}
                                     </span>
                                 </label>
@@ -103,7 +103,7 @@
                     <!-- Action Buttons -->
                     <div class="mt-8 flex justify-end gap-3 pt-6 border-t border-gray-200">
                         <LazyVButton type="button" variant="outline" bg-color="bg-gray-100"
-                            hover-color="hover:bg-gray-200" text-color="text-gray-300" padding-x="px-6"
+                            hover-color="hover:bg-gray-200" text-color="text-tx-secondary" padding-x="px-6"
                             padding-y="py-2.5" @click="navigateBack" :disabled="permissionsStore.saving">
                             {{ t('btn.cancel') }}
                         </LazyVButton>
@@ -245,11 +245,6 @@ const getModuleIcon = (module: string): string => {
     return icons[module] || 'heroicons:document'
 }
 
-definePageMeta({
-    layout: 'dashboard'
-})
-
-// Set page title
 useSeoPage({
     title: computed(() =>
         user.value
@@ -257,6 +252,10 @@ useSeoPage({
             : t('permissions.edit_permissions')
     ),
     private: true,
+})
+
+definePageMeta({
+    layout: 'dashboard'
 })
 </script>
 

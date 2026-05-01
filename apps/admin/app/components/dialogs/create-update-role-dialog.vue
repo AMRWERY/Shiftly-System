@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div>
     <LazyVDialog :model-value="isOpen" :title="dialogTitle" :show-default-footer="false"
       @update:model-value="handleClose" @close="handleClose">
@@ -22,7 +22,7 @@
       <template #footer>
         <div v-if="!loading" class="flex items-center justify-end gap-3">
           <LazyVButton type="button" variant="outline" :padding-x="'px-3'" :border-color="'border-gray-100'"
-            :text-color="'text-gray-100'" :padding-y="'py-2'" @click="handleClose" :disabled="saving">
+            :text-color="'text-tx-primary'" :padding-y="'py-2'" @click="handleClose" :disabled="saving">
             {{ t("btn.cancel") }}
           </LazyVButton>
           <LazyVButton type="button" :padding-x="'px-3'" :padding-y="'py-2'" @click="handleSubmit" :disabled="saving">

@@ -1,18 +1,18 @@
-<template>
+﻿<template>
   <div>
     <LazyVDialog :model-value="show" :title="dialogTitle" :show-default-footer="false" @update:model-value="closeDialog"
       @close="closeDialog">
       <template #body>
         <div class="text-center">
           <Icon name="material-symbols:warning-outline" class="w-20 h-20 mx-auto text-red-300" />
-          <p class="text-gray-300 mt-4">{{ dialogMessage }}</p>
+          <p class="text-tx-secondary mt-4">{{ dialogMessage }}</p>
           <p class="text-red-400 font-semibold mt-3">
             {{ t("dialog.deactivate_warning") }}
           </p>
         </div>
       </template>
       <template #footer>
-        <LazyVButton type="button" variant="outline" border-color="border-gray-600" text-color="text-white"
+        <LazyVButton type="button" variant="outline" border-color="border-gray-600" text-color="text-tx-primary"
           hover-color="hover:bg-gray-700" padding-x="px-5" padding-y="py-2.5" @click="closeDialog">
           {{ cancelText }}
         </LazyVButton>

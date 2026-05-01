@@ -19,5 +19,15 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({ layout: 'dashboard' })
+const { t } = useI18n();
+
+useSeoPage({
+  title: () => t("meta.leave_request"),
+  description: () => t("meta.leave_request_description"),
+  private: true,
+});
+
+definePageMeta({
+  layout: 'dashboard'
+})
 </script>

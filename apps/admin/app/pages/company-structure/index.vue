@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="p-10 space-y-6">
     <LazyVTable :items="employees" :columns="columns" :total-items="employees.length" has-view has-edit has-delete>
       <template #table-header>
@@ -8,7 +8,7 @@
           Live Data
         </span>
         <span
-          class="rounded-full border border-gray-700/60 bg-gray-800/50 px-2.5 py-1 text-[10px] font-semibold text-gray-400">
+          class="rounded-full border border-[var(--border-default)]/60 bg-[var(--bg-hover)] px-2.5 py-1 text-[10px] font-semibold text-gray-400">
           {{ employees.length }} records
         </span>
       </template>
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import type { Column } from '@/layers/base/types/tables'
 
-definePageMeta({ layout: 'dashboard' })
+const { t } = useI18n();
 
 const columns: Column[] = [
   { key: 'user', label: 'Employee' },
@@ -42,4 +42,14 @@ const employees = [
   { id: 9, fullName: 'Rajan Patel', email: 'r.patel@nexux.io', avatarUrl: 'https://i.pravatar.cc/80?img=15', role: 'TECHNICIAN', department: 'Field Services', salary: 87600, joinDate: '2022-11-05', status: 'active' },
   { id: 10, fullName: 'Aisha Oduya', email: 'a.oduya@nexux.io', avatarUrl: 'https://i.pravatar.cc/80?img=39', role: 'OPERATIONS', department: 'Logistics', salary: 104200, joinDate: '2021-07-19', status: 'deactivated' },
 ]
+
+useSeoPage({
+  title: () => t("meta.company_structure"),
+  description: () => t("meta.company_structure_description"),
+  private: true,
+});
+
+definePageMeta({
+  layout: 'dashboard'
+})
 </script>

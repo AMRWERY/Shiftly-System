@@ -20,5 +20,15 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({ layout: 'dashboard' })
+const { t } = useI18n();
+
+useSeoPage({
+  title: () => t("meta.payslips"),
+  description: () => t("meta.payslips_description"),
+  private: true,
+});
+
+definePageMeta({
+  layout: 'dashboard'
+})
 </script>

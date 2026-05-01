@@ -1,13 +1,13 @@
-<template>
+﻿<template>
   <div>
     <div class="space-y-6">
       <div>
-        <label for="roleName" class="block text-sm font-medium text-gray-300 mb-2">
+        <label for="roleName" class="block text-sm font-medium text-tx-secondary mb-2">
           {{ t("roles.role_name") }} <span class="text-red-300">*</span>
         </label>
         <input id="roleName" v-model="localFormData.name" type="text" :disabled="isEditMode"
           :placeholder="t('roles.role_name_placeholder')"
-          class="w-full px-4 py-2 border border-gray-700 bg-brand-systemBg text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:bg-brand-layoutBg/50 disabled:text-gray-500 disabled:cursor-not-allowed"
+          class="w-full px-4 py-2 border border-[var(--border-default)] bg-brand-systemBg text-tx-primary rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:bg-brand-layoutBg/50 disabled:text-gray-500 disabled:cursor-not-allowed"
           :class="{ 'border-red-500': errors.name }" />
         <p v-if="errors.name" class="mt-1 text-sm text-red-300">
           {{ errors.name }}
@@ -18,12 +18,12 @@
       </div>
 
       <div>
-        <label for="displayName" class="block text-sm font-medium text-gray-300 mb-2">
+        <label for="displayName" class="block text-sm font-medium text-tx-secondary mb-2">
           {{ t("roles.display_name") }} <span class="text-red-300">*</span>
         </label>
         <input id="displayName" v-model="localFormData.displayName" type="text"
           :placeholder="t('roles.display_name_placeholder')"
-          class="w-full px-4 py-2 border border-gray-700 bg-brand-systemBg text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          class="w-full px-4 py-2 border border-[var(--border-default)] bg-brand-systemBg text-tx-primary rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           :class="{ 'border-red-500': errors.displayName }" />
         <p v-if="errors.displayName" class="mt-1 text-sm text-red-300">
           {{ errors.displayName }}
@@ -31,12 +31,12 @@
       </div>
 
       <div>
-        <label for="description" class="block text-sm font-medium text-gray-300 mb-2">
+        <label for="description" class="block text-sm font-medium text-tx-secondary mb-2">
           {{ t("roles.description") }}
         </label>
         <textarea id="description" v-model="localFormData.description" rows="3"
           :placeholder="t('roles.description_placeholder')"
-          class="w-full px-4 py-2 border border-gray-700 bg-brand-systemBg text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"></textarea>
+          class="w-full px-4 py-2 border border-[var(--border-default)] bg-brand-systemBg text-tx-primary rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"></textarea>
       </div>
     </div>
   </div>

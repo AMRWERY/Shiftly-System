@@ -1,10 +1,10 @@
-<template>
+﻿<template>
     <div>
         <LazyVDialog :model-value="isOpen" :title="t('dialog.edit_user_title', { name: user?.fullName || '' })"
             :show-default-footer="false" @update:model-value="closeModal" @close="closeModal">
             <template #body>
                 <div class="mt-2">
-                    <p class="text-sm text-gray-300 mb-4">
+                    <p class="text-sm text-tx-secondary mb-4">
                         {{ t('dialog.edit_user_message') }}
                     </p>
 
@@ -55,8 +55,8 @@
                         </div>
 
                         <div class="mt-6 flex justify-end gap-3">
-                            <LazyVButton type="button" variant="outline" :border-color="'border-gray-700'"
-                                :text-color="'text-white'" padding-x="px-4" padding-y="py-2" @click="closeModal"
+                            <LazyVButton type="button" variant="outline" :border-color="'border-[var(--border-default)]'"
+                                :text-color="'text-tx-primary'" padding-x="px-4" padding-y="py-2" @click="closeModal"
                                 class="hover:bg-gray-700 transition-colors">
                                 {{ t('btn.cancel') }}
                             </LazyVButton>

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <div class="bg-brand-primary/5 border border-brand-primary/10 p-3 rounded-xl flex items-center justify-between">
             <div class="flex items-center gap-4">
@@ -9,9 +9,9 @@
 
                 <div class="flex gap-2 ms-4">
                     <div v-for="action in actions" :key="action.label"
-                        class="bg-gray-800/50 px-3 py-1 rounded-full border border-gray-700 flex items-center gap-2">
+                        class="bg-[var(--bg-hover)] px-3 py-1 rounded-full border border-[var(--border-default)] flex items-center gap-2">
                         <div :class="['w-2 h-2 rounded-full', action.dot]"></div>
-                        <span class="text-xs text-gray-300">{{ action.label }}</span>
+                        <span class="text-xs text-tx-secondary">{{ action.label }}</span>
                     </div>
                 </div>
             </div>

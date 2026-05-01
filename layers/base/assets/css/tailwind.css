@@ -2,9 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html,
+  body {
+    background-color: rgb(var(--bg-base-rgb));
+    color: rgb(var(--text-primary-rgb));
+    @apply antialiased font-sans;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border-default);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(var(--text-muted-rgb));
+  }
+}
+
 @layer utilities {
   body {
-    @apply bg-brand-systemBg text-darkText-primary antialiased;
+    @apply antialiased;
   }
 
   .layout-bg {
@@ -37,18 +64,18 @@
 
   /* Sidebar link active state */
   .sidebar-link-active {
-    @apply bg-white/5 text-white border-s-4 border-[#6366F1] rounded-none !important;
+    @apply bg-brand-primary/10 dark:bg-white/5 text-brand-primary dark:text-white border-s-4 border-[#6366F1] rounded-none !important;
     box-shadow: none !important;
   }
 
   /* Sidebar link hover state */
   .sidebar-link-hover {
-    @apply hover:bg-white/5 border-s-4 border-transparent rounded-none !important;
+    @apply hover:bg-[var(--bg-hover)] border-s-4 border-transparent rounded-none !important;
   }
 
   /* Card/Dialog background - Glassmorphism */
   .card-bg {
-    @apply bg-brand-cardBg backdrop-blur-md border border-white/10 rounded-2xl shadow-xl;
+    @apply bg-brand-cardBg backdrop-blur-md border border-[var(--border-default)] rounded-2xl shadow-xl;
   }
 
   .glow-blue {
@@ -81,8 +108,8 @@
 
   /* Auth OTP digit input box */
   .auth-otp-input {
-    @apply text-center bg-[#13192a] border border-white/5 outline-none rounded-lg
-           focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-white;
+    @apply text-center bg-bg-elevated border border-[var(--border-subtle)] outline-none rounded-lg
+           focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-tx-primary;
   }
 
   /* ─── Sidebar Navigation Utilities ───────────────────── */
@@ -108,7 +135,7 @@
 
   /* Section/link leading icon */
   .sidebar-section-icon {
-    @apply w-5 h-5 transition duration-75 group-hover:text-white;
+    @apply w-5 h-5 transition duration-75 group-hover:text-brand-primary dark:group-hover:text-white;
   }
 
   /* Expandable section chevron icon */
