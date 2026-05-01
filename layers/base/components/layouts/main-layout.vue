@@ -137,13 +137,21 @@
             <nav class="flex-1 overflow-y-auto hide-scrollbar py-3 px-2 space-y-0.5">
               <template v-if="authStore.isAuthenticated">
                 <admin-layout v-if="isAdmin" :collapsed="false" />
+
                 <accountant-layout v-if="isAccountant" :collapsed="false" />
+
                 <employee-layout v-if="isEmployee" :collapsed="false" />
+
                 <hr-layout v-if="isHr" :collapsed="false" />
+
                 <manager-layout v-if="isManager" :collapsed="false" />
+
                 <system-auditor-layout v-if="isSystemAuditor" :collapsed="false" />
+
                 <inventory-manager-layout v-if="isInventoryManager" :collapsed="false" />
+
                 <td-officer-layout v-if="isTdOfficer" :collapsed="false" />
+
                 <maintenance-technician-layout v-if="isMaintenanceTechnician" :collapsed="false" />
               </template>
             </nav>
@@ -294,10 +302,10 @@ const switchLocale = async (value: SupportedLocale) => {
   isMobileSidebarOpen.value = false
   localeStore.updateLocale(value)
   if (value === 'ar') {
-    const msgs = await import('../../i18n/locales/ar.json')
+    const msgs = await import('@/layers/base/i18n/locales/ar.json')
     setLocaleMessage('ar', msgs.default || msgs)
   } else {
-    const msgs = await import('../../i18n/locales/en.json')
+    const msgs = await import('@/layers/base/i18n/locales/en.json')
     setLocaleMessage('en', msgs.default || msgs)
   }
   setLocale(value)
@@ -333,5 +341,4 @@ watch(() => route.path, () => {
 watch(currentRole, (newRole) => {
   console.log('Current user role changed to:', newRole)
 })
-
 </script>

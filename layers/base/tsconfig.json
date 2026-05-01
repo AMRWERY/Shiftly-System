@@ -4,7 +4,15 @@
   // When editing base layer files, ensure you have run 'nuxt prepare' in at least one app
   "extends": "../../apps/maintenance-technician/.nuxt/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "module": "esnext",
+    "allowArbitraryExtensions": false,
+    "paths": {
+      "@": ["../.."],
+      "@/*": ["../../*"],
+      "~": ["../../apps/maintenance-technician/app"],
+      "~/*": ["../../apps/maintenance-technician/app/*"]
+    }
   },
   "include": [
     "../../apps/maintenance-technician/.nuxt/nuxt.d.ts",
@@ -12,5 +20,6 @@
     "**/*.tsx",
     "**/*.vue"
 , "../../apps/admin/app/stores/settingsStore.ts"  ],
-  "exclude": ["node_modules", ".nuxt", "dist"]
+  "exclude": ["node_modules", ".nuxt", "dist"],
+  
 }
