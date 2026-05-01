@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div>
     <LazyVDialog :model-value="isOpen" :title="t('dialog.invite_user_title')" :show-default-footer="false"
       @update:model-value="closeModal" @close="closeModal">
@@ -61,10 +61,7 @@
               <LazyVButton type="submit" :disabled="loading" hover-color="hover:bg-blue-700" padding-x="px-4"
                 padding-y="py-2"
                 class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                <span v-if="loading" class="flex items-center gap-2">
-                  <Icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
-                  Processing...
-                </span>
+                <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Processing..." icon-name="svg-spinners:180-ring-with-bg" />
                 <span v-else>{{ t('btn.invite_user') }}</span>
               </LazyVButton>
             </div>

@@ -68,7 +68,7 @@
         </div>
 
         <button type="submit" :disabled="loading" class="auth-btn-primary">
-          <Icon v-if="loading" name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Verifying..." icon-name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:check-circle" class="opacity-80" />
             {{ t('btn.verify_account') }}
@@ -107,7 +107,7 @@
         </div>
 
         <button type="submit" :disabled="loading" class="auth-btn-primary">
-          <Icon v-if="loading" name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Creating account..." icon-name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:user-plus" class="opacity-80" />
             {{ t('btn.create_account_button') }}

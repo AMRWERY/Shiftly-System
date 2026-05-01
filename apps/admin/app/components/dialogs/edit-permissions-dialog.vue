@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div>
     <LazyVDialog :model-value="isOpen" :title="t('permissions.edit_permissions')" :show-default-footer="false"
       @update:model-value="closeModal" @close="closeModal" max-width="max-w-4xl">
@@ -66,10 +66,7 @@
               padding-y="py-2"
               class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               @click="savePermissions">
-              <span v-if="loading" class="flex items-center gap-2">
-                <Icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
-                Saving...
-              </span>
+              <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Saving..." icon-name="svg-spinners:180-ring-with-bg" />
               <span v-else>{{ t("permissions.save_permissions") }}</span>
             </LazyVButton>
           </div>

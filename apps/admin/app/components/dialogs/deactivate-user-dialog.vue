@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div>
     <LazyVDialog :model-value="show" :title="dialogTitle" :show-default-footer="false" @update:model-value="closeDialog"
       @close="closeDialog">
@@ -18,7 +18,7 @@
         </LazyVButton>
         <LazyVButton type="button" bg-color="bg-red-500" hover-color="hover:bg-red-600" :disabled="loading"
           padding-x="px-5" padding-y="py-2.5" class="ms-4" @click="confirmAction">
-          <Icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Deactivating..." icon-name="svg-spinners:270-ring" />
           <span v-else>{{ confirmText }}</span>
         </LazyVButton>
       </template>

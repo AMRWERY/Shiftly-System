@@ -22,7 +22,7 @@
                 </LazyVButton>
                 <LazyVButton type="button" bg-color="bg-red-500" hover-color="hover:bg-red-600" :disabled="loading"
                   padding-x="px-5" padding-y="py-2.5" @click="confirmDelete">
-                  <Icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
+                  <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Deleting..." icon-name="svg-spinners:270-ring" />
                   <span v-else>{{ confirmText }}</span>
                 </LazyVButton>
               </div>

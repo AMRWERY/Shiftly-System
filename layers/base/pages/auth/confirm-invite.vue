@@ -38,7 +38,7 @@
       <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-brand-systemBg">
         <div class="w-full max-w-lg text-center">
           <div v-if="loading" class="space-y-4">
-            <Icon name="svg-spinners:180-ring-with-bg" class="w-12 h-12 mx-auto text-indigo-500" />
+            <LazyVLoadingSpinner size="xl" color="text-indigo-500" icon-name="svg-spinners:180-ring-with-bg" class="mx-auto" />
             <p class="text-gray-300">{{ t('form.setting_up_account') }}</p>
           </div>
 

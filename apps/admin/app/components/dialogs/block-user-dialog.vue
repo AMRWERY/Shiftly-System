@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div>
     <LazyVDialog :model-value="show" :title="dialogTitle" :show-default-footer="false" @update:model-value="closeDialog"
       @close="closeDialog">
@@ -23,7 +23,7 @@
           :hover-color="isBlocked ? 'hover:bg-green-700' : 'hover:bg-orange-700'"
           :bg-color="isBlocked ? 'bg-green-600' : 'bg-orange-600'" padding-x="px-5" padding-y="py-2.5" class="ms-4"
           @click="confirmAction">
-          <Icon v-if="loading" name="svg-spinners:270-ring" class="w-5 h-5" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" :text="isBlocked ? 'Unblocking...' : 'Blocking...'" icon-name="svg-spinners:270-ring" />
           <span v-else>{{ confirmText }}</span>
         </LazyVButton>
       </template>

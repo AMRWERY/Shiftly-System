@@ -107,7 +107,7 @@
                 <LazyVButton :block="true" type="submit" @click="updatePersonalInfo" :class="{
                   'opacity-50 cursor-not-allowed': isUpdatingPersonalInfo,
                 }" :padding-y="'py-2.5'">
-                  <Icon name="svg-spinners:90-ring-with-bg" v-if="isUpdatingPersonalInfo" />
+                  <LazyVLoadingSpinner v-if="isUpdatingPersonalInfo" size="sm" color="text-white" text-color="text-white" text="Updating..." icon-name="svg-spinners:90-ring-with-bg" />
                   <span v-else>{{ t("btn.update_personal_information") }}</span>
                 </LazyVButton>
               </div>
@@ -134,7 +134,7 @@
                 <LazyVButton :block="true" type="submit" @click="updatePassword" :class="{
                   'opacity-50 cursor-not-allowed': isUpdatingPassword,
                 }" :padding-y="'py-2.5'">
-                  <Icon name="svg-spinners:90-ring-with-bg" v-if="isUpdatingPassword" />
+                  <LazyVLoadingSpinner v-if="isUpdatingPassword" size="sm" color="text-white" text-color="text-white" text="Updating..." icon-name="svg-spinners:90-ring-with-bg" />
                   <span v-else>{{ t("btn.update_password") }}</span>
                 </LazyVButton>
               </div>

@@ -1,4 +1,4 @@
-﻿<template>
+<template>
     <div>
         <div class="p-6">
             <LazyVBackButton />
@@ -111,10 +111,7 @@
                             hover-color="hover:bg-blue-700" padding-x="px-6" padding-y="py-2.5"
                             class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             @click="handleSave">
-                            <span v-if="permissionsStore.saving" class="flex items-center gap-2">
-                                <Icon name="svg-spinners:180-ring-with-bg" class="w-4 h-4" />
-                                {{ t('permissions.saving') }}
-                            </span>
+                            <LazyVLoadingSpinner v-if="permissionsStore.saving" size="sm" color="text-white" text-color="text-white" :text="t('permissions.saving')" icon-name="svg-spinners:180-ring-with-bg" />
                             <span v-else class="flex items-center gap-2">
                                 {{ t('permissions.save_permissions') }}
                             </span>

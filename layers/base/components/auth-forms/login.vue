@@ -38,7 +38,7 @@
 
         <!-- Submit -->
         <button type="submit" :disabled="loading" class="auth-btn-primary">
-          <Icon v-if="loading" name="svg-spinners:ring-resize" />
+          <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Signing in..." icon-name="svg-spinners:ring-resize" />
           <template v-else>
             <Icon name="ph:sign-in" class="opacity-80" />
             <span>Sign In</span>

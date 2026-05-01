@@ -1,11 +1,11 @@
-﻿<template>
+<template>
   <div>
     <LazyVDialog :model-value="isOpen" :title="dialogTitle" :show-default-footer="false"
       @update:model-value="handleClose" @close="handleClose">
       <!-- Loading State -->
       <template #body>
         <div v-if="loading" class="flex items-center justify-center p-12">
-          <Icon name="svg-spinners:ring-resize" class="w-8 h-8 text-indigo-400" />
+          <LazyVLoadingSpinner size="md" color="text-indigo-400" icon-name="svg-spinners:ring-resize" />
         </div>
 
         <!-- Content -->
@@ -26,10 +26,7 @@
             {{ t("btn.cancel") }}
           </LazyVButton>
           <LazyVButton type="button" :padding-x="'px-3'" :padding-y="'py-2'" @click="handleSubmit" :disabled="saving">
-            <span v-if="saving" class="flex items-center gap-2">
-              <Icon name="svg-spinners:ring-resize" class="w-4 h-4" />
-              {{ savingText }}
-            </span>
+            <LazyVLoadingSpinner v-if="saving" size="sm" color="text-white" text-color="text-white" :text="savingText" icon-name="svg-spinners:ring-resize" />
             <span v-else>{{ submitButtonText }}</span>
           </LazyVButton>
         </div>
