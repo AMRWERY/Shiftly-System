@@ -37,10 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-export interface BreadcrumbItem {
-  label: string
-  href?: string
-}
+import type { BreadcrumbItem } from '@/layers/base/types/shared/VBreadcrumb'
 
 const props = withDefaults(
   defineProps<{

@@ -1,9 +1,9 @@
-export function usePMSchedules() {
+export const usePMSchedules = () => {
   const supabase = useSupabaseClient()
   const schedules = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchSchedules(assetId?: string) {
+  const fetchSchedules = async (assetId?: string) => {
     loading.value = true
     try {
       let q = supabase.from('pm_schedules').select('*, asset:assets(name)')

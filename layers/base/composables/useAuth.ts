@@ -1,10 +1,10 @@
-export function useAuth() {
+export const useAuth = () => {
   const supabase = useSupabaseClient()
   const user = useSupabaseUser()
 
   const loading = ref(false)
 
-  async function signIn(email: string, password: string) {
+  const signIn = async (email: string, password: string) => {
     loading.value = true
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password })
@@ -15,7 +15,7 @@ export function useAuth() {
     }
   }
 
-  async function signOut() {
+  const signOut = async () => {
     loading.value = true
     try {
       const { error } = await supabase.auth.signOut()
@@ -26,7 +26,7 @@ export function useAuth() {
     }
   }
 
-  async function resetPassword(email: string) {
+  const resetPassword = async (email: string) => {
     loading.value = true
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email)

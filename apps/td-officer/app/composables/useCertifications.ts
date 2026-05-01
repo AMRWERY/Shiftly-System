@@ -1,9 +1,9 @@
-export function useCertifications() {
+export const useCertifications = () => {
   const supabase = useSupabaseClient()
   const certifications = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchCertifications(employeeId?: string) {
+  const fetchCertifications = async (employeeId?: string) => {
     loading.value = true
     try {
       let q = supabase.from('certifications').select('*, employee:employees(name)')

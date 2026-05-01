@@ -294,7 +294,7 @@ const selectedCountryHolidays = computed(() => {
 });
 
 // Check if a specific date is a holiday
-function isHolidayDate(dateString: string) {
+const isHolidayDate = (dateString: string) => {
   return selectedCountryHolidays.value.find(
     (holiday: any) => holiday.date === dateString
   );
@@ -350,7 +350,7 @@ const daysInMonth = computed<DayInfo[]>(() => {
 });
 
 // Calendar navigation
-function prevMonth() {
+const prevMonth = () => {
   currentDate.value = new Date(
     currentDate.value.getFullYear(),
     currentDate.value.getMonth() - 1,
@@ -358,7 +358,7 @@ function prevMonth() {
   );
 }
 
-function nextMonth() {
+const nextMonth = () => {
   currentDate.value = new Date(
     currentDate.value.getFullYear(),
     currentDate.value.getMonth() + 1,
@@ -367,7 +367,7 @@ function nextMonth() {
 }
 
 // Helper to check if a date is today
-function isToday(dateString: string) {
+const isToday = (dateString: string) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -399,18 +399,18 @@ onMounted(async () => {
   if (!form.value.customHolidays) form.value.customHolidays = [];
 });
 
-function addHoliday() {
+const addHoliday = () => {
   form.value.customHolidays.push({
     name: "",
     date: "",
   });
 }
 
-function removeHoliday(index: number) {
+const removeHoliday = (index: number) => {
   form.value.customHolidays.splice(index, 1);
 }
 
-async function save() {
+const save = async () => {
   const result = await settingsStore.updateSettings(form.value);
   if (result.success) {
     triggerToast({

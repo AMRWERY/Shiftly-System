@@ -11,12 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-interface OrgNode {
-  id: string
-  name: string
-  title?: string
-  children?: OrgNode[]
-}
+import type { OrgNode } from '../types/charts'
 
 defineProps<{
   node?: OrgNode

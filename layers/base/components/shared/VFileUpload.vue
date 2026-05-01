@@ -30,7 +30,7 @@ const emit = defineEmits<{
 
 const isDragging = ref(false)
 
-function onFileChange(event: Event) {
+const onFileChange = (event: Event) => {
   const files = Array.from((event.target as HTMLInputElement).files ?? [])
   emit('update:modelValue', files)
 }

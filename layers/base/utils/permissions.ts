@@ -89,11 +89,11 @@ export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
   ],
 }
 
-export function hasPermission(
+export const hasPermission = (
   role: Role,
   module: string,
   action: Permission['action'],
-): boolean {
+): boolean => {
   const perms = ROLE_PERMISSIONS[role] ?? []
   return perms.some(
     (p) => (p.module === '*' || p.module === module) && p.action === action,

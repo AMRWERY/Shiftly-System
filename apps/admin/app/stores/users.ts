@@ -67,7 +67,7 @@ export const useUsersStore = defineStore("users", () => {
 
   // Actions
   // Fetch all users
-  async function fetchUsers() {
+  const fetchUsers = async () => {
     loading.value = true;
     error.value = null;
     try {
@@ -84,7 +84,7 @@ export const useUsersStore = defineStore("users", () => {
   }
 
   // Block a user
-  async function blockUser(userId: string) {
+  const blockUser = async (userId: string) => {
     try {
       // Optimistic update
       const userIndex = users.value.findIndex(
@@ -114,7 +114,7 @@ export const useUsersStore = defineStore("users", () => {
   }
 
   // Unblock a user
-  async function unblockUser(userId: string) {
+  const unblockUser = async (userId: string) => {
     try {
       // Optimistic update
       const userIndex = users.value.findIndex(
@@ -144,7 +144,7 @@ export const useUsersStore = defineStore("users", () => {
   }
 
   // Delete a user
-  async function deleteUser(userId: string) {
+  const deleteUser = async (userId: string) => {
     try {
       await $fetch(`/api/admin/users/${userId}`, {
         method: "DELETE",
@@ -159,7 +159,7 @@ export const useUsersStore = defineStore("users", () => {
   }
 
   // Deactivate a user (permanent action)
-  async function deactivateUser(userId: string) {
+  const deactivateUser = async (userId: string) => {
     try {
       // Optimistic update
       const userIndex = users.value.findIndex(
@@ -189,7 +189,7 @@ export const useUsersStore = defineStore("users", () => {
   }
 
   // Invite a new user
-  async function inviteUser(userData: InviteUserData) {
+  const inviteUser = async (userData: InviteUserData) => {
     try {
       const data = await $fetch<UserListItem>("/api/admin/users/invite", {
         method: "POST",
@@ -207,23 +207,23 @@ export const useUsersStore = defineStore("users", () => {
   }
 
   // Set selected role filter
-  function setSelectedRole(role: UserRole | "all") {
+  const setSelectedRole = (role: UserRole | "all") => {
     selectedRole.value = role;
     currentPage.value = 1;
   }
 
   // Set current page
-  function setCurrentPage(page: number) {
+  const setCurrentPage = (page: number) => {
     currentPage.value = page;
   }
 
-  function setSearchTerm(term: string) {
+  const setSearchTerm = (term: string) => {
     searchTerm.value = term;
     currentPage.value = 1;
   }
 
   // Fetch single user
-  async function fetchUser(id: string) {
+  const fetchUser = async (id: string) => {
     loading.value = true;
     error.value = null;
     try {

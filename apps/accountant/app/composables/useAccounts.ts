@@ -1,9 +1,9 @@
-export function useAccounts() {
+export const useAccounts = () => {
   const supabase = useSupabaseClient()
   const accounts = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchAccounts() {
+  const fetchAccounts = async () => {
     loading.value = true
     try {
       const { data, error } = await supabase.from('accounts').select('*').order('code')

@@ -1,9 +1,9 @@
-export function useProducts() {
+export const useProducts = () => {
   const supabase = useSupabaseClient()
   const products = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchProducts(filters?: Record<string, unknown>) {
+  const fetchProducts = async (filters?: Record<string, unknown>) => {
     loading.value = true
     try {
       let q = supabase.from('products').select('*')

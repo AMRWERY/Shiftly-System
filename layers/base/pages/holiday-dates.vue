@@ -73,7 +73,7 @@ const loading = ref(true);
 const error = ref(null);
 
 // --- Holiday Data Loading ---
-function loadHolidays() {
+const loadHolidays = () => {
     loading.value = true;
     const { start: startSimulatedLoading } = useTimeoutFn(() => {
         try {
@@ -132,7 +132,7 @@ const egyptHolidays = computed(() => {
 });
 
 // Check if a specific date is an Egyptian holiday
-function isEgyptianHoliday(dateString) {
+const isEgyptianHoliday = (dateString) => {
     return egyptHolidays.value.find(holiday => holiday.date === dateString);
 }
 
@@ -182,7 +182,7 @@ const daysInMonth = computed(() => {
 });
 
 // --- Navigation ---
-function prevMonth() {
+const prevMonth = () => {
     currentDate.value = new Date(
         currentDate.value.getFullYear(),
         currentDate.value.getMonth() - 1,
@@ -190,7 +190,7 @@ function prevMonth() {
     );
 }
 
-function nextMonth() {
+const nextMonth = () => {
     currentDate.value = new Date(
         currentDate.value.getFullYear(),
         currentDate.value.getMonth() + 1,
@@ -199,7 +199,7 @@ function nextMonth() {
 }
 
 // Helper to check if a date is today
-function isToday(dateString) {
+const isToday = (dateString) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const compareDate = new Date(dateString);

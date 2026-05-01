@@ -47,20 +47,20 @@ export const PUBLIC_ROUTES = [
  * Remove locale prefix from path
  * e.g., /ar/profile -> /profile
  */
-export function removeLocalePrefix(path: string): string {
+export const removeLocalePrefix = (path: string): string => {
   return path
     .replace(/^\/[a-z]{2}(\/|$)/, "/")
     .replace(/^\/[a-z]{2}-[a-z]{2}(\/|$)/, "/");
-}
+};
 
 /**
  * Check if a user role has access to a specific route
  */
-export function checkRouteAccess(
+export const checkRouteAccess = (
   path: string,
   userRole: string | undefined,
   roleRoutes = ROLE_ROUTES,
-): boolean {
+): boolean => {
   // Remove locale prefix
   const pathWithoutLocale = removeLocalePrefix(path);
 
@@ -93,7 +93,7 @@ export function checkRouteAccess(
 
   // Check if path matches any allowed route
   return allowedRoutes.some((route) => pathWithoutLocale.startsWith(route));
-}
+};
 
 /**
  * Optional: routes that require a specific permission (module + action).
@@ -115,25 +115,25 @@ export const ROUTE_REQUIRED_PERMISSION: Record<
 /**
  * Get required permission for a path (first matching route prefix)
  */
-export function getRequiredPermissionForPath(path: string): {
+export const getRequiredPermissionForPath = (path: string): {
   module: string;
   action: string;
-} | null {
+} | null => {
   const pathWithoutLocale = removeLocalePrefix(path);
   const entry = Object.entries(ROUTE_REQUIRED_PERMISSION).find(([route]) =>
     pathWithoutLocale.startsWith(route),
   );
   return entry ? entry[1] : null;
-}
+};
 
 /**
  * Check if a user has access: either by role (legacy) or by permission when route has required permission
  */
-export function checkRouteAccessWithPermissions(
+export const checkRouteAccessWithPermissions = (
   path: string,
   userRole: string | undefined,
   hasPermission: (module: string, action: string) => boolean,
-): boolean {
+): boolean => {
   const pathWithoutLocale = removeLocalePrefix(path);
   if (
     PUBLIC_ROUTES.some((route) =>
@@ -153,14 +153,14 @@ export function checkRouteAccessWithPermissions(
   }
 
   return checkRouteAccess(path, userRole);
-}
+};
 
 /**
  * Get the list of allowed routes for a specific role
  */
-export function getAllowedRoutesForRole(
+export const getAllowedRoutesForRole = (
   userRole: string | undefined,
-): string[] {
+): string[] => {
   if (!userRole) return [];
 
   const roleSpecificRoutes =
@@ -173,4 +173,4 @@ export function getAllowedRoutesForRole(
 
   // Combine common routes with role-specific routes
   return [...COMMON_ROUTES, ...roleSpecificRoutes];
-}
+};

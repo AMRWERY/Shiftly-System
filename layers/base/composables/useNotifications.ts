@@ -1,4 +1,4 @@
-export function useNotifications() {
+export const useNotifications = () => {
   const supabase = useSupabaseClient()
   const user = useSupabaseUser()
 
@@ -6,7 +6,7 @@ export function useNotifications() {
   const unreadCount = computed(() => notifications.value.filter((n) => !n.read_at).length)
   const loading = ref(false)
 
-  async function fetchNotifications() {
+  const fetchNotifications = async () => {
     if (!user.value) return
     loading.value = true
     try {
@@ -24,7 +24,7 @@ export function useNotifications() {
     }
   }
 
-  async function markAsRead(id: string) {
+  const markAsRead = async (id: string) => {
     const { error } = await supabase
       .from('notifications')
       .update({ read_at: new Date().toISOString() })
@@ -33,7 +33,7 @@ export function useNotifications() {
     await fetchNotifications()
   }
 
-  async function markAllAsRead() {
+  const markAllAsRead = async () => {
     if (!user.value) return
     const { error } = await supabase
       .from('notifications')

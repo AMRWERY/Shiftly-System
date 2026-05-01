@@ -1,9 +1,9 @@
-export function useWarehouses() {
+export const useWarehouses = () => {
   const supabase = useSupabaseClient()
   const warehouses = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchWarehouses() {
+  const fetchWarehouses = async () => {
     loading.value = true
     try {
       const { data, error } = await supabase.from('warehouses').select('*').order('name')

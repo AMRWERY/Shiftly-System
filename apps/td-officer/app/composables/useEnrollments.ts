@@ -1,9 +1,9 @@
-export function useEnrollments() {
+export const useEnrollments = () => {
   const supabase = useSupabaseClient()
   const enrollments = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchEnrollments(filters?: Record<string, unknown>) {
+  const fetchEnrollments = async (filters?: Record<string, unknown>) => {
     loading.value = true
     try {
       let q = supabase.from('enrollments').select('*, course:courses(title), employee:employees(name)')
@@ -21,7 +21,7 @@ export function useEnrollments() {
     }
   }
 
-  async function enroll(employeeId: string, courseId: string) {
+  const enroll = async (employeeId: string, courseId: string) => {
     const { data, error } = await supabase.from('enrollments').insert({
       employee_id: employeeId,
       course_id: courseId,

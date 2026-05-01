@@ -23,9 +23,9 @@ export const ROLE_APP_URLS: Record<UserRole, string> = {
  * @param role - User role
  * @returns App URL for the role
  */
-export function getAppUrlForRole(role: UserRole): string {
+export const getAppUrlForRole = (role: UserRole): string => {
   return ROLE_APP_URLS[role] || ROLE_APP_URLS.admin;
-}
+};
 
 /**
  * Check if the current app is the correct one for the user's role
@@ -33,10 +33,10 @@ export function getAppUrlForRole(role: UserRole): string {
  * @param currentUrl - Current window location
  * @returns true if user is in the correct app
  */
-export function isCorrectAppForRole(
+export const isCorrectAppForRole = (
   role: UserRole,
   currentUrl: string
-): boolean {
+): boolean => {
   const expectedUrl = getAppUrlForRole(role);
   return currentUrl.startsWith(expectedUrl);
-}
+};

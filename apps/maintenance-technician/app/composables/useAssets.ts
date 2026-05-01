@@ -1,9 +1,9 @@
-export function useAssets() {
+export const useAssets = () => {
   const supabase = useSupabaseClient()
   const assets = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchAssets(filters?: Record<string, unknown>) {
+  const fetchAssets = async (filters?: Record<string, unknown>) => {
     loading.value = true
     try {
       let q = supabase.from('assets').select('*')
@@ -21,7 +21,7 @@ export function useAssets() {
     }
   }
 
-  async function getAsset(id: string) {
+  const getAsset = async (id: string) => {
     const { data, error } = await supabase.from('assets').select('*').eq('id', id).single()
     if (error) throw error
     return data

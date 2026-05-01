@@ -1,9 +1,9 @@
-export function useEmployees() {
+export const useEmployees = () => {
   const supabase = useSupabaseClient()
   const employees = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchEmployees(filters?: Record<string, unknown>) {
+  const fetchEmployees = async (filters?: Record<string, unknown>) => {
     loading.value = true
     try {
       let q = supabase.from('employees').select('*')
@@ -21,7 +21,7 @@ export function useEmployees() {
     }
   }
 
-  async function getEmployee(id: string) {
+  const getEmployee = async (id: string) => {
     const { data, error } = await supabase.from('employees').select('*').eq('id', id).single()
     if (error) throw error
     return data

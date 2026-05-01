@@ -1,7 +1,7 @@
-export function useSupabase() {
+export const useSupabase = () => {
   const client = useSupabaseClient()
 
-  async function query<T>(
+  const query = async <T>(
     table: string,
     options?: {
       select?: string
@@ -9,7 +9,7 @@ export function useSupabase() {
       order?: { column: string; ascending?: boolean }
       limit?: number
     },
-  ) {
+  ) => {
     let q = client.from(table).select(options?.select ?? '*')
 
     if (options?.filters) {

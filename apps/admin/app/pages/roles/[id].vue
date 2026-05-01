@@ -153,7 +153,7 @@ const saving = ref(false);
 
 const rolePermissions = ref<Permission[]>([]);
 
-async function loadRole() {
+const loadRole = async () => {
   loading.value = true;
   try {
     const data = await rolesStore.fetchRole(roleId.value);
@@ -202,7 +202,7 @@ const formatRoleName = (name: string) => {
   );
 };
 
-async function submitPermissions() {
+const submitPermissions = async () => {
   if (!role.value || !roleId.value) return;
 
   saving.value = true;

@@ -1,4 +1,4 @@
-export function useSearch() {
+export const useSearch = () => {
   const query = ref('')
   const isOpen = ref(false)
   const results = ref<Record<string, unknown>[]>([])
@@ -26,8 +26,8 @@ export function useSearch() {
 
   watch(query, debouncedSearch)
 
-  function open() { isOpen.value = true }
-  function close() { isOpen.value = false; query.value = '' }
+  const open = () => { isOpen.value = true }
+  const close = () => { isOpen.value = false; query.value = '' }
 
   return { query, isOpen, results, loading, open, close }
 }

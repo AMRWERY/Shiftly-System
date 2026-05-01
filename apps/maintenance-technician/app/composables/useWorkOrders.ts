@@ -1,9 +1,9 @@
-export function useWorkOrders() {
+export const useWorkOrders = () => {
   const supabase = useSupabaseClient()
   const workOrders = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchWorkOrders(filters?: Record<string, unknown>) {
+  const fetchWorkOrders = async (filters?: Record<string, unknown>) => {
     loading.value = true
     try {
       let q = supabase.from('work_orders').select('*, asset:assets(name)')
@@ -21,7 +21,7 @@ export function useWorkOrders() {
     }
   }
 
-  async function saveWorkOrder(payload: Record<string, unknown>, id?: string) {
+  const saveWorkOrder = async (payload: Record<string, unknown>, id?: string) => {
     if (id) {
       const { data, error } = await supabase.from('work_orders').update(payload).eq('id', id).select().single()
       if (error) throw error

@@ -1,4 +1,4 @@
-export function useLoading(duration = 3000) {
+export const useLoading = (duration = 3000) => {
   const isLoading = ref(false);
   const { start: startTimer } = useTimeoutFn(
     () => {

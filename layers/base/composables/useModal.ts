@@ -1,15 +1,15 @@
-export function useModal(initial = false) {
+export const useModal = (initial = false) => {
   const isOpen = ref(initial)
 
-  function open() {
+  const open = () => {
     isOpen.value = true
   }
 
-  function close() {
+  const close = () => {
     isOpen.value = false
   }
 
-  function toggle() {
+  const toggle = () => {
     isOpen.value = !isOpen.value
   }
 

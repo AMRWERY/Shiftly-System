@@ -1,9 +1,9 @@
-export function useJournals() {
+export const useJournals = () => {
   const supabase = useSupabaseClient()
   const entries = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchEntries(filters?: Record<string, unknown>) {
+  const fetchEntries = async (filters?: Record<string, unknown>) => {
     loading.value = true
     try {
       let q = supabase.from('journal_entries').select('*, lines:journal_lines(*)')
@@ -21,7 +21,7 @@ export function useJournals() {
     }
   }
 
-  async function postEntry(payload: Record<string, unknown>) {
+  const postEntry = async (payload: Record<string, unknown>) => {
     const { data, error } = await supabase.from('journal_entries').insert(payload).select().single()
     if (error) throw error
     return data

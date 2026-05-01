@@ -43,7 +43,7 @@ export const useRolesStore = defineStore("roles", () => {
   };
 
   // Actions
-  async function fetchRoles() {
+  const fetchRoles = async () => {
     loading.value = true;
     error.value = null;
     try {
@@ -64,7 +64,7 @@ export const useRolesStore = defineStore("roles", () => {
     }
   }
 
-  async function fetchRole(id: string) {
+  const fetchRole = async (id: string) => {
     loading.value = true;
     error.value = null;
 
@@ -88,12 +88,12 @@ export const useRolesStore = defineStore("roles", () => {
     }
   }
 
-  async function createRole(roleData: {
+  const createRole = async (roleData: {
     name: string;
     displayName: string;
     description: string;
     permissions: Permission[];
-  }) {
+  }) => {
     saving.value = true;
     error.value = null;
     try {
@@ -125,14 +125,14 @@ export const useRolesStore = defineStore("roles", () => {
     }
   }
 
-  async function updateRole(
+  const updateRole = async (
     id: string,
     roleData: {
       displayName?: string;
       description?: string;
       permissions?: Permission[];
     },
-  ) {
+  ) => {
     saving.value = true;
     error.value = null;
     try {
@@ -168,7 +168,7 @@ export const useRolesStore = defineStore("roles", () => {
     }
   }
 
-  async function deleteRole(id: string) {
+  const deleteRole = async (id: string) => {
     saving.value = true;
     error.value = null;
     try {
@@ -198,16 +198,16 @@ export const useRolesStore = defineStore("roles", () => {
     }
   }
 
-  function setSearchTerm(term: string) {
+  const setSearchTerm = (term: string) => {
     searchTerm.value = term;
     currentPage.value = 1; // Reset to first page on search
   }
 
-  function setCurrentPage(page: number) {
+  const setCurrentPage = (page: number) => {
     currentPage.value = page;
   }
 
-  function resetState() {
+  const resetState = () => {
     currentRole.value = null;
     error.value = null;
     loading.value = false;

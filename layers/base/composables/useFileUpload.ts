@@ -1,9 +1,9 @@
-export function useFileUpload() {
+export const useFileUpload = () => {
   const supabase = useSupabaseClient()
   const uploading = ref(false)
   const progress = ref(0)
 
-  async function upload(bucket: string, path: string, file: File): Promise<string> {
+  const upload = async (bucket: string, path: string, file: File): Promise<string> => {
     uploading.value = true
     progress.value = 0
     try {
@@ -18,7 +18,7 @@ export function useFileUpload() {
     }
   }
 
-  async function remove(bucket: string, path: string) {
+  const remove = async (bucket: string, path: string) => {
     const { error } = await supabase.storage.from(bucket).remove([path])
     if (error) throw error
   }

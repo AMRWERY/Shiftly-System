@@ -22,7 +22,7 @@ const stages = [
   { key: 'hired', label: 'Hired' },
 ]
 
-function getCandidates(stage: string) {
+const getCandidates = (stage: string) => {
   return (props.candidates ?? []).filter((c) => c.stage === stage)
 }
 </script>

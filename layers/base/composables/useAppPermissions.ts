@@ -47,9 +47,9 @@ const DEFAULT_ROLE_PERMISSIONS: Record<
   ],
 };
 
-function getDefaultPermissionsForRole(
+const getDefaultPermissionsForRole = (
   role: string | undefined,
-): { module: string; actions: string[] }[] {
+): { module: string; actions: string[] }[] => {
   if (!role) return DEFAULT_ROLE_PERMISSIONS.employee ?? [];
   const key = role.toLowerCase().replace(/-/g, "_");
   return (

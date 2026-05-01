@@ -1,11 +1,11 @@
-export function useUser() {
+export const useUser = () => {
   const supabase = useSupabaseClient()
   const authUser = useSupabaseUser()
 
   const profile = ref<Record<string, unknown> | null>(null)
   const loading = ref(false)
 
-  async function fetchProfile() {
+  const fetchProfile = async () => {
     if (!authUser.value) return
     loading.value = true
     try {

@@ -1,9 +1,9 @@
-export function useCourses() {
+export const useCourses = () => {
   const supabase = useSupabaseClient()
   const courses = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchCourses(filters?: Record<string, unknown>) {
+  const fetchCourses = async (filters?: Record<string, unknown>) => {
     loading.value = true
     try {
       let q = supabase.from('courses').select('*')

@@ -42,7 +42,7 @@ export const usePermissionsStore = defineStore("permissions", () => {
   ];
 
   // Actions
-  async function fetchUserPermissions(userId: string) {
+  const fetchUserPermissions = async (userId: string) => {
     loading.value = true;
     error.value = null;
     permissions.value = [];
@@ -62,7 +62,7 @@ export const usePermissionsStore = defineStore("permissions", () => {
     }
   }
 
-  async function saveUserPermissions(userId: string) {
+  const saveUserPermissions = async (userId: string) => {
     saving.value = true;
     error.value = null;
 
@@ -87,10 +87,10 @@ export const usePermissionsStore = defineStore("permissions", () => {
   }
 
   // Helper to modify local state
-  function togglePermission(
+  const togglePermission = (
     module: PermissionModule,
     action: PermissionAction
-  ) {
+  ) => {
     const existingIndex = permissions.value.findIndex(
       (p) => p.module === module
     );
@@ -119,7 +119,7 @@ export const usePermissionsStore = defineStore("permissions", () => {
     }
   }
 
-  function toggleAllModuleActions(module: PermissionModule) {
+  const toggleAllModuleActions = (module: PermissionModule) => {
     const modulePermission = permissions.value.find((p) => p.module === module);
     const allSelected =
       modulePermission &&
@@ -149,15 +149,15 @@ export const usePermissionsStore = defineStore("permissions", () => {
     }
   }
 
-  function hasPermission(
+  const hasPermission = (
     module: PermissionModule,
     action: PermissionAction
-  ): boolean {
+  ): boolean => {
     const modulePermission = permissions.value.find((p) => p.module === module);
     return modulePermission?.actions.includes(action) || false;
   }
 
-  function areAllActionsSelected(module: PermissionModule): boolean {
+  const areAllActionsSelected = (module: PermissionModule): boolean => {
     const modulePermission = permissions.value.find((p) => p.module === module);
     if (!modulePermission) return false;
     return permissionActions.every((action) =>
@@ -165,7 +165,7 @@ export const usePermissionsStore = defineStore("permissions", () => {
     );
   }
 
-  function resetState() {
+  const resetState = () => {
     permissions.value = [];
     error.value = null;
     loading.value = false;

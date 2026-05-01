@@ -1,6 +1,6 @@
 import type { ToastOptions } from "../types/toast-options";
 
-export function useToast() {
+export const useToast = () => {
   const toastState = useState("globalToast", () => ({
     show: false,
     message: "",

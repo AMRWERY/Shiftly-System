@@ -1,9 +1,9 @@
-export function useStock() {
+export const useStock = () => {
   const supabase = useSupabaseClient()
   const stockLevels = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchStockLevels(warehouseId?: string) {
+  const fetchStockLevels = async (warehouseId?: string) => {
     loading.value = true
     try {
       let q = supabase.from('stock_levels').select('*, product:products(name, sku)')
@@ -17,7 +17,7 @@ export function useStock() {
     }
   }
 
-  async function adjustStock(productId: string, warehouseId: string, quantity: number, reason: string) {
+  const adjustStock = async (productId: string, warehouseId: string, quantity: number, reason: string) => {
     const { error } = await supabase.from('stock_adjustments').insert({
       product_id: productId,
       warehouse_id: warehouseId,

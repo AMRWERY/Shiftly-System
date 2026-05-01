@@ -1,4 +1,4 @@
-export function useRole() {
+export const useRole = () => {
     const authStore = useAuthStore();
 
     // Get current role from auth store

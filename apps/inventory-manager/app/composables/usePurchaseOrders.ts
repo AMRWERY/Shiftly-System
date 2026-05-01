@@ -1,9 +1,9 @@
-export function usePurchaseOrders() {
+export const usePurchaseOrders = () => {
   const supabase = useSupabaseClient()
   const orders = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchOrders(status?: string) {
+  const fetchOrders = async (status?: string) => {
     loading.value = true
     try {
       let q = supabase.from('purchase_orders').select('*, lines:purchase_order_lines(*)')
@@ -17,7 +17,7 @@ export function usePurchaseOrders() {
     }
   }
 
-  async function saveOrder(payload: Record<string, unknown>, id?: string) {
+  const saveOrder = async (payload: Record<string, unknown>, id?: string) => {
     if (id) {
       const { data, error } = await supabase.from('purchase_orders').update(payload).eq('id', id).select().single()
       if (error) throw error

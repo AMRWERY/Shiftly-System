@@ -49,11 +49,11 @@ const emit = defineEmits<{
   (e: 'confirm'): void
 }>()
 
-function closeModal() {
+const closeModal = () => {
   emit('close')
 }
 
-function confirmDelete() {
+const confirmDelete = () => {
   emit('confirm')
 }
 </script>

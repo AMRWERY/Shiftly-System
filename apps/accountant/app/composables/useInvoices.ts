@@ -1,9 +1,9 @@
-export function useInvoices() {
+export const useInvoices = () => {
   const supabase = useSupabaseClient()
   const invoices = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchInvoices(type?: 'sales' | 'purchase', status?: string) {
+  const fetchInvoices = async (type?: 'sales' | 'purchase', status?: string) => {
     loading.value = true
     try {
       let q = supabase.from('invoices').select('*')
@@ -18,7 +18,7 @@ export function useInvoices() {
     }
   }
 
-  async function saveInvoice(payload: Record<string, unknown>, id?: string) {
+  const saveInvoice = async (payload: Record<string, unknown>, id?: string) => {
     if (id) {
       const { data, error } = await supabase.from('invoices').update(payload).eq('id', id).select().single()
       if (error) throw error

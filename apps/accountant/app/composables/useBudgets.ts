@@ -1,9 +1,9 @@
-export function useBudgets() {
+export const useBudgets = () => {
   const supabase = useSupabaseClient()
   const budgets = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchBudgets(fiscalYear?: number) {
+  const fetchBudgets = async (fiscalYear?: number) => {
     loading.value = true
     try {
       let q = supabase.from('budgets').select('*')

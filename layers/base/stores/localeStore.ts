@@ -9,10 +9,10 @@ export const useLocaleStore = defineStore("locales", () => {
   const isRTL = computed(() => locale.value === "ar");
 
   // Actions
-  async function updateLocale(
+  const updateLocale = async (
     newLocale: SupportedLocale,
     preventNavigation: boolean = false,
-  ) {
+  ) => {
     if (!import.meta.client) return;
 
     isOverlayVisible.value = true;
@@ -69,7 +69,7 @@ export const useLocaleStore = defineStore("locales", () => {
   }
 
   // loadLocale is no longer needed as useLocalStorage handles it automatically
-  function loadLocale(): void {
+  const loadLocale = (): void => {
     // Kept for backward compatibility if needed, but logic is handled by useLocalStorage
   }
 

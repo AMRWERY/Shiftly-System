@@ -1,9 +1,9 @@
-export function useAttendance() {
+export const useAttendance = () => {
   const supabase = useSupabaseClient()
   const records = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchAttendance(employeeId?: string, month?: string) {
+  const fetchAttendance = async (employeeId?: string, month?: string) => {
     loading.value = true
     try {
       let q = supabase.from('attendance').select('*')
@@ -18,7 +18,7 @@ export function useAttendance() {
     }
   }
 
-  async function clockIn(employeeId: string) {
+  const clockIn = async (employeeId: string) => {
     const { error } = await supabase.from('attendance').insert({
       employee_id: employeeId,
       clock_in: new Date().toISOString(),
@@ -27,7 +27,7 @@ export function useAttendance() {
     if (error) throw error
   }
 
-  async function clockOut(recordId: string) {
+  const clockOut = async (recordId: string) => {
     const { error } = await supabase.from('attendance').update({
       clock_out: new Date().toISOString(),
     }).eq('id', recordId)

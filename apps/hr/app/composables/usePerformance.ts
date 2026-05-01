@@ -1,9 +1,9 @@
-export function usePerformance() {
+export const usePerformance = () => {
   const supabase = useSupabaseClient()
   const reviews = ref<Record<string, unknown>[]>([])
   const loading = ref(false)
 
-  async function fetchReviews(filters?: Record<string, unknown>) {
+  const fetchReviews = async (filters?: Record<string, unknown>) => {
     loading.value = true
     try {
       let q = supabase.from('performance_reviews').select('*, employee:employees(name)')
@@ -21,7 +21,7 @@ export function usePerformance() {
     }
   }
 
-  async function submitReview(payload: Record<string, unknown>) {
+  const submitReview = async (payload: Record<string, unknown>) => {
     const { data, error } = await supabase.from('performance_reviews').insert(payload).select().single()
     if (error) throw error
     return data
