@@ -35,10 +35,13 @@ export default defineNuxtRouteMiddleware(async (to) => {
     const targetAppUrl = getAppUrlForRole(userRole as any);
     const currentUrl = window.location.origin;
 
-    // If user is in the wrong app, redirect to their role-specific app
+    // If user is in the wrong app, sign them out and redirect to auth on this app
     if (currentUrl !== targetAppUrl) {
-      window.location.href = targetAppUrl;
-      return;
+      const supabase = useSupabaseClient();
+      await supabase.auth.signOut();
+      authStore.session = null;
+      authStore.user = null;
+      return navigateTo("/auth");
     }
   }
 });
