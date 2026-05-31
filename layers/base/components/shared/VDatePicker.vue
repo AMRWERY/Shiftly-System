@@ -38,7 +38,8 @@
           <!-- Calendar days -->
           <div class="grid grid-cols-7 gap-1 p-2">
             <LazyVButton v-for="{ date, isCurrentMonth, isToday } in calendarDays" :key="date.toISOString()"
-              type="button" variant="ghost" padding-x="px-0" padding-y="py-0" :disabled="isDateDisabled(date)"
+              type="button" variant="ghost" padding-x="px-0" padding-y="py-0" class="flex items-center justify-center"
+              :disabled="isDateDisabled(date)"
               :hover-color="isSelected(date) ? 'hover:bg-indigo-700' : 'hover:bg-white/5'" :class="[
                 'w-8 h-8 text-sm rounded-full',
                 isCurrentMonth ? 'text-gray-200' : 'text-gray-500',
@@ -71,7 +72,7 @@ const showCalendar = ref(false);
 const currentDate = ref(props.modelValue || new Date());
 
 // Days of week
-const daysOfWeek = [t('days.sun'), t('days.mon'), t('days.tue'), t('days.wed'), t('days.thu'), t('days.fri'), t('days.sat')];
+const daysOfWeek = [t('global_config.days.sunday'), t('global_config.days.monday'), t('global_config.days.tuesday'), t('global_config.days.wednesday'), t('global_config.days.thursday'), t('global_config.days.friday'), t('global_config.days.saturday')];
 
 // Format date for display
 const dateValue = computed({

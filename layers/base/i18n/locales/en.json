@@ -164,7 +164,11 @@
     "terms_of_service_description": "The rules, guidelines, and agreements for using Nexux ERP.",
     "sign_up_description": "Create your Nexux ERP account to start managing your workspace.",
     "reset_password_description": "Reset your Nexux ERP account password.",
-    "confirm_invite_description": "Confirm your invitation to join Nexux ERP."
+    "confirm_invite_description": "Confirm your invitation to join Nexux ERP.",
+    "system_access_log": "System Access Log",
+    "system_access_log_description": "Monitor and audit all user authentication and system access events.",
+    "audit_log": "Audit Log",
+    "audit_log_description": "View a full trail of all changes and actions performed across the system."
   },
   "roles": {
     "admin": "System Administrator",
@@ -407,7 +411,41 @@
     "avatar": "Avatar",
     "role_name": "Role Name",
     "description": "Role Description",
-    "users": "Users"
+    "users": "Users",
+    "ip_address": "IP Address",
+    "action": "Action",
+    "module": "Module",
+    "device": "Device",
+    "timestamp": "Timestamp",
+    "location": "Location"
+  },
+  "access_log": {
+    "total_sessions": "Total Sessions",
+    "total_sessions_subtitle": "vs. yesterday",
+    "active_users": "Active Users",
+    "active_users_subtitle": "currently online",
+    "failed_logins": "Failed Logins",
+    "failed_logins_subtitle": "last 24 hours",
+    "suspicious_activities": "Suspicious",
+    "suspicious_subtitle": "flagged events",
+    "search_placeholder": "Search by user, IP or module...",
+    "filter_status": "Status",
+    "filter_action": "Action Type",
+    "filter_all": "All",
+    "action_login": "Login",
+    "action_logout": "Logout",
+    "action_create": "Create",
+    "action_update": "Update",
+    "action_delete": "Delete",
+    "action_view": "View",
+    "action_export": "Export",
+    "status_success": "Success",
+    "status_failed": "Failed",
+    "status_warning": "Warning",
+    "date_from": "From",
+    "date_to": "To",
+    "no_logs": "No access logs found",
+    "no_logs_description": "Try adjusting your search or filter criteria."
   },
   "dialog": {
     "invite_user_title": "Invite New User",
@@ -476,13 +514,13 @@
     "holiday_calendar": "Holiday Calendar",
     "preview_holidays_for_country": "Preview official holidays for the selected country",
     "days": {
-      "sunday": "Sunday",
-      "monday": "Monday",
-      "tuesday": "Tuesday",
-      "wednesday": "Wednesday",
-      "thursday": "Thursday",
-      "friday": "Friday",
-      "saturday": "Saturday"
+      "sunday": "Sun",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat"
     }
   },
   "months": {
