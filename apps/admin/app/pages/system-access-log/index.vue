@@ -8,7 +8,7 @@
       <LazyVKpiCard label="Total Users" value="100" :trend="10" icon="heroicons:user-group" />
     </div>
 
-    <LazyLazyVDropdownMenun label="Actions">
+    <LazyVDropdownMenu label="Actions">
       <template #default="{ close }">
         <div class="min-w-[200px]">
           <button type="button"
@@ -23,7 +23,7 @@
           </button>
         </div>
       </template>
-    </LazyLazyVDropdownMenun>
+    </LazyVDropdownMenu>
 
     <LazyVDownloadFilesMenu :allItems="[]" :columns="[]" />
 
