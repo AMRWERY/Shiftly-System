@@ -164,7 +164,8 @@
     "terms_of_service_description": "القواعد والإرشادات والاتفاقيات لاستخدام نظام نيكسوس ERP.",
     "sign_up_description": "أنشئ حساب Nexux ERP الخاص بك لبدء إدارة مساحة العمل الخاصة بك.",
     "reset_password_description": "إعادة تعيين كلمة مرور حساب Nexux ERP الخاص بك.",
-    "confirm_invite_description": "قم بتأكيد دعوتك للانضمام إلى Nexux ERP."
+    "confirm_invite_description": "قم بتأكيد دعوتك للانضمام إلى Nexux ERP.",
+    "users_description": "إدارة جميع المستخدمين في مساحة العمل الخاصة بك."
   },
   "roles": {
     "admin": "مدير النظام",
