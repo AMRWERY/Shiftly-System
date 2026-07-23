@@ -93,7 +93,9 @@
     "verifying": "جاري التحقق...",
     "resetting": "جاري إعادة التعيين...",
     "creating_account": "جاري إنشاء الحساب...",
-    "sign_in": "تسجيل الدخول"
+    "sign_in": "تسجيل الدخول",
+    "select_all": "تحديد الكل",
+    "deselect_all": "إلغاء تحديد الكل"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",

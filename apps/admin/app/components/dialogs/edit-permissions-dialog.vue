@@ -5,7 +5,7 @@
       <template #body>
         <div class="mt-2">
           <!-- User Info -->
-          <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+          <div class="mb-6 p-4 bg-[#0D121D] rounded-lg">
             <div class="flex items-center gap-4">
               <img :src="user?.avatarUrl ||
                 user?.avatar_url ||
@@ -29,7 +29,7 @@
           </p>
 
           <!-- Permissions Grid -->
-          <div class="space-y-4 max-h-[450px] overflow-y-auto pe-2">
+          <div class="space-y-4 max-h-[250px] overflow-y-auto pe-2">
             <div v-for="module in permissionModules" :key="module"
               class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
               <div class="flex items-center justify-between mb-3">
@@ -38,7 +38,7 @@
                 </label>
                 <LazyVButton type="button" variant="ghost" text-color="text-blue-400" hover-color="hover:text-blue-300"
                   padding-x="px-2" padding-y="py-1" @click="toggleAllActions(module)">
-                  {{ areAllActionsSelected(module) ? "Deselect All" : "Select All" }}
+                  {{ areAllActionsSelected(module) ? t("btn.deselect_all") : t("btn.select_all") }}
                 </LazyVButton>
               </div>
 

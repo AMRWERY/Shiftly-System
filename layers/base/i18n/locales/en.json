@@ -93,7 +93,9 @@
     "verifying": "Verifying...",
     "resetting": "Resetting...",
     "creating_account": "Creating account...",
-    "sign_in": "Sign In"
+    "sign_in": "Sign In",
+    "select_all": "Select All",
+    "deselect_all": "Deselect All"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",
