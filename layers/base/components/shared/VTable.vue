@@ -87,14 +87,11 @@
 
                   <!-- Status Toggle Cell -->
                   <div v-else-if="column.key === 'status'" class="flex items-center">
-                    <LazyVButton type="button" variant="ghost" padding-x="px-0" padding-y="py-0" :class="[
-                      'relative inline-flex h-5 w-9 items-center rounded-full transition-all focus:outline-none ring-offset-2 ring-offset-[#0B0E14] focus:ring-1 focus:ring-indigo-500/50',
-                      item.status === 'active' || item.status === 'approved' ? 'bg-indigo-600' : 'bg-gray-700/60'
-                    ]" @click.stop="$emit('statusToggle', item)">
-                      <span
-                        class="inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform duration-200 shadow"
-                        :class="item.status === 'active' || item.status === 'approved' ? 'translate-x-4' : 'translate-x-1'" />
-                    </LazyVButton>
+                    <LazyVToggleButton
+                      :checked="item.status === 'active' || item.status === 'approved'"
+                      color="#00E0BA"
+                      @click.stop="$emit('statusToggle', item)"
+                    />
                   </div>
 
                   <!-- Default Content -->

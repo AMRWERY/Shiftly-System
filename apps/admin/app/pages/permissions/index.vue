@@ -16,11 +16,16 @@
       <!-- Users Table -->
       <LazyVTable v-else :columns="columns" :items="nonAdminUsers" :current-page="1" :total-pages="1"
         :total-items="nonAdminUsers.length" :has-view="false" :has-block="false" :has-edit="true"
-        :action-conditions="{ edit: () => true }" class="flex-1" @edit="handleEditPermissions" />
+        :action-conditions="{ edit: () => true }" class="flex-1" @edit="handleEditPermissions"
+        @status-toggle="handleBlockUser" />
 
       <!-- Edit Permissions Dialog -->
       <edit-permissions-dialog :is-open="isEditDialogOpen" :user="selectedUser" @close="closeEditDialog"
         @success="refreshData" />
+
+      <!-- Block/Unblock Confirmation Dialog -->
+      <block-user-dialog :show="isBlockDialogOpen" :user="userToBlock" :loading="isBlocking"
+        @close="closeBlockDialog" @confirm="confirmBlockUser" />
     </div>
   </div>
 </template>
@@ -33,6 +38,11 @@ const { t } = useI18n()
 const usersStore = useUsersStore()
 const isEditDialogOpen = ref(false)
 const selectedUser = ref<UserListItem | null>(null)
+
+const isBlockDialogOpen = ref(false)
+const userToBlock = ref<UserListItem | null>(null)
+const isBlocking = ref(false)
+const { triggerToast } = useToast()
 
 // Fetch users on mount
 onMounted(async () => {
@@ -101,6 +111,50 @@ const handleEditPermissions = (user: UserListItem) => {
 const closeEditDialog = () => {
   isEditDialogOpen.value = false
   selectedUser.value = null
+}
+
+// Block/Unblock handlers
+const handleBlockUser = (user: UserListItem) => {
+  userToBlock.value = user
+  isBlockDialogOpen.value = true
+}
+
+const closeBlockDialog = () => {
+  isBlockDialogOpen.value = false
+  userToBlock.value = null
+}
+
+const confirmBlockUser = async () => {
+  if (!userToBlock.value) return
+  isBlocking.value = true
+  try {
+    const isCurrentlyBlocked = userToBlock.value.status === 'blocked'
+    if (isCurrentlyBlocked) {
+      await usersStore.unblockUser(userToBlock.value.id)
+      triggerToast({
+        message: t('toast.user_unblocked_successfully'),
+        type: 'success',
+        icon: 'mdi-check-circle',
+      })
+    } else {
+      await usersStore.blockUser(userToBlock.value.id)
+      triggerToast({
+        message: t('toast.user_blocked_successfully'),
+        type: 'success',
+        icon: 'mdi-check-circle',
+      })
+    }
+    closeBlockDialog()
+  } catch (err: any) {
+    console.error('Block/Unblock error:', err)
+    triggerToast({
+      message: err.message || t('toast.failed_to_update_user_status'),
+      type: 'error',
+      icon: 'material-symbols:error-outline-rounded',
+    })
+  } finally {
+    isBlocking.value = false
+  }
 }
 
 useSeoPage({
