@@ -88,10 +88,10 @@
                             <div class="flex flex-wrap gap-3">
                                 <label v-for="action in permissionsStore.permissionActions" :key="action"
                                     class="inline-flex items-center cursor-pointer group px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
-                                    <input type="checkbox" :checked="permissionsStore.hasPermission(module, action)"
+                                    <LazyVCheckboxInput :checked="permissionsStore.hasPermission(module, action)"
                                         @change="permissionsStore.togglePermission(module, action)"
-                                        :disabled="permissionsStore.saving"
-                                        class="w-4 h-4 text-blue-400 border-gray-300 rounded focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" />
+                                        :disabled="permissionsStore.saving" :color="'#00E0BA'"
+                                        class="border-gray-300 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" />
                                     <span class="ms-2 text-sm text-tx-secondary group-hover:text-gray-400 font-medium">
                                         {{ t(`permissions.actions.${action}`) }}
                                     </span>
@@ -111,7 +111,9 @@
                             hover-color="hover:bg-blue-700" padding-x="px-6" padding-y="py-2.5"
                             class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             @click="handleSave">
-                            <LazyVLoadingSpinner v-if="permissionsStore.saving" size="sm" color="text-white" text-color="text-white" :text="t('permissions.saving')" icon-name="svg-spinners:180-ring-with-bg" />
+                            <LazyVLoadingSpinner v-if="permissionsStore.saving" size="sm" color="text-white"
+                                text-color="text-white" :text="t('permissions.saving')"
+                                icon-name="svg-spinners:180-ring-with-bg" />
                             <span v-else class="flex items-center gap-2">
                                 {{ t('permissions.save_permissions') }}
                             </span>

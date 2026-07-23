@@ -45,9 +45,9 @@
               <div class="flex flex-wrap gap-2">
                 <label v-for="action in permissionActions" :key="action"
                   class="inline-flex items-center cursor-pointer group">
-                  <input type="checkbox" :checked="hasPermission(module, action)"
-                    @change="togglePermission(module, action)"
-                    class="w-4 h-4 text-blue-400 border-gray-300 rounded focus:ring-blue-500" />
+                  <LazyVCheckboxInput :checked="hasPermission(module, action)"
+                    @change="togglePermission(module, action)" :color="'#00E0BA'"
+                    class="border-gray-300 focus:ring-blue-500" />
                   <span class="ms-2 text-sm text-tx-secondary group-hover:text-gray-400">
                     {{ t(`permissions.actions.${action}`) }}
                   </span>
@@ -66,7 +66,8 @@
               padding-y="py-2"
               class="disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               @click="savePermissions">
-              <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Saving..." icon-name="svg-spinners:180-ring-with-bg" />
+              <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white" text="Saving..."
+                icon-name="svg-spinners:180-ring-with-bg" />
               <span v-else>{{ t("permissions.save_permissions") }}</span>
             </LazyVButton>
           </div>

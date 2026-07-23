@@ -2,15 +2,8 @@
   <div ref="tableRef" class="relative flex h-full min-h-0 w-full flex-1 flex-col">
     <div
       class="flex h-full min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-gray-800/40 bg-[#0B0E14] text-gray-300">
-      <div
-        v-if="showDownloadMenu"
-        class="flex shrink-0 items-center justify-end border-b border-white/5 px-6 py-3"
-      >
-        <LazyVDownloadFilesMenu
-          :all-items="exportSourceItems"
-          :columns="columns"
-          :file-name-base="exportFileName"
-        />
+      <div v-if="showDownloadMenu" class="flex shrink-0 items-center justify-end border-b border-white/5 px-6 py-3">
+        <LazyVDownloadFilesMenu :all-items="exportSourceItems" :columns="columns" :file-name-base="exportFileName" />
       </div>
 
       <!-- Table Container: grows so pagination stays at bottom -->
@@ -23,8 +16,8 @@
                 <!-- Selection Checkbox Header -->
                 <th scope="col" class="px-6 py-5 w-12">
                   <div class="flex items-center">
-                    <input type="checkbox" :checked="isAllSelected"
-                      class="w-4 h-4 rounded border-gray-700 bg-transparent text-indigo-600 focus:ring-indigo-500/30 transition-all cursor-pointer accent-indigo-600"
+                    <LazyVCheckboxInput :checked="isAllSelected" :color="'#00E0BA'"
+                      class="border-gray-700 bg-transparent focus:ring-red-500/30"
                       @change="toggleSelectAll" />
                   </div>
                 </th>
@@ -59,8 +52,8 @@
                 :class="{ 'bg-indigo-500/[0.04] hover:bg-indigo-500/[0.06]': isSelected(item) }">
                 <!-- Selection Checkbox Cell -->
                 <td class="px-6 py-4">
-                  <input type="checkbox" :checked="isSelected(item)"
-                    class="w-4 h-4 rounded border-gray-700 bg-transparent text-indigo-600 focus:ring-indigo-500/30 transition-all cursor-pointer accent-indigo-600"
+                  <LazyVCheckboxInput :checked="isSelected(item)" :color="'#00E0BA'"
+                    class="border-gray-700 bg-transparent focus:ring-indigo-500/30"
                     @change="toggleSelectItem(item)" />
                 </td>
 
@@ -489,5 +482,4 @@ const handleScroll = (_event: Event) => { };
 .smooth-scroll {
   scroll-behavior: smooth;
 }
-
 </style>

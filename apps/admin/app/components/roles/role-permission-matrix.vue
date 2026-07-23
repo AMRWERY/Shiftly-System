@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div>
     <div class="card-bg rounded-xl p-4 shadow-lg">
       <div class="mb-6">
@@ -22,9 +22,9 @@
                   <span class="font-semibold text-tx-primary capitalize">{{
                     t(`permissions.actions.${action}`)
                   }}</span>
-                  <input type="checkbox" :checked="areAllModulesSelectedForAction(action)"
+                  <LazyVCheckboxInput :checked="areAllModulesSelectedForAction(action)"
                     :indeterminate="isSomeModulesSelectedForAction(action)" @change="toggleAllModulesForAction(action)"
-                    class="w-4 h-4 text-indigo-400 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer" />
+                    :color="'#00E0BA'" class="border-gray-300 focus:ring-indigo-500" />
                 </div>
               </th>
               <th class="text-center py-3 px-4">
@@ -32,9 +32,8 @@
                   <span class="font-semibold text-tx-primary">{{
                     t("roles.all")
                   }}</span>
-                  <input type="checkbox" :checked="areAllPermissionsSelected" :indeterminate="isSomePermissionsSelected"
-                    @change="toggleAllPermissions"
-                    class="w-4 h-4 text-indigo-400 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer" />
+                  <LazyVCheckboxInput :checked="areAllPermissionsSelected" :indeterminate="isSomePermissionsSelected"
+                    @change="toggleAllPermissions" :color="'#00E0BA'" class="border-gray-300 focus:ring-indigo-500" />
                 </div>
               </th>
             </tr>
@@ -49,14 +48,13 @@
                 </div>
               </td>
               <td v-for="action in permissionActions" :key="`${module}-${action}`" class="text-center py-3 px-4">
-                <input type="checkbox" :checked="hasPermission(module, action)"
-                  @change="togglePermission(module, action)"
-                  class="w-4 h-4 text-indigo-400 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer" />
+                <LazyVCheckboxInput :checked="hasPermission(module, action)" @change="togglePermission(module, action)"
+                  :color="'#00E0BA'" class="border-gray-300 focus:ring-indigo-500" />
               </td>
               <td class="text-center py-3 px-4">
-                <input type="checkbox" :checked="areAllActionsSelected(module)"
+                <LazyVCheckboxInput :checked="areAllActionsSelected(module)"
                   :indeterminate="isSomeActionsSelected(module)" @change="toggleAllModuleActions(module)"
-                  class="w-4 h-4 text-indigo-400 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer" />
+                  :color="'#00E0BA'" class="border-gray-300 focus:ring-indigo-500" />
               </td>
             </tr>
           </tbody>

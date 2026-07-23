@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div>
     <div class="space-y-6 p-6">
       <div class="flex items-center justify-between">
@@ -37,8 +37,8 @@
             <!-- Days Checkboxes -->
             <div class="grid grid-cols-2 gap-2">
               <div v-for="day in weekDays" :key="day.value" class="flex items-center">
-                <input :id="`day-${day.value}`" type="checkbox" :value="day.value" v-model="form.workDays"
-                  class="h-4 w-4 rounded border-[var(--border-default)] bg-brand-systemBg text-indigo-500 focus:ring-indigo-600" />
+                <LazyVCheckboxInput :id="`day-${day.value}`" :value="day.value" v-model="form.workDays" :color="'#00E0BA'"
+                  class="border-[var(--border-default)] bg-brand-systemBg focus:ring-indigo-600" />
                 <label :for="`day-${day.value}`" class="ms-3 text-sm leading-6 text-tx-primary font-medium">
                   {{ day.label }}
                 </label>
