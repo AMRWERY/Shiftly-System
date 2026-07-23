@@ -5,21 +5,23 @@
       class="w-8 h-8 flex items-center justify-center rounded-lg border border-[var(--border-default)] bg-[var(--bg-hover)] hover:bg-[var(--bg-hover-strong)] text-tx-secondary hover:text-tx-primary transition-colors flex-shrink-0"
       @click.stop="isOpen = !isOpen">
       <Icon name="material-symbols:notifications-outline-rounded" class="h-4 w-4" />
-      <span
+      <span v-if="unreadCount > 0"
         class="absolute end-0.5 top-0.5 h-[7px] w-[7px] rounded-full bg-gradient-to-b from-indigo-300 to-blue-300 animate-ping pointer-events-none" />
-      <span
+      <span v-if="unreadCount > 0"
         class="absolute end-0.5 top-0.5 h-[7px] w-[7px] rounded-full bg-gradient-to-b from-indigo-300 to-blue-300 pointer-events-none" />
     </LazyVButton>
 
     <!-- DROPDOWN DIALOG -->
-    <Transition name="fade">
-      <div v-if="isOpen" class="fixed inset-0 z-[1000] flex justify-end font-sans">
-        <!-- BACKDROP -->
-        <div class="absolute inset-0 bg-black/50" @click="closeDialog" />
+    <Teleport to="body">
+      <Transition name="fade">
+        <div v-if="isOpen" class="fixed inset-0 z-[9998] flex justify-end font-sans">
+          <!-- BACKDROP -->
+          <div class="absolute inset-0 bg-black/50" @click="closeDialog" />
 
-        <!-- SIDEPANEL -->
-        <div
-          class="relative z-[1001] h-screen w-full max-w-md border-s border-[var(--border-subtle)] bg-bg-primary shadow-2xl flex flex-col">
+          <!-- SIDEPANEL -->
+          <div
+            ref="sidePanelRef"
+            class="relative z-[9999] h-screen w-full max-w-md border-s border-[var(--border-subtle)] bg-bg-primary shadow-2xl flex flex-col">
 
           <!-- HEADER -->
           <div class="flex items-center justify-between px-6 pt-6 pb-4">
@@ -27,7 +29,8 @@
               Notifications
             </h3>
             <div class="flex items-center gap-4">
-              <button class="text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
+              <button @click="markAllAsRead" v-if="unreadCount > 0"
+                class="text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
                 Mark all as read
               </button>
               <button @click="closeDialog"
@@ -39,25 +42,35 @@
 
           <!-- TABS -->
           <div class="flex items-center gap-6 px-6 border-b border-[var(--border-subtle)]">
-            <button class="pb-3 text-sm font-medium text-indigo-400 border-b-2 border-indigo-500 relative -mb-[1px]">
+            <button @click="activeTab = 'all'"
+              class="pb-3 text-sm font-medium relative -mb-[1px] transition-all duration-200 focus:outline-none"
+              :class="activeTab === 'all' ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-tx-secondary hover:text-tx-primary'">
               All
             </button>
-            <button
-              class="pb-3 text-sm font-medium text-tx-secondary hover:text-tx-primary flex items-center gap-1.5 relative -mb-[1px]">
-              Unread <span
-                class="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500/20 text-[11px] text-indigo-400">2</span>
+            <button @click="activeTab = 'unread'"
+              class="pb-3 text-sm font-medium flex items-center gap-1.5 relative -mb-[1px] transition-all duration-200 focus:outline-none"
+              :class="activeTab === 'unread' ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-tx-secondary hover:text-tx-primary'">
+              Unread
+              <span v-if="unreadCount > 0"
+                class="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500/20 text-[11px] text-indigo-400 font-semibold">
+                {{ unreadCount }}
+              </span>
             </button>
-            <button
-              class="pb-3 text-sm font-medium text-tx-secondary hover:text-tx-primary flex items-center gap-1.5 relative -mb-[1px]">
-              Approvals <span
-                class="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500/20 text-[11px] text-indigo-400">1</span>
+            <button @click="activeTab = 'approvals'"
+              class="pb-3 text-sm font-medium flex items-center gap-1.5 relative -mb-[1px] transition-all duration-200 focus:outline-none"
+              :class="activeTab === 'approvals' ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-tx-secondary hover:text-tx-primary'">
+              Approvals
+              <span v-if="approvalsCount > 0"
+                class="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500/20 text-[11px] text-indigo-400 font-semibold">
+                {{ approvalsCount }}
+              </span>
             </button>
           </div>
 
           <!-- LIST -->
           <div class="flex-1 overflow-y-auto hide-scrollbar">
-            <ul class="flex flex-col">
-              <li v-for="(item, index) in mockNotifications" :key="index"
+            <ul v-if="filteredNotifications.length > 0" class="flex flex-col">
+              <li v-for="(item, index) in filteredNotifications" :key="index"
                 class="relative flex items-start gap-4 p-5 hover:bg-[var(--bg-hover)] transition-colors border-t border-[var(--border-subtle)] first:border-t-0"
                 :class="item.unread ? 'border-s-[3px] border-s-indigo-500 bg-[var(--bg-hover)]' : 'border-s-[3px] border-s-transparent'">
                 <div class="flex-shrink-0 mt-0.5 flex h-11 w-11 items-center justify-center rounded-xl"
@@ -73,6 +86,10 @@
                 </div>
               </li>
             </ul>
+            <div v-else class="flex flex-col items-center justify-center py-20 text-tx-muted gap-2">
+              <Icon name="material-symbols:notifications-off-outline" class="w-10 h-10 text-gray-500" />
+              <p class="text-sm">No notifications found</p>
+            </div>
           </div>
 
           <!-- FOOTER -->
@@ -86,14 +103,19 @@
         </div>
       </div>
     </Transition>
+    </Teleport>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+
 const isOpen = ref(false)
 const wrapperRef = ref<HTMLElement | null>(null)
+const sidePanelRef = ref<HTMLElement | null>(null)
+const activeTab = ref<'all' | 'unread' | 'approvals'>('all')
 
-const mockNotifications = [
+const notifications = ref([
   {
     title: 'Expense Approval Pending',
     time: '2 MIN AGO',
@@ -101,7 +123,8 @@ const mockNotifications = [
     unread: true,
     icon: 'material-symbols:pie-chart-outline',
     iconBg: 'bg-orange-500/10',
-    iconColor: 'text-orange-500'
+    iconColor: 'text-orange-500',
+    category: 'approval'
   },
   {
     title: 'Leave Request Approved',
@@ -110,7 +133,8 @@ const mockNotifications = [
     unread: false,
     icon: 'material-symbols:check-circle-outline-rounded',
     iconBg: 'bg-emerald-500/10',
-    iconColor: 'text-emerald-500'
+    iconColor: 'text-emerald-500',
+    category: 'approval'
   },
   {
     title: 'System Access Rejected',
@@ -119,7 +143,8 @@ const mockNotifications = [
     unread: true,
     icon: 'material-symbols:cancel-outline-rounded',
     iconBg: 'bg-red-500/10',
-    iconColor: 'text-red-400'
+    iconColor: 'text-red-400',
+    category: 'notification'
   },
   {
     title: 'Shift Reminder',
@@ -128,16 +153,38 @@ const mockNotifications = [
     unread: false,
     icon: 'material-symbols:info-outline-rounded',
     iconBg: 'bg-blue-500/10',
-    iconColor: 'text-blue-400'
+    iconColor: 'text-blue-400',
+    category: 'notification'
   }
-]
+])
+
+const unreadCount = computed(() => notifications.value.filter(n => n.unread).length)
+const approvalsCount = computed(() => notifications.value.filter(n => n.category === 'approval').length)
+
+const filteredNotifications = computed(() => {
+  if (activeTab.value === 'unread') {
+    return notifications.value.filter(n => n.unread)
+  }
+  if (activeTab.value === 'approvals') {
+    return notifications.value.filter(n => n.category === 'approval')
+  }
+  return notifications.value
+})
+
+const markAllAsRead = () => {
+  notifications.value.forEach(n => n.unread = false)
+}
 
 const closeDialog = () => {
   isOpen.value = false
 }
 
 const handleClickOutside = (e: MouseEvent) => {
-  if (wrapperRef.value && !wrapperRef.value.contains(e.target as Node)) {
+  if (!isOpen.value) return
+  const target = e.target as Node
+  const clickedTrigger = wrapperRef.value && wrapperRef.value.contains(target)
+  const clickedSidePanel = sidePanelRef.value && sidePanelRef.value.contains(target)
+  if (!clickedTrigger && !clickedSidePanel) {
     closeDialog()
   }
 }
