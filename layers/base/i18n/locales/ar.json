@@ -165,7 +165,8 @@
     "sign_up_description": "أنشئ حساب Nexux ERP الخاص بك لبدء إدارة مساحة العمل الخاصة بك.",
     "reset_password_description": "إعادة تعيين كلمة مرور حساب Nexux ERP الخاص بك.",
     "confirm_invite_description": "قم بتأكيد دعوتك للانضمام إلى Nexux ERP.",
-    "users_description": "إدارة جميع المستخدمين في مساحة العمل الخاصة بك."
+    "users_description": "إدارة جميع المستخدمين في مساحة العمل الخاصة بك.",
+    "permissions_description": "إدارة جميع مجموعات الصلاحيات وتعيينها للمستخدمين."
   },
   "roles": {
     "admin": "مدير النظام",

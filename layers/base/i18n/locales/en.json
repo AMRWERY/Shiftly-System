@@ -169,7 +169,8 @@
     "system_access_log_description": "Monitor and audit all user authentication and system access events.",
     "audit_log": "Audit Log",
     "audit_log_description": "View a full trail of all changes and actions performed across the system.",
-    "users_description": "Manage all users in your workspace."
+    "users_description": "Manage all users in your workspace.",
+    "permissions_description": "Manage all permission sets and assign them to users."
   },
   "roles": {
     "admin": "System Administrator",
