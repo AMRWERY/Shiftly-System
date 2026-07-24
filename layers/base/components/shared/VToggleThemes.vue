@@ -27,7 +27,37 @@ const isDark = useDark({
     initialValue: 'dark',
 })
 
-const toggleDark = useToggle(isDark)
+// Custom toggleDark function to execute circular clip-path transition from top-left corner
+const toggleDark = () => {
+    const doc = document as any
+    if (!doc.startViewTransition) {
+        isDark.value = !isDark.value
+        return
+    }
+
+    const transition = doc.startViewTransition(() => {
+        isDark.value = !isDark.value
+    })
+
+    transition.ready.then(() => {
+        // Calculate radius to fully cover screen from top-left (0,0)
+        const endRadius = Math.hypot(window.innerWidth, window.innerHeight)
+
+        document.documentElement.animate(
+            {
+                clipPath: [
+                    'circle(0px at 0px 0px)',
+                    `circle(${endRadius}px at 0px 0px)`
+                ]
+            },
+            {
+                duration: 600,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                pseudoElement: '::view-transition-new(root)'
+            }
+        )
+    })
+}
 </script>
 
 <style scoped>
@@ -58,5 +88,22 @@ const toggleDark = useToggle(isDark)
 
 .animate-spin-once {
     animation: spin-once 0.4s ease-out;
+}
+</style>
+
+<!-- Global View Transitions API customizations -->
+<style>
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    z-index: 9999;
 }
 </style>
