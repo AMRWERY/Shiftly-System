@@ -152,25 +152,31 @@
               <!-- Unified, premium responsive greeting, date, and animated clock widget -->
               <div class="flex items-center gap-2.5 sm:gap-3 py-1">
                 <!-- Dynamic Meteocon Icon Card -->
-                <div :class="['flex-shrink-0 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr shadow-sm transition-all duration-300 hover:scale-105', greeting.bgClass]">
+                <div
+                  :class="['flex-shrink-0 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr shadow-sm transition-all duration-300 hover:scale-105', greeting.bgClass]">
                   <Icon :name="greeting.icon" :class="['w-6 h-6 sm:w-8 sm:h-8 drop-shadow-sm', greeting.colorClass]" />
                 </div>
 
                 <!-- Typographic Stack: Greeting + Time & Date Details -->
                 <div class="flex flex-col justify-center min-w-0">
-                  <h1 class="text-xs sm:text-[13px] font-bold tracking-tight text-tx-primary leading-none flex items-baseline gap-1">
+                  <h1
+                    class="text-xs sm:text-[13px] font-bold tracking-tight text-tx-primary leading-none flex items-baseline gap-1">
                     <span>{{ greeting.text }}</span>
-                    <span v-if="authStore.currentUser?.user_metadata?.fullName" class="text-tx-secondary font-normal text-[10px] sm:text-xs">
+                    <span v-if="authStore.currentUser?.user_metadata?.fullName"
+                      class="text-tx-secondary font-normal text-[10px] sm:text-xs">
                       , {{ authStore.currentUser.user_metadata.fullName.split(' ')[0] }}
                     </span>
                   </h1>
-                  
-                  <div class="flex items-center gap-1 sm:gap-1.5 text-[9.5px] sm:text-[11px] text-tx-muted mt-1 leading-none font-medium">
+
+                  <div
+                    class="flex items-center gap-1 sm:gap-1.5 text-[9.5px] sm:text-[11px] text-tx-muted mt-1 leading-none font-medium">
                     <span>{{ formattedDate }}</span>
                     <span class="text-[var(--border-subtle)] font-bold select-none">•</span>
                     <!-- Monospace Animated clock -->
                     <div class="flex items-center text-tx-secondary font-mono font-semibold tracking-wider">
-                      <span v-for="(char, idx) in timeChars" :key="idx" class="relative overflow-hidden inline-flex items-center justify-center h-3 sm:h-3.5" :class="char === ':' ? 'w-1' : 'w-1.5 sm:w-2'">
+                      <span v-for="(char, idx) in timeChars" :key="idx"
+                        class="relative overflow-hidden inline-flex items-center justify-center h-3 sm:h-3.5"
+                        :class="char === ':' ? 'w-1' : 'w-1.5 sm:w-2'">
                         <Transition name="digit-slide">
                           <span :key="char" class="absolute inset-0 flex items-center justify-center">
                             {{ char }}
@@ -181,18 +187,14 @@
                   </div>
                 </div>
               </div>
-
-              <LazyVButton type="button" variant="ghost" text-color="text-tx-secondary"
-                hover-color="hover:bg-[var(--bg-hover)]" padding-x="px-1.5" padding-y="py-1.5"
-                class="lg:hidden rounded-lg hover:text-tx-primary" @click="isMobileSidebarOpen = !isMobileSidebarOpen">
-                <Icon name="material-symbols:menu-rounded" class="w-5 h-5" />
-              </LazyVButton>
             </div>
 
             <div class="flex items-center gap-2">
               <LazyVSearchInput v-model="searchQuery" :placeholder="'Search...'" class="hidden md:block w-52" />
 
-              <VToggleLocales />
+              <LazyVToggleLocales />
+
+              <LazyVToggleThemes />
 
               <LazyVAppNotifications />
 
@@ -200,6 +202,12 @@
                 <img :src="authStore.currentUser?.user_metadata?.avatarUrl || '/img/dummy-profile-img.jpg'" alt="avatar"
                   class="w-8 h-8 rounded-lg object-cover flex-shrink-0 ring-1 ring-[var(--border-default)]" />
               </div>
+
+              <LazyVButton type="button" variant="ghost" text-color="text-tx-secondary"
+                hover-color="hover:bg-[var(--bg-hover)]" padding-x="px-1.5" padding-y="py-1.5"
+                class="lg:hidden rounded-lg hover:text-tx-primary" @click="isMobileSidebarOpen = !isMobileSidebarOpen">
+                <Icon name="material-symbols:menu-rounded" class="w-5 h-5" />
+              </LazyVButton>
             </div>
           </header>
 

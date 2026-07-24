@@ -116,3 +116,35 @@ select {
 select::-ms-expand {
   display: none;
 }
+
+/* ─── Light Theme Overrides ────────────────────────────────── */
+html.light {
+  --bg-base-rgb: 249 250 251;       /* Light gray background */
+  --bg-primary-rgb: 255 255 255;   /* White panels */
+  --bg-elevated-rgb: 243 244 246;  /* Soft gray cards */
+  --bg-overlay-rgb: 229 231 235;   /* Gray overlays */
+
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --border-default: rgba(0, 0, 0, 0.08);
+  --bg-hover: rgba(0, 0, 0, 0.03);
+  --bg-hover-strong: rgba(0, 0, 0, 0.06);
+
+  --text-primary-rgb: 17 24 39;     /* Slate-900 */
+  --text-secondary-rgb: 75 85 99;   /* Slate-600 */
+  --text-muted-rgb: 156 163 175;    /* Slate-400 */
+
+  --brand-rgb: 79 70 229;          /* Indigo-600 */
+  --brand-secondary-rgb: 67 56 202;/* Indigo-700 */
+  --success-rgb: 5 150 105;        /* Emerald-600 */
+  --danger-rgb: 220 38 38;         /* Red-600 */
+  --warning-rgb: 217 119 6;        /* Amber-600 */
+  --info-rgb: 37 99 235;           /* Blue-600 */
+
+  --color-brand-dim: rgba(79, 70, 229, 0.08);
+  --color-success-dim: rgba(5, 150, 105, 0.08);
+  --color-danger-dim: rgba(220, 38, 38, 0.08);
+  --color-warning-dim: rgba(217, 119, 6, 0.08);
+
+  color-scheme: light;
+}
+
