@@ -588,5 +588,11 @@
     "disclaimer_text": "The materials on Nexux ERP's platform are provided on an 'as is' basis. Nexux ERP makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.",
     "limitations": "Limitations",
     "limitations_text": "In no event shall Nexux ERP or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Nexux ERP's platform."
+  },
+  "greetings": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening",
+    "night": "Good night"
   }
 }
