@@ -3,8 +3,8 @@
     <div class="w-full text-slate-200 space-y-6">
       <!-- Header -->
       <div class="text-center">
-        <h2 class="text-2xl font-bold text-white">{{ t('form.welcome_back') }}</h2>
-        <p class="text-slate-500 mt-1 text-sm">{{ t('form.sign_in_to_workspace') }}</p>
+        <h2 class="text-2xl font-bold text-tx-primary">{{ t('form.welcome_back') }}</h2>
+        <p class="text-tx-secondary mt-1 text-sm">{{ t('form.sign_in_to_workspace') }}</p>
       </div>
 
       <!-- Error Alert -->

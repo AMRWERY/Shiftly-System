@@ -6,35 +6,27 @@
             <div>
                 <div
                     class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-5">
-                    <Icon name="ph:envelope-simple" class="text-indigo-400 text-2xl" />
+                    <Icon name="ph:envelope-simple"
+                        class="w-6 h-6 flex items-center justify-center shrink-0 text-indigo-500 dark:text-indigo-400" />
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-1">{{ t('form.forgot_your_password_title') }}</h2>
-                <p class="text-slate-500 text-sm">{{ t('form.forgot_your_password_desc') }}</p>
+                <h2 class="text-2xl font-bold text-tx-primary mb-1">{{ t('form.forgot_your_password_title') }}</h2>
+                <p class="text-tx-secondary text-sm">{{ t('form.forgot_your_password_desc') }}</p>
             </div>
 
             <!-- Email field -->
-            <div>
-                <label class="block mb-1.5 text-[10px] font-bold tracking-widest text-slate-500">
-                    {{ t('form.email') }}
-                </label>
-                <div class="relative">
-                    <input v-model="form.email" type="email" :name="t('form.email')"
-                        placeholder="operator@nexus-erp.com"
-                        class="w-full bg-[#13192a] border border-white/5 rounded-lg py-3 ps-4 pe-11 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all text-sm placeholder:text-slate-600 text-white" />
-                    <div class="absolute inset-y-0 end-0 flex items-center pe-4 text-slate-500 pointer-events-none">
-                        <Icon name="ph:at" />
-                    </div>
-                </div>
-            </div>
+            <LazyVInput :label="t('form.email')" placeholder="operator@nexus-erp.com" type="email"
+                :name="t('form.email')" :rules="'required|email'" :required="true" v-model="form.email"
+                prefix-icon="ph:at" label-class="auth-label" />
 
             <!-- Submit -->
-            <button type="submit" :disabled="loading" class="auth-btn-primary">
+            <LazyVButton block type="submit" :disabled="loading" bg-color="bg-indigo-600"
+                bg-hover-color="hover:bg-indigo-500" padding-y="py-3">
                 <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white"
                     :text="t('btn.sending')" />
                 <template v-else>
                     {{ t('form.send_reset_link') }}
                 </template>
-            </button>
+            </LazyVButton>
         </LazyVFormWrapper>
 
         <!-- Step 2: OTP -->
@@ -42,10 +34,11 @@
             <div>
                 <div
                     class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-5">
-                    <Icon name="ph:device-mobile" class="text-indigo-400 text-2xl" />
+                    <Icon name="ph:device-mobile"
+                        class="w-6 h-6 flex items-center justify-center shrink-0 text-indigo-500 dark:text-indigo-400" />
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-1">{{ t('form.enter_otp') }}</h2>
-                <p class="text-slate-500 text-sm">{{ t('form.otp_instruction') }}</p>
+                <h2 class="text-2xl font-bold text-tx-primary mb-1">{{ t('form.enter_otp') }}</h2>
+                <p class="text-tx-secondary text-sm">{{ t('form.otp_instruction') }}</p>
             </div>
 
             <div class="flex items-center justify-center gap-3">
@@ -54,13 +47,14 @@
                     @keydown.backspace="handleBackspace($event, i)" />
             </div>
 
-            <button type="submit" :disabled="loading" class="auth-btn-primary">
+            <LazyVButton block type="submit" :disabled="loading" bg-color="bg-indigo-600"
+                bg-hover-color="hover:bg-indigo-500" padding-y="py-3">
                 <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white"
                     :text="t('btn.verifying')" />
                 <template v-else>
                     {{ t('btn.verify_account') }}
                 </template>
-            </button>
+            </LazyVButton>
 
             <p class="text-center text-xs text-slate-500">
                 {{ t('form.didnt_recieve_code') }}
@@ -75,10 +69,11 @@
             <div>
                 <div
                     class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-5">
-                    <Icon name="ph:lock-key" class="text-indigo-400 text-2xl" />
+                    <Icon name="ph:lock-key"
+                        class="w-6 h-6 flex items-center justify-center shrink-0 text-indigo-500 dark:text-indigo-400" />
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-1">{{ t('btn.reset_password') }}</h2>
-                <p class="text-slate-500 text-sm">{{ t('form.forgot_your_password_desc') }}</p>
+                <h2 class="text-2xl font-bold text-tx-primary mb-1">{{ t('btn.reset_password') }}</h2>
+                <p class="text-tx-secondary text-sm">{{ t('form.forgot_your_password_desc') }}</p>
             </div>
 
             <LazyVInput :label="t('form.password')" placeholder="••••••••" type="password"
@@ -89,13 +84,14 @@
                 :name="t('form.confirm_password')" :rules="'required|confirmed:@new_password'" :required="true"
                 v-model="form.confirmPassword" prefix-icon="ph:lock-simple" label-class="auth-label" />
 
-            <button type="submit" :disabled="loading" class="auth-btn-primary">
+            <LazyVButton block type="submit" :disabled="loading" bg-color="bg-indigo-600"
+                bg-hover-color="hover:bg-indigo-500" padding-y="py-3">
                 <LazyVLoadingSpinner v-if="loading" size="sm" color="text-white" text-color="text-white"
                     :text="t('btn.resetting')" />
                 <template v-else>
                     {{ t('btn.reset_password') }}
                 </template>
-            </button>
+            </LazyVButton>
         </LazyVFormWrapper>
     </div>
 </template>

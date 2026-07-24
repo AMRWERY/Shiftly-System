@@ -11,7 +11,7 @@
 
                 <div class="relative z-10 flex justify-between items-center">
                     <div v-for="(label, i) in steps" :key="i" class="flex flex-col items-center gap-2 bg-transparent">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center ring-2 ring-offset-2 ring-offset-brand-layoutBg transition-all"
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center ring-2 ring-offset-2 ring-offset-bg-primary transition-all"
                             :class="circleClasses(i)">
                             <span v-if="currentStep > i">
                                 <Icon name="material-symbols:check-rounded"
@@ -62,6 +62,6 @@ const circleClasses = (index: number) => {
         return "bg-indigo-500 text-white ring-indigo-500";
     }
     // upcoming
-    return "bg-brand-systemBg text-gray-500 ring-gray-700";
+    return "bg-bg-elevated text-tx-muted ring-[var(--border-default)]";
 };
 </script>

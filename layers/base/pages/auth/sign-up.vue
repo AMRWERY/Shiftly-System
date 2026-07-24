@@ -5,13 +5,15 @@
         </div>
 
         <!-- RTL Toggle -->
-        <div class="absolute top-4 end-4 z-50">
+        <div class="absolute top-4 end-4 z-50 flex items-center gap-2">
             <LazyVToggleLocales />
+ 
+            <LazyVToggleThemes />
         </div>
 
         <!-- Card -->
         <LazyVCard flat
-            class="w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/[0.06] z-10">
+            class="w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-[var(--border-default)] z-10">
             <!-- Col 1 — Branding -->
             <div
                 class="hidden md:flex md:w-1/3 flex-col items-center justify-center p-10 bg-[#0e1322] border-e border-white/5 text-white">
@@ -25,12 +27,12 @@
             </div>
 
             <!-- Col 2 — Sign-up form -->
-            <div class="w-full md:w-3/4 bg-[#0b0f1a] flex items-start justify-center p-6 sm:p-10 overflow-y-auto">
+            <div class="w-full md:w-3/4 bg-bg-primary flex items-start justify-center p-6 sm:p-10 overflow-y-auto">
                 <div class="w-full max-w-2xl py-4">
                     <!-- Header -->
                     <div class="mb-8">
-                        <h2 class="text-2xl font-bold text-white">{{ t('meta.sign_up') }}</h2>
-                        <p class="text-slate-500 mt-1 text-sm">{{ t('form.welcome_message') }}</p>
+                        <h2 class="text-2xl font-bold text-tx-primary">{{ t('meta.sign_up') }}</h2>
+                        <p class="text-tx-secondary mt-1 text-sm">{{ t('form.welcome_message') }}</p>
                     </div>
 
                     <lazy-sign-up />

@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen w-full bg-brand-systemBg text-gray-300 font-sans relative">
+    <div class="min-h-screen w-full bg-bg-base text-tx-secondary font-sans relative">
         <!-- Background layer -->
         <div class="absolute inset-0" />
         <!-- Content layer -->

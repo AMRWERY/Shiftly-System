@@ -5,12 +5,14 @@
         </div>
 
         <!-- RTL Toggle -->
-        <div class="absolute top-4 end-4 z-50">
+        <div class="absolute top-4 end-4 z-50 flex items-center gap-2">
             <LazyVToggleLocales />
+
+            <LazyVToggleThemes />
         </div>
 
         <!-- Focused card -->
-        <LazyVCard flat class="w-full max-w-md bg-[#0e1322] border border-white/[0.06] rounded-2xl shadow-2xl p-8 z-10">
+        <LazyVCard flat class="w-full max-w-md bg-bg-primary border border-[var(--border-default)] rounded-2xl shadow-2xl p-8 z-10">
             <lazy-reset-password />
         </LazyVCard>
     </div>

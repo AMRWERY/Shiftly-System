@@ -1,13 +1,15 @@
 <template>
     <div class="min-h-screen w-full flex items-center justify-center relative">
         <!-- RTL Toggle -->
-        <div class="absolute top-4 end-4 z-50">
+        <div class="absolute top-4 end-4 z-50 flex items-center gap-2">
             <LazyVToggleLocales />
+
+            <LazyVToggleThemes />
         </div>
 
         <!-- Card -->
         <LazyVCard flat
-            class="w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/[0.06] z-10">
+            class="w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-[var(--border-default)] z-10">
             <!-- Col 1 — Branding -->
             <div
                 class="hidden md:flex md:w-1/3 flex-col items-center justify-center p-10 bg-[#0e1322] border-e border-white/5 text-white">
@@ -21,7 +23,7 @@
             </div>
 
             <!-- Col 2 — Login form -->
-            <div class="w-full md:w-2/3 bg-[#0b0f1a] flex items-center justify-center p-6 sm:p-10 overflow-y-auto">
+            <div class="w-full md:w-2/3 bg-bg-primary flex items-center justify-center p-6 sm:p-10 overflow-y-auto">
                 <div class="w-full max-w-xs">
                     <lazy-login />
                 </div>

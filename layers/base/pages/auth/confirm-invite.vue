@@ -6,12 +6,14 @@
 
     <!-- RTL Toggle -->
     <div class="absolute top-4 end-4 lg:top-8 lg:end-8 z-50">
-      <VToggleLocales />
+      <LazyVToggleLocales />
+
+      <LazyVToggleThemes />
     </div>
 
     <!-- Main Card Container -->
     <div
-      class="flex flex-col md:flex-row w-full max-w-4xl h-auto min-h-[400px] rounded-2xl shadow-2xl overflow-hidden border border-gray-700/50 relative z-10 transition-all">
+      class="flex flex-col md:flex-row w-full max-w-4xl h-auto min-h-[400px] rounded-2xl shadow-2xl overflow-hidden border border-[var(--border-default)] relative z-10 transition-all">
       <!-- Left Side - Dark Background with Information -->
       <div
         class="hidden md:flex md:w-4/12 bg-gradient-to-br from-indigo-900 via-brand-systemBg to-brand-layoutBg text-white p-10 flex-col justify-center border-e border-gray-700">
@@ -24,7 +26,7 @@
       </div>
 
       <!-- Right Side - Content -->
-      <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-brand-systemBg">
+      <div class="w-full md:w-8/12 p-4 flex items-center justify-center bg-bg-primary">
         <div class="w-full max-w-lg text-center">
           <div v-if="loading" class="space-y-4">
             <LazyVLoadingSpinner size="xl" color="text-indigo-500" icon-name="svg-spinners:180-ring-with-bg"
@@ -34,8 +36,8 @@
 
           <div v-else-if="error" class="space-y-4">
             <Icon name="material-symbols:error-outline-rounded" class="w-12 h-12 mx-auto text-red-300" />
-            <h2 class="text-xl font-semibold text-white">{{ t('form.activation_failed') }}</h2>
-            <p class="text-gray-300">{{ errorMessage }}</p>
+            <h2 class="text-xl font-semibold text-slate-900 dark:text-white">{{ t('form.activation_failed') }}</h2>
+            <p class="text-slate-600 dark:text-gray-300">{{ errorMessage }}</p>
             <LazyVButton @click="retry" variant="outline" class="mt-4 flex items-center justify-center"
               :padding-x="'px-3'" :padding-y="'py-2'">
               {{ t('btn.retry') }}
@@ -44,8 +46,8 @@
 
           <div v-else-if="success" class="space-y-4">
             <Icon name="mdi-check-circle" class="w-12 h-12 mx-auto text-emerald-500" />
-            <h2 class="text-xl font-semibold text-white">{{ t('form.account_activated') }}</h2>
-            <p class="text-gray-300">{{ t('form.default_password_set') }}</p>
+            <h2 class="text-xl font-semibold text-slate-900 dark:text-white">{{ t('form.account_activated') }}</h2>
+            <p class="text-slate-600 dark:text-gray-300">{{ t('form.default_password_set') }}</p>
             <div class="bg-indigo-900/30 border border-indigo-500/30 rounded-lg p-4 mt-4">
               <p class="text-sm text-indigo-300">
                 <strong>{{ t('form.default_password') }}:</strong> 1234567
