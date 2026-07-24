@@ -33,7 +33,7 @@
               </h1>
               <!-- Role -->
               <div class="flex items-center gap-3 mt-2">
-                <p class="text-start text-gray-200 text-lg font-bold underline capitalize">
+                <p class="text-start dark:text-gray-200 text-lg font-bold underline capitalize">
                   {{ authStore.currentUserRole }}
                 </p>
                 <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
@@ -107,7 +107,8 @@
                 <LazyVButton :block="true" type="submit" @click="updatePersonalInfo" :class="{
                   'opacity-50 cursor-not-allowed': isUpdatingPersonalInfo,
                 }" :padding-y="'py-2.5'">
-                  <LazyVLoadingSpinner v-if="isUpdatingPersonalInfo" size="sm" color="text-white" text-color="text-white" text="Updating..." icon-name="svg-spinners:90-ring-with-bg" />
+                  <LazyVLoadingSpinner v-if="isUpdatingPersonalInfo" size="sm" color="text-white"
+                    text-color="text-white" text="Updating..." icon-name="svg-spinners:90-ring-with-bg" />
                   <span v-else>{{ t("btn.update_personal_information") }}</span>
                 </LazyVButton>
               </div>
@@ -134,7 +135,8 @@
                 <LazyVButton :block="true" type="submit" @click="updatePassword" :class="{
                   'opacity-50 cursor-not-allowed': isUpdatingPassword,
                 }" :padding-y="'py-2.5'">
-                  <LazyVLoadingSpinner v-if="isUpdatingPassword" size="sm" color="text-white" text-color="text-white" text="Updating..." icon-name="svg-spinners:90-ring-with-bg" />
+                  <LazyVLoadingSpinner v-if="isUpdatingPassword" size="sm" color="text-white" text-color="text-white"
+                    text="Updating..." icon-name="svg-spinners:90-ring-with-bg" />
                   <span v-else>{{ t("btn.update_password") }}</span>
                 </LazyVButton>
               </div>
