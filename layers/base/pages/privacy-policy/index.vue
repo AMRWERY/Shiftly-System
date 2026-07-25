@@ -5,8 +5,10 @@
         </div>
 
         <!-- RTL Toggle -->
-        <div class="fixed top-4 end-4 z-50">
+        <div class="fixed top-4 end-4 z-50 flex gap-2">
             <LazyVToggleLocales />
+
+            <LazyVToggleThemes />
         </div>
 
         <div class="max-w-4xl w-full mt-10">
@@ -16,7 +18,7 @@
                     class="inline-flex items-center justify-center p-4 bg-indigo-500/10 rounded-2xl mb-6 ring-1 ring-indigo-500/20">
                     <Icon name="ph:shield-check-duotone" class="w-10 h-10 text-indigo-400" />
                 </div>
-                <h1 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
+                <h1 class="text-4xl md:text-5xl font-black dark:text-white mb-4 tracking-tight">
                     {{ t("meta.privacy_policy") }}
                 </h1>
                 <p class="text-slate-400 text-lg max-w-2xl mx-auto">
@@ -27,12 +29,12 @@
 
             <!-- Content Card -->
             <LazyVCard flat
-                class="p-8 md:p-12 border border-white/[0.05] bg-[#0e1322]/80 backdrop-blur-xl shadow-2xl rounded-2xl relative overflow-hidden">
+                class="p-8 md:p-12 border border-white/[0.05] dark:bg-[#0e1322]/80 backdrop-blur-xl shadow-2xl rounded-2xl relative overflow-hidden">
                 <div class="absolute top-0 start-0 w-full h-1 bg-gradient-to-r from-indigo-500/50 to-transparent"></div>
 
                 <div class="space-y-12 text-base leading-relaxed">
                     <section class="group">
-                        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                        <h2 class="text-2xl font-bold dark:text-white mb-4 flex items-center gap-3">
                             <span
                                 class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 text-sm font-black transition-colors group-hover:bg-indigo-500/20">1</span>
                             {{ t("privacy_policy.information_we_collect") }}
@@ -63,7 +65,7 @@
                     </section>
 
                     <section class="group">
-                        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                        <h2 class="text-2xl font-bold dark:text-white mb-4 flex items-center gap-3">
                             <span
                                 class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-sm font-black transition-colors group-hover:bg-cyan-500/20">2</span>
                             {{ t("privacy_policy.how_we_use_data") }}
@@ -94,7 +96,7 @@
                     </section>
 
                     <section class="group">
-                        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                        <h2 class="text-2xl font-bold dark:text-white mb-4 flex items-center gap-3">
                             <span
                                 class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 text-sm font-black transition-colors group-hover:bg-purple-500/20">3</span>
                             {{ t("privacy_policy.data_security") }}
@@ -107,7 +109,7 @@
                     </section>
 
                     <section class="group">
-                        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                        <h2 class="text-2xl font-bold dark:text-white mb-4 flex items-center gap-3">
                             <span
                                 class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-sm font-black transition-colors group-hover:bg-emerald-500/20">4</span>
                             {{ t("privacy_policy.data_sharing") }}
