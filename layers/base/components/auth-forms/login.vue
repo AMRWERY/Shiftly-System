@@ -49,7 +49,7 @@
             <div
               class="absolute inset-0 flex items-center justify-center gap-2 text-xs font-semibold tracking-wider text-tx-secondary pointer-events-none transition-opacity duration-200"
               :style="{ opacity: Math.max(0, 1 - dragPercentage / 50) }">
-              <span>{{ t('btn.slide_to_login', 'Slide to Sign In') }}</span>
+              <span>{{ t('btn.slide_to_login') }}</span>
               <Icon name="ph:caret-double-right-bold" class="w-4 h-4 text-indigo-400 animate-pulse" />
             </div>
 
@@ -126,7 +126,6 @@ const startDrag = (e: MouseEvent | TouchEvent) => {
   if (loading.value) return
   isDragging.value = true
   updateDragPosition(e)
-
   window.addEventListener('mousemove', onDragMove)
   window.addEventListener('mouseup', onDragEnd)
   window.addEventListener('touchmove', onDragMove, { passive: false })
@@ -143,7 +142,6 @@ const updateDragPosition = (e: MouseEvent | TouchEvent) => {
   if (!containerRef.value) return
   const rect = containerRef.value.getBoundingClientRect()
   const clientX = 'touches' in e ? e.touches[0].clientX : (e as MouseEvent).clientX
-
   const maxDrag = rect.width - handleWidth - 8
   const relativeX = clientX - rect.left - handleWidth / 2 - 4
   const clampedX = Math.max(0, Math.min(relativeX, maxDrag))
@@ -154,12 +152,10 @@ const updateDragPosition = (e: MouseEvent | TouchEvent) => {
 const onDragEnd = () => {
   if (!isDragging.value) return
   isDragging.value = false
-
   window.removeEventListener('mousemove', onDragMove)
   window.removeEventListener('mouseup', onDragEnd)
   window.removeEventListener('touchmove', onDragMove)
   window.removeEventListener('touchend', onDragEnd)
-
   if (dragPercentage.value >= 85) {
     dragPercentage.value = 100
     isUnlocked.value = true

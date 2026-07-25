@@ -95,7 +95,8 @@
     "creating_account": "Creating account...",
     "sign_in": "Sign In",
     "select_all": "Select All",
-    "deselect_all": "Deselect All"
+    "deselect_all": "Deselect All",
+    "slide_to_login": "Slide to Sign In"
   },
   "toast": {
     "please_fill_all_fields": "Please fill all required fields",

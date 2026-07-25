@@ -95,7 +95,8 @@
     "creating_account": "جاري إنشاء الحساب...",
     "sign_in": "تسجيل الدخول",
     "select_all": "تحديد الكل",
-    "deselect_all": "إلغاء تحديد الكل"
+    "deselect_all": "إلغاء تحديد الكل",
+    "slide_to_login": "اسحب لتسجيل الدخول"
   },
   "toast": {
     "please_fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
