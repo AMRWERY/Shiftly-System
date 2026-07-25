@@ -11,7 +11,7 @@
       </div>
 
       <!-- Loading State -->
-      <LazyVTableSkeletonLoader v-if="pending" :headers="columns" />
+      <LazyVTableSkeleton v-if="pending" :headers="columns" />
 
       <!-- Users Table -->
       <LazyVTable v-else :columns="columns" :items="nonAdminUsers" :current-page="1" :total-pages="1"
@@ -24,8 +24,8 @@
         @success="refreshData" />
 
       <!-- Block/Unblock Confirmation Dialog -->
-      <block-user-dialog :show="isBlockDialogOpen" :user="userToBlock" :loading="isBlocking"
-        @close="closeBlockDialog" @confirm="confirmBlockUser" />
+      <block-user-dialog :show="isBlockDialogOpen" :user="userToBlock" :loading="isBlocking" @close="closeBlockDialog"
+        @confirm="confirmBlockUser" />
     </div>
   </div>
 </template>

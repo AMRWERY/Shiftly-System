@@ -9,7 +9,7 @@
           class="h-5 w-5 shrink-0 ms-3 text-gray-400 transition-transform duration-200 ease-out"
           :class="{ 'rotate-180': isOpen }" />
       </LazyVButton>
-      
+
       <ul v-show="isOpen"
         class="absolute block shadow-2xl bg-brand-cardBg border border-gray-700 py-2 px-2 z-[1000] min-w-full w-max rounded-lg max-h-96 overflow-auto mt-2">
         <li @click="downloadData('pdf')"
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Column } from '../../types/tables';
+import type { Column } from '@/types/tables';
 
 const props = defineProps<{
   allItems: Array<any>;
@@ -194,5 +194,6 @@ const handleClickOutside = (event: MouseEvent) => {
 };
 
 onMounted(() => document.addEventListener('click', handleClickOutside));
+
 onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside));
 </script>

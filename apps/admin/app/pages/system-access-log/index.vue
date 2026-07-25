@@ -78,7 +78,7 @@
       <!-- Table / Loading / Empty -->
       <div class="flex min-h-0 flex-1 flex-col">
         <!-- Skeleton -->
-        <LazyVTableSkeletonLoader v-if="isLoading" :headers="columns" />
+        <LazyVTableSkeleton v-if="isLoading" :headers="columns" />
 
         <!-- Empty State -->
         <LazyVEmptyState v-else-if="filteredLogs.length === 0" :title="t('access_log.no_logs')"

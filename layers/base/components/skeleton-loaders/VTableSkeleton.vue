@@ -1,89 +1,188 @@
 <template>
-  <div class="flex flex-col bg-[#0B0E14] rounded-xl border border-gray-800/40 overflow-hidden">
+  <div class="flex min-h-0 flex-1 flex-col">
+    <!-- Controls Skeleton -->
+    <div class="mb-6 flex shrink-0 flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+      <!-- Title Skeleton -->
+      <div class="h-8 bg-gray-700 rounded-md w-32 animate-pulse"></div>
 
-    <!-- Top Header Bar Skeleton -->
-    <div class="flex items-center justify-between px-6 py-3.5 border-b border-gray-800/40">
-      <div class="flex items-center gap-2">
-        <!-- Badge slots (e.g. LIVE DEPLOYMENT, M 80) -->
-        <div class="h-5 w-32 animate-pulse rounded-full bg-emerald-500/10 border border-emerald-500/20" />
-        <div class="h-5 w-12 animate-pulse rounded-full bg-gray-800/80" />
-      </div>
-      <div class="flex items-center gap-4">
-        <div class="h-3 w-36 animate-pulse rounded-full bg-gray-800" />
-        <div class="h-7 w-20 animate-pulse rounded-lg bg-gray-800/70" />
-      </div>
-    </div>
+      <!-- Actions Skeleton -->
+      <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+        <!-- Search Input Skeleton -->
+        <div class="h-10 bg-gray-700 rounded-md w-full sm:w-[300px] animate-pulse"></div>
 
-    <!-- Table Head Skeleton -->
-    <div class="border-b border-gray-800/60 px-6 py-5 flex items-center gap-6 bg-[#0B0E14]/95">
-      <div class="w-4 h-4 rounded bg-gray-800/60 animate-pulse flex-shrink-0" />
-      <div v-for="(w, i) in colWidths" :key="i" :class="w" class="h-2 animate-pulse rounded-full bg-gray-800/60" />
-      <div class="ms-auto h-2 w-8 animate-pulse rounded-full bg-gray-800/50" />
-    </div>
+        <!-- Download Button Skeleton -->
+        <div class="h-10 w-28 bg-gray-700 rounded-md animate-pulse"></div>
 
-    <!-- Table Rows Skeleton -->
-    <div class="relative divide-y divide-gray-800/20">
-      <div v-for="row in rows" :key="row" class="flex items-center gap-6 px-6 py-4"
-        :style="{ animationDelay: `${(row - 1) * 60}ms` }">
-        <!-- Checkbox -->
-        <div class="w-4 h-4 rounded bg-gray-800/40 animate-pulse flex-shrink-0" />
+        <!-- Refresh Button Skeleton -->
+        <div class="h-10 w-10 bg-gray-700 rounded-md animate-pulse"></div>
 
-        <!-- Avatar + Name -->
-        <div class="flex items-center gap-3 flex-shrink-0 w-44">
-          <div class="w-10 h-10 rounded-full bg-gray-800/70 animate-pulse flex-shrink-0" />
-          <div class="flex flex-col gap-1.5 flex-1">
-            <div class="h-3 w-24 rounded-full bg-gray-800 animate-pulse" />
-            <div class="h-2 w-16 rounded-full bg-gray-800/50 animate-pulse" />
-          </div>
-        </div>
-
-        <!-- Role badge -->
-        <div class="h-5 w-20 animate-pulse rounded-full bg-gray-800/60" />
-
-        <!-- Remaining cells -->
-        <div v-for="(w, i) in cellWidths" :key="i" :class="w" class="h-3 animate-pulse rounded-full bg-gray-800/50" />
-
-        <!-- Actions -->
-        <div class="ms-auto flex items-center gap-1.5">
-          <div class="w-8 h-8 rounded-lg bg-gray-800/40 animate-pulse" />
-          <div class="w-8 h-8 rounded-lg bg-gray-800/40 animate-pulse" />
-          <div class="w-8 h-8 rounded-lg bg-gray-800/40 animate-pulse" />
-        </div>
-      </div>
-
-      <!-- Loading State Label -->
-      <div class="absolute bottom-3 start-6 flex items-center gap-2 pointer-events-none">
-        <div class="w-0.5 h-4 rounded-full bg-indigo-500/40" />
-        <span class="text-[10px] font-bold tracking-widest text-gray-700">
-          Background Initialization
-        </span>
-        <span class="text-[10px] text-gray-800 normal-case tracking-normal font-normal">
-          (LOADING STATE)
-        </span>
+        <!-- Add Button Skeleton -->
+        <div class="h-10 w-32 bg-gray-700 rounded-md animate-pulse"></div>
       </div>
     </div>
 
-    <!-- Footer Pagination Skeleton -->
     <div
-      class="px-8 py-4 border-t border-gray-800/40 bg-[#0D1017] flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div class="h-3 w-44 animate-pulse rounded-full bg-gray-800" />
-      <div class="flex items-center gap-2">
-        <div class="h-9 w-20 animate-pulse rounded-lg bg-gray-800" />
-        <div v-for="i in 3" :key="i" class="h-9 w-9 animate-pulse rounded-lg bg-gray-800/60" />
-        <div class="h-9 w-20 animate-pulse rounded-lg bg-gray-800" />
+      class="relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-gray-800/40 bg-[#0B0E14]">
+      <div class="scroll-container min-h-0 flex-1 overflow-x-auto overflow-y-auto smooth-scroll" @scroll="handleScroll">
+        <table class="w-full text-sm text-gray-500 text-start sm:min-w-[1000px]">
+          <thead class="bg-[#0B0E14]/95 backdrop-blur-md border-b border-gray-800/60">
+            <tr>
+              <!-- Selection Checkbox Skeleton -->
+              <th scope="col" class="px-6 py-5 w-12">
+                <div class="w-5 h-5 bg-gray-800 rounded animate-pulse"></div>
+              </th>
+
+              <th v-for="(header, index) in headers" :key="index" scope="col" class="px-6 py-5">
+                <div class="w-20 h-3 bg-gray-800 rounded-full animate-pulse opacity-60"></div>
+              </th>
+
+              <!-- Actions Header Skeleton -->
+              <th scope="col" class="px-6 py-5 text-end pe-10">
+                <div class="ms-auto w-16 h-3 bg-gray-800 rounded-full animate-pulse opacity-60"></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800/20">
+            <tr v-for="row in rows" :key="row" class="bg-transparent group">
+              <!-- Checkbox Cell -->
+              <td class="px-6 py-5">
+                <div class="w-5 h-5 bg-gray-800/40 rounded animate-pulse"></div>
+              </td>
+
+              <td v-for="(header, index) in headers" :key="index" class="px-6 py-5">
+                <div class="flex items-center gap-4">
+                  <!-- User Avatar Skeleton -->
+                  <div v-if="header.key === 'user' || header.key === 'avatar'"
+                    class="w-11 h-11 bg-gray-800/60 rounded-full animate-pulse flex-shrink-0"></div>
+
+                  <div class="flex flex-col gap-2 flex-1">
+                    <div class="h-3 bg-gray-800 rounded-full animate-pulse" :class="header.loaderWidth || 'w-24'"></div>
+                    <div v-if="header.key === 'user'" class="h-2 bg-gray-800/40 rounded-full w-32 animate-pulse"></div>
+                  </div>
+                </div>
+              </td>
+
+              <!-- Actions Cell Skeleton -->
+              <td class="px-6 py-5 text-end pe-8">
+                <div class="flex justify-end gap-2">
+                  <div class="w-9 h-9 bg-gray-800/40 rounded-lg animate-pulse"></div>
+                  <div class="w-9 h-9 bg-gray-800/40 rounded-lg animate-pulse"></div>
+                  <div class="w-9 h-9 bg-gray-800/40 rounded-lg animate-pulse"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LazyVPagination Skeleton -->
+    <div
+      class="flex shrink-0 flex-col items-center justify-between border-t border-gray-800/40 bg-[#0D1017] px-8 py-5 animate-pulse sm:flex-row">
+      <div class="h-4 bg-gray-800 rounded-full w-48 mb-4 sm:mb-0"></div>
+
+      <div class="flex items-center gap-3">
+        <!-- Prev Button Skeleton -->
+        <div class="w-24 h-10 bg-gray-800 border border-gray-700/50 rounded-lg"></div>
+        <!-- Page Numbers -->
+        <div class="flex gap-1">
+          <div v-for="i in 3" :key="i" class="w-10 h-10 bg-gray-800/50 rounded-lg"></div>
+        </div>
+        <!-- Next Button Skeleton -->
+        <div class="w-24 h-10 bg-gray-800 border border-gray-700/50 rounded-lg"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-withDefaults(
-  defineProps<{
-    rows?: number
-  }>(),
-  { rows: 7 }
-)
+import type { TableHeader } from '@/types/table-header'
 
-const colWidths = ['w-32', 'w-16', 'w-20', 'w-16', 'w-14', 'w-10', 'w-24']
-const cellWidths = ['w-20', 'w-16', 'w-14', 'w-10', 'w-24']
+defineProps({
+  headers: {
+    type: Array as PropType<TableHeader[]>,
+    required: true,
+    default: () => []
+  },
+  rows: {
+    type: Number,
+    default: 9
+  }
+})
+
+const showLeftShadow = ref(false);
+const showRightShadow = ref(false);
+
+const handleScroll = (event: Event) => {
+  const target = event.target as HTMLElement;
+  const { scrollLeft, scrollWidth, clientWidth } = target;
+
+  showLeftShadow.value = scrollLeft > 0;
+  showRightShadow.value = scrollLeft < scrollWidth - clientWidth - 10;
+};
 </script>
+
+<style scoped>
+/* Custom scrollbar styling */
+.scroll-container {
+  scroll-behavior: smooth;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #2e2e48;
+  border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  box-shadow: 0 0 6px rgba(102, 126, 234, 0.4);
+}
+
+/* Firefox */
+.scroll-container {
+  scrollbar-color: #6366f1 #2e2e48;
+  scrollbar-width: thin;
+}
+
+/* Scroll shadows for better visual feedback */
+.scroll-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-shadow-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.08), transparent);
+}
+
+.scroll-shadow-right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.08), transparent);
+}
+
+/* Smooth scroll behavior */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Add a subtle border effect */
+.scroll-container {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+</style>
