@@ -3,9 +3,9 @@
         <!-- Step 1: Email -->
         <LazyVFormWrapper v-if="currentStep === 0" @submit="nextStep" class="space-y-6">
             <!-- Icon + heading -->
-            <div>
+            <div class="flex flex-col items-center justify-center">
                 <div
-                    class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-5">
+                    class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 mb-5 flex items-center justify-center">
                     <Icon name="ph:envelope-simple"
                         class="w-6 h-6 flex items-center justify-center shrink-0 text-indigo-500 dark:text-indigo-400" />
                 </div>
@@ -66,7 +66,7 @@
 
         <!-- Step 3: New Password -->
         <LazyVFormWrapper v-else-if="currentStep === 2" @submit="handleResetPassword" class="space-y-5">
-            <div>
+            <div class="flex flex-col items-center justify-center">
                 <div
                     class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-5">
                     <Icon name="ph:lock-key"
