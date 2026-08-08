@@ -6,7 +6,7 @@
         <div class="relative">
           <input type="text" :value="formattedDate" readonly @click="toggleCalendar"
             :placeholder="t('form.select_date')"
-            class="w-full px-3 py-2 transition duration-300 border border-gray-700 bg-brand-systemBg rounded-md shadow-sm placeholder:text-gray-500 text-white focus:outline-none focus:border-indigo-500 hover:border-gray-600 focus:shadow" />
+            class="w-full px-3 py-2 pe-9 transition duration-300 border border-[var(--border-default)] bg-brand-systemBg rounded-md shadow-sm placeholder:text-gray-500 text-tx-primary focus:outline-none focus:border-indigo-500 hover:border-gray-600 focus:shadow" />
           <div class="absolute inset-y-0 flex items-center pointer-events-none end-0 pe-3">
             <Icon name="material-symbols:calendar-month" class="w-5 h-5 text-gray-500" />
           </div>
@@ -14,14 +14,14 @@
 
         <!-- Calendar dropdown -->
         <div v-if="showCalendar"
-          class="absolute z-10 w-[303px] mt-2 bg-brand-cardBg border border-gray-700 rounded-xl shadow-2xl">
+          class="absolute z-[1000] w-[303px] mt-2 bg-bg-elevated border border-[var(--border-default)] rounded-xl shadow-2xl">
           <!-- Calendar header -->
-          <div class="flex items-center justify-between p-2 border-b border-gray-700">
+          <div class="flex items-center justify-between p-2 border-b border-[var(--border-default)]">
             <LazyVButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5"
               class="rounded-full" @click="previousMonth">
               <Icon name="material-symbols:chevron-left" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
             </LazyVButton>
-            <span class="font-semibold text-white">{{ currentMonthYear }}</span>
+            <span class="font-semibold text-tx-primary">{{ currentMonthYear }}</span>
             <LazyVButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5"
               class="rounded-full" @click="nextMonth">
               <Icon name="material-symbols:chevron-right" class="w-5 h-5 text-gray-400 rtl:rotate-180" />
@@ -29,7 +29,7 @@
           </div>
 
           <!-- Days of week -->
-          <div class="grid grid-cols-7 gap-1 p-2 text-center border-b border-gray-700">
+          <div class="grid grid-cols-7 gap-1 p-2 text-center border-b border-[var(--border-default)]">
             <span v-for="day in daysOfWeek" :key="day" class="text-xs font-medium text-gray-400">
               {{ day }}
             </span>
@@ -63,6 +63,11 @@ const props = defineProps({
     type: [Date, String] as PropType<Date | string | null>,
     // type: Date as PropType<Date | null>,
     default: null,
+  },
+  // Opt-in: only forward-looking pickers (e.g. leave requests) should block past dates
+  disablePast: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -220,6 +225,7 @@ onUnmounted(() => {
 });
 
 const isDateDisabled = (date: Date): boolean => {
+  if (!props.disablePast) return false;
   const today = new Date();
   today.setHours(0, 0, 0, 0); // Set to start of day
   return date < today;

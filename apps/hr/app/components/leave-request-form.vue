@@ -1,8 +1,8 @@
 <template>
   <LazyVFormWrapper class="leave-request-form" @submit="$emit('submit', formData)">
     <LazyVSelectInput v-model="formData.type" label="Leave Type" :options="leaveTypes" />
-    <LazyVDatePicker v-model="formData.startDate" label="Start Date" />
-    <LazyVDatePicker v-model="formData.endDate" label="End Date" />
+    <LazyVDatePicker v-model="formData.startDate" label="Start Date" disable-past />
+    <LazyVDatePicker v-model="formData.endDate" label="End Date" disable-past />
     <LazyVInput v-model="formData.reason" label="Reason" />
     <LazyVButton type="submit" variant="primary" :loading="loading">Submit</LazyVButton>
   </LazyVFormWrapper>
