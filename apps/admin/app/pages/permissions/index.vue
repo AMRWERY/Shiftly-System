@@ -1,8 +1,21 @@
 <template>
   <div class="h-full flex flex-col">
     <div class="p-6 flex-1 flex flex-col">
-      <div class="flex justify-between items-center mb-6">
+      <!-- Header + Controls Row -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6 shrink-0">
         <h1 class="text-2xl font-semibold text-gray-400">{{ t('permissions.title') }}</h1>
+
+        <!-- Controls: Search + Refresh + Download -->
+        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+          <LazyVSearchInput v-model="localSearchTerm" @search="handleSearch"
+            :placeholder="t('form.search_by_email_or_name')" class="w-full sm:w-[300px]" :debounce="300" />
+
+          <LazyVRefreshButton @refresh="refreshData" :is-loading="pending" />
+
+          <div class="shrink-0">
+            <LazyVDownloadFilesMenu :all-items="nonAdminUsers" :columns="columns" file-name-base="permissions" />
+          </div>
+        </div>
       </div>
 
       <!-- Error State -->
@@ -42,10 +55,12 @@ const selectedUser = ref<UserListItem | null>(null)
 const isBlockDialogOpen = ref(false)
 const userToBlock = ref<UserListItem | null>(null)
 const isBlocking = ref(false)
+const localSearchTerm = ref('')
 const { triggerToast } = useToast()
 
-// Fetch users on mount
+// Fetch users on mount; the store's search term is shared, so start this page clean
 onMounted(async () => {
+  usersStore.setSearchTerm('')
   await usersStore.fetchUsers()
 })
 
@@ -100,6 +115,10 @@ const error = computed(() => usersStore.error)
 
 const refreshData = async () => {
   await usersStore.fetchUsers()
+}
+
+const handleSearch = (term: string) => {
+  usersStore.setSearchTerm(term)
 }
 
 // Edit permissions handler

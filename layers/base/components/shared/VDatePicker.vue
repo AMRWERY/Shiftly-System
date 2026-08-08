@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="date-picker">
-      <div class="relative">
+      <div ref="anchorRef" class="relative">
         <!-- Input field -->
         <div class="relative">
           <input type="text" :value="formattedDate" readonly @click="toggleCalendar"
@@ -12,9 +12,10 @@
           </div>
         </div>
 
-        <!-- Calendar dropdown -->
-        <div v-if="showCalendar"
-          class="absolute z-[1000] w-[303px] mt-2 bg-bg-elevated border border-[var(--border-default)] rounded-xl shadow-2xl">
+        <!-- Calendar dropdown — teleported so card backdrop-filters can't trap or clip it -->
+        <Teleport to="body">
+        <div v-if="showCalendar" ref="panelRef" :style="panelStyle"
+          class="date-picker-panel fixed z-[1000] w-[303px] bg-bg-elevated border border-[var(--border-default)] rounded-xl shadow-2xl">
           <!-- Calendar header -->
           <div class="flex items-center justify-between p-2 border-b border-[var(--border-default)]">
             <LazyVButton type="button" variant="ghost" padding-x="px-1" padding-y="py-1" hover-color="hover:bg-white/5"
@@ -50,6 +51,7 @@
             </LazyVButton>
           </div>
         </div>
+        </Teleport>
       </div>
     </div>
   </div>
@@ -57,6 +59,7 @@
 
 <script lang="ts" setup>
 const { t } = useI18n()
+const { isRTL } = storeToRefs(useLocaleStore())
 
 const props = defineProps({
   modelValue: {
@@ -69,12 +72,35 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  // 'date' emits a Date object; 'string' emits "YYYY-MM-DD" for string-typed models
+  valueFormat: {
+    type: String as PropType<'date' | 'string'>,
+    default: 'date',
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
 
 const showCalendar = ref(false);
 const currentDate = ref(props.modelValue || new Date());
+const anchorRef = ref<HTMLElement | null>(null);
+const panelRef = ref<HTMLElement | null>(null);
+const panelStyle = ref<Record<string, string>>({});
+
+const PANEL_WIDTH = 303;
+const VIEWPORT_GAP = 8;
+
+/** Local-time "YYYY-MM-DD" — never via toISOString(), which shifts the day by the UTC offset */
+const toISODate = (date: Date) =>
+  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+/** Parse a model value; bare "YYYY-MM-DD" is read as local midnight, not UTC midnight */
+const toDate = (value: Date | string) => {
+  if (typeof value !== 'string') return value;
+  const dateOnly = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!dateOnly) return new Date(value);
+  return new Date(Number(dateOnly[1]), Number(dateOnly[2]) - 1, Number(dateOnly[3]));
+};
 
 // Days of week
 const daysOfWeek = [t('global_config.days.sunday'), t('global_config.days.monday'), t('global_config.days.tuesday'), t('global_config.days.wednesday'), t('global_config.days.thursday'), t('global_config.days.friday'), t('global_config.days.saturday')];
@@ -88,24 +114,19 @@ const dateValue = computed({
 // Format date for display
 const formattedDate = computed(() => {
   if (!dateValue.value) return '';
-  const date = typeof dateValue.value === 'string' ?
-    new Date(dateValue.value) :
-    dateValue.value;
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
+  return toISODate(toDate(dateValue.value));
 });
 
 // Handle date selection
 const selectDate = (date: Date) => {
-  emit('update:modelValue', new Date(date));
+  // Built from local getters, so "YYYY-MM-DD" never shifts a day via UTC conversion
+  emit('update:modelValue', props.valueFormat === 'string' ? toISODate(date) : new Date(date));
   showCalendar.value = false;
 };
 
 // Current month and year display
 const currentMonthYear = computed(() => {
-  const date = typeof currentDate.value === 'string' ? new Date(currentDate.value) : currentDate.value;
+  const date = toDate(currentDate.value);
   const year = date.getFullYear();
   const monthIndex = date.getMonth();
   // Map month index to translation keys
@@ -129,7 +150,7 @@ const currentMonthYear = computed(() => {
 
 // Calendar days
 const calendarDays = computed(() => {
-  const date = typeof currentDate.value === 'string' ? new Date(currentDate.value) : currentDate.value;
+  const date = toDate(currentDate.value);
   const year = date.getFullYear();
   // const date = typeof currentDate.value === 'string' ? new Date(currentDate.value) : currentDate.value;
   const month = date.getMonth();
@@ -180,12 +201,41 @@ const isSameDate = (date1: Date, date2: Date) => {
 };
 
 const isSelected = (date: Date) => {
-  return props.modelValue && isSameDate(date, typeof props.modelValue === 'string' ? new Date(props.modelValue) : props.modelValue);
+  return props.modelValue && isSameDate(date, toDate(props.modelValue));
+};
+
+// The panel is teleported to <body> and fixed-positioned, so it has to be
+// placed against the input manually — recomputed on open, scroll and resize.
+const updatePanelPosition = () => {
+  const anchor = anchorRef.value;
+  if (!anchor) return;
+  const rect = anchor.getBoundingClientRect();
+  const panelHeight = panelRef.value?.offsetHeight ?? 340;
+
+  // Flip above the input when there isn't room below
+  const spaceBelow = window.innerHeight - rect.bottom;
+  const openUpwards = spaceBelow < panelHeight + VIEWPORT_GAP && rect.top > spaceBelow;
+  const top = openUpwards
+    ? Math.max(VIEWPORT_GAP, rect.top - panelHeight - VIEWPORT_GAP)
+    : rect.bottom + VIEWPORT_GAP;
+
+  // Align to the input's start edge, then pull back inside the viewport
+  const preferredLeft = isRTL.value ? rect.right - PANEL_WIDTH : rect.left;
+  const left = Math.min(
+    Math.max(VIEWPORT_GAP, preferredLeft),
+    window.innerWidth - PANEL_WIDTH - VIEWPORT_GAP,
+  );
+
+  panelStyle.value = { top: `${top}px`, left: `${left}px` };
 };
 
 // Actions
 const toggleCalendar = () => {
   showCalendar.value = !showCalendar.value;
+  if (!showCalendar.value) return;
+  // Place it once against the pre-render estimate, then again once measurable
+  updatePanelPosition();
+  nextTick(updatePanelPosition);
 };
 
 // const selectDate = (date: Date) => {
@@ -193,35 +243,37 @@ const toggleCalendar = () => {
 //   showCalendar.value = false;
 // };
 
-const previousMonth = () => {
-  currentDate.value = new Date(
-    (typeof currentDate.value === 'string' ? new Date(currentDate.value) : currentDate.value).getFullYear(),
-    (typeof currentDate.value === 'string' ? new Date(currentDate.value) : currentDate.value).getMonth() - 1,
-    1
-  );
+const shiftMonth = (offset: number) => {
+  const date = toDate(currentDate.value);
+  currentDate.value = new Date(date.getFullYear(), date.getMonth() + offset, 1);
 };
 
-const nextMonth = () => {
-  currentDate.value = new Date(
-    (typeof currentDate.value === 'string' ? new Date(currentDate.value) : currentDate.value).getFullYear(),
-    (typeof currentDate.value === 'string' ? new Date(currentDate.value) : currentDate.value).getMonth() + 1,
-    1
-  );
-};
+const previousMonth = () => shiftMonth(-1);
 
-// Close calendar when clicking outside
+const nextMonth = () => shiftMonth(1);
+
+// Close calendar when clicking outside — the panel is teleported, so it is not inside .date-picker
 const handleClickOutside = (event: MouseEvent) => {
-  if (!(event.target as Element).closest('.date-picker')) {
+  if (!(event.target as Element).closest('.date-picker, .date-picker-panel')) {
     showCalendar.value = false
   }
 };
 
+// `true` captures scrolls on any ancestor container, not just the window
+const handleReposition = () => {
+  if (showCalendar.value) updatePanelPosition();
+};
+
 onMounted(() => {
   document.addEventListener('click', handleClickOutside);
+  window.addEventListener('scroll', handleReposition, true);
+  window.addEventListener('resize', handleReposition);
 });
 
 onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside);
+  window.removeEventListener('scroll', handleReposition, true);
+  window.removeEventListener('resize', handleReposition);
 });
 
 const isDateDisabled = (date: Date): boolean => {

@@ -214,10 +214,10 @@
               >
                 {{ t("global_config.holiday_date") }}
               </label>
-              <input
-                type="date"
+              <LazyVDatePicker
                 v-model="holiday.date"
-                class="mt-1 block w-full rounded-md border border-[var(--border-default)] py-1.5 text-tx-primary bg-brand-systemBg shadow-sm placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                value-format="string"
+                class="mt-1"
               />
             </div>
             <LazyVButton

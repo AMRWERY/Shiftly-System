@@ -21,6 +21,10 @@
               <!-- LazyVRefreshButton component -->
               <LazyVRefreshButton @refresh="refreshRoles" :is-loading="pending" />
 
+              <!-- Download menu — kept inline here rather than VTable's own bar -->
+              <LazyVDownloadFilesMenu :all-items="rolesStore.filteredRoles" :columns="columns"
+                file-name-base="roles" />
+
               <!-- Add New Role Button -->
               <LazyVButton type="button" padding-x="px-6" padding-y="py-2.5" class="transition-colors whitespace-nowrap"
                 @click="openCreateDialog">
@@ -34,8 +38,7 @@
           <!-- Roles Table -->
           <LazyVTable v-else :columns="columns" :items="paginatedRoles" :current-page="currentPage"
             :total-pages="totalPages" :total-items="rolesStore.filteredRoles.length"
-            :page-size="rolesStore.itemsPerPage" show-download-menu :download-items="rolesStore.filteredRoles"
-            export-file-name="roles" :has-view="true" :has-edit="false" :has-delete="false"
+            :page-size="rolesStore.itemsPerPage" :has-view="true" :has-edit="false" :has-delete="false"
             :action-conditions="actionConditions" class="min-h-0 flex-1" @view="handleViewRole"
             @page-change="handlePageChange" />
         </div>

@@ -1,5 +1,11 @@
 ﻿<template>
   <div class="p-10 space-y-6">
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold tracking-tight text-tx-primary">
+          {{ t("layouts.company_structure") }}
+        </h1>
+      </div>
+
     <LazyVTable :items="employees" :columns="columns" :total-items="employees.length" has-view has-edit has-delete>
       <template #table-header>
         <span
