@@ -11,6 +11,7 @@
     "role": "Role",
     "select_role": "Select your role",
     "select_date": "Select date",
+    "select_time": "Select time",
     "welcome_message": "Join us today and start managing your shifts efficiently.",
     "simple_secure": "Simple & Secure",
     "security_message": "Your data is protected with industry-standard security measures.",
@@ -68,6 +69,7 @@
     "close": "Close",
     "cancel": "Cancel",
     "confirm": "Confirm",
+    "done": "Done",
     "verify_otp": "Verify OTP",
     "retry": "Retry",
     "go_to_login": "Go to Login",
@@ -531,6 +533,15 @@
       "friday": "Fri",
       "saturday": "Sat"
     }
+  },
+  "time": {
+    "select_time": "Select time",
+    "hour": "HOUR",
+    "minute": "MIN",
+    "period": "AM/PM",
+    "am": "AM",
+    "pm": "PM",
+    "now": "Now"
   },
   "months": {
     "january": "January",

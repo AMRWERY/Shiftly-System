@@ -68,10 +68,10 @@
                 >
                   {{ t("global_config.start_time") }}
                 </label>
-                <input
-                  type="time"
+                <LazyVTimePicker
                   v-model="form.workHours.start"
-                  class="mt-1 block w-full rounded-md border border-[var(--border-default)] py-1.5 text-tx-primary bg-brand-systemBg shadow-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  :minute-step="15"
+                  class="mt-1"
                 />
               </div>
               <div>
@@ -80,10 +80,10 @@
                 >
                   {{ t("global_config.end_time") }}
                 </label>
-                <input
-                  type="time"
+                <LazyVTimePicker
                   v-model="form.workHours.end"
-                  class="mt-1 block w-full rounded-md border border-[var(--border-default)] py-1.5 text-tx-primary bg-brand-systemBg shadow-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  :minute-step="15"
+                  class="mt-1"
                 />
               </div>
             </div>
