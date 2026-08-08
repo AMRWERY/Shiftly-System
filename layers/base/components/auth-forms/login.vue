@@ -7,15 +7,6 @@
         <p class="text-tx-secondary mt-1 text-sm">{{ t('form.sign_in_to_workspace') }}</p>
       </div>
 
-      <!-- Error Alert -->
-      <Transition name="fade">
-        <div v-if="showError"
-          class="flex items-center gap-2 p-3 rounded-lg bg-[#2d161a] border border-red-500/30 text-red-400 text-xs">
-          <Icon name="ph:x-circle-fill" class="flex-shrink-0" />
-          <span>{{ loginError }}</span>
-        </div>
-      </Transition>
-
       <!-- Form -->
       <LazyVFormWrapper @submit="handleLogin" class="space-y-4">
         <!-- Email -->
@@ -105,8 +96,6 @@ const { isLoading: loading, startLoading } = useLoading(3000)
 
 const email = ref('')
 const password = ref('')
-const showError = ref(false)
-const loginError = ref('')
 
 const containerRef = ref<HTMLElement | null>(null)
 const submitBtnRef = ref<HTMLButtonElement | null>(null)
@@ -173,7 +162,6 @@ const resetSlider = () => {
 }
 
 const handleLogin = async () => {
-  showError.value = false
   startLoading()
   const result = await authStore.login({ email: email.value, password: password.value })
   if (result.success) {
@@ -193,17 +181,16 @@ const handleLogin = async () => {
   } else {
     loading.value = false
     resetSlider()
-    let msg = t('toast.failed_to_login')
     const err = result.error?.toLowerCase() ?? ''
+    let msg = t('toast.failed_to_login')
     if (err.includes('deactivated')) {
-      msg = t('toast.account_deactivated') || 'Your account has been deactivated.'
+      msg = t('toast.account_deactivated')
     } else if (err.includes('blocked')) {
-      msg = t('toast.account_blocked') || 'Your account has been blocked.'
+      msg = t('toast.account_blocked')
     } else if (err.includes('invalid') || err.includes('credentials') || err.includes('password')) {
       msg = t('toast.invalid_credentials')
     }
-    loginError.value = msg
-    showError.value = true
+    triggerToast({ message: msg, type: 'error', icon: 'ph:warning-circle' })
   }
 }
 </script>

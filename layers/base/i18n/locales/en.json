@@ -134,6 +134,7 @@
     "download_error": "An error occurred while downloading the file.",
     "settings_saved": "Settings saved successfully!",
     "failed_to_save_settings": "Failed to save settings. Please try again.",
+    "failed_to_load_settings": "Failed to load settings. Please try again.",
     "failed_to_update_password": "Failed to update password",
     "password_updated_successfully": "Password updated successfully",
     "password_too_short": "Password too short",

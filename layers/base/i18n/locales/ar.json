@@ -134,6 +134,7 @@
     "download_error": "حدث خطأ أثناء تحميل الملف.",
     "settings_saved": "تم حفظ الإعدادات بنجاح!",
     "failed_to_save_settings": "فشل حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
+    "failed_to_load_settings": "فشل تحميل الإعدادات. يرجى المحاولة مرة أخرى.",
     "failed_to_update_password": "فشل تحديث كلمة المرور",
     "password_updated_successfully": "تم تحديث كلمة المرور بنجاح",
     "password_too_short": "كلمة المرور قصيرة جداً",
