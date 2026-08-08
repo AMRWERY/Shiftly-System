@@ -126,7 +126,9 @@
         </div>
       </div>
 
-      <role-details-skeleton-loader v-if="loading" />
+      <div v-if="loading" class="flex justify-center items-center h-[60vh]">
+        <LazyVLoadingSpinner size="xl" color="text-indigo-500" />
+      </div>
     </div>
   </div>
 </template>

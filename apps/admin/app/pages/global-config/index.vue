@@ -14,7 +14,14 @@
           @click="save"
           :disabled="loading"
         >
-          {{ t("global_config.save_settings") }}
+          <LazyVLoadingSpinner
+            v-if="loading"
+            size="sm"
+            color="text-white"
+            text-color="text-white"
+            :text="t('btn.saving')"
+          />
+          <span v-else>{{ t("global_config.save_settings") }}</span>
         </LazyVButton>
       </div>
 

@@ -126,7 +126,7 @@
 
       <!-- Loading/Error State -->
       <div v-else class="flex flex-col justify-center items-center h-[60vh] animate-fade-in">
-        <user-profile-skeleton-loader v-if="loading" />
+        <LazyVLoadingSpinner v-if="loading" size="xl" color="text-indigo-500" />
 
         <div v-else class="text-center p-8 bg-bg-primary max-w-md rounded-2xl shadow-xl border border-[var(--border-subtle)]">
           <LazyVErrorMessage :error-message="t('users.user_not_found')" />
