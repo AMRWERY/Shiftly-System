@@ -1,10 +1,6 @@
 <template>
   <div>
     <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">request-status</p>
-
-    <div class="p-10">
-      <LazyVBackButton />
-    </div>
   </div>
 </template>
 

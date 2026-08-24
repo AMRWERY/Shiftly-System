@@ -1,9 +1,8 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">email-templates</p>
-
-    <LazyVEmptyState title="No email templates found" description="Create your first email template to get started"
-      icon="heroicons:envelope" color="gray" accentBorder />
+    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">
+      email-templates
+    </p>
   </div>
 </template>
 
@@ -17,6 +16,6 @@ useSeoPage({
 });
 
 definePageMeta({
-  layout: 'dashboard'
-})
+  layout: "dashboard",
+});
 </script>

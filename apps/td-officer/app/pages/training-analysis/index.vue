@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">
-      {{ t("permissions.title") }}
+      training-analysis
     </p>
   </div>
 </template>
@@ -10,8 +10,8 @@
 const { t } = useI18n();
 
 useSeoPage({
-  title: () => t("meta.permissions"),
-  description: () => t("meta.permissions_description"),
+  title: () => t("meta.training_analysis"),
+  description: () => t("meta.training_analysis_description"),
   private: true,
 });
 

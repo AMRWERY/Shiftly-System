@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">unified-reports</p>
+    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">
+      unified-reports
+    </p>
   </div>
 </template>
 
@@ -14,6 +16,6 @@ useSeoPage({
 });
 
 definePageMeta({
-  layout: 'dashboard'
-})
+  layout: "dashboard",
+});
 </script>
