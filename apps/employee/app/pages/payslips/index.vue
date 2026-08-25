@@ -1,6 +1,41 @@
 <template>
   <div>
-    <h1>Payslips</h1>
+    <div>
+      <div class="mt-3 mb-6">
+        <LazyVBreadcrumb
+          :items="[
+            {
+              label: 'Payslips',
+              icon: 'material-symbols:receipt-rounded',
+            },
+          ]"
+        />
+      </div>
+
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-semibold text-gray-100">
+          Payslips
+        </h1>
+        <div class="flex space-s-4">
+          <LazyVDownloadFilesMenu :all-items="[]" :columns="[]" />
+
+          <LazyVRefreshButton />
+
+          <LazyVButton
+            color="primary"
+            size="sm"
+            to="/payslips/create"
+            :padding-x="'px-3'"
+            :padding-y="'py-2.5'"
+            :rounded="'rounded-lg'"
+            :block="true"
+            >Add New</LazyVButton
+          >
+        </div>
+      </div>
+
+      <LazyVTable :columns="[]" :items="[]" />
+    </div>
   </div>
 </template>
 
@@ -14,6 +49,6 @@ useSeoPage({
 });
 
 definePageMeta({
-  layout: 'dashboard'
-})
+  layout: "dashboard",
+});
 </script>

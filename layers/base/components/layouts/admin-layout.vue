@@ -27,7 +27,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('users', 'view')">
+      <li>
         <nuxt-link-locale
           to="/users"
           class="sidebar-nav-link group"
@@ -52,7 +52,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('roles', 'view')">
+      <li>
         <nuxt-link-locale
           to="/roles"
           class="sidebar-nav-link group"
@@ -77,9 +77,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li
-        v-if="hasPermission('users', 'view') || hasPermission('roles', 'view')"
-      >
+      <li>
         <nuxt-link-locale
           to="/permissions"
           class="sidebar-nav-link group"
@@ -104,7 +102,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('audit', 'view')">
+      <li>
         <nuxt-link-locale
           to="/system-access-log"
           class="sidebar-nav-link group"
@@ -129,7 +127,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('audit', 'view')">
+      <li>
         <nuxt-link-locale
           to="/policies-review"
           class="sidebar-nav-link group"
@@ -154,7 +152,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('audit', 'view')">
+      <li>
         <nuxt-link-locale
           to="/audit-log"
           class="sidebar-nav-link group"
@@ -179,7 +177,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('audit', 'view')">
+      <li>
         <nuxt-link-locale
           to="/activity-monitoring"
           class="sidebar-nav-link group"
@@ -204,11 +202,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li
-        v-if="
-          hasPermission('reports', 'view') || hasPermission('finance', 'view')
-        "
-      >
+      <li>
         <nuxt-link-locale
           to="/financial-dashboards"
           class="sidebar-nav-link group"
@@ -233,7 +227,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('reports', 'view')">
+      <li>
         <nuxt-link-locale
           to="/custom-report-builder"
           class="sidebar-nav-link group"
@@ -258,7 +252,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('settings', 'view')">
+      <li>
         <nuxt-link-locale
           to="/company-structure"
           class="sidebar-nav-link group"
@@ -283,7 +277,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('settings', 'view')">
+      <li>
         <nuxt-link-locale
           to="/global-config"
           class="sidebar-nav-link group"
@@ -308,7 +302,7 @@
         </nuxt-link-locale>
       </li>
 
-      <li v-if="hasPermission('settings', 'view')">
+      <li>
         <nuxt-link-locale
           to="/email-templates"
           class="sidebar-nav-link group"
