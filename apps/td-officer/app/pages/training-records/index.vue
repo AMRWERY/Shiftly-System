@@ -1,8 +1,41 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">
-      training-records
-    </p>
+    <div>
+      <div class="mt-3 mb-6">
+        <LazyVBreadcrumb
+          :items="[
+            {
+              label: 'Training Records',
+              icon: 'material-symbols:school-rounded',
+            },
+          ]"
+        />
+      </div>
+
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-semibold text-gray-100">
+          Training Records
+        </h1>
+        <div class="flex space-s-4">
+          <LazyVDownloadFilesMenu :all-items="[]" :columns="[]" />
+
+          <LazyVRefreshButton />
+
+          <LazyVButton
+            color="primary"
+            size="sm"
+            to="/training-records/create"
+            :padding-x="'px-3'"
+            :padding-y="'py-2.5'"
+            :rounded="'rounded-lg'"
+            :block="true"
+            >Add New</LazyVButton
+          >
+        </div>
+      </div>
+
+      <LazyVTable :columns="[]" :items="[]" />
+    </div>
   </div>
 </template>
 

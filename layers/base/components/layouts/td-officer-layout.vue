@@ -3,6 +3,32 @@
     <ul class="space-y-1">
       <li>
         <nuxt-link-locale
+          to="/"
+          class="sidebar-nav-link group"
+          :class="
+            isActive('/')
+              ? 'sidebar-link-active'
+              : 'sidebar-link-hover text-tx-primary'
+          "
+          :exact="true"
+        >
+          <Icon
+            name="mdi:desktop-mac-dashboard"
+            class="sidebar-section-icon"
+            :class="
+              isActive('/')
+                ? 'text-brand-primary dark:text-white'
+                : 'text-tx-muted'
+            "
+          />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{
+            t("layouts.overview")
+          }}</span>
+        </nuxt-link-locale>
+      </li>
+
+      <li>
+        <nuxt-link-locale
           to="/course-creation"
           class="sidebar-nav-link group"
           :class="
@@ -187,7 +213,7 @@
           "
         >
           <Icon
-            name="material-symbols:account-balance-wallet-rounded"
+            name="material-symbols:account-balance-wallet"
             class="sidebar-section-icon"
             :class="
               isActive('/budget-approvals')
@@ -228,10 +254,10 @@
 
       <li>
         <nuxt-link-locale
-          to="/stock-adjustment"
+          to="/training-analysis"
           class="sidebar-nav-link group"
           :class="
-            isActive('/stock-adjustment')
+            isActive('/training-analysis')
               ? 'sidebar-link-active'
               : 'sidebar-link-hover text-tx-primary'
           "
@@ -240,7 +266,7 @@
             name="material-symbols:analytics-rounded"
             class="sidebar-section-icon"
             :class="
-              isActive('/stock-adjustment')
+              isActive('/training-analysis')
                 ? 'text-brand-primary dark:text-white'
                 : 'text-tx-muted'
             "
