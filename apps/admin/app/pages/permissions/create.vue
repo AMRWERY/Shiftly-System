@@ -11,7 +11,7 @@
             to: '/permissions',
           },
           {
-            label: 'Permission Details',
+            label: 'Create Permissions',
             icon: 'material-symbols:policy-rounded',
           },
         ]"
@@ -24,8 +24,8 @@
 const { t } = useI18n();
 
 useSeoPage({
-  title: t("meta.permissions"),
-  description: t("meta.permissions_description"),
+  title: computed(() => t("meta.permissions")),
+  description: () => t("meta.permissions_description"),
   private: true,
 });
 

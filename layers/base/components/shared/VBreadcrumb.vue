@@ -2,7 +2,6 @@
   <nav aria-label="breadcrumb">
     <ol class="flex flex-wrap items-center gap-1 text-sm">
       <template v-for="(item, index) in visibleItems" :key="index">
-
         <!-- Separator (skip before first real item) -->
         <li v-if="index > 0" class="flex items-center text-gray-600" aria-hidden="true">
           <Icon name="heroicons:chevron-right" class="h-3.5 w-3.5" />
@@ -14,23 +13,30 @@
         </li>
 
         <!-- Current (last) item -->
-        <li v-else-if="index === visibleItems.length - 1" aria-current="page">
-          <span class="font-bold text-white">{{ item.label }}</span>
+        <li v-else-if="index === visibleItems.length - 1" aria-current="page" class="flex items-center gap-1.5">
+          <nuxt-link-locale v-if="item.to || item.href" :to="item.to || item.href"
+            class="flex items-center gap-1.5 font-bold text-white transition-colors hover:underline">
+            <Icon v-if="item.icon || index === 0" :name="item.icon || 'heroicons:home'" class="h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
+            <span>{{ item.label }}</span>
+          </nuxt-link-locale>
+          <template v-else>
+            <Icon v-if="item.icon || index === 0" :name="item.icon || 'heroicons:home'" class="h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
+            <span class="font-bold text-white">{{ item.label }}</span>
+          </template>
         </li>
 
         <!-- Link item -->
         <li v-else>
-          <NuxtLink v-if="item.href" :to="item.href"
+          <nuxt-link-locale v-if="item.to || item.href" :to="item.to || item.href"
             class="flex items-center gap-1.5 text-gray-500 transition-colors hover:text-gray-200">
-            <Icon v-if="index === 0" name="heroicons:home" class="h-3.5 w-3.5 flex-shrink-0" />
+            <Icon v-if="item.icon || index === 0" :name="item.icon || 'heroicons:home'" class="h-3.5 w-3.5 flex-shrink-0" />
             <span>{{ item.label }}</span>
-          </NuxtLink>
+          </nuxt-link-locale>
           <span v-else class="flex items-center gap-1.5 text-gray-500">
-            <Icon v-if="index === 0" name="heroicons:home" class="h-3.5 w-3.5 flex-shrink-0" />
+            <Icon v-if="item.icon || index === 0" :name="item.icon || 'heroicons:home'" class="h-3.5 w-3.5 flex-shrink-0" />
             <span>{{ item.label }}</span>
           </span>
         </li>
-
       </template>
     </ol>
   </nav>

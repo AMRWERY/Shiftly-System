@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="p-10 text-3xl font-semibold text-tx-primary">Role Details</h1>
+    <h1 class="p-10 text-3xl font-semibold text-tx-primary">Policies Review Details</h1>
   </div>
 </template>
 
@@ -8,8 +8,8 @@
 const { t } = useI18n();
 
 useSeoPage({
-  title: t("meta.role_details"),
-  description: t("meta.role_details_description"),
+  title: t("meta.policies_review"),
+  description: t("meta.policies_review_description"),
   private: true,
 });
 

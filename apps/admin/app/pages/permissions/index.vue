@@ -1,8 +1,39 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">
-      {{ t("permissions.title") }}
-    </p>
+    <div>
+      <div class="mt-3 mb-6">
+        <LazyVBreadcrumb
+          :items="[
+            {
+              label: 'Permissions',
+              icon: 'material-symbols:key-rounded',
+            },
+          ]"
+        />
+      </div>
+
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-semibold text-gray-100">Permissions</h1>
+        <div class="flex space-s-4">
+          <LazyVDownloadFilesMenu :all-items="[]" :columns="[]" />
+
+          <LazyVRefreshButton />
+
+          <LazyVButton
+            color="primary"
+            size="sm"
+            to="/permissions/create"
+            :padding-x="'px-3'"
+            :padding-y="'py-2.5'"
+            :rounded="'rounded-lg'"
+            :block="true"
+            >Add New</LazyVButton
+          >
+        </div>
+      </div>
+
+      <LazyVTable :columns="[]" :items="[]" />
+    </div>
   </div>
 </template>
 

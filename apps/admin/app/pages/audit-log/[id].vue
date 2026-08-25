@@ -1,18 +1,18 @@
 <template>
   <div>
     <div class="mt-3 mb-6 space-y-4">
-      <LazyVBackButton to="/permissions" />
+      <LazyVBackButton to="/audit-log" />
 
       <LazyVBreadcrumb
         :items="[
           {
-            label: 'Permissions',
-            icon: 'material-symbols:policy-rounded',
-            to: '/permissions',
+            label: 'Audit Log',
+            icon: 'material-symbols:fact-check-rounded',
+            to: '/audit-log',
           },
           {
-            label: 'Permission Details',
-            icon: 'material-symbols:policy-rounded',
+            label: 'Audit Log Details',
+            icon: 'material-symbols:fact-check-rounded',
           },
         ]"
       />
@@ -24,8 +24,8 @@
 const { t } = useI18n();
 
 useSeoPage({
-  title: t("meta.permissions"),
-  description: t("meta.permissions_description"),
+  title: t("meta.audit_log"),
+  description: t("meta.audit_log_description"),
   private: true,
 });
 

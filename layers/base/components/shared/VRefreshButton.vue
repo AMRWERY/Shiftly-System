@@ -1,6 +1,6 @@
 <template>
   <LazyVButton type="button" variant="outline" border-color="border-brand-primary/30" text-color="text-brand-primary"
-    hover-color="hover:bg-brand-primary/10" padding-x="px-4" padding-y="py-2" class="rounded-full shadow-sm"
+    hover-color="hover:bg-brand-primary/10" padding-x="px-3" padding-y="py-3" :rounded="'rounded-full'" class="shadow-sm"
     :disabled="isLoading" @click="handleReload">
     <Icon v-if="!isLoading" name="flowbite:refresh-outline" class="w-4 h-4" />
     <LazyVLoadingSpinner v-else size="sm" color="text-brand-primary" icon-name="svg-spinners:90-ring-with-bg" />

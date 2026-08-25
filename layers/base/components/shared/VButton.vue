@@ -1,18 +1,39 @@
 <template>
   <div :class="$attrs.class">
-    <nuxt-link-locale v-if="route && to" :to="to" :class="buttonClasses" :title="title" :type="type"
-      v-bind="filteredAttrs">
+    <nuxt-link-locale
+      v-if="to"
+      :to="to"
+      :class="buttonClasses"
+      :title="title"
+      :type="type"
+      v-bind="filteredAttrs"
+    >
       <slot></slot>
       <slot name="icon">
-        <Icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="w-5 h-5 ms-2" />
+        <Icon
+          v-if="defaultIcon"
+          name="heroicons-solid:plus-sm"
+          class="w-5 h-5 ms-2"
+        />
         <Icon v-else-if="appendIcon" :name="appendIcon" class="w-5 h-5 ms-2" />
       </slot>
     </nuxt-link-locale>
 
-    <button v-else :class="buttonClasses" :title="title" :type="type" :disabled="disabled" v-bind="filteredAttrs">
+    <button
+      v-else
+      :class="buttonClasses"
+      :title="title"
+      :type="type"
+      :disabled="disabled"
+      v-bind="filteredAttrs"
+    >
       <slot></slot>
       <slot name="icon">
-        <Icon v-if="defaultIcon" name="heroicons-solid:plus-sm" class="ms-2 w-5 h-5" />
+        <Icon
+          v-if="defaultIcon"
+          name="heroicons-solid:plus-sm"
+          class="ms-2 w-5 h-5"
+        />
         <Icon v-else-if="appendIcon" :name="appendIcon" class="ms-2 w-5 h-5" />
       </slot>
     </button>
@@ -20,20 +41,20 @@
 </template>
 
 <script lang="ts" setup>
-defineOptions({ inheritAttrs: false })
+defineOptions({ inheritAttrs: false });
 
-const attrs = useAttrs()
+const attrs = useAttrs();
 
 /** Forward every attr except class/style to the inner button/link */
 const filteredAttrs = computed(() => {
-  const { class: _c, style: _s, ...rest } = attrs as Record<string, any>
-  return rest
-})
+  const { class: _c, style: _s, ...rest } = attrs as Record<string, any>;
+  return rest;
+});
 
 const props = defineProps({
   type: {
-    type: String as PropType<'button' | 'submit' | 'reset'>,
-    default: 'button',
+    type: String as PropType<"button" | "submit" | "reset">,
+    default: "button",
   },
   disabled: {
     type: Boolean,
@@ -41,11 +62,11 @@ const props = defineProps({
   },
   defaultIcon: {
     type: String,
-    default: '',
+    default: "",
   },
   appendIcon: {
     type: String,
-    default: '',
+    default: "",
   },
   block: {
     type: Boolean,
@@ -57,27 +78,27 @@ const props = defineProps({
   },
   title: {
     type: String,
-    default: '',
+    default: "",
   },
   bgColor: {
     type: String,
-    default: 'base-btn-bg',
+    default: "base-btn-bg",
   },
   bgHoverColor: {
     type: String,
-    default: 'base-btn-bg:hover',
+    default: "base-btn-bg:hover",
   },
   hoverColor: {
     type: String,
-    default: 'hover:bg-[#3b5998]/90',
+    default: "hover:bg-[#3b5998]/90",
   },
   borderColor: {
     type: String,
-    default: 'border-current',
+    default: "border-current",
   },
   textColor: {
     type: String,
-    default: 'text-current',
+    default: "text-current",
   },
   noBorder: {
     type: Boolean,
@@ -85,16 +106,16 @@ const props = defineProps({
   },
   paddingX: {
     type: String,
-    default: '',
+    default: "",
   },
   paddingY: {
     type: String,
-    default: '',
+    default: "",
   },
   variant: {
     type: String,
-    default: 'solid',
-    validator: (val: string) => ['solid', 'outline', 'ghost'].includes(val),
+    default: "solid",
+    validator: (val: string) => ["solid", "outline", "ghost"].includes(val),
   },
   link: {
     type: Boolean,
@@ -102,46 +123,61 @@ const props = defineProps({
   },
   to: {
     type: String,
-    default: '',
+    default: "",
   },
   route: {
     type: Boolean,
     default: false,
   },
-})
+  rounded: {
+    type: String,
+    default: "",
+  },
+});
 
 const buttonClasses = computed(() => {
-  const inlineClass = props.inline ? 'inline-flex' : 'flex'
+  const inlineClass = props.inline ? "inline-flex" : "flex";
+
+  const radius =
+    props.rounded ||
+    (props.variant === "outline" || props.variant === "ghost"
+      ? "rounded-lg"
+      : "rounded-xl");
 
   if (props.link) {
     return [
-      'font-medium rounded-lg text-sm text-center',
-      props.paddingX, props.paddingY,
+      `font-medium ${radius} text-sm text-center`,
+      props.paddingX,
+      props.paddingY,
       inlineClass,
-      'items-center justify-center',
-      'text-blue-400 hover:underline',
-      props.block ? 'w-full' : '',
-      props.disabled ? 'opacity-50 cursor-not-allowed' : '',
-    ]
+      "items-center justify-center",
+      "text-blue-400 hover:underline",
+      props.block ? "w-full" : "",
+      props.disabled ? "opacity-50 cursor-not-allowed" : "",
+    ];
   }
 
-  const radius =
-    props.variant === 'outline' || props.variant === 'ghost' ? 'rounded-lg' : 'rounded-xl'
   const base = [
     `font-medium ${radius} text-sm text-center flex items-center justify-center transition-all`,
-    props.paddingX, props.paddingY,
-  ]
+    props.paddingX,
+    props.paddingY,
+  ];
 
-  const block = props.block ? 'w-full' : ''
-  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+  const block = props.block ? "w-full" : "";
+  const disabledClass = props.disabled ? "opacity-50 cursor-not-allowed" : "";
 
   const variantClass =
-    props.variant === 'outline'
-      ? [!props.noBorder ? 'border' : '', props.borderColor, props.textColor, 'bg-transparent']
-      : props.variant === 'ghost'
-        ? ['bg-transparent', props.textColor]
-        : ['text-white', props.bgColor, props.bgHoverColor, props.hoverColor]
+    props.variant === "outline"
+      ? [
+          !props.noBorder ? "border" : "",
+          props.borderColor,
+          props.textColor,
+          "bg-transparent",
+        ]
+      : props.variant === "ghost"
+        ? ["bg-transparent", props.textColor]
+        : ["text-white", props.bgColor, props.bgHoverColor, props.hoverColor];
 
-  return [...base, block, disabledClass, ...variantClass]
-})
+  return [...base, block, disabledClass, ...variantClass];
+});
 </script>
