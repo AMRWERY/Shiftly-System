@@ -3,48 +3,76 @@
     <section class="w-full">
       <div class="flex flex-col">
         <!-- Cover Image -->
-        <img src="/img/profile-bg.jpg" alt="profile-bg"
-          class="w-full xl:h-[20rem] lg:h-[18rem] md:h-[16rem] sm:h-[14rem] h-[11rem]" />
+        <img
+          src="/img/profile-bg.jpg"
+          alt="profile-bg"
+          class="w-full xl:h-[20rem] lg:h-[18rem] md:h-[16rem] sm:h-[14rem] h-[11rem]"
+        />
 
         <!-- Profile Image -->
         <div class="sm:w-[80%] w-[90%] mx-auto flex">
           <div class="relative cursor-pointer group" @click="handleImageClick">
-            <img :src="authStore.currentUser?.user_metadata?.avatarUrl ||
-              '/img/dummy-profile-img.jpg'
-              " alt="User Profile"
-              class="object-cover rounded-md lg:w-[12rem] lg:h-[12rem] md:w-[10rem] md:h-[10rem] sm:w-[8rem] sm:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-blue-500 relative lg:bottom-[5rem] sm:bottom-[4rem] bottom-[3rem] transition-opacity group-hover:opacity-80" />
+            <img
+              :src="
+                authStore.currentUser?.user_metadata?.avatarUrl ||
+                '/img/dummy-profile-img.jpg'
+              "
+              alt="User Profile"
+              class="object-cover rounded-md lg:w-[12rem] lg:h-[12rem] md:w-[10rem] md:h-[10rem] sm:w-[8rem] sm:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-blue-500 relative lg:bottom-[5rem] sm:bottom-[4rem] bottom-[3rem] transition-opacity group-hover:opacity-80"
+            />
 
             <!-- Hover Overlay Icon -->
             <div
-              class="absolute inset-0 flex items-center justify-center lg:bottom-[5rem] sm:bottom-[4rem] bottom-[3rem] opacity-0 group-hover:opacity-100 transition-opacity">
-              <Icon name="heroicons:camera" class="w-8 h-8 text-white drop-shadow-lg" />
+              class="absolute inset-0 flex items-center justify-center lg:bottom-[5rem] sm:bottom-[4rem] bottom-[3rem] opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              <Icon
+                name="heroicons:camera"
+                class="w-8 h-8 text-white drop-shadow-lg"
+              />
             </div>
 
-            <input type="file" ref="fileInput" class="hidden" accept="image/jpeg,image/png,image/webp,image/gif"
-              @change="handleImageUpload" />
+            <input
+              type="file"
+              ref="fileInput"
+              class="hidden"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              @change="handleImageUpload"
+            />
           </div>
 
           <!-- Name and Role Wrapper -->
-          <div class="flex justify-between items-start my-4 sm:mx-4 ps-4 w-full">
+          <div
+            class="flex justify-between items-start my-4 sm:mx-4 ps-4 w-full"
+          >
             <div class="flex flex-col justify-center">
               <!-- FullName -->
-              <h1 class="text-start text-white lg:text-4xl md:text-3xl sm:text-3xl text-xl font-bold">
+              <h1
+                class="text-start text-white lg:text-4xl md:text-3xl sm:text-3xl text-xl font-bold"
+              >
                 {{ authStore.currentUser?.user_metadata?.fullName }}
               </h1>
               <!-- Role -->
               <div class="flex items-center gap-3 mt-2">
-                <p class="text-start dark:text-gray-200 text-lg font-bold underline capitalize">
+                <p
+                  class="text-start dark:text-gray-200 text-lg font-bold underline capitalize"
+                >
                   {{ authStore.currentUserRole }}
                 </p>
                 <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
-                <p class="text-lg font-medium capitalize cursor-pointer" :class="{
-                  'text-green-600': statusKey === 'active',
-                  'text-yellow-600': statusKey === 'pending',
-                }">
-                  <span class="py-1 px-2 rounded-full" :class="{
-                    'bg-green-200': statusKey === 'active',
-                    'bg-yellow-200': statusKey === 'pending',
-                  }">
+                <p
+                  class="text-lg font-medium capitalize cursor-pointer"
+                  :class="{
+                    'text-green-600': statusKey === 'active',
+                    'text-yellow-600': statusKey === 'pending',
+                  }"
+                >
+                  <span
+                    class="py-1 px-2 rounded-full"
+                    :class="{
+                      'bg-green-200': statusKey === 'active',
+                      'bg-yellow-200': statusKey === 'pending',
+                    }"
+                  >
                     {{ formData.status }}
                   </span>
                 </p>
@@ -54,61 +82,119 @@
         </div>
 
         <div
-          class="xl:w-[80%] lg:w-[90%] md:w-[90%] sm:w-[92%] w-[90%] mx-auto flex flex-col gap-6 items-center relative lg:-top-8 md:-top-6 -top-4">
+          class="xl:w-[80%] lg:w-[90%] md:w-[90%] sm:w-[92%] w-[90%] mx-auto flex flex-col gap-6 items-center relative lg:-top-8 md:-top-6 -top-4"
+        >
           <!-- Personal Information Section -->
-          <div class="w-full max-w-3xl mx-auto space-y-6 card-bg rounded-lg shadow-md p-6">
+          <div
+            class="w-full max-w-3xl mx-auto space-y-6 card-bg rounded-lg shadow-md p-6"
+          >
             <div class="space-y-4">
               <h2 class="text-xl font-semibold text-gray-100 mb-7">
                 {{ t("profile.personal_information") }}
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
                 <div class="sm:col-span-3">
-                  <LazyVInput v-model="formData.firstName" type="text" :label="t('profile.first_name')"
-                    name="First Name" :label-class="'text-gray-100'" />
+                  <LazyVInput
+                    v-model="formData.firstName"
+                    type="text"
+                    :label="t('profile.first_name')"
+                    name="First Name"
+                    :label-class="'text-gray-100'"
+                  />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <LazyVInput v-model="formData.middleName" type="text" :label="t('profile.middle_name')"
-                    name="Middle Name" :label-class="'text-gray-100'" />
+                  <LazyVInput
+                    v-model="formData.middleName"
+                    type="text"
+                    :label="t('profile.middle_name')"
+                    name="Middle Name"
+                    :label-class="'text-gray-100'"
+                  />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <LazyVInput v-model="formData.lastName" type="text" :label="t('profile.last_name')" name="Last Name"
-                    :label-class="'text-gray-100'" />
+                  <LazyVInput
+                    v-model="formData.lastName"
+                    type="text"
+                    :label="t('profile.last_name')"
+                    name="Last Name"
+                    :label-class="'text-gray-100'"
+                  />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <LazyVInput v-model="formData.email" type="email" name="Email" :label="t('profile.email')"
-                    :label-class="'text-gray-100'" />
+                  <LazyVInput
+                    v-model="formData.email"
+                    type="email"
+                    name="Email"
+                    :label="t('profile.email')"
+                    :label-class="'text-gray-100'"
+                  />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <LazyVInput v-model="formData.phoneNumber" type="tel" name="Phone Number"
-                    :label="t('profile.phone_number')" placeholder="+1234567890" :label-class="'text-gray-100'" />
+                  <LazyVInput
+                    v-model="formData.phoneNumber"
+                    type="tel"
+                    name="Phone Number"
+                    :label="t('profile.phone_number')"
+                    placeholder="+1234567890"
+                    :label-class="'text-gray-100'"
+                  />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <LazyVInput v-model="formData.employeeId" type="text" name="Employee ID"
-                    :label="t('profile.employee_id')" :readonly="true" :label-class="'text-gray-100'" />
+                  <LazyVInput
+                    v-model="formData.employeeId"
+                    type="text"
+                    name="Employee ID"
+                    :label="t('profile.employee_id')"
+                    :readonly="true"
+                    :label-class="'text-gray-100'"
+                  />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <LazyVInput v-model="formData.baseSalary" type="text" name="Base Salary"
-                    :label="t('profile.base_salary')" :label-class="'text-gray-100'" />
+                  <LazyVInput
+                    v-model="formData.baseSalary"
+                    type="text"
+                    name="Base Salary"
+                    :label="t('profile.base_salary')"
+                    :label-class="'text-gray-100'"
+                  />
                 </div>
 
                 <div class="sm:col-span-3">
-                  <LazyVInput v-model="formData.createdAt" type="text" name="Created At"
-                    :label="t('profile.created_at')" :readonly="true" :label-class="'text-gray-100'" />
+                  <LazyVInput
+                    v-model="formData.createdAt"
+                    type="text"
+                    name="Created At"
+                    :label="t('profile.created_at')"
+                    :readonly="true"
+                    :label-class="'text-gray-100'"
+                  />
                 </div>
               </div>
 
               <div class="pt-4">
-                <LazyVButton :block="true" type="submit" @click="updatePersonalInfo" :class="{
-                  'opacity-50 cursor-not-allowed': isUpdatingPersonalInfo,
-                }" :padding-y="'py-2.5'">
-                  <LazyVLoadingSpinner v-if="isUpdatingPersonalInfo" size="sm" color="text-white"
-                    text-color="text-white" text="Updating..." icon-name="svg-spinners:90-ring-with-bg" />
+                <LazyVButton
+                  :block="true"
+                  type="submit"
+                  @click="updatePersonalInfo"
+                  :class="{
+                    'opacity-50 cursor-not-allowed': isUpdatingPersonalInfo,
+                  }"
+                  :padding-y="'py-2.5'"
+                >
+                  <LazyVLoadingSpinner
+                    v-if="isUpdatingPersonalInfo"
+                    size="sm"
+                    color="text-white"
+                    text-color="text-white"
+                    text="Updating..."
+                    icon-name="svg-spinners:90-ring-with-bg"
+                  />
                   <span v-else>{{ t("btn.update_personal_information") }}</span>
                 </LazyVButton>
               </div>
@@ -116,27 +202,55 @@
           </div>
 
           <!-- Password Update Section -->
-          <div class="w-full max-w-3xl mx-auto space-y-6 card-bg rounded-lg shadow-md p-6">
+          <div
+            class="w-full max-w-3xl mx-auto space-y-6 card-bg rounded-lg shadow-md p-6"
+          >
             <div class="space-y-4">
               <h2 class="text-xl font-semibold text-gray-100 mb-7">
                 {{ t("profile.change_password") }}
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <LazyVInput :label="t('profile.new_password')" placeholder="••••••••" type="password"
-                  name="New Password" :rules="'required|minLength:7'" :required="true" :label-class="'text-gray-100'"
-                  v-model="passwordForm.newPassword" />
+                <LazyVInput
+                  :label="t('profile.new_password')"
+                  placeholder="••••••••"
+                  type="password"
+                  name="New Password"
+                  :rules="'required|minLength:7'"
+                  :required="true"
+                  :label-class="'text-gray-100'"
+                  v-model="passwordForm.newPassword"
+                />
 
-                <LazyVInput :label="t('profile.confirm_password')" placeholder="••••••••" type="password"
-                  name="Confirm Password" :rules="'required|minLength:7'" :required="true"
-                  :label-class="'text-gray-100'" v-model="passwordForm.confirmPassword" />
+                <LazyVInput
+                  :label="t('profile.confirm_password')"
+                  placeholder="••••••••"
+                  type="password"
+                  name="Confirm Password"
+                  :rules="'required|minLength:7'"
+                  :required="true"
+                  :label-class="'text-gray-100'"
+                  v-model="passwordForm.confirmPassword"
+                />
               </div>
 
               <div class="pt-4">
-                <LazyVButton :block="true" type="submit" @click="updatePassword" :class="{
-                  'opacity-50 cursor-not-allowed': isUpdatingPassword,
-                }" :padding-y="'py-2.5'">
-                  <LazyVLoadingSpinner v-if="isUpdatingPassword" size="sm" color="text-white" text-color="text-white"
-                    text="Updating..." icon-name="svg-spinners:90-ring-with-bg" />
+                <LazyVButton
+                  :block="true"
+                  type="submit"
+                  @click="updatePassword"
+                  :class="{
+                    'opacity-50 cursor-not-allowed': isUpdatingPassword,
+                  }"
+                  :padding-y="'py-2.5'"
+                >
+                  <LazyVLoadingSpinner
+                    v-if="isUpdatingPassword"
+                    size="sm"
+                    color="text-white"
+                    text-color="text-white"
+                    text="Updating..."
+                    icon-name="svg-spinners:90-ring-with-bg"
+                  />
                   <span v-else>{{ t("btn.update_password") }}</span>
                 </LazyVButton>
               </div>
@@ -339,7 +453,7 @@ const updatePassword = async () => {
   isUpdatingPassword.value = true;
   try {
     const result = await authStore.updatePassword(
-      passwordForm.value.newPassword
+      passwordForm.value.newPassword,
     );
     if (result.success) {
       triggerToast({

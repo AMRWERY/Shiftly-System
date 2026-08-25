@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NuxtRouteAnnouncer />
     <ClientOnly>
       <NuxtLayout>
         <!-- LazyVProgressBar component -->
@@ -14,10 +15,17 @@
 
     <!-- LazyVToast component -->
     <teleport to="body">
-      <div class="fixed z-[9999] pointer-events-none top-10 left-1/2 -translate-x-1/2 w-full max-w-md">
+      <div
+        class="fixed z-[9999] pointer-events-none top-10 left-1/2 -translate-x-1/2 w-full max-w-md"
+      >
         <div class="pointer-events-auto flex justify-center">
-          <LazyVToast v-if="showToast" :message="toastMessage" :toastType="toastType" :duration="toastDuration"
-            :toastIcon="toastIcon" />
+          <LazyVToast
+            v-if="showToast"
+            :message="toastMessage"
+            :toastType="toastType"
+            :duration="toastDuration"
+            :toastIcon="toastIcon"
+          />
         </div>
       </div>
     </teleport>

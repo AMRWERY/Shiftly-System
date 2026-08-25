@@ -3,6 +3,32 @@
     <ul class="space-y-1">
       <li>
         <nuxt-link-locale
+          to="/"
+          class="sidebar-nav-link group"
+          :class="
+            isActive('/')
+              ? 'sidebar-link-active'
+              : 'sidebar-link-hover text-tx-primary'
+          "
+          :exact="true"
+        >
+          <Icon
+            name="mdi:desktop-mac-dashboard"
+            class="sidebar-section-icon"
+            :class="
+              isActive('/')
+                ? 'text-brand-primary dark:text-white'
+                : 'text-tx-muted'
+            "
+          />
+          <span v-if="!collapsed" class="flex-1 ms-3 whitespace-nowrap">{{
+            t("layouts.overview")
+          }}</span>
+        </nuxt-link-locale>
+      </li>
+
+      <li>
+        <nuxt-link-locale
           to="/employee_list"
           class="sidebar-nav-link group"
           :class="
@@ -387,7 +413,7 @@
           "
         >
           <Icon
-            name="material-symbols:work-rounded"
+            name="material-symbols:business-center-rounded"
             class="sidebar-section-icon"
             :class="
               isActive('/job-openings')

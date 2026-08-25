@@ -1,67 +1,120 @@
 <template>
-    <div>
-        <div class="max-w-7xl mx-auto p-4">
-            <div class="card-bg shadow-lg rounded-lg overflow-hidden">
-                <div class="flex items-center justify-between px-6 py-4 bg-brand-systemBg text-white rounded-t-lg">
-                    <LazyVButton type="button" variant="ghost" padding-x="px-2" padding-y="py-2"
-                        hover-color="hover:bg-white/5" class="rounded-full" @click="prevMonth">
-                        <Icon name="material-symbols:chevron-left" class="w-6 h-6 rtl:rotate-180" />
-                    </LazyVButton>
-                    <h2 class="text-xl font-semibold">{{ monthName }} {{ currentYear }}</h2>
-                    <LazyVButton type="button" variant="ghost" padding-x="px-2" padding-y="py-2"
-                        hover-color="hover:bg-white/5" class="rounded-full" @click="nextMonth">
-                        <Icon name="material-symbols:chevron-right" class="w-6 h-6 rtl:rotate-180" />
-                    </LazyVButton>
-                </div>
-
-                <div class="grid grid-cols-7 gap-px bg-gray-700" v-if="!loading">
-                    <div v-for="day in dayHeaders" :key="day"
-                        class="text-center py-3 bg-brand-systemBg text-gray-300 font-medium text-sm rounded-t-none">
-                        {{ day }}
-                    </div>
-
-                    <div v-for="blank in blankDays" :key="'blank-' + blank"
-                        class="bg-brand-layoutBg/50 p-2 h-24 sm:h-32 rounded-none"></div>
-
-                    <div v-for="day in daysInMonth" :key="day.date" :class="[
-                        'p-2 text-center relative h-24 sm:h-32 overflow-hidden rounded-none cursor-pointer transition-colors',
-                        isToday(day.date) ? 'bg-indigo-500/20 border-2 border-indigo-500' : 'bg-brand-layoutBg hover:bg-white/5',
-                        day.isHolidayEgypt ? 'bg-green-500/20 border border-green-500' : ''
-                    ]">
-                        <span :class="[
-                            'text-sm sm:text-base font-medium',
-                            isToday(day.date) ? 'text-indigo-400 font-extrabold' : 'text-gray-300',
-                            day.isHolidayEgypt ? 'text-green-400 font-bold' : ''
-                        ]">
-                            {{ day.dayNumber }}
-                        </span>
-                        <div v-if="day.isHolidayEgypt && day.holidayName"
-                            class="mt-1 text-xs text-green-400 break-words leading-tight">
-                            <p class="font-semibold mt-4">{{ localizedHolidayName(day) }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div v-else class="grid grid-cols-7 gap-px bg-gray-700 animate-pulse">
-                    <!-- Skeleton for day headers -->
-                    <div v-for="n in 7" :key="'header-skel-' + n" class="h-10 bg-brand-systemBg rounded"></div>
-                    <!-- Skeleton for blank days -->
-                    <div v-for="n in blankDays.length" :key="'blank-skel-' + n"
-                        class="bg-brand-layoutBg h-24 sm:h-32 rounded"></div>
-                    <!-- Skeleton for days in month -->
-                    <div v-for="n in numDaysInMonth" :key="'day-skel-' + n"
-                        class="bg-brand-layoutBg h-24 sm:h-32 rounded">
-                    </div>
-                </div>
-
-                <div v-if="error" class="p-4 text-center text-red-300">{{ error }}</div>
-            </div>
+  <div>
+    <div class="max-w-7xl mx-auto p-4">
+      <div class="card-bg shadow-lg rounded-lg overflow-hidden">
+        <div
+          class="flex items-center justify-between px-6 py-4 bg-brand-systemBg text-white rounded-t-lg"
+        >
+          <LazyVButton
+            type="button"
+            variant="ghost"
+            padding-x="px-2"
+            padding-y="py-2"
+            hover-color="hover:bg-white/5"
+            class="rounded-full"
+            @click="prevMonth"
+          >
+            <Icon
+              name="material-symbols:chevron-left"
+              class="w-6 h-6 rtl:rotate-180"
+            />
+          </LazyVButton>
+          <h2 class="text-xl font-semibold">
+            {{ monthName }} {{ currentYear }}
+          </h2>
+          <LazyVButton
+            type="button"
+            variant="ghost"
+            padding-x="px-2"
+            padding-y="py-2"
+            hover-color="hover:bg-white/5"
+            class="rounded-full"
+            @click="nextMonth"
+          >
+            <Icon
+              name="material-symbols:chevron-right"
+              class="w-6 h-6 rtl:rotate-180"
+            />
+          </LazyVButton>
         </div>
+
+        <div class="grid grid-cols-7 gap-px bg-gray-700" v-if="!loading">
+          <div
+            v-for="day in dayHeaders"
+            :key="day"
+            class="text-center py-3 bg-brand-systemBg text-gray-300 font-medium text-sm rounded-t-none"
+          >
+            {{ day }}
+          </div>
+
+          <div
+            v-for="blank in blankDays"
+            :key="'blank-' + blank"
+            class="bg-brand-layoutBg/50 p-2 h-24 sm:h-32 rounded-none"
+          ></div>
+
+          <div
+            v-for="day in daysInMonth"
+            :key="day.date"
+            :class="[
+              'p-2 text-center relative h-24 sm:h-32 overflow-hidden rounded-none cursor-pointer transition-colors',
+              isToday(day.date)
+                ? 'bg-indigo-500/20 border-2 border-indigo-500'
+                : 'bg-brand-layoutBg hover:bg-white/5',
+              day.isHolidayEgypt
+                ? 'bg-green-500/20 border border-green-500'
+                : '',
+            ]"
+          >
+            <span
+              :class="[
+                'text-sm sm:text-base font-medium',
+                isToday(day.date)
+                  ? 'text-indigo-400 font-extrabold'
+                  : 'text-gray-300',
+                day.isHolidayEgypt ? 'text-green-400 font-bold' : '',
+              ]"
+            >
+              {{ day.dayNumber }}
+            </span>
+            <div
+              v-if="day.isHolidayEgypt && day.holidayName"
+              class="mt-1 text-xs text-green-400 break-words leading-tight"
+            >
+              <p class="font-semibold mt-4">{{ localizedHolidayName(day) }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div v-else class="grid grid-cols-7 gap-px bg-gray-700 animate-pulse">
+          <!-- Skeleton for day headers -->
+          <div
+            v-for="n in 7"
+            :key="'header-skel-' + n"
+            class="h-10 bg-brand-systemBg rounded"
+          ></div>
+          <!-- Skeleton for blank days -->
+          <div
+            v-for="n in blankDays.length"
+            :key="'blank-skel-' + n"
+            class="bg-brand-layoutBg h-24 sm:h-32 rounded"
+          ></div>
+          <!-- Skeleton for days in month -->
+          <div
+            v-for="n in numDaysInMonth"
+            :key="'day-skel-' + n"
+            class="bg-brand-layoutBg h-24 sm:h-32 rounded"
+          ></div>
+        </div>
+
+        <div v-if="error" class="p-4 text-center text-red-300">{{ error }}</div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup>
-import holidaysData from '../assets/arab-holidays.json';
+import holidaysData from "../assets/arab-holidays.json";
 
 const { t, locale } = useI18n();
 const { triggerToast } = useToast();
@@ -74,32 +127,44 @@ const error = ref(null);
 
 // --- Holiday Data Loading ---
 const loadHolidays = () => {
-    loading.value = true;
-    const { start: startSimulatedLoading } = useTimeoutFn(() => {
-        try {
-            allHolidaysData.value = holidaysData;
-            error.value = null;
-        } catch (e) {
-            // console.error("Failed to load holidays:", e);
-            triggerToast({
-                message: t('toast.failed_to_load_holidays_data'),
-                type: 'error',
-                icon: 'material-symbols:error-rounded'
-            })
-            allHolidaysData.value = [];
-        } finally {
-            loading.value = false;
-        }
-    }, 1000, { immediate: false });
+  loading.value = true;
+  const { start: startSimulatedLoading } = useTimeoutFn(
+    () => {
+      try {
+        allHolidaysData.value = holidaysData;
+        error.value = null;
+      } catch (e) {
+        // console.error("Failed to load holidays:", e);
+        triggerToast({
+          message: t("toast.failed_to_load_holidays_data"),
+          type: "error",
+          icon: "material-symbols:error-rounded",
+        });
+        allHolidaysData.value = [];
+      } finally {
+        loading.value = false;
+      }
+    },
+    1000,
+    { immediate: false },
+  );
 
-    startSimulatedLoading();
-}
+  startSimulatedLoading();
+};
 
 // Load holidays when the component is mounted
 onMounted(loadHolidays);
 
 // --- Calendar Logic ---
-const dayHeaders = [t('days.sun'), t('days.mon'), t('days.tue'), t('days.wed'), t('days.thu'), t('days.fri'), t('days.sat')];
+const dayHeaders = [
+  t("days.sun"),
+  t("days.mon"),
+  t("days.tue"),
+  t("days.wed"),
+  t("days.thu"),
+  t("days.fri"),
+  t("days.sat"),
+];
 
 // Computed property for the displayed month and year
 const currentMonth = computed(() => currentDate.value.getMonth());
@@ -107,113 +172,117 @@ const currentMonth = computed(() => currentDate.value.getMonth());
 const currentYear = computed(() => currentDate.value.getFullYear());
 
 const monthName = computed(() => {
-    const months = [
-        t('months.january'),
-        t('months.february'),
-        t('months.march'),
-        t('months.april'),
-        t('months.may'),
-        t('months.june'),
-        t('months.july'),
-        t('months.august'),
-        t('months.september'),
-        t('months.october'),
-        t('months.november'),
-        t('months.december')
-    ];
-    return months[currentMonth.value];
+  const months = [
+    t("months.january"),
+    t("months.february"),
+    t("months.march"),
+    t("months.april"),
+    t("months.may"),
+    t("months.june"),
+    t("months.july"),
+    t("months.august"),
+    t("months.september"),
+    t("months.october"),
+    t("months.november"),
+    t("months.december"),
+  ];
+  return months[currentMonth.value];
 });
 
 // Get holidays for Egypt for the current view
 const egyptHolidays = computed(() => {
-    if (!allHolidaysData.value || allHolidaysData.value.length === 0) return [];
-    const egyptData = allHolidaysData.value.find(country => country.country_code === 'EG');
-    return egyptData ? egyptData.holidays : [];
+  if (!allHolidaysData.value || allHolidaysData.value.length === 0) return [];
+  const egyptData = allHolidaysData.value.find(
+    (country) => country.country_code === "EG",
+  );
+  return egyptData ? egyptData.holidays : [];
 });
 
 // Check if a specific date is an Egyptian holiday
 const isEgyptianHoliday = (dateString) => {
-    return egyptHolidays.value.find(holiday => holiday.date === dateString);
-}
+  return egyptHolidays.value.find((holiday) => holiday.date === dateString);
+};
 
 const localizedHolidayName = (day) => {
-    if (!day.holidayName) return '';
-    return locale.value.startsWith('ar') ?
-        day.holidayName.ar :
-        day.holidayName.en;
+  if (!day.holidayName) return "";
+  return locale.value.startsWith("ar")
+    ? day.holidayName.ar
+    : day.holidayName.en;
 };
 
 // Get the number of days in the current month
 const numDaysInMonth = computed(() => {
-    const year = currentDate.value.getFullYear();
-    const month = currentDate.value.getMonth();
-    return new Date(year, month + 1, 0).getDate();
+  const year = currentDate.value.getFullYear();
+  const month = currentDate.value.getMonth();
+  return new Date(year, month + 1, 0).getDate();
 });
 
 // Get the first day of the month (0 for Sunday, 1 for Monday, etc.)
 const firstDayOfMonth = computed(() => {
-    const year = currentDate.value.getFullYear();
-    const month = currentDate.value.getMonth();
-    return new Date(year, month, 1).getDay();
+  const year = currentDate.value.getFullYear();
+  const month = currentDate.value.getMonth();
+  return new Date(year, month, 1).getDay();
 });
 
 // Generate blank days to align the start of the month
 const blankDays = computed(() => {
-    return Array(firstDayOfMonth.value).fill(null);
+  return Array(firstDayOfMonth.value).fill(null);
 });
 
 // Generate the actual days for the calendar grid
 const daysInMonth = computed(() => {
-    const days = [];
-    const year = currentDate.value.getFullYear();
-    const month = currentDate.value.getMonth();
-    for (let i = 1; i <= numDaysInMonth.value; i++) {
-        const dateObj = new Date(year, month, i);
-        const dateString = dateObj.toISOString().split('T')[0];
-        const holidayInfo = isEgyptianHoliday(dateString);
-        days.push({
-            date: dateString,
-            dayNumber: i,
-            isHolidayEgypt: !!holidayInfo,
-            holidayName: holidayInfo ? { en: holidayInfo.name_en, ar: holidayInfo.name_ar } : null,
-        });
-    }
-    return days;
+  const days = [];
+  const year = currentDate.value.getFullYear();
+  const month = currentDate.value.getMonth();
+  for (let i = 1; i <= numDaysInMonth.value; i++) {
+    const dateObj = new Date(year, month, i);
+    const dateString = dateObj.toISOString().split("T")[0];
+    const holidayInfo = isEgyptianHoliday(dateString);
+    days.push({
+      date: dateString,
+      dayNumber: i,
+      isHolidayEgypt: !!holidayInfo,
+      holidayName: holidayInfo
+        ? { en: holidayInfo.name_en, ar: holidayInfo.name_ar }
+        : null,
+    });
+  }
+  return days;
 });
 
 // --- Navigation ---
 const prevMonth = () => {
-    currentDate.value = new Date(
-        currentDate.value.getFullYear(),
-        currentDate.value.getMonth() - 1,
-        1
-    );
-}
+  currentDate.value = new Date(
+    currentDate.value.getFullYear(),
+    currentDate.value.getMonth() - 1,
+    1,
+  );
+};
 
 const nextMonth = () => {
-    currentDate.value = new Date(
-        currentDate.value.getFullYear(),
-        currentDate.value.getMonth() + 1,
-        1
-    );
-}
+  currentDate.value = new Date(
+    currentDate.value.getFullYear(),
+    currentDate.value.getMonth() + 1,
+    1,
+  );
+};
 
 // Helper to check if a date is today
 const isToday = (dateString) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const compareDate = new Date(dateString);
-    compareDate.setHours(0, 0, 0, 0);
-    return today.getTime() === compareDate.getTime();
-}
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const compareDate = new Date(dateString);
+  compareDate.setHours(0, 0, 0, 0);
+  return today.getTime() === compareDate.getTime();
+};
 
 definePageMeta({
-    layout: 'dashboard',
+  layout: "dashboard",
 });
 
 useSeoPage({
-    title: () => t("meta.holiday_dates"),
-    description: () => t("meta.holiday_dates_description"),
-    private: true,
+  title: () => t("meta.holiday_dates"),
+  description: () => t("meta.holiday_dates_description"),
+  private: true,
 });
 </script>

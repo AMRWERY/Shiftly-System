@@ -1,6 +1,41 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">360-feedback</p>
+    <div>
+      <div class="mt-3 mb-6">
+        <LazyVBreadcrumb
+          :items="[
+            {
+              label: '360° Feedback',
+              icon: 'material-symbols:rate-review-rounded',
+            },
+          ]"
+        />
+      </div>
+
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-semibold text-gray-100">
+          360° Feedback
+        </h1>
+        <div class="flex space-s-4">
+          <LazyVDownloadFilesMenu :all-items="[]" :columns="[]" />
+
+          <LazyVRefreshButton />
+
+          <LazyVButton
+            color="primary"
+            size="sm"
+            to="/360-feedback/create"
+            :padding-x="'px-3'"
+            :padding-y="'py-2.5'"
+            :rounded="'rounded-lg'"
+            :block="true"
+            >Add New</LazyVButton
+          >
+        </div>
+      </div>
+
+      <LazyVTable :columns="[]" :items="[]" />
+    </div>
   </div>
 </template>
 
@@ -8,12 +43,12 @@
 const { t } = useI18n();
 
 useSeoPage({
-  title: () => t("meta.feedback_360"),
-  description: () => t("meta.feedback_360_description"),
+  title: () => t("meta.360_feedback"),
+  description: () => t("meta.360_feedback_description"),
   private: true,
 });
 
 definePageMeta({
-  layout: 'dashboard'
-})
+  layout: "dashboard",
+});
 </script>
