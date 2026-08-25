@@ -1,21 +1,24 @@
 <template>
   <div>
-    <p class="p-10 space-y-10 text-3xl font-semibold text-tx-primary">
-      quick-access-contacts
-    </p>
+    <div>
+      <div class="mt-3 mb-6">
+        <LazyVBreadcrumb :items="[{ label: 'Quick Access Contacts', icon: 'material-symbols:contacts-rounded' }]" />
+      </div>
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-semibold text-gray-100">Quick Access Contacts</h1>
+        <div class="flex space-s-4">
+          <LazyVDownloadFilesMenu :all-items="[]" :columns="[]" />
+          <LazyVRefreshButton />
+          <LazyVButton color="primary" size="sm" to="/quick-access-contacts/create" :padding-x="'px-3'" :padding-y="'py-2.5'" :rounded="'rounded-lg'" :block="true">Add New</LazyVButton>
+        </div>
+      </div>
+      <LazyVTable :columns="[]" :items="[]" />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 const { t } = useI18n();
-
-useSeoPage({
-  title: () => t("meta.quick_access_contacts"),
-  description: () => t("meta.quick_access_contacts_description"),
-  private: true,
-});
-
-definePageMeta({
-  layout: "dashboard",
-});
+useSeoPage({ title: () => t("meta.quick_access_contacts"), description: () => t("meta.quick_access_contacts_description"), private: true });
+definePageMeta({ layout: "dashboard" });
 </script>
